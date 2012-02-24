@@ -1,0 +1,11 @@
+#Installation commands
+alias install='sudo apt-get install'
+alias upgrade='sudo apt-get update'
+alias update='sudo apt-get update'
+alias search='sudo apt-cache search'
+alias show='sudo apt-cache show'
+
+#Network commands
+alias pi='ping 8.8.8.8'
+alias pg='ping goo.gl'
+
