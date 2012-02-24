@@ -9,3 +9,7 @@ alias show='sudo apt-cache show'
 alias pi='ping 8.8.8.8'
 alias pg='ping goo.gl'
 
+#Power Commands
+alias sd='shutdown -h now'
+alias sr='shutdown -r now'
+
