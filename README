@@ -2,8 +2,11 @@ Here you will find few of the configuration which I use in my Linux system. You 
 
 .alias - Useful alias file of commonly used UNIX commands.
 .emacs - Emacs configuration file for specific customization.
-
+.global_ignore - Global git ignore rules.
 In order to use .alias script, just clone that in your $HOME directory and place the following command in your ~/.bashrc file.
 source ~/.alias
 
 For using the .emacs file, put that under your $HOME directory.
+
+For using the .global_ignore file, put that under your $HOME directory and issue the following command:
+git config --global core.excludesfile ~/.global_ignore
