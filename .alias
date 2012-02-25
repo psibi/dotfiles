@@ -10,8 +10,8 @@ alias pi='ping 8.8.8.8'
 alias pg='ping goo.gl'
 
 #Power Commands
-alias sd='shutdown -h now'
-alias sr='shutdown -r now'
+alias sd='sudo shutdown -h now'
+alias sr='sudo shutdown -r now'
 
 #Logout
 #KDE Desktop
