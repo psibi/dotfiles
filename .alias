@@ -13,3 +13,8 @@ alias pg='ping goo.gl'
 alias sd='shutdown -h now'
 alias sr='shutdown -r now'
 
+#Logout
+#KDE Desktop
+alias lg='qdbus org.kde.ksmserver /KSMServer logout 1 0 -1' 
+#GNOME
+#alias lg='gnome-session-save --logout'
