@@ -10,11 +10,14 @@ alias pi='ping 8.8.8.8'
 alias pg='ping goo.gl'
 
 #Power Commands
-alias sd='sudo shutdown -h now'
-alias sr='sudo shutdown -r now'
+#alias sd='sudo shutdown -h now'
+#alias sr='sudo shutdown -r now'
+alias sd='gnome-session-quit'
+
 
 #Logout
 #KDE Desktop
 alias lg='qdbus org.kde.ksmserver /KSMServer logout 1 0 -1' 
 #GNOME
 #alias lg='gnome-session-save --logout'
+alias lg='gnome-session-quit --logout'
