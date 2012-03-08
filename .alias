@@ -12,7 +12,7 @@ alias pg='ping goo.gl'
 #Power Commands
 #alias sd='sudo shutdown -h now'
 #alias sr='sudo shutdown -r now'
-alias sd='gnome-session-quit'
+alias sd='gnome-session-quit --power-off'
 
 
 #Logout
