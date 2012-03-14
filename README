@@ -1,7 +1,6 @@
 Here you will find few of the configuration which I use in my Linux system. You can tailor it according it to your needs.
 
 .alias - Useful alias file of commonly used UNIX commands.
-.emacs - Emacs configuration file for specific customization.
 .global_ignore - Global git ignore rules.
 In order to use .alias script, just clone that in your $HOME directory and place the following command in your ~/.bashrc file.
 source ~/.alias
@@ -10,3 +9,18 @@ For using the .emacs file, put that under your $HOME directory.
 
 For using the .global_ignore file, put that under your $HOME directory and issue the following command:
 git config --global core.excludesfile ~/.global_ignore
+
+For setting up Emacs IDE:
+
+1) Put .emacs and .emacs.d under your HOME directory.
+2) Setup Auto-completion
+   * cd ~/.emacs.d/vendor/auto-complete-1.3.1/
+   * make byte-compile
+3) Setup Pymacs
+   * cd ~/.emacs.d/vendor/pinard-Pymacs-016b0bc/
+   * make
+   * sudo make install
+4) Setup Yasnippet
+   * cd ~/.emacs.d/
+   * ln -s ./vendor/capitaomorte-yasnippet-66e804d/snippets/ .
+
