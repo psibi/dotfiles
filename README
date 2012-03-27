@@ -32,4 +32,10 @@ For setting up Emacs IDE:
 7) Setup Auto-completion
    * cd ~/.emacs.d/vendor/auto-complete-1.3.1/
    * make byte-compile
+8) Setup CEDET
+   * cd ~/.emacs.d/cedet-1.0.1/
+   * make  (Just make sure you have installed install-info or texinfo in your system.)
+9) Setup ECB
+   * Change the variable of EMACS and CEDET in the Makefile to point to correct location.(Already done)
+   * make
 
