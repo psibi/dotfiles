@@ -1,6 +1,6 @@
 #Installation commands
-alias install='sudo apt-get install'
-alias upgrade='sudo apt-get update'
+alias install='sudo apt-fast install'
+alias upgrade='sudo apt-fast update'
 alias update='sudo apt-get update'
 alias search='sudo apt-cache search'
 alias show='sudo apt-cache show'
