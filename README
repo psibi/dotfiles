@@ -41,4 +41,6 @@ For setting up Emacs IDE:
 9) Setup ECB
    * Change the variable of EMACS and CEDET in the Makefile to point to correct location.(Already done)
    * make
-
+10) Setup Scala-mode
+   * cd ~/emacs.d/scala-mode/
+   * make
