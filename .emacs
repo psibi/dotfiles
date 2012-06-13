@@ -69,3 +69,13 @@
 (add-to-list 'load-path "~/.emacs.d/vendor/window-numbering.el")
 (require 'window-numbering)
 (window-numbering-mode 1)
+
+;; For Scala Mode :)
+
+(add-to-list 'load-path "~/.emacs.d/scala-mode")
+(require 'scala-mode-auto)
+(add-hook 'scala-mode-hook
+            '(lambda ()
+               (yas/minor-mode-on)
+               ))
+
