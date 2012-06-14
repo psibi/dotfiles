@@ -14,6 +14,8 @@ alias pg='ping goo.gl'
 #alias sr='sudo shutdown -r now'
 alias sd='gnome-session-quit --power-off'
 
+#Twidge Command
+alias tw='twidge update'
 
 #Logout
 #KDE Desktop
