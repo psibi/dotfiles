@@ -30,9 +30,10 @@ For setting up Emacs IDE:
 
 1. Put .emacs and .emacs.d under your HOME directory.
 2. Setup Rope
-from identi import Identica
-    	cd ~/.emacs.d/rope-0.9.3/
-    	sudo python setup.py install
+<pre>
+cd ~/.emacs.d/rope-0.9.3/
+sudo python setup.py install
+</pre>
 3. Setup Ropemode
     	cd ~/.emacs.d/ropemode-0.1-rc2/
     	sudo python setup.py install
