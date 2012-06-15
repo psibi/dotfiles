@@ -35,29 +35,44 @@ cd ~/.emacs.d/rope-0.9.3/
 sudo python setup.py install
 </pre>
 3. Setup Ropemode
-    	cd ~/.emacs.d/ropemode-0.1-rc2/
-    	sudo python setup.py install
+<pre>
+cd ~/.emacs.d/ropemode-0.1-rc2/
+sudo python setup.py install
+</pre>
 4. Setup Pymacs
-    	cd ~/.emacs.d/vendor/pinard-Pymacs-016b0bc/
-    	make
-    	sudo make install
+<pre>
+cd ~/.emacs.d/vendor/pinard-Pymacs-016b0bc/
+make
+sudo make install
+</pre>
 5. Install Ropemacs
-    	cd ~/.emacs.d/ropemacs/
-    	sudo python setup.py install
+<pre>
+cd ~/.emacs.d/ropemacs/
+sudo python setup.py install
+</pre>
 6. Setup Yasnippet
-    	cd ~/.emacs.d/
-    	ln -s ./vendor/capitaomorte-yasnippet-66e804d/snippets/ .
+<pre>
+cd ~/.emacs.d/
+ln -s ./vendor/capitaomorte-yasnippet-66e804d/snippets/ .
+</pre>
 7. Setup Auto-completion
-    	cd ~/.emacs.d/vendor/auto-complete-1.3.1/
-    	sudo make byte-compile
+<pre>
+cd ~/.emacs.d/vendor/auto-complete-1.3.1/
+sudo make byte-compile
+</pre>
 8. Setup CEDET
-    	cd ~/.emacs.d/cedet-1.0.1/
-    	sudo make  (Just make sure you have installed install-info or texinfo in your system..)
+<pre>
+cd ~/.emacs.d/cedet-1.0.1/
+sudo make  (Just make sure you have installed install-info or texinfo in your system..)
+</pre>
 9. Setup ECB
-    	Change the variable of EMACS and CEDET in the Makefile to point to correct location.(Already done)
-    	make
+<pre>
+Change the variable of EMACS and CEDET in the Makefile to point to correct location.(Already done)
+make
+</pre>
 10. Setup Scala-mode
-    	cd ~/emacs.d/scala-mode/
-    	make
-
+<pre>
+cd ~/emacs.d/scala-mode/
+make
+</pre>
 
