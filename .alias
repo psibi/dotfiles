@@ -15,7 +15,7 @@ alias pg='ping goo.gl'
 alias sd='gnome-session-quit --power-off'
 
 #Twidge Command
-alias tw='twidge update'
+alias tw='update_identica.py'
 
 #Logout
 #KDE Desktop
