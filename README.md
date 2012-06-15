@@ -3,10 +3,10 @@ Here you will find few of the configuration which I use in my Linux system. You 
 Files
 ------
 
-.alias - Useful alias file of commonly used UNIX commands.
-.global_ignore - Global git ignore rules.
-apt-fast - Script For fast downloading
-.emacs - Emacs configuration file
+* .alias - Useful alias file of commonly used UNIX commands.
+* .global_ignore - Global git ignore rules.
+* apt-fast - Script For fast downloading
+* .emacs -emacs configuration file
 
 .alias
 -------
