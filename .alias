@@ -4,6 +4,7 @@ alias upgrade='sudo apt-fast upgrade'
 alias update='sudo apt-get update'
 alias search='sudo apt-cache search'
 alias show='sudo apt-cache show'
+alias depends='sudo apt-cache depends'
 
 #Network commands
 alias pi='ping 8.8.8.8'
