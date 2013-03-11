@@ -31,6 +31,8 @@ alias gc='git commit'
 alias gd='git diff'
 alias gs='git status'
 
-alias cd..='cd ..'
+alias ..='cd ..'
+alias c='clear'
+alias e='exit'
 
 export EDITOR=`which emacs`
