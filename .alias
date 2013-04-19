@@ -6,6 +6,12 @@ alias search='sudo apt-cache search'
 alias show='sudo apt-cache show'
 alias depends='sudo apt-cache depends'
 
+#For Fedora
+alias install='sudo yum install'
+alias update='sudo yum check-update'
+alias search='sudo yum search'
+
+
 alias updatedb='sudo updatedb'
 
 #Network commands
