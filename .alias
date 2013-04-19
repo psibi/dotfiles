@@ -1,15 +1,16 @@
 #Installation commands
-alias install='sudo apt-fast install'
-alias upgrade='sudo apt-fast upgrade'
-alias update='sudo apt-get update'
-alias search='sudo apt-cache search'
-alias show='sudo apt-cache show'
-alias depends='sudo apt-cache depends'
+#alias install='sudo apt-fast install'
+#alias upgrade='sudo apt-fast upgrade'
+#alias update='sudo apt-get update'
+#alias search='sudo apt-cache search'
+#alias info='sudo apt-cache show'
+#alias depends='sudo apt-cache depends'
 
 #For Fedora
 alias install='sudo yum install'
 alias update='sudo yum check-update'
 alias search='sudo yum search'
+alias info='sudo yum info'
 
 
 alias updatedb='sudo updatedb'
