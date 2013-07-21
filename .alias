@@ -38,6 +38,14 @@ alias gp='git push'
 alias ga='git add'
 alias gc='git commit'
 alias gd='git diff'
+
+alias ..='cd ..'
+alias c='clear'
+alias e='exit'
+
+alias clipboard='xclip -sel clip'
+
+export EDITOR=`which emacs`
 alias gs='git status'
 
 alias ..='cd ..'
