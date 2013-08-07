@@ -87,3 +87,6 @@
 (push "/usr/bin" exec-path)
 (push "/home/sibi/Downloads/Softwares/sbt/bin/" exec-path)
 
+;; Rebind Meta key to C-x-m or C-c-m (more forgiving!)
+(global-set-key "\C-x\C-m" 'execute-extended-command)
+(global-set-key "\C-c\C-m" 'execute-extended-command)
