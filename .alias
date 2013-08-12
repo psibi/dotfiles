@@ -1,6 +1,6 @@
 #Installation commands
-alias install='sudo apt-fast install'
-alias upgrade='sudo apt-fast upgrade'
+alias install='sudo apt-get -y install'
+alias upgrade='sudo apt-get upgrade'
 alias update='sudo apt-get update'
 alias search='sudo apt-cache search'
 alias info='sudo apt-cache show'
@@ -23,9 +23,6 @@ alias pg='ping goo.gl'
 #alias sd='sudo shutdown -h now'
 #alias sr='sudo shutdown -r now'
 alias sd='gnome-session-quit --power-off'
-
-#Twidge Command
-alias tw='update_identica.py'
 
 #Logout
 #KDE Desktop
