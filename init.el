@@ -48,6 +48,13 @@
   (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
                          '(2 "_NET_WM_STATE_FULLSCREEN" 0)))
 
+;; Sometimes the above function may not work. (Gnome Shell 3.8)
+(defun switch-full-screen ()
+  (interactive)
+  (shell-command "wmctrl -r :ACTIVE: -btoggle,fullscreen"))
+ 
+(global-set-key [f11] 'switch-full-screen)
+
 ;;Maximize Screen
 (defun maximize (&optional f)
        (interactive)
