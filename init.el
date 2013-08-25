@@ -65,8 +65,6 @@
 
 (maximize)
 
-;; Bind C-c C-r key for refreshing of a file
-(global-set-key (kbd "C-c C-r") 'revert-buffer)
 (global-set-key (kbd "C-x p") 'package-list-packages-no-fetch)
 
 ;;Python Development Environment
