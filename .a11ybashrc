@@ -1,5 +1,0 @@
-export GTK_PATH=/usr/local/lib/gtk-2.0/
-export PYTHONPATH=/usr/local/lib/python2.6/site-packages/
-export QT_ACCESSIBILITY=1
-export GTK_MODULES=gail:atk-bridge
-
