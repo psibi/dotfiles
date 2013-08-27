@@ -77,10 +77,6 @@
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:setup-keys t)
 
-;;SML MODE (Need to change the path manually. Set it where you can locate `sml`)
-(setenv "PATH" (concat "/home/sibi/Downloads/bin:" (getenv "PATH")))
-(setq exec-path (cons "/home/sibi/Downloads/bin" exec-path))
-
 ; -== Ensime ==- (Change path manually) 
 ;; Install scala-mode form ELPA. You need to install ensime separetly after that.
 ;; This may help: http://jawher.net/2011/01/17/scala-development-environment-emacs-sbt-ensime/
