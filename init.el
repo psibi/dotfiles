@@ -52,8 +52,6 @@
 (defun switch-full-screen ()
   (interactive)
   (shell-command "wmctrl -r :ACTIVE: -btoggle,fullscreen"))
- 
-(global-set-key [f11] 'switch-full-screen)
 
 ;;Maximize Screen
 (defun maximize (&optional f)
@@ -64,8 +62,6 @@
 	    		 '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0)))
 
 (maximize)
-
-(global-set-key (kbd "C-x p") 'package-list-packages-no-fetch)
 
 ;;Python Development Environment
 ;;Install jedi for Auto-completion in Python mode. For key bindings see: C-h v jedi:setup-keys
@@ -96,3 +92,5 @@
 (global-set-key "\C-x\C-k" 'kill-region)
 (global-set-key "\C-c\C-k" 'kill-region)
 
+(global-set-key [f11] 'switch-full-screen)
+(global-set-key (kbd "C-x p") 'package-list-packages-no-fetch)
