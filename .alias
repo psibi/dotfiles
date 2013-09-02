@@ -40,6 +40,7 @@ alias gs='git status'
 alias ..='cd ..'
 alias c='clear'
 alias e='exit'
+alias rst='. ~/.profile'
 
 alias clipboard='xclip -sel clip'
 
