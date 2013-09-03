@@ -1,8 +1,6 @@
 #My own extra customization :)
 source ~/.alias
 
-export PATH=${PATH}:/home/sibi/bin
-
 PS1='\[\033[01;32m\]\u\[\033[01;34m\]::\[\033[01;31m\]\h \[\033[00;34m\]{ \[\033[01;34m\]\w \[\033[00;34m\]}\[\033[01;32m\]-> \[\033[00m\]'
 
 ## http://jeroenjanssens.com/2013/08/16/quickly-navigate-your-filesystem-from-the-command-line.html
