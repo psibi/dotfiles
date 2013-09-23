@@ -12,7 +12,6 @@ alias depends='sudo apt-cache depends'
 #alias search='sudo yum search'
 #alias info='sudo yum info'
 
-
 alias updatedb='sudo updatedb'
 
 #Network commands
@@ -31,6 +30,7 @@ alias lg='qdbus org.kde.ksmserver /KSMServer logout 1 0 -1'
 #alias lg='gnome-session-save --logout'
 alias lg='gnome-session-quit --logout'
 
+#Git Related
 alias gp='git push'
 alias ga='git add'
 alias gc='git commit'
@@ -41,6 +41,7 @@ alias ..='cd ..'
 alias c='clear'
 alias e='exit'
 alias rst='. ~/.profile'
+alias ~='cd ~'
 
 alias clipboard='xclip -sel clip'
 
