@@ -94,3 +94,6 @@
 
 (global-set-key [f11] 'switch-full-screen)
 (global-set-key (kbd "C-x p") 'package-list-packages-no-fetch)
+
+;; Haskell related
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
