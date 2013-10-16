@@ -22,6 +22,7 @@
 
 (menu-bar-mode -1)
 (tool-bar-mode -1)
+(size-indication-mode 1)
 
 ;;Install ecb-snapshot from M-x package-list-packages
 (require 'ecb)
