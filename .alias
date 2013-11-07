@@ -38,6 +38,8 @@ alias gd='git diff'
 alias gs='git status'
 
 alias ..='cd ..'
+alias ...='cd .. && cd ..'
+alias ....='cd .. && cd .. && cd ..'
 alias c='clear'
 alias e='exit'
 alias rst='. ~/.profile'
@@ -45,4 +47,5 @@ alias ~='cd ~'
 
 alias clipboard='xclip -sel clip'
 
-export EDITOR=`which emacs`
+export ALTERNATE_EDITOR=emacs EDITOR=emacsclient VISUAL=emacsclient
+
