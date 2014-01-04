@@ -2,6 +2,8 @@
 ;; Author: Sibi <sibi@psibi.in>
 ;; File path: ~/.emacs.d/init.el
 
+(server-start)
+
 (load-theme 'wheatgrass t)
 (require 'cl)
 (require 'saveplace)
@@ -11,6 +13,7 @@
 (require 'recentf)
 (require 'package)
 (require 'hi2)
+(require 'smex)
 
 (setq package-archives
       '(("gnu"         . "http://elpa.gnu.org/packages/")
@@ -21,13 +24,38 @@
 
 (package-initialize)
 
+;; Remove menu, tool and scroll bar.
 (menu-bar-mode -1)
 (tool-bar-mode -1)
+(set-scroll-bar-mode 'nil)
 (size-indication-mode 1)
 
-;;Install ecb-snapshot from M-x package-list-packages
-(require 'ecb)
-(setq stack-trace-on-error t)
+;; Unbind C-z
+(when window-system
+  (global-unset-key [(control z)]))
+
+;; ----------------------
+;; Final newline handling
+;; ----------------------
+(setq require-final-newline t)
+(setq next-line-extends-end-of-buffer nil)
+(setq next-line-add-newlines nil)
+
+;; -------------------
+;; Everything in UTF-8
+;; -------------------
+(prefer-coding-system                   'utf-8)
+(set-language-environment               'utf-8)
+(set-default-coding-systems             'utf-8)
+(setq file-name-coding-system           'utf-8)
+(setq default-buffer-file-coding-system 'utf-8)
+(setq coding-system-for-write           'utf-8)
+(set-keyboard-coding-system             'utf-8)
+(set-terminal-coding-system             'utf-8)
+(set-clipboard-coding-system            'utf-8)
+(set-selection-coding-system            'utf-8)
+(setq default-process-coding-system     '(utf-8 . utf-8))
+(add-to-list 'auto-coding-alist         '("." . utf-8))
 
 ;;Install Window-number mode - Use M-1,M-2 to jump between windows
 (require 'window-number)
@@ -75,20 +103,10 @@
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:setup-keys t)
 
-; -== Ensime ==- (Change path manually) 
-;; Install scala-mode form ELPA. You need to install ensime separetly after that.
-;; This may help: http://jawher.net/2011/01/17/scala-development-environment-emacs-sbt-ensime/
-(require 'scala-mode)
-(add-to-list 'auto-mode-alist '("\.scala$" . scala-mode))
-(add-to-list 'load-path "/home/sibi/Downloads/Softwares/ensime_2.10.0-RC3-0.9.8.2/elisp/")
-(require 'ensime)
-(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
-(push "/usr/bin" exec-path)
-(push "/home/sibi/Downloads/Softwares/sbt/bin/" exec-path)
 
 ;; Rebind Meta key to C-x-m or C-c-m (more forgiving!)
 
-;; These doesn't work after the latest updates
+;; These doesn't work after the latest updates as smex overrides
 ;; (global-set-key "\C-x\C-m" 'execute-extended-command)
 ;; (global-set-key "\C-c\C-m" 'execute-extended-command)
 
@@ -103,6 +121,4 @@
 (global-set-key (kbd "C-x p") 'package-list-packages-no-fetch)
 
 ;; Haskell related
-
 (add-hook 'haskell-mode-hook 'turn-on-hi2)
-
