@@ -10,6 +10,7 @@
 (require 'ansi-color)
 (require 'recentf)
 (require 'package)
+(require 'hi2)
 
 (setq package-archives
       '(("gnu"         . "http://elpa.gnu.org/packages/")
@@ -102,4 +103,6 @@
 (global-set-key (kbd "C-x p") 'package-list-packages-no-fetch)
 
 ;; Haskell related
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+
+(add-hook 'haskell-mode-hook 'turn-on-hi2)
+
