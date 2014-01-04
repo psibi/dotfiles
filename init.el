@@ -1,8 +1,9 @@
 ;; My Emacs configuration
 ;; Author: Sibi <sibi@psibi.in>
 ;; File path: ~/.emacs.d/init.el
-
 (server-start)
+
+(package-initialize)
 
 (load-theme 'wheatgrass t)
 (require 'cl)
@@ -12,7 +13,6 @@
 (require 'ansi-color)
 (require 'recentf)
 (require 'package)
-(require 'hi2)
 (require 'smex)
 (require 'window-number)
 (require 'tramp)
@@ -20,6 +20,7 @@
 (require 'autopair)
 (require 'auto-complete-config)
 (require 'fullscreen-mode)
+(require 'hi2)
 
 (setq package-archives
       '(("gnu"         . "http://elpa.gnu.org/packages/")
@@ -27,8 +28,6 @@
         ("org"         . "http://orgmode.org/elpa/")
         ("marmalade"   . "http://marmalade-repo.org/packages/")
         ("melpa" . "http://melpa.milkbox.net/packages/")))
-
-(package-initialize)
 
 ;; Remove menu, tool and scroll bar.
 (menu-bar-mode -1)
@@ -39,6 +38,9 @@
 ;; Unbind C-z
 (when window-system
   (global-unset-key [(control z)]))
+
+;; Make fullscreen
+(fullscreen-mode-fullscreen)
 
 ;; ----------------------
 ;; Final newline handling
@@ -63,8 +65,6 @@
 (setq default-process-coding-system     '(utf-8 . utf-8))
 (add-to-list 'auto-coding-alist         '("." . utf-8))
 
-(window-number-meta-mode)
-
 (ac-config-default)
 (autopair-global-mode) ;; enable autopair in all buffers
 
@@ -82,7 +82,6 @@
 (setq jedi:setup-keys t)
 
 ;; Rebind Meta key to C-x-m or C-c-m (more forgiving!)
-
 ;; These doesn't work after the latest updates as smex overrides
 ;; (global-set-key "\C-x\C-m" 'execute-extended-command)
 ;; (global-set-key "\C-c\C-m" 'execute-extended-command)
@@ -90,11 +89,13 @@
 (global-set-key "\C-x\C-m" 'smex)
 (global-set-key "\C-c\C-m" 'smex)
 
+;; Custom Shortcuts
 (global-set-key "\C-w" 'backward-kill-word)
 (global-set-key "\C-x\C-k" 'kill-region)
 (global-set-key "\C-c\C-k" 'kill-region)
 
+;; Package List key binding
 (global-set-key (kbd "C-x p") 'package-list-packages-no-fetch)
 
-;; Haskell related
+;; Haskell 
 (add-hook 'haskell-mode-hook 'turn-on-hi2)
