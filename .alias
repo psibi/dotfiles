@@ -47,5 +47,3 @@ alias ~='cd ~'
 
 alias clipboard='xclip -sel clip'
 
-export ALTERNATE_EDITOR=emacs EDITOR=emacsclient VISUAL=emacsclient
-

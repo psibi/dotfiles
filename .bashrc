@@ -3,6 +3,10 @@ source ~/.alias
 
 PS1='\[\033[01;32m\]\u\[\033[01;34m\]::\[\033[01;31m\]\h \[\033[00;34m\]{ \[\033[01;34m\]\w \[\033[00;34m\]}\[\033[01;32m\]-> \[\033[00m\]'
 
+export ALTERNATE_EDITOR=emacs EDITOR=emacsclient VISUAL=emacsclient
+
+export PATH=${PATH}:~/bin:~/.cabal/bin
+
 ## http://jeroenjanssens.com/2013/08/16/quickly-navigate-your-filesystem-from-the-command-line.html
 export MARKPATH=$HOME/.marks
 function jump { 
@@ -39,3 +43,4 @@ function bd () {
     cd "$NEWPWD"
   fi
 }
+
