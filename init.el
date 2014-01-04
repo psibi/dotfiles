@@ -19,6 +19,7 @@
 (require 'auto-complete)
 (require 'autopair)
 (require 'auto-complete-config)
+(require 'fullscreen-mode)
 
 (setq package-archives
       '(("gnu"         . "http://elpa.gnu.org/packages/")
@@ -62,37 +63,13 @@
 (setq default-process-coding-system     '(utf-8 . utf-8))
 (add-to-list 'auto-coding-alist         '("." . utf-8))
 
-
 (window-number-meta-mode)
-
-
 
 (ac-config-default)
 (autopair-global-mode) ;; enable autopair in all buffers
 
 ;;Tramp for editing protected files in existing Emacs session.(C-x C-f /sudo)
 (setq tramp-default-method "ssh")
-
-;;Fullscreen mode - Press M-x fullscreen for switching to Fullscreen mode.
-(defun fullscreen ()
-  (interactive)
-  (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
-                         '(2 "_NET_WM_STATE_FULLSCREEN" 0)))
-
-;; Sometimes the above function may not work. (Gnome Shell 3.8)
-(defun switch-full-screen ()
-  (interactive)
-  (shell-command "wmctrl -r :ACTIVE: -btoggle,fullscreen"))
-
-;;Maximize Screen
-(defun maximize (&optional f)
-       (interactive)
-       (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
-	    		 '(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0))
-       (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
-	    		 '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0)))
-
-(maximize)
 
 ;;Python Development Environment
 ;;Install jedi for Auto-completion in Python mode. For key bindings see: C-h v jedi:setup-keys
@@ -103,7 +80,6 @@
 (autoload 'jedi:setup "jedi" nil t)
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:setup-keys t)
-
 
 ;; Rebind Meta key to C-x-m or C-c-m (more forgiving!)
 
@@ -118,7 +94,6 @@
 (global-set-key "\C-x\C-k" 'kill-region)
 (global-set-key "\C-c\C-k" 'kill-region)
 
-(global-set-key [f11] 'switch-full-screen)
 (global-set-key (kbd "C-x p") 'package-list-packages-no-fetch)
 
 ;; Haskell related
