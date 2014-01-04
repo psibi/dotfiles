@@ -14,6 +14,11 @@
 (require 'package)
 (require 'hi2)
 (require 'smex)
+(require 'window-number)
+(require 'tramp)
+(require 'auto-complete)
+(require 'autopair)
+(require 'auto-complete-config)
 
 (setq package-archives
       '(("gnu"         . "http://elpa.gnu.org/packages/")
@@ -57,19 +62,15 @@
 (setq default-process-coding-system     '(utf-8 . utf-8))
 (add-to-list 'auto-coding-alist         '("." . utf-8))
 
-;;Install Window-number mode - Use M-1,M-2 to jump between windows
-(require 'window-number)
+
 (window-number-meta-mode)
 
-;;Install auto-complete and autopair
-(require 'auto-complete)
-(require 'autopair)
-(require 'auto-complete-config)
+
+
 (ac-config-default)
 (autopair-global-mode) ;; enable autopair in all buffers
 
 ;;Tramp for editing protected files in existing Emacs session.(C-x C-f /sudo)
-(require 'tramp)
 (setq tramp-default-method "ssh")
 
 ;;Fullscreen mode - Press M-x fullscreen for switching to Fullscreen mode.
