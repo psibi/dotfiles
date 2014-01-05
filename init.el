@@ -98,3 +98,6 @@
 
 ;; Haskell 
 (add-hook 'haskell-mode-hook 'turn-on-hi2)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-decl-scan)
+(eval-after-load "which-func"
+       '(add-to-list 'which-func-modes 'haskell-mode))
