@@ -14,7 +14,6 @@
 (require 'recentf)
 (require 'package)
 (require 'smex)
-(require 'window-number)
 (require 'tramp)
 (require 'auto-complete)
 (require 'autopair)
