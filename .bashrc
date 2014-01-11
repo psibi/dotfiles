@@ -44,3 +44,20 @@ function bd () {
   fi
 }
 
+## Similar to bd, but the argument is a number
+function up () {
+        if [[ $# -eq 1 && "$1" -gt 0 ]] ; then
+            local i d
+            for (( i = 0; i < $1; i++ )) ; do d="../$d" ; done
+            cd $d
+        else
+            echo "Usage: up N"
+        fi
+    }
+
+# mkdir, cd into it
+function mkcd () {
+      mkdir -p "$*"
+      cd "$*"
+  }
+
