@@ -13,3 +13,10 @@ cp -v init.el ~/.emacs.d/init.el
 git config --global core.excludefile ~/.global_ignore
 cat ./.bashrc >> ~/.bashrc
 
+echo "Copying New Keyboard Bindings"
+cp -v ./.xmodmap ~/.xmodmap
+cp -v ./.xsession ~/.xsession
+
+# And set the new bindings here itself.
+xmodmap ~/.xmodmap
+
