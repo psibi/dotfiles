@@ -21,3 +21,8 @@ cp -v ./.Xmodmap ~/.Xmodmap
 # And set the new bindings here itself.
 xmodmap ~/.Xmodmap
 
+echo "Setting bindings for Virtual Console"
+sudo ./virtual.sh
+
+echo "\nDon't forget to put settings to /etc/rc.local"
+
