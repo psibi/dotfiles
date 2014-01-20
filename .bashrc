@@ -61,5 +61,3 @@ function mkcd () {
       cd "$*"
   }
 
-## Just in case ~/.xsession doesn't get picked up
-xmodmap ~/.xmodmap
