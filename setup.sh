@@ -14,9 +14,8 @@ git config --global core.excludefile ~/.global_ignore
 cat ./.bashrc >> ~/.bashrc
 
 echo "Copying New Keyboard Bindings"
-cp -v ./.xmodmap ~/.xmodmap
-cp -v ./.xsession ~/.xsession
+cp -v ./.Xmodmap ~/.Xmodmap
 
 # And set the new bindings here itself.
-xmodmap ~/.xmodmap
+xmodmap ~/.Xmodmap
 
