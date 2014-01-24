@@ -1,1 +1,1 @@
-xmodmap ~/.xmodmap
+xmodmap ~/.Xmodmap
