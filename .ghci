@@ -1,9 +1,5 @@
 import Control.Applicative
 import Control.Monad
-import Control.Concurrent
-import Control.Concurrent.Async
-import Control.Parallel
-
 import Data.String
 import Data.Char
 import Data.List
