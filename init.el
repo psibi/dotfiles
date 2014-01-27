@@ -96,11 +96,14 @@
 ;; Package List key binding
 (global-set-key (kbd "C-x p") 'package-list-packages-no-fetch)
 
-;; Haskell 
+;; Haskell
 (add-hook 'haskell-mode-hook 'turn-on-hi2)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-decl-scan)
-(eval-after-load "which-func"
-       '(add-to-list 'which-func-modes 'haskell-mode))
+(setq haskell-doc-show-global-types t)
+(setq haskell-doc-show-prelude t)
+(setq haskell-doc-show-strategy t)
+(setq haskell-doc-show-reserved t)
 
 ;; ------------------------
 ;; Useful utility functions
