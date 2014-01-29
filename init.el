@@ -20,6 +20,7 @@
 (require 'auto-complete-config)
 (require 'fullscreen-mode)
 (require 'hi2)
+(require 'google-this)
 
 (setq package-archives
       '(("gnu"         . "http://elpa.gnu.org/packages/")
