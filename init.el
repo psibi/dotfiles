@@ -98,8 +98,6 @@
 (global-set-key (kbd "C-x p") 'package-list-packages-no-fetch)
 
 ;; Haskell
-(setq haskell-doc-mode t)
-(setq haskell-decl-scan t)
 (add-hook 'haskell-mode-hook 'turn-on-hi2)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-decl-scan)
@@ -107,6 +105,8 @@
 (setq haskell-doc-show-prelude t)
 (setq haskell-doc-show-strategy t)
 (setq haskell-doc-show-reserved t)
+(setq haskell-doc-mode t)
+(setq haskell-decl-scan t)
 
 ;; ------------------------
 ;; Useful utility functions
@@ -138,3 +138,5 @@
         (delete-file filename)
         (kill-buffer buffer)
         (message "File '%s' successfully removed" filename)))))
+
+(smex-initialize)
