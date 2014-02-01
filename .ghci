@@ -7,9 +7,13 @@ import Data.Monoid
 import Control.Monad.IO.Class
 
 -- You must set your prompt to a lambda, it's a law.
-:set prompt "λ: "
+-- Inferior process in Emacs currently doesn't work with custom prompt.
+-- :set prompt "λ: "
 
 :set -fno-warn-unused-imports
 :def hlint const . return $ ":! hlint \"src\""
 :def hoogle \s -> return $ ":! hoogle --count=15 \"" ++ s ++ "\""
 :def pl \s -> return $ ":! pointfree \"" ++ s ++ "\""
+
+-- Enable this for Yesod development
+-- :set -XTemplateHaskell -XQuasiQuotes -XOverloadedStrings -XNoImplicitPrelude -XCPP -XMultiParamTypeClasses -XTypeFamilies -XGADTs -XGeneralizedNewtypeDeriving -XFlexibleContexts -XEmptyDataDecls -XNoMonomorphismRestriction -XDeriveDataTypeable
