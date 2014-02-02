@@ -8,7 +8,8 @@ import Control.Monad.IO.Class
 
 -- You must set your prompt to a lambda, it's a law.
 -- Inferior process in Emacs currently doesn't work with custom prompt.
-:set prompt "λ> "
+-- :set prompt "λ> "
+:set prompt "\ESC[33mλ>\ESC[m "
 
 :set -fno-warn-unused-imports
 :def hlint const . return $ ":! hlint \"src\""
