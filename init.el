@@ -96,6 +96,8 @@
 
 ;; Package List key binding
 (global-set-key (kbd "C-x p") 'package-list-packages-no-fetch)
+;; Rebind Enter
+(define-key global-map (kbd "RET") 'newline-and-indent)
 
 ;; Haskell
 (add-hook 'haskell-mode-hook 'turn-on-hi2)
