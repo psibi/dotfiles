@@ -103,12 +103,6 @@
 (add-hook 'haskell-mode-hook 'turn-on-hi2)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-decl-scan)
-(setq haskell-doc-show-global-types t)
-(setq haskell-doc-show-prelude t)
-(setq haskell-doc-show-strategy t)
-(setq haskell-doc-show-reserved t)
-(setq haskell-doc-mode t)
-(setq haskell-decl-scan t)
 
 ;; ------------------------
 ;; Useful utility functions
