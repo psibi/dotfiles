@@ -11,3 +11,4 @@ Files
 * .bashrc - Some extra bash configuration
 * .screenrc - GNU Screen Emacs Configuration file (From startup course)
 * setup.sh - Devops script
+* .Xresource - X resource settings
