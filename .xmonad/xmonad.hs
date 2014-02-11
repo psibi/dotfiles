@@ -7,7 +7,7 @@ import qualified XMonad.StackSet as W
 import System.IO
 import Control.Monad
 
-myWorkspaces = ["main", "web", "chat", "dev", "media", "float"]
+myWorkspaces = ["main", "web", "chat", "dev", "media", "float", "misc"]
 
 -- Define the workspace an application has to go to
 myManageHook = composeAll . concat $
@@ -18,6 +18,7 @@ myManageHook = composeAll . concat $
     , [ resource  =? c --> doF (W.shift "chat") | c <- myClassChatShifts ]
     , [ resource  =? c --> doF (W.shift "dev") | c <- myClassDevShifts ]
     , [ resource  =? c --> doF (W.shift "float") | c <- myClassFloatShifts ]
+    , [ resource  =? c --> doF (W.shift "misc") | c <- myClassMiscShifts ]
     ]
     where
         viewShift = doF . liftM2 (.) W.greedyView W.shift
@@ -25,9 +26,10 @@ myManageHook = composeAll . concat $
         myClassChatShifts = ["Pidgin" ]
         myClassDevShifts = ["emacs"]
         myClassFloatShifts = ["gimp"]
+        myClassMiscShifts = ["nautilus"]
 
 main = do
-  xmproc <- spawnPipe "/bin/xmobar ~/.xmobarrc"
+  xmproc <- spawnPipe "/usr/bin/xmobar /home/sibi/.xmobarrc"
   xmonad $ defaultConfig
     {
       manageHook = manageDocks <+> myManageHook
