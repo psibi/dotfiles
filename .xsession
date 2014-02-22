@@ -4,7 +4,6 @@
  
 xrdb -merge .Xresources
 
-xmodmap ~/.Xmodmap
 # Set up an icon tray
  
 trayer --edge top --align right --SetDockType true --SetPartialStrut true \
@@ -12,7 +11,6 @@ trayer --edge top --align right --SetDockType true --SetPartialStrut true \
  
 # Set the background color<
  
-xsetroot -solid midnightblue
  
 # Fire up apps
  
@@ -28,13 +26,12 @@ if [ -x /usr/bin/gnome-settings-daemon ] ; then
    gnome-settings-daemon &
 fi
 
-if [ -x /usr/bin/gnome-sound-applet ] ; then
-    sleep 3
-    gnome-sound-applet &
-fi    
+# if [ -x /usr/bin/gnome-sound-applet ] ; then
+#     sleep 3
+#     gnome-sound-applet &
+# fi    
 
-# Doesn't ask password everytime
-eval `ssh-agent`
-xterm -e ssh-add
+xmodmap ~/.Xmodmap
+xmodmap -e 'keycode 135=Super_L' #Only for my laptop
 
 exec xmonad

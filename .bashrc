@@ -61,3 +61,8 @@ function mkcd () {
       cd "$*"
   }
 
+#Because I hate when the window manager get's confused after a restart
+function bindkeys () {
+    xmodmap ~/.Xmodmap
+    xmodmap -e 'keycode 135=Super_L' #Only for my laptop
+}
