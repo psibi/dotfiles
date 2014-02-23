@@ -7,14 +7,16 @@ import XMonad.Util.EZConfig(additionalKeys)
 import qualified XMonad.StackSet as W
 import System.IO
 import Control.Monad
+import XMonad.Hooks.ManageHelpers
 
 myWorkspaces = ["main", "web", "chat", "dev", "media", "float", "misc"]
 
 -- Define the workspace an application has to go to
 myManageHook = composeAll . concat $
     [
+      [isFullscreen --> doFullFloat] -- For Media Players
           -- Applications that go to web
-      [ className =? b --> viewShift "web"      | b <- myClassWebShifts  ]
+    , [ className =? b --> viewShift "web"      | b <- myClassWebShifts  ]
          -- Applications that go to chat
     , [ resource  =? c --> doF (W.shift "chat") | c <- myClassChatShifts ]
     , [ resource  =? c --> doF (W.shift "dev") | c <- myClassDevShifts ]
