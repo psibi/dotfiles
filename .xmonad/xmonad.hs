@@ -51,6 +51,7 @@ main = do
     [ ((mod4Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
     , ((controlMask, xK_Print), spawn "sleep 0.2; scrot -s")
     , ((mod4Mask, xK_x), spawn "xkill")
+    , ((mod4Mask, xK_c), kill)
     , ((0, xK_Print), spawn "scrot")
     ]
 
