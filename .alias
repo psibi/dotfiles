@@ -47,3 +47,4 @@ alias ~='cd ~'
 
 alias clipboard='xclip -sel clip'
 
+alias sx='startx'
