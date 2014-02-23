@@ -7,6 +7,7 @@ import XMonad.Util.EZConfig(additionalKeys)
 import qualified XMonad.StackSet as W
 import System.IO
 import Control.Monad
+import XMonad.Layout.NoBorders
 import XMonad.Hooks.ManageHelpers
 
 myWorkspaces = ["main", "web", "chat", "dev", "media", "float", "misc"]
@@ -28,7 +29,7 @@ myManageHook = composeAll . concat $
         myClassWebShifts  = ["Firefox"]
         myClassChatShifts = ["Pidgin" ]
         myClassDevShifts = ["emacs"]
-        myClassFloatShifts = ["gimp"]
+        myClassFloatShifts = ["gimp", "SMPlayer", "smplayer"]
         myClassMiscShifts = ["nautilus"]
 
 main = do
@@ -37,7 +38,8 @@ main = do
     {
       manageHook = manageDocks <+> myManageHook
                    <+> manageHook defaultConfig
-    , layoutHook = avoidStruts  $  layoutHook defaultConfig
+    -- No red border for media players
+    , layoutHook = smartBorders $ avoidStruts $ layoutHook defaultConfig 
     , logHook = dynamicLogWithPP xmobarPP
                         { ppOutput = hPutStrLn xmproc
                         , ppTitle = xmobarColor "green" "" . shorten 50
@@ -48,6 +50,7 @@ main = do
     } `additionalKeys`
     [ ((mod4Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
     , ((controlMask, xK_Print), spawn "sleep 0.2; scrot -s")
+    , ((mod4Mask, xK_x), spawn "xkill")
     , ((0, xK_Print), spawn "scrot")
     ]
 
