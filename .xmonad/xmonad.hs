@@ -53,6 +53,7 @@ main = do
     , ((mod4Mask, xK_x), spawn "xkill")
     , ((mod4Mask, xK_c), kill)
     , ((0, xK_Print), spawn "scrot")
+    , ((mod4Mask, xK_g), spawn "gnome-control-center")
     ]
 
 -- main = do
