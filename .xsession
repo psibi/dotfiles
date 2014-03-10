@@ -34,4 +34,9 @@ fi
 xmodmap ~/.Xmodmap
 xmodmap -e 'keycode 135=Super_L' #Only for my laptop
 
+# Choose your Window Manager
+# exec gnome-session
+# exec startkde
+# exec startxfce4
+
 exec xmonad
