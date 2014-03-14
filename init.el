@@ -136,3 +136,16 @@
         (message "File '%s' successfully removed" filename)))))
 
 (smex-initialize)
+
+;; Emacs doesn't seem to have `copy-rectangle-as-kill`
+;; http://www.gnu.org/software/emacs/manual/html_node/emacs/Rectangles.html
+(defun my-copy-rectangle (start end)
+   "Copy the region-rectangle instead of `kill-rectangle'."
+   (interactive "r")
+   (setq killed-rectangle (extract-rectangle start end)))
+ 
+(global-set-key (kbd "C-x r M-w") 'my-copy-rectangle)
+
+;; Just in case you are behind a proxy
+;; (setq url-proxy-services '(("https" . "127.0.0.1:3129")
+;;                            ("http" . "127.0.0.1:3129")))
