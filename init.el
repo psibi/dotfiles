@@ -99,6 +99,8 @@
 ;; Rebind Enter
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
+(global-set-key (kbd "C-x m") 'shell)
+
 ;; Haskell
 (add-hook 'haskell-mode-hook 'turn-on-hi2)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
