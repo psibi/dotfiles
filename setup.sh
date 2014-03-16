@@ -1,12 +1,19 @@
 # Devops script 
 # Author: Sibi <sibi@psibi.in>
 
+# Do initial cleanup on existing system
+
+[ -f ~/.alias ] && rm ~/.alias
+[ -f ~/.global_ignore ] && rm ~/.global_ignore
+
 ln .alias ~/.alias
 ln .global_ignore ~/.global_ignore
 
 if [ ! -d ~/.emacs.d ]; then
     mkdir -v ~/.emacs.d
 fi
+
+[ -f ~/.emacs.d/init.el ] && rm ~/.emacs.d/init.el
 
 cp -v init.el ~/.emacs.d/init.el
 
