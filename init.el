@@ -151,3 +151,8 @@
 ;; Just in case you are behind a proxy
 ;; (setq url-proxy-services '(("https" . "127.0.0.1:3129")
 ;;                            ("http" . "127.0.0.1:3129")))
+
+;; -------------
+;; flyspell-mode
+;; -------------
+(setq ispell-list-command "--list") ;; run flyspell with aspell, not ispell
