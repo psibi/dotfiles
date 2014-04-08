@@ -155,4 +155,5 @@
 ;; -------------
 ;; flyspell-mode
 ;; -------------
+(setq ispell-program-name "aspell")
 (setq ispell-list-command "--list") ;; run flyspell with aspell, not ispell
