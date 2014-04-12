@@ -21,6 +21,7 @@ myManageHook = composeAll . concat $
          -- Applications that go to chat
     , [ resource  =? c --> doF (W.shift "chat") | c <- myClassChatShifts ]
     , [ resource  =? c --> doF (W.shift "dev") | c <- myClassDevShifts ]
+    , [ resource  =? c --> doF (W.shift "media") | c <- myClassMediaShifts ]
     , [ resource  =? c --> doF (W.shift "float") | c <- myClassFloatShifts ]
     , [ resource  =? c --> doF (W.shift "misc") | c <- myClassMiscShifts ]
     ]
@@ -29,6 +30,7 @@ myManageHook = composeAll . concat $
         myClassWebShifts  = ["Firefox"]
         myClassChatShifts = ["Pidgin" ]
         myClassDevShifts = ["emacs"]
+        myClassMediaShifts = ["rhythmbox"]
         myClassFloatShifts = ["gimp", "SMPlayer", "smplayer"]
         myClassMiscShifts = ["nautilus"]
 
