@@ -31,5 +31,6 @@ xmodmap ~/.Xmodmap
 echo "Setting bindings for Virtual Console"
 sudo ./virtual.sh
 
-echo "\nDon't forget to put settings to /etc/rc.local"
+echo "\nDon't forget to put settings to /etc/rc.local \n
+      See virtual.sh for more details."
 
