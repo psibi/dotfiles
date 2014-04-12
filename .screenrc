@@ -1,5 +1,7 @@
 # GNU Screen configuration file
-# Balaji S. Srinivasan <balajis@stanford.edu>
+# Sibi <sibi@psibi.in>
+# Modified and adapted from Balaji S. Srinivasan
+# <balajis@stanford.edu> .screenrc file.
 #
 # Notes
 # -----
@@ -85,8 +87,8 @@ sorendition "+b kG"
 hardstatus alwayslastline "%H %-Lw%{= BW}%50>%n%f* %t%{-}%+Lw%<"  
 
 # 2.3) Autoload two screen tabs for emacs/bash.
-screen -t emacs 0
 screen -t bash 1
+screen -t bash 4
 
 # 2.4) Description of the keywords used in hardstatus
 # caption always "%?%F%{-b bc}%:%{-b bb}%?%C|%D|%M %d|%H%?%F%{+u wb}%? %L=%-Lw%45>%{+b by}%n%f* %t%{-}%+Lw%-0<"

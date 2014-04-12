@@ -48,4 +48,5 @@ alias ~='cd ~'
 alias clipboard='xclip -sel clip'
 
 alias sx='startx'
-alias bk='bindkeys'
+alias cgf='tar -czf'
+alias xgf='tar -xzf'
