@@ -10,6 +10,7 @@
 #       sorendition "+b +kG"  
 #    Example: blue (+b) highlight with black text (k) on a green background (G)
 #    Example: sorendition "+r +kG"  is red highlighting with black text on a green background
+# 3. Install xsel (So that you can copy stuff to clipboard using C-t b)
 #
 #  Modification of original files by Sven Guckes, Sarunas Vancevicius, and Mike Perry
 #  Sarunas Vancevicius original: http://www.redbrick.dcu.ie/~svan/configs/screenrc
@@ -130,3 +131,8 @@ screen -t dev 4
 #    %+Lw     - window list from the next window on (-), show window flags (L)
 #    %-0<     - truncation/padding point.  Place this point zero spaces (0)
 #               from the right margin (-).
+
+# This binds C-t b to copy screen's copy buffer to the system clipboard.
+# Adapted from here with change in the command key (ofcourse!):
+# http://www.commandlinefu.com/commands/view/2276/getting-screens-copy-buffer-into-xs-copy-buffer-on-linux
+bind b eval writebuf 'exec /bin/sh -c "xsel -i -b < /tmp/screen-exchange"' 'exec /bin/sh -c "killall xsel"'
