@@ -24,6 +24,7 @@ myManageHook = composeAll . concat $
     , [ resource  =? c --> doF (W.shift "media") | c <- myClassMediaShifts ]
     , [ resource  =? c --> doF (W.shift "float") | c <- myClassFloatShifts ]
     , [ resource  =? c --> doF (W.shift "misc") | c <- myClassMiscShifts ]
+    , [ resource  =? c --> doF (W.shift "main") | c <- myClassMainShifts ]      
     ]
     where
         viewShift = doF . liftM2 (.) W.greedyView W.shift
@@ -33,6 +34,7 @@ myManageHook = composeAll . concat $
         myClassMediaShifts = ["rhythmbox"]
         myClassFloatShifts = ["gimp", "SMPlayer", "smplayer"]
         myClassMiscShifts = ["nautilus"]
+        myClassMainShifts = ["gnome-terminal"]
 
 main = do
   xmproc <- spawnPipe "/usr/bin/xmobar /home/sibi/.xmobarrc"
@@ -48,6 +50,11 @@ main = do
                         , ppUrgent = xmobarColor "yellow" "red" . xmobarStrip
                         }
     , modMask = mod4Mask     -- Rebind Mod to the Windows key
+    , startupHook = do
+        spawn "firefox"
+        spawn "emacs"
+        spawn "nautilus"
+        spawn "gnome-terminal"                 
     , workspaces = myWorkspaces
     } `additionalKeys`
     [ ((mod4Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
