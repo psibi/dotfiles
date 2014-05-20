@@ -28,6 +28,9 @@ cp -v ./.Xmodmap ~/.Xmodmap
 # And set the new bindings here itself.
 xmodmap ~/.Xmodmap
 
+"echo Setting up GNU Screen configurations"
+cp -v ./.screenrc ~/
+
 echo "Setting bindings for Virtual Console"
 sudo ./virtual.sh
 
