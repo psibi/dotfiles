@@ -50,3 +50,6 @@ alias clipboard='xclip -sel clip'
 alias sx='startx'
 alias cgf='tar -czf'
 alias xgf='tar -xzf'
+
+alias mn='sudo mount'
+alias um='sudo umount'
