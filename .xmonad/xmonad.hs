@@ -54,7 +54,8 @@ main = do
         spawn "firefox"
         spawn "emacs"
         spawn "nautilus"
-        spawn "gnome-terminal"                 
+        spawn "gnome-terminal"
+        spawn "ssh-add" -- ssh-agent runs by default on modern Ubuntu distros
     , workspaces = myWorkspaces
     } `additionalKeys`
     [ ((mod4Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
