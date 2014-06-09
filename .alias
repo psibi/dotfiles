@@ -53,3 +53,5 @@ alias xgf='tar -xzf'
 
 alias mn='sudo mount'
 alias um='sudo umount'
+
+alias ec='emacsclient'
