@@ -20,7 +20,7 @@
 (require 'auto-complete-config)
 (require 'fullscreen-mode)
 (require 'google-this)
-(require 'shm)
+(require 'imenu-anywhere)
 
 (setq package-archives
       '(("gnu"         . "http://elpa.gnu.org/packages/")
@@ -102,7 +102,7 @@
 (global-set-key (kbd "C-x m") 'shell)
 
 ;; Haskell
-(add-hook 'haskell-mode-hook 'structured-haskell-mode)
+(add-hook 'haskell-mode-hook 'turn-on-hi2)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-decl-scan)
 
