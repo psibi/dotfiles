@@ -57,3 +57,4 @@ alias um='sudo umount'
 alias ec='emacsclient'
 alias fs='du -h' # Filesize
 alias lsd='ls -l --color | grep "^d"'
+alias hpkg='ghc-pkg list | grep'
