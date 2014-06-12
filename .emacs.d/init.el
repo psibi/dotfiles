@@ -21,6 +21,9 @@
 (require 'fullscreen-mode)
 (require 'google-this)
 (require 'imenu-anywhere)
+(require 'haskell-mode)
+
+(load "~/.emacs.d/haskell.el")
 
 (setq package-archives
       '(("gnu"         . "http://elpa.gnu.org/packages/")
@@ -100,11 +103,6 @@
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
 (global-set-key (kbd "C-x m") 'shell)
-
-;; Haskell
-(add-hook 'haskell-mode-hook 'turn-on-hi2)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-decl-scan)
 
 ;; ------------------------
 ;; Useful utility functions
