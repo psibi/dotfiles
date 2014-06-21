@@ -29,7 +29,7 @@ myManageHook = composeAll . concat $
     where
         viewShift = doF . liftM2 (.) W.greedyView W.shift
         myClassWebShifts  = ["Firefox"]
-        myClassChatShifts = ["Pidgin" ]
+        myClassChatShifts = ["Pidgin", "eboard" ]
         myClassDevShifts = ["emacs"]
         myClassMediaShifts = ["rhythmbox"]
         myClassFloatShifts = ["gimp", "SMPlayer", "smplayer"]
