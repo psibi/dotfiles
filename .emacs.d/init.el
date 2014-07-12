@@ -155,3 +155,6 @@
 ;; -------------
 (setq ispell-program-name "aspell")
 (setq ispell-list-command "--list") ;; run flyspell with aspell, not ispell
+
+;; Octave-mode
+(add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
