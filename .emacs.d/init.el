@@ -158,3 +158,8 @@
 
 ;; Octave-mode
 (add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
+
+;; emms
+(require 'emms-setup)
+(emms-standard)
+(emms-default-players)
