@@ -23,7 +23,8 @@
 (require 'imenu-anywhere)
 (require 'haskell-mode)
 
-(load "~/.emacs.d/haskell.el")
+(load-file "~/.emacs.d/haskell.el")
+(load-file "~/.emacs.d/python.el")
 
 (setq package-archives
       '(("gnu"         . "http://elpa.gnu.org/packages/")
