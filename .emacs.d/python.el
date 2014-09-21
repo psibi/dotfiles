@@ -1,5 +1,7 @@
 (add-hook 'python-mode-hook 'sibi-customization)
 
+(setenv "PYTHONPATH" ".:..")
+
 (defun sibi-customization ()
   (define-key python-mode-map (kbd "C-'") 'sibi-python-shell)
   (define-key python-mode-map (kbd "C-c C-l") 'sibi-python-load-buffer))
