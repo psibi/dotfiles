@@ -12,6 +12,8 @@ import XMonad.Hooks.ManageHelpers
 
 myWorkspaces = ["main", "web", "chat", "dev", "media", "float", "misc"]
 
+myTerminal = "gnome-terminal -e screen"
+
 -- Define the workspace an application has to go to
 myManageHook = composeAll . concat $
     [
@@ -43,6 +45,7 @@ main = do
       manageHook = manageDocks <+> myManageHook
                    <+> manageHook defaultConfig
     -- No red border for media players
+    , terminal = myTerminal
     , layoutHook = smartBorders $ avoidStruts $ layoutHook defaultConfig 
     , logHook = dynamicLogWithPP xmobarPP
                         { ppOutput = hPutStrLn xmproc
@@ -50,12 +53,6 @@ main = do
                         , ppUrgent = xmobarColor "yellow" "red" . xmobarStrip
                         }
     , modMask = mod4Mask     -- Rebind Mod to the Windows key
-    , startupHook = do
-        spawn "firefox"
-        spawn "emacs"
-        spawn "nautilus"
-        spawn "gnome-terminal"
-        spawn "ssh-add" -- ssh-agent runs by default on modern Ubuntu distros
     , workspaces = myWorkspaces
     } `additionalKeys`
     [ ((mod4Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
