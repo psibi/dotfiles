@@ -34,6 +34,11 @@ fi
 xmodmap ~/.Xmodmap
 xmodmap -e 'keycode 135=Super_L' #Only for my laptop
 
+gnome-terminal -e screen &
+firefox &
+emacs &
+nautilus &
+
 # Choose your Window Manager
 # exec gnome-session
 # exec startkde
