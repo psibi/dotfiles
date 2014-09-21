@@ -7,3 +7,5 @@ Software Needed
 * xmobar
 * xscreensaver
 * scrot
+* xfce4-screenshooter
+* screen
