@@ -9,3 +9,4 @@ Software Needed
 * scrot
 * xfce4-screenshooter
 * screen
+* xclip
