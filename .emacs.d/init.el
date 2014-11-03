@@ -22,6 +22,8 @@
 (require 'google-this)
 (require 'imenu-anywhere)
 (require 'haskell-mode)
+(require 'magit)
+(require 'flx-ido)
 
 (load-file "~/.emacs.d/haskell.el")
 (load-file "~/.emacs.d/python.el")
@@ -168,3 +170,9 @@
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (ido-mode 1) 
+(flx-ido-mode 1)
+;; disable ido faces to see flx highlights.
+(setq ido-enable-flex-matching t)
+(setq ido-use-faces nil)
+
+(setq gc-cons-threshold 20000000)
