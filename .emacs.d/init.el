@@ -27,6 +27,7 @@
 
 (load-file "~/.emacs.d/haskell.el")
 (load-file "~/.emacs.d/python.el")
+;(load-file "~/.emacs.d/sml.el")
 
 (setq package-archives
       '(("gnu"         . "http://elpa.gnu.org/packages/")
@@ -176,3 +177,6 @@
 (setq ido-use-faces nil)
 
 (setq gc-cons-threshold 20000000)
+
+(magit-auto-revert-mode 1)
+
