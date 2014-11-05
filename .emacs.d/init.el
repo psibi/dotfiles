@@ -24,6 +24,7 @@
 (require 'haskell-mode)
 (require 'magit)
 (require 'flx-ido)
+(require 'projectile)
 
 (load-file "~/.emacs.d/haskell.el")
 (load-file "~/.emacs.d/python.el")
@@ -177,6 +178,8 @@
 (setq ido-use-faces nil)
 
 (setq gc-cons-threshold 20000000)
-
 (magit-auto-revert-mode 1)
 
+;;Projectile related config
+(projectile-global-mode)
+(setq projectile-enable-caching t)
