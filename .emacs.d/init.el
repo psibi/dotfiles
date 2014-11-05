@@ -25,6 +25,7 @@
 (require 'magit)
 (require 'flx-ido)
 (require 'projectile)
+(require 'helm-config)
 
 (load-file "~/.emacs.d/haskell.el")
 (load-file "~/.emacs.d/python.el")
@@ -183,3 +184,7 @@
 ;;Projectile related config
 (projectile-global-mode)
 (setq projectile-enable-caching t)
+
+;;Helm related config
+(global-set-key (kbd "C-c h") 'helm-mini)
+(helm-mode 1)
