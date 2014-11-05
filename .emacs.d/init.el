@@ -188,3 +188,6 @@
 ;;Helm related config
 (global-set-key (kbd "C-c h") 'helm-mini)
 (helm-mode 1)
+
+;;Latex
+(add-hook 'doc-view-mode-hook 'auto-revert-mode)
