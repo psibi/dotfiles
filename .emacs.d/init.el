@@ -26,6 +26,7 @@
 (require 'flx-ido)
 (require 'projectile)
 (require 'helm-config)
+(require 'ace-window)
 
 (load-file "~/.emacs.d/haskell.el")
 (load-file "~/.emacs.d/python.el")
@@ -191,3 +192,5 @@
 
 ;;Latex
 (add-hook 'doc-view-mode-hook 'auto-revert-mode)
+
+(global-set-key (kbd "C-x o") 'ace-window)
