@@ -34,6 +34,9 @@ cp -v ./.screenrc ~/
 echo "Setting bindings for Virtual Console"
 sudo ./virtual.sh
 
+echo "Copying ghci configuration"
+cp -v ./.ghci ~/
+
 echo "\nDon't forget to put settings to /etc/rc.local \n
       See virtual.sh for more details."
 
