@@ -1,5 +1,8 @@
 ;; hoogle, hasktags, stylish haskell
 
+;; Sometimes all your require is an inferior mode
+;; (add-hook 'haskell-mode-hook 'inf-haskell-mode)
+
 (custom-set-variables
   '(haskell-process-suggest-remove-import-lines t)
   '(haskell-process-auto-import-loaded-modules t)
