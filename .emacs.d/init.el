@@ -13,7 +13,6 @@
 (require 'ansi-color)
 (require 'recentf)
 (require 'package)
-(require 'smex)
 (require 'tramp)
 (require 'auto-complete)
 (require 'autopair)
@@ -27,6 +26,7 @@
 (require 'projectile)
 (require 'helm-config)
 (require 'ace-window)
+(require 'helm-projectile)
 
 (load-file "~/.emacs.d/haskell.el")
 (load-file "~/.emacs.d/python.el")
@@ -93,14 +93,6 @@
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:setup-keys t)
 
-;; Rebind Meta key to C-x-m or C-c-m (more forgiving!)
-;; These doesn't work after the latest updates as smex overrides
-;; (global-set-key "\C-x\C-m" 'execute-extended-command)
-;; (global-set-key "\C-c\C-m" 'execute-extended-command)
-
-(global-set-key "\C-x\C-m" 'smex)
-(global-set-key "\C-c\C-m" 'smex)
-
 ;; Custom Shortcuts
 (global-set-key "\C-w" 'backward-kill-word)
 (global-set-key "\C-x\C-k" 'kill-region)
@@ -112,8 +104,6 @@
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
 (global-set-key (kbd "C-x m") 'shell)
-
-(smex-initialize)
 
 ;; Emacs doesn't seem to have `copy-rectangle-as-kill`
 ;; http://www.gnu.org/software/emacs/manual/html_node/emacs/Rectangles.html
