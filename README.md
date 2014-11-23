@@ -9,6 +9,7 @@ Files
 * apt-fast - Script For fast downloading
 * init.el - Sleek Emacs configuration file
 * .bashrc - Some extra bash configuration
-* .screenrc - GNU Screen Emacs Configuration file (From startup course)
+* .screenrc - GNU Screen Emacs Configuration file
 * setup.sh - Devops script
 * .Xresource - X resource settings
+* emacsSync.hs - Emacs synchronization script
