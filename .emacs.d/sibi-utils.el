@@ -28,3 +28,23 @@
         (delete-file filename)
         (kill-buffer buffer)
         (message "File '%s' successfully removed" filename)))))
+
+(defun latex-clean-table (start end)
+  "Clean latex table combined with Math elements"
+  (interactive "r")
+  (save-restriction
+    (narrow-to-region start end)
+    (goto-char (point-min))
+    (while (search-forward "|l" nil t) (replace-match "| >{$}l<{$} " nil t))
+    (goto-char (point-min))
+    (while (search-forward "\$\\backslash\$" nil t) (replace-match "" nil t))
+    (goto-char (point-min))
+    (while (search-forward "$<$" nil t) (replace-match "<" nil t))
+    (goto-char (point-min))
+    (while (search-forward "$>$" nil t) (replace-match "<" nil t))
+    (goto-char (point-min))
+    (while (search-forward "implies" nil t) (replace-match "\implies" nil t))
+    (goto-char (point-min))
+    (while (search-forward "\\^" nil t) (replace-match "^" nil t))
+    )
+  )
