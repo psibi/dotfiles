@@ -47,6 +47,10 @@
 (set-scroll-bar-mode 'nil)
 (size-indication-mode 1)
 
+;; My Details
+(setq user-full-name "Sibi")
+(setq user-mail-address "sibi@psibi.in")
+
 ;; Unbind C-z
 (when window-system
   (global-unset-key [(control z)]))
