@@ -27,6 +27,8 @@
 (require 'helm-config)
 (require 'ace-window)
 (require 'helm-projectile)
+(require 'smart-mode-line)
+(require 'smart-mode-line-powerline-theme)
 
 (load-file "~/.emacs.d/haskell.el")
 (load-file "~/.emacs.d/python.el")
@@ -181,3 +183,9 @@
 (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
 (global-set-key (kbd "C-x o") 'ace-window)
+
+;; smart-mode-lien and theme
+(sml/setup)
+(setq sml/theme 'powerline)
+(setq powerline-arrow-shape 'curve)
+(setq powerline-default-separator-dir '(right . left))`
