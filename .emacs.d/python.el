@@ -1,3 +1,5 @@
+(require 'python-mode)
+(require 'ipython)
 (add-hook 'python-mode-hook 'sibi-customization)
 
 (setenv "PYTHONPATH" ".:..")
