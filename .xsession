@@ -38,6 +38,7 @@ gnome-terminal -e screen &
 firefox &
 emacs &
 nautilus &
+ssh-add &
 
 # Choose your Window Manager
 # exec gnome-session
