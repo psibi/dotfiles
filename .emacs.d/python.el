@@ -1,4 +1,5 @@
 (require 'python) ;; from python.el (Don't use python-mode)
+(require 'jedi)
 
 (setq python-shell-interpreter "ipython")
 (setq python-shell-interpreter-args "--colors=Linux")
@@ -11,6 +12,9 @@
 (add-hook 'python-mode-hook 'sibi-customization)
 
 (setenv "PYTHONPATH" ".:..")
+
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:complete-on-dot t)
 
 (defun sibi-customization ()
   (define-key python-mode-map (kbd "C-'") 'sibi-python-shell)
