@@ -173,9 +173,10 @@
 (add-hook 'doc-view-mode-hook 'auto-revert-mode)
 
 (global-set-key (kbd "C-x o") 'ace-window)
+(global-set-key (kbd "C-c g") 'magit-status)
 
 ;; smart-mode-lien and theme
 (sml/setup)
 (setq sml/theme 'powerline)
 (setq powerline-arrow-shape 'curve)
-(setq powerline-default-separator-dir '(right . left))`
+(setq powerline-default-separator-dir '(right . left))
