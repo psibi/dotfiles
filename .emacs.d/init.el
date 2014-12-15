@@ -89,16 +89,6 @@
 ;;Tramp for editing protected files in existing Emacs session.(C-x C-f /sudo)
 (setq tramp-default-method "ssh")
 
-;;Python Development Environment
-;;Install jedi for Auto-completion in Python mode. For key bindings see: C-h v jedi:setup-keys
-;; Install 3 Python dependencies: sudo pip install jedi epc argparse
-;; Install 3 Emacs ELPA packages: epc deferred auto-complete
-;; Clone a directory named jedi into elpa from: git://github.com/tkf/emacs-jedi.git
-(add-to-list 'load-path "~/.emacs.d/elpa/jedi")
-(autoload 'jedi:setup "jedi" nil t)
-(add-hook 'python-mode-hook 'jedi:setup)
-(setq jedi:setup-keys t)
-
 ;; Custom Shortcuts
 (global-set-key "\C-w" 'backward-kill-word)
 (global-set-key "\C-x\C-k" 'kill-region)
