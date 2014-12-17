@@ -97,7 +97,7 @@
 ;; Package List key binding
 (global-set-key (kbd "C-x p") 'package-list-packages-no-fetch)
 ;; Rebind Enter
-(define-key global-map (kbd "RET") 'newline-and-indent)
+(define-key global-map (kbd "C-c j") 'newline-and-indent)
 
 (global-set-key (kbd "C-x m") 'shell)
 
