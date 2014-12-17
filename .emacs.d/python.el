@@ -18,7 +18,7 @@
 
 (defun sibi-customization ()
   (define-key python-mode-map (kbd "C-'") 'sibi-python-shell)
-  (define-key python-mode-map (kbd "C-c C-l") 'sibi-python-load-buffer))
+  (define-key python-mode-map (kbd "C-c C-l") 'sibi-ipython-load-current-file))
 
 (defun sibi-python-load-buffer ()
   (interactive)
@@ -35,3 +35,15 @@
     (setq cur-buf-name (buffer-name))
     (python-shell-switch-to-shell)
     (switch-to-buffer-other-window cur-buf-name)))
+
+(defun sibi-ipython-load-current-file ()
+  (interactive)
+  (progn
+    (setq cur-buf-name (buffer-name))
+    (setq import-command
+          (concat
+           "from "
+           (car (split-string cur-buf-name "\\."))
+           " import *"))
+    (python-shell-send-string import-command)
+    (python-shell-switch-to-shell)))
