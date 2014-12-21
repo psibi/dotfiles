@@ -26,6 +26,7 @@
 (require 'projectile)
 (require 'helm-config)
 (require 'ace-window)
+(require 'flycheck)
 (require 'helm-projectile)
 (require 'smart-mode-line)
 (require 'smart-mode-line-powerline-theme)
@@ -176,7 +177,11 @@
 (global-set-key (kbd "C-c g") 'magit-status)
 
 ;; smart-mode-lien and theme
+(setq sml/no-confirm-load-theme t) ;Shhh 
 (sml/setup)
 (setq sml/theme 'powerline)
 (setq powerline-arrow-shape 'curve)
 (setq powerline-default-separator-dir '(right . left))
+
+;; Enable clipboard
+(setq x-select-enable-clipboard t)
