@@ -185,3 +185,6 @@
 
 ;; Enable clipboard
 (setq x-select-enable-clipboard t)
+
+;; Dired is better with human readable format
+(setq dired-listing-switches "-alh")
