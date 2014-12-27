@@ -2,6 +2,7 @@ Software Needed
 ----------------
 
 * XMonad
+* xmonad-contrib
 * suckless-tools
 * trayer
 * xmobar
