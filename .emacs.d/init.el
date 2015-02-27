@@ -28,8 +28,13 @@
   :init
   (progn
     (ac-config-default)
-;;    (autopair-global-mode) ;; enable autopair in all buffers
     ))
+
+(use-package autopair
+  :ensure t
+  :init
+  (progn
+    (autopair-global-mode)))
 
 (use-package fullscreen-mode
   :ensure t
@@ -265,3 +270,4 @@
 ;; Use shell-like backspace C-h, rebind help to F1
 (define-key key-translation-map [?\C-h] [?\C-?])
 (global-set-key (kbd "<f1>") 'help-command)
+
