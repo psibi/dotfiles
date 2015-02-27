@@ -42,24 +42,24 @@
   (progn
     (fullscreen-mode-fullscreen)))
 
+(use-package paredit
+  :ensure t)
+
 (use-package google-this
   :ensure t)
 (use-package imenu-anywhere
   :ensure t)
-(use-package haskell-mode
-  :ensure t)
-
 (use-package ace-window
   :ensure t)
 (use-package flycheck
   :ensure t)
 
 
-;; (load-file "~/.emacs.d/haskell.el")
-;; (load-file "~/.emacs.d/python.el")
-;; (load-file "~/.emacs.d/web.el")
-;; (load-file "~/.emacs.d/sibi-utils.el")
-;(load-file "~/.emacs.d/sml.el")
+(load-file "~/.emacs.d/haskell.el")
+(load-file "~/.emacs.d/python.el")
+(load-file "~/.emacs.d/web.el")
+(load-file "~/.emacs.d/sibi-utils.el")
+(load-file "~/.emacs.d/sml.el")
 
 ;; Remove menu, tool and scroll bar.
 (menu-bar-mode -1)
@@ -270,4 +270,3 @@
 ;; Use shell-like backspace C-h, rebind help to F1
 (define-key key-translation-map [?\C-h] [?\C-?])
 (global-set-key (kbd "<f1>") 'help-command)
-
