@@ -27,8 +27,7 @@
   :ensure t
   :init
   (progn
-    (ac-config-default)
-    ))
+    (ac-config-default)))
 
 (use-package autopair
   :ensure t
@@ -44,7 +43,6 @@
 
 (use-package paredit
   :ensure t)
-
 (use-package google-this
   :ensure t)
 (use-package imenu-anywhere
@@ -53,7 +51,6 @@
   :ensure t)
 (use-package flycheck
   :ensure t)
-
 
 (load-file "~/.emacs.d/haskell.el")
 (load-file "~/.emacs.d/python.el")
@@ -97,9 +94,6 @@
 (set-selection-coding-system            'utf-8)
 (setq default-process-coding-system     '(utf-8 . utf-8))
 (add-to-list 'auto-coding-alist         '("." . utf-8))
-
-
-
 
 ;;Tramp for editing protected files in existing Emacs session.(C-x C-f /sudo)
 (setq tramp-default-method "ssh")
@@ -208,8 +202,7 @@
     (global-set-key (kbd "M-y") 'helm-show-kill-ring)
     (global-set-key (kbd "C-x b") 'helm-mini)
     (global-set-key (kbd "C-x C-f") 'helm-find-files)
-    (global-set-key (kbd "C-c h o") 'helm-occur)
-    ))
+    (global-set-key (kbd "C-c h o") 'helm-occur)))
 
 (use-package doc-view
   :ensure t
@@ -223,14 +216,12 @@
   (progn
     (global-set-key (kbd "C-x o") 'ace-window)))
 
-
 (use-package smart-mode-line
   :ensure t
   :init
   (progn
     (setq sml/no-confirm-load-theme t)
-    (sml/setup)
-    ))
+    (sml/setup)))
 
 (use-package smart-mode-line-powerline-theme
   :ensure t
@@ -238,8 +229,7 @@
   (progn
     (setq sml/theme 'powerline)
     (setq powerline-arrow-shape 'curve)
-    (setq powerline-default-separator-dir '(right . left))
-    ))
+    (setq powerline-default-separator-dir '(right . left))))
 
 ;; Enable clipboard
 (setq x-select-enable-clipboard t)
@@ -255,14 +245,13 @@
   (interactive)
   (split-window-vertically)
   (other-window 1 nil)
-  (switch-to-next-buffer)
-  )
+  (switch-to-next-buffer))
+
 (defun hsplit-last-buffer ()
   (interactive)
   (split-window-horizontally)
   (other-window 1 nil)
-  (switch-to-next-buffer)
-  )
+  (switch-to-next-buffer))
 
 (global-set-key (kbd "C-x 2") 'vsplit-last-buffer)
 (global-set-key (kbd "C-x 3") 'hsplit-last-buffer)
