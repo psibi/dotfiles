@@ -3,46 +3,50 @@
 ;; File path: ~/.emacs.d/init.el
 (server-start)
 
-(package-initialize)
-
-(load-theme 'wheatgrass t)
-(require 'cl)
-(require 'saveplace)
-(require 'ffap)
-(require 'uniquify)
-(require 'ansi-color)
-(require 'recentf)
-(require 'package)
-(require 'tramp)
-(require 'auto-complete)
-(require 'autopair)
-(require 'auto-complete-config)
-(require 'fullscreen-mode)
-(require 'google-this)
-(require 'imenu-anywhere)
-(require 'haskell-mode)
-(require 'magit)
-(require 'flx-ido)
-(require 'projectile)
-(require 'helm-config)
-(require 'ace-window)
-(require 'flycheck)
-(require 'helm-projectile)
-(require 'smart-mode-line)
-(require 'smart-mode-line-powerline-theme)
-
-(load-file "~/.emacs.d/haskell.el")
-(load-file "~/.emacs.d/python.el")
-(load-file "~/.emacs.d/web.el")
-(load-file "~/.emacs.d/sibi-utils.el")
-;(load-file "~/.emacs.d/sml.el")
-
 (setq package-archives
       '(("gnu"         . "http://elpa.gnu.org/packages/")
         ("original"    . "http://tromey.com/elpa/")
         ("org"         . "http://orgmode.org/elpa/")
         ("marmalade"   . "http://marmalade-repo.org/packages/")
         ("melpa" . "http://melpa.milkbox.net/packages/")))
+
+(package-initialize)
+
+(load-theme 'wheatgrass t)
+(require 'use-package)
+
+(use-package cl)
+(use-package saveplace)
+(use-package ffap)
+(use-package uniquify)
+(use-package ansi-color)
+(use-package recentf)
+(use-package tramp)
+
+(use-package auto-complete
+  :init
+  (progn
+    (use-package autopair)
+    (use-package auto-complete-config)))
+
+(use-package fullscreen-mode
+  :init 
+  (progn
+    (fullscreen-mode-fullscreen)))
+
+(use-package google-this)
+(use-package imenu-anywhere)
+(use-package haskell-mode)
+
+(use-package ace-window)
+(use-package flycheck)
+
+
+(load-file "~/.emacs.d/haskell.el")
+(load-file "~/.emacs.d/python.el")
+(load-file "~/.emacs.d/web.el")
+(load-file "~/.emacs.d/sibi-utils.el")
+;(load-file "~/.emacs.d/sml.el")
 
 ;; Remove menu, tool and scroll bar.
 (menu-bar-mode -1)
@@ -57,9 +61,6 @@
 ;; Unbind C-z
 (when window-system
   (global-unset-key [(control z)]))
-
-;; Make fullscreen
-(fullscreen-mode-fullscreen)
 
 ;; ----------------------
 ;; Final newline handling
@@ -118,70 +119,103 @@
 ;; -------------
 ;; flyspell-mode
 ;; -------------
-(setq ispell-program-name "aspell")
-(setq ispell-list-command "--list") ;; run flyspell with aspell, not ispell
+
+(use-package flyspell
+  :init
+  (progn
+    (flyspell-mode 1))
+  :config
+  (progn 
+    (setq ispell-program-name "aspell")
+    (setq ispell-list-command "--list") ;; run flyspell with aspell, not ispell
+    ))
 
 ;; Octave-mode
-(add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
+(use-package octave-mode
+  :mode "\\.m\\'")
 
 ;; emms
-(require 'emms-setup)
-(emms-standard)
-(emms-default-players)
+(use-package emms-setup
+  :config
+  (progn
+    (emms-standard)
+    (emms-default-players)))
 
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-(ido-mode 1) 
-(flx-ido-mode 1)
-;; disable ido faces to see flx highlights.
-(setq ido-enable-flex-matching t)
-(setq ido-use-faces nil)
+(use-package magit
+  :init
+  (progn
+    (global-set-key (kbd "C-c g") 'magit-status))
+  :config
+  (progn
+    (magit-auto-revert-mode)))
 
 (setq gc-cons-threshold 20000000)
-(magit-auto-revert-mode 1)
 
 ;;Projectile related config
-(projectile-global-mode)
-(setq projectile-enable-caching t)
+(use-package projectile
+  :init 
+  (progn
+    (projectile-global-mode))
+  :config
+  (progn
+    (setq projectile-enable-caching t)))
+
+(use-package helm-projectile)
 
 ;;Helm related config
-(global-set-key (kbd "C-c h") 'helm-command-prefix)
-(global-unset-key (kbd "C-x c"))
+(use-package helm-config
+  :init
+  (progn
+    (helm-mode 1))
+  :config
+  (progn
+    (global-set-key (kbd "C-c h") 'helm-command-prefix)
+    (global-unset-key (kbd "C-x c"))
+    (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
+    (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
+    (define-key helm-map (kbd "C-z") 'helm-select-action) ; list
+                                        ; actions using C-z
+    (when (executable-find "curl")
+      (setq helm-google-suggest-use-curl-p t))
+    (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
+          helm-buffers-fuzzy-matching           t ; fuzzy matching buffer names when non--nil
+          helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
+          helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
+          helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
+          helm-ff-file-name-history-use-recentf t)
+    (global-set-key (kbd "M-x") 'helm-M-x)
+    (global-set-key "\C-x\C-m" 'helm-M-x)
+    (global-set-key (kbd "M-y") 'helm-show-kill-ring)
+    (global-set-key (kbd "C-x b") 'helm-mini)
+    (global-set-key (kbd "C-x C-f") 'helm-find-files)
+    (global-set-key (kbd "C-c h o") 'helm-occur)
+    ))
 
-(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
-(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
-(define-key helm-map (kbd "C-z") 'helm-select-action) ; list actions using C-z
+(use-package doc-view
+  :config
+  (progn
+    (add-hook 'doc-view-mode-hook 'auto-revert-mode)))
 
-(when (executable-find "curl")
-  (setq helm-google-suggest-use-curl-p t))
+(use-package ace-window
+  :init
+  (progn
+    (global-set-key (kbd "C-x o") 'ace-window)))
 
-(setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
-      helm-buffers-fuzzy-matching           t ; fuzzy matching buffer names when non--nil
-      helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
-      helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
-      helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
-      helm-ff-file-name-history-use-recentf t)
 
-(helm-mode 1)
-(global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key "\C-x\C-m" 'helm-M-x)
-(global-set-key (kbd "M-y") 'helm-show-kill-ring)
-(global-set-key (kbd "C-x b") 'helm-mini)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
-(global-set-key (kbd "C-c h o") 'helm-occur)
+(use-package smart-mode-line
+  :init
+  (progn
+    (setq sml/no-confirm-load-theme t)
+    (setq sml/theme 'powerline)
+    (sml/setup)
+    ))
 
-;;Latex
-(add-hook 'doc-view-mode-hook 'auto-revert-mode)
-
-(global-set-key (kbd "C-x o") 'ace-window)
-(global-set-key (kbd "C-c g") 'magit-status)
-
-;; smart-mode-lien and theme
-(setq sml/no-confirm-load-theme t) ;Shhh 
-(sml/setup)
-(setq sml/theme 'powerline)
-(setq powerline-arrow-shape 'curve)
-(setq powerline-default-separator-dir '(right . left))
+(use-package smart-mode-line-powerline-theme
+  :init
+  (progn
+    (setq powerline-arrow-shape 'curve)
+    (setq powerline-default-separator-dir '(right . left))
+    ))
 
 ;; Enable clipboard
 (setq x-select-enable-clipboard t)
@@ -208,8 +242,6 @@
 
 (global-set-key (kbd "C-x 2") 'vsplit-last-buffer)
 (global-set-key (kbd "C-x 3") 'hsplit-last-buffer)
-
-(global-set-key (kbd "C-c g") 'magit-status)
 
 ;; Use shell-like backspace C-h, rebind help to F1
 (define-key key-translation-map [?\C-h] [?\C-?])
