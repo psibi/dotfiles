@@ -24,28 +24,36 @@
 (use-package tramp)
 
 (use-package auto-complete
+  :ensure t
   :init
   (progn
-    (use-package autopair)
-    (use-package auto-complete-config)))
+    (ac-config-default)
+;;    (autopair-global-mode) ;; enable autopair in all buffers
+    ))
 
 (use-package fullscreen-mode
+  :ensure t
   :init 
   (progn
     (fullscreen-mode-fullscreen)))
 
-(use-package google-this)
-(use-package imenu-anywhere)
-(use-package haskell-mode)
+(use-package google-this
+  :ensure t)
+(use-package imenu-anywhere
+  :ensure t)
+(use-package haskell-mode
+  :ensure t)
 
-(use-package ace-window)
-(use-package flycheck)
+(use-package ace-window
+  :ensure t)
+(use-package flycheck
+  :ensure t)
 
 
-(load-file "~/.emacs.d/haskell.el")
-(load-file "~/.emacs.d/python.el")
-(load-file "~/.emacs.d/web.el")
-(load-file "~/.emacs.d/sibi-utils.el")
+;; (load-file "~/.emacs.d/haskell.el")
+;; (load-file "~/.emacs.d/python.el")
+;; (load-file "~/.emacs.d/web.el")
+;; (load-file "~/.emacs.d/sibi-utils.el")
 ;(load-file "~/.emacs.d/sml.el")
 
 ;; Remove menu, tool and scroll bar.
@@ -85,8 +93,8 @@
 (setq default-process-coding-system     '(utf-8 . utf-8))
 (add-to-list 'auto-coding-alist         '("." . utf-8))
 
-(ac-config-default)
-(autopair-global-mode) ;; enable autopair in all buffers
+
+
 
 ;;Tramp for editing protected files in existing Emacs session.(C-x C-f /sudo)
 (setq tramp-default-method "ssh")
@@ -121,6 +129,7 @@
 ;; -------------
 
 (use-package flyspell
+  :ensure t
   :init
   (progn
     (flyspell-mode 1))
@@ -131,17 +140,20 @@
     ))
 
 ;; Octave-mode
-(use-package octave-mode
+(use-package octave
+  :ensure t
   :mode "\\.m\\'")
 
 ;; emms
-(use-package emms-setup
+(use-package emms
+  :ensure t
   :config
   (progn
     (emms-standard)
     (emms-default-players)))
 
 (use-package magit
+  :ensure t
   :init
   (progn
     (global-set-key (kbd "C-c g") 'magit-status))
@@ -153,6 +165,7 @@
 
 ;;Projectile related config
 (use-package projectile
+  :ensure t
   :init 
   (progn
     (projectile-global-mode))
@@ -160,10 +173,12 @@
   (progn
     (setq projectile-enable-caching t)))
 
-(use-package helm-projectile)
+(use-package helm-projectile
+  :ensure t)
 
 ;;Helm related config
 (use-package helm-config
+  :ensure helm
   :init
   (progn
     (helm-mode 1))
@@ -192,27 +207,31 @@
     ))
 
 (use-package doc-view
+  :ensure t
   :config
   (progn
     (add-hook 'doc-view-mode-hook 'auto-revert-mode)))
 
 (use-package ace-window
+  :ensure t
   :init
   (progn
     (global-set-key (kbd "C-x o") 'ace-window)))
 
 
 (use-package smart-mode-line
+  :ensure t
   :init
   (progn
     (setq sml/no-confirm-load-theme t)
-    (setq sml/theme 'powerline)
     (sml/setup)
     ))
 
 (use-package smart-mode-line-powerline-theme
+  :ensure t
   :init
   (progn
+    (setq sml/theme 'powerline)
     (setq powerline-arrow-shape 'curve)
     (setq powerline-default-separator-dir '(right . left))
     ))
@@ -246,4 +265,3 @@
 ;; Use shell-like backspace C-h, rebind help to F1
 (define-key key-translation-map [?\C-h] [?\C-?])
 (global-set-key (kbd "<f1>") 'help-command)
-
