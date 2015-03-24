@@ -1,7 +1,6 @@
 ;; My Emacs configuration
 ;; Author: Sibi <sibi@psibi.in>
 ;; File path: ~/.emacs.d/init.el
-(server-start)
 
 (setq package-archives
       '(("gnu"         . "http://elpa.gnu.org/packages/")
@@ -22,6 +21,13 @@
 (use-package ansi-color)
 (use-package recentf)
 (use-package tramp)
+
+(use-package server
+  :ensure t
+  :init
+  (progn
+    (unless (server-running-p)
+      (server-start))))
 
 (use-package auto-complete
   :ensure t
