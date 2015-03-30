@@ -13,7 +13,7 @@
 (use-package html-mode
   :mode "\\.html\\'"
   :bind ("C-'" . skewer-repl)
-  :config
+  :init
   (progn
     (add-hook 'html-mode-hook 'turn-off-auto-fill)
     (add-hook 'html-mode-hook 'skewer-mode)))
