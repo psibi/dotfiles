@@ -162,10 +162,9 @@
   :ensure t
   :init
   (progn
-    (global-set-key (kbd "C-c g") 'magit-status))
-  :config
-  (progn
-    (magit-auto-revert-mode)))
+    (global-set-key (kbd "C-c g") 'magit-status)
+    (setq magit-auto-revert-mode 1)
+    (setq magit-last-seen-setup-instructions "1.4.0")))
 
 (setq gc-cons-threshold 20000000)
 
