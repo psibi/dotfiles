@@ -25,9 +25,10 @@
 (use-package server
   :ensure t
   :init
-  (progn
-    (unless (server-running-p)
-      (server-start))))
+  (server-mode 1)
+  :config
+  (unless (server-running-p)
+    (server-start)))
 
 (use-package auto-complete
   :ensure t
