@@ -110,8 +110,6 @@
 (global-set-key "\C-x\C-k" 'kill-region)
 (global-set-key "\C-c\C-k" 'kill-region)
 
-;; Package List key binding
-(global-set-key (kbd "C-x p") 'package-list-packages-no-fetch)
 ;; Rebind Enter
 (define-key global-map (kbd "C-c j") 'newline-and-indent)
 
@@ -191,10 +189,10 @@
   (progn
     (global-set-key (kbd "C-c h") 'helm-command-prefix)
     (global-unset-key (kbd "C-x c"))
+    (global-set-key (kbd "C-x p") 'helm-list-elisp-packages-no-fetch)
     (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
     (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
-    (define-key helm-map (kbd "C-z") 'helm-select-action) ; list
-                                        ; actions using C-z
+    (define-key helm-map (kbd "C-z") 'helm-select-action) ; list actions using C-z
     (when (executable-find "curl")
       (setq helm-google-suggest-use-curl-p t))
     (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
