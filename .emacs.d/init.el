@@ -303,6 +303,10 @@
 (define-key key-translation-map [?\C-h] [?\C-?])
 (global-set-key (kbd "<f1>") 'help-command)
 
+(add-to-list 'load-path "~/.emacs.d/site-lisp/auctex")
+(load "auctex.el" nil t t)
+(load "preview-latex.el" nil t t)
+
 (use-package tex-mode
   :ensure t
   :defer t
@@ -317,3 +321,11 @@
       "Modify keymaps by latex-mode"
       (local-set-key (kbd "$") 'complete-dollar))
     (add-hook 'LaTeX-mode-hook 'sibi-latex-keys)))
+
+(use-package guide-key
+  :ensure t
+  :init
+  (progn
+    (setq guide-key/guide-key-sequence '("C-x 4" "C-c p"))
+    (guide-key-mode 1)))
+
