@@ -54,8 +54,6 @@
   :ensure t)
 (use-package imenu-anywhere
   :ensure t)
-(use-package ace-window
-  :ensure t)
 (use-package flycheck
   :ensure t)
 
@@ -304,3 +302,18 @@
 ;; Use shell-like backspace C-h, rebind help to F1
 (define-key key-translation-map [?\C-h] [?\C-?])
 (global-set-key (kbd "<f1>") 'help-command)
+
+(use-package tex-mode
+  :ensure t
+  :defer t
+  :config
+  (progn
+    (defun complete-dollar () 
+      "Auto completes dollar symbol"
+      (interactive)
+      (insert "$$")
+      (backward-char 1))
+    (defun sibi-latex-keys ()
+      "Modify keymaps by latex-mode"
+      (local-set-key (kbd "$") 'complete-dollar))
+    (add-hook 'LaTeX-mode-hook 'sibi-latex-keys)))
