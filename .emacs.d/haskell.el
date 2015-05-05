@@ -8,6 +8,14 @@
     (add-hook 'haskell-mode-hook 'inf-haskell-mode)
     (add-hook 'haskell-mode-hook 'haskell-indent-mode)))
 
+(defun haskell-sibi-lhs-process ()
+  (interactive)
+  (save-excursion
+  (goto-char (point-min))
+  (while (re-search-forward "^> " nil t)
+    (replace-match ""))
+  ))
+
 ;; (custom-set-variables
 ;;   '(haskell-process-suggest-remove-import-lines t)
 ;;   '(haskell-process-auto-import-loaded-modules t)
