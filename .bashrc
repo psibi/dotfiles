@@ -64,7 +64,7 @@ function mkcd () {
 function pii() {
     ping 8.8.8.8
     sleep 3
-    pi
+    pii
 }
 
 #Because I hate when the window manager get's confused after a restart
