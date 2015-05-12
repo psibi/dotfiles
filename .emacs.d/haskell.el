@@ -8,6 +8,18 @@
     (add-hook 'haskell-mode-hook 'inf-haskell-mode)
     (add-hook 'haskell-mode-hook 'haskell-indent-mode)))
 
+(defun haskell-lhs-codify (beginning end)
+  (interactive "r")
+  (if (use-region-p)
+      (save-restriction
+        (narrow-to-region beginning end)
+        (save-excursion
+          (goto-char (point-min))
+          (while (re-search-forward "^" nil t)
+            (replace-match "> "))))
+    t
+    ))
+
 (defun haskell-lhs-clean (beginning end)
   (interactive "r")
   (if (use-region-p)
