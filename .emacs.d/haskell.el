@@ -6,7 +6,11 @@
   :config 
   (progn
     (add-hook 'haskell-mode-hook 'inf-haskell-mode)
-    (add-hook 'haskell-mode-hook 'haskell-indent-mode)))
+    (add-hook 'haskell-mode-hook 'haskell-indent-mode)
+    (add-hook 'literate-haskell-mode-hook 'sibi-literate-haskell-bindings)))
+
+(defun sibi-literate-haskell-bindings ()
+  (local-set-key (kbd "C-c >") 'haskell-lhs-codify))
 
 (defun haskell-lhs-codify (beginning end)
   (interactive "r")
