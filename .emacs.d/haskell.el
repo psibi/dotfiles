@@ -10,7 +10,8 @@
     (add-hook 'literate-haskell-mode-hook 'sibi-literate-haskell-bindings)))
 
 (defun sibi-literate-haskell-bindings ()
-  (local-set-key (kbd "C-c >") 'haskell-lhs-codify))
+  (local-set-key (kbd "C-c >") 'haskell-lhs-codify)
+  (local-set-key (kbd "C-c <") 'haskell-lhs-clean))
 
 (defun haskell-lhs-codify (beginning end)
   (interactive "r")
@@ -31,7 +32,7 @@
         (narrow-to-region beginning end)
         (save-excursion
           (goto-char (point-min))
-          (while (re-search-forward "^> *" nil t)
+          (while (re-search-forward "^> " nil t)
           (replace-match "    "))))
       (save-excursion
         (goto-char (point-min))
