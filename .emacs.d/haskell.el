@@ -33,12 +33,20 @@
         (save-excursion
           (goto-char (point-min))
           (while (re-search-forward "^> " nil t)
-          (replace-match "    "))))
-      (save-excursion
-        (goto-char (point-min))
-        (while (re-search-forward "^> *" nil t)
-          (replace-match "    "))
-        )))
+            (replace-match "    "))
+          (while (re-search-forward "^λ>" nil t)
+            (replace-match "    λ>")
+            (forward-line 1)
+            (insert "    "))))
+    (save-excursion
+      (goto-char (point-min))
+      (while (re-search-forward "^> *" nil t)
+        (replace-match "    "))
+      (while (re-search-forward "^λ>" nil t)
+        (replace-match "    λ>")
+        (forward-line 1)
+        (insert "    "))
+      )))
 
 ;; (custom-set-variables
 ;;   '(haskell-process-suggest-remove-import-lines t)
