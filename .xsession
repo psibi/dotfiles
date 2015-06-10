@@ -9,8 +9,8 @@ xrdb -merge .Xresources
 trayer --edge top --align right --SetDockType true --SetPartialStrut true \
  --expand true --width 10 --transparent true --tint 0x00ff00 --height 12 &
  
-# Set the background color<
- 
+# To solve dmenu Segmentation memory error
+export LANG="en_US.utf8" 
  
 # Fire up apps
  
