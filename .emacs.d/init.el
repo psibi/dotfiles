@@ -52,8 +52,6 @@
   :ensure t)
 (use-package google-this
   :ensure t)
-(use-package imenu-anywhere
-  :ensure t)
 (use-package flycheck
   :ensure t)
 
@@ -174,14 +172,12 @@
   (progn
     (setq projectile-enable-caching t)))
 
-(use-package helm-projectile
-  :ensure t)
-
 ;;Helm related config
-(use-package helm-config
-  :ensure helm
+(use-package helm
+  :ensure t
   :init
   (progn
+    (require 'helm-config)
     (helm-mode 1))
   :config
   (progn
@@ -205,6 +201,12 @@
     (global-set-key (kbd "C-x b") 'helm-mini)
     (global-set-key (kbd "C-x C-f") 'helm-find-files)
     (global-set-key (kbd "C-c h o") 'helm-occur)))
+
+;; (use-package imenu-anywhere
+;;   :ensure t)
+
+(use-package helm-projectile
+  :ensure t)
 
 (use-package helm-swoop
   :ensure t
@@ -303,9 +305,9 @@
 (define-key key-translation-map [?\C-h] [?\C-?])
 (global-set-key (kbd "<f1>") 'help-command)
 
-(add-to-list 'load-path "~/.emacs.d/site-lisp/auctex")
-(load "auctex.el" nil t t)
-(load "preview-latex.el" nil t t)
+;; (add-to-list 'load-path "~/.emacs.d/site-lisp/auctex")
+;; (load "auctex.el" nil t t)
+;; (load "preview-latex.el" nil t t)
 
 (use-package tex-mode
   :ensure t
@@ -328,4 +330,3 @@
   (progn
     (setq guide-key/guide-key-sequence '("C-x 4" "C-c p"))
     (guide-key-mode 1)))
-
