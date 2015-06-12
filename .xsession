@@ -9,7 +9,9 @@ xrdb -merge .Xresources
 trayer --edge top --align right --SetDockType true --SetPartialStrut true \
  --expand true --width 10 --transparent true --tint 0x00ff00 --height 12 &
  
-# To solve dmenu Segmentation memory error
+# Set the background color<
+
+# dmenu was throwing Segmentation Error
 export LANG="en_US.utf8" 
  
 # Fire up apps
@@ -34,15 +36,19 @@ fi
 xmodmap ~/.Xmodmap
 xmodmap -e 'keycode 135=Super_L' #Only for my laptop
 
-gnome-terminal -e screen &
-firefox &
-emacs &
-nautilus &
-ssh-add &
+# Note that inovking these apps beforehand caused xmobar to disappear.
+# Probably some window arrangment was being done ?
+
+# gnome-terminal -e screen &
+# firefox &
+# emacs &
+# nautilus &
+# ssh-add &
 
 # Choose your Window Manager
 # exec gnome-session
 # exec startkde
 # exec startxfce4
+# exec xmonad
 
-exec xmonad
+xmonad
