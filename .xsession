@@ -36,6 +36,12 @@ fi
 xmodmap ~/.Xmodmap
 xmodmap -e 'keycode 135=Super_L' #Only for my laptop
 
+#Audio failed working
+# Some try
+# 1) Add username to the group audio
+# 2) sudo alsamixer (Make it unmute)
+# Restarting makes it work
+
 # Note that inovking these apps beforehand caused xmobar to disappear.
 # Probably some window arrangment was being done ?
 
@@ -51,4 +57,4 @@ xmodmap -e 'keycode 135=Super_L' #Only for my laptop
 # exec startxfce4
 # exec xmonad
 
-xmonad
+exec xmonad
