@@ -57,4 +57,6 @@ xmodmap -e 'keycode 135=Super_L' #Only for my laptop
 # exec startxfce4
 # exec xmonad
 
+# In Debian based systems, manage your network connections using nm-connection-editor
+
 exec xmonad
