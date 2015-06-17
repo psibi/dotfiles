@@ -54,3 +54,20 @@
   (interactive)
   (let ((fill-column (point-max)))
     (fill-paragraph nil)))
+
+;; For github issues
+(defun sibi-four-space-indent (beginning end)
+  (interactive "r")
+  (if (use-region-p)
+      (save-restriction
+        (narrow-to-region beginning end)
+        (save-excursion
+          (goto-char (point-min))
+          (while (re-search-forward "^" nil t)
+            (replace-match "    "))
+          ))
+    (save-excursion
+      (goto-char (point-min))
+      (while (re-search-forward "^" nil t)
+        (replace-match "    "))
+      )))
