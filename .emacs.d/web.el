@@ -16,4 +16,7 @@
   :init
   (progn
     (add-hook 'html-mode-hook 'turn-off-auto-fill)
-    (add-hook 'html-mode-hook 'skewer-mode)))
+    (add-hook 'html-mode-hook 'skewer-mode)
+    (add-hook 'html-mode-hook (lambda ()
+                                (setq sgml-basic-offset 4)
+                                (setq indent-tabs-mode t)))))
