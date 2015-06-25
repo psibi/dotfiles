@@ -13,3 +13,10 @@ URxvt*scrollBar: false
 ! URxvt.underlineURLs: true
 URxvt*background: #000000
 URxvt*foreground: #ffffff
+
+! Sane Copy and pasting
+! https://wiki.archlinux.org/index.php/Rxvt-unicode#Cut_and_paste
+URxvt.perl-ext-common: default,clipboard
+URxvt.iso14755: False
+URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
