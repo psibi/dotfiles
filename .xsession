@@ -2,7 +2,7 @@
  
 # Load resources
  
-xrdb -merge .Xresources
+xrdb -merge ~/.Xresources
 
 # Set up an icon tray
  
