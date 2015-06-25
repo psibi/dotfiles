@@ -22,11 +22,13 @@ git config --global core.excludefile ~/.global_ignore
 ln ./.bashrc ~/.sibi_bashrc
 echo "source ~/.sibi_bashrc" >> ~/.bashrc
 
-echo "Copying New Keyboard Bindings"
-cp -v ./.Xmodmap ~/.Xmodmap
+# echo "Copying New Keyboard Bindings"
+# cp -v ./.Xmodmap ~/.Xmodmap
 
-# And set the new bindings here itself.
-xmodmap ~/.Xmodmap
+# # And set the new bindings here itself.
+# xmodmap ~/.Xmodmap
+
+cp -v ./.Xresources ~/
 
 "echo Setting up GNU Screen configurations"
 cp -v ./.screenrc ~/
