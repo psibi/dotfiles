@@ -1,5 +1,6 @@
 # ~/.nixpkgs/config.nix file
-# Install like this: nix-env -f "<nixpkgs>" -iA sibiHaskellEnv             
+# Install like this: nix-env -iA nixpkgs.sibiHaskellEnv
+# Probably need to reduce the global dependencies ?
 {
   packageOverrides = super: let self = super.pkgs; in
   {
@@ -9,6 +10,9 @@
                        mtl
                        cabal-install
                        xmobar
+                       http-client
+                       http-conduit
+                       conduit-combinators
                      ]);
   };
 }
