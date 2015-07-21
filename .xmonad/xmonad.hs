@@ -12,7 +12,7 @@ import XMonad.Hooks.ManageHelpers
 
 myWorkspaces = ["main", "web", "chat", "dev", "media", "float", "misc"]
 
-myTerminal = "gnome-terminal -e screen"
+myTerminal = "urxvt -e screen"
 
 -- Define the workspace an application has to go to
 myManageHook = composeAll . concat $
@@ -36,10 +36,11 @@ myManageHook = composeAll . concat $
         myClassMediaShifts = ["rhythmbox"]
         myClassFloatShifts = ["gimp", "SMPlayer", "smplayer"]
         myClassMiscShifts = ["nautilus"]
-        myClassMainShifts = ["gnome-terminal"]
+        myClassMainShifts = [".urxvt-wrapped"]
 
 main = do
-  xmproc <- spawnPipe "/usr/bin/xmobar /home/sibi/.xmobarrc"
+
+  xmproc <- spawnPipe "/home/sibi/.nix-profile/bin/xmobar /home/sibi/.xmobarrc"
   xmonad $ withUrgencyHook NoUrgencyHook defaultConfig
     {
       manageHook = manageDocks <+> myManageHook
@@ -61,7 +62,10 @@ main = do
     , ((mod4Mask, xK_c), kill)
     , ((0, xK_Print), spawn "scrot")
     , ((mod4Mask, xK_g), spawn "gnome-control-center")
+    , ((mod4Mask, xK_p), spawn "dmenu_run")
     ]
 
 -- main = do
 --   xmonad $ defaultConfig
+-- Reference
+-- https://wiki.haskell.org/Xmonad/Frequently_asked_questions#I_need_to_find_the_class_title_or_some_other_X_property_of_my_program
