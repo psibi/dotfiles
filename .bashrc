@@ -94,3 +94,25 @@ function extract () {
         echo "'$1' is not a valid file"
     fi
 }
+
+function ndir () {
+    if [[ $# -eq 1 && "$1" -gt 0 ]] ; then
+        local i d
+        for (( i = 0; i < $1; i++ )) ; do d="../$d" ; done
+        cd $d
+    elif [[ $# -eq 2 && "$1" -gt 0 ]] ; then
+        local i d
+        for (( i = 0; i < $1; i++ )) ; do d="../$d" ; done
+        cd $d
+        cd $2
+    else
+        echo "Usage: ndir N directory\n
+              Or     ndir N"
+    fi
+}
+
+alias ..='ndir 1'
+alias ...='ndir 2'
+alias ....='ndir 3'
+alias .....='ndir 4'
+alias ......='ndir 5'
