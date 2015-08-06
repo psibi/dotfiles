@@ -96,7 +96,9 @@ function extract () {
 }
 
 function ndir () {
-    if [[ $# -eq 1 && "$1" -gt 0 ]] ; then
+    if [[ $# -eq 2 && "$1" -eq 0 ]] ; then
+        cd $2
+    elif [[ $# -eq 1 && "$1" -gt 0 ]] ; then
         local i d
         for (( i = 0; i < $1; i++ )) ; do d="../$d" ; done
         cd $d
@@ -111,6 +113,7 @@ function ndir () {
     fi
 }
 
+alias .='ndir 0'
 alias ..='ndir 1'
 alias ...='ndir 2'
 alias ....='ndir 3'
