@@ -113,7 +113,6 @@ function ndir () {
     fi
 }
 
-alias .='ndir 0'
 alias ..='ndir 1'
 alias ...='ndir 2'
 alias ....='ndir 3'
