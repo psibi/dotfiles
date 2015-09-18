@@ -7,7 +7,8 @@
   (progn
     (add-hook 'haskell-mode-hook 'inf-haskell-mode)
     (add-hook 'haskell-mode-hook 'haskell-indent-mode)
-    (add-hook 'literate-haskell-mode-hook 'sibi-literate-haskell-bindings)))
+    (add-hook 'literate-haskell-mode-hook 'sibi-literate-haskell-bindings)
+    (customize-set-variable 'haskell-hoogle-url '"https://www.stackage.org/lts/hoogle?q=%s")))
 
 (defun sibi-literate-haskell-bindings ()
   (local-set-key (kbd "C-c >") 'haskell-lhs-codify)
