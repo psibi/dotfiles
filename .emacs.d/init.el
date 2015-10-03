@@ -11,7 +11,6 @@
 
 (package-initialize)
 
-(load-theme 'wheatgrass t)
 (require 'use-package)
 
 (use-package cl)
@@ -21,6 +20,12 @@
 (use-package ansi-color)
 (use-package recentf)
 (use-package tramp)
+
+(use-package spacemacs-theme
+  :ensure t
+  :init
+  (progn
+    (load-theme 'spacemacs-dark t)))
 
 (use-package server
   :ensure t
