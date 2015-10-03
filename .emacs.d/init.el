@@ -174,6 +174,7 @@
 ;;Projectile related config
 (use-package projectile
   :ensure t
+  :diminish projectile-mode "p"
   :init 
   (progn
     (projectile-global-mode))
@@ -184,6 +185,7 @@
 ;;Helm related config
 (use-package helm
   :ensure t
+  :diminish helm-mode "h"
   :init
   (progn
     (require 'helm-config)
