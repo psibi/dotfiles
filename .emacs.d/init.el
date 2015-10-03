@@ -270,20 +270,20 @@
   (progn
     (global-set-key (kbd "C-x o") 'ace-window)))
 
-(use-package smart-mode-line
-  :ensure t
-  :init
-  (progn
-    (setq sml/no-confirm-load-theme t)
-    (sml/setup)))
+;; (use-package smart-mode-line
+;;   :ensure t
+;;   :init
+;;   (progn
+;;     (setq sml/no-confirm-load-theme t)
+;;     (sml/setup)))
 
-(use-package smart-mode-line-powerline-theme
-  :ensure t
-  :init
-  (progn
-    (setq sml/theme 'powerline)
-    (setq powerline-arrow-shape 'curve)
-    (setq powerline-default-separator-dir '(right . left))))
+;; (use-package smart-mode-line-powerline-theme
+;;   :ensure t
+;;   :init
+;;   (progn
+;;     (setq sml/theme 'powerline)
+;;     (setq powerline-arrow-shape 'curve)
+;;     (setq powerline-default-separator-dir '(right . left))))
 
 ;; Enable clipboard
 (setq x-select-enable-clipboard t)
