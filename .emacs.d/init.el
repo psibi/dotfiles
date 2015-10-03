@@ -41,12 +41,14 @@
 
 (use-package auto-complete
   :ensure t
+  :diminish auto-complete-mode  
   :init
   (progn
     (ac-config-default)))
 
 (use-package autopair
   :ensure t
+  :diminish autopair-mode
   :init
   (progn
     (autopair-global-mode)))
@@ -58,6 +60,7 @@
     (fullscreen-mode-fullscreen)))
 
 (use-package paredit
+  :diminish paredit-mode  
   :ensure t)
 (use-package google-this
   :ensure t)
@@ -163,6 +166,7 @@
 
 (use-package magit
   :ensure t
+  :diminish magit-auto-revert-mode  
   :init
   (progn
     (global-set-key (kbd "C-c g") 'magit-status)
