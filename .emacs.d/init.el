@@ -335,6 +335,7 @@
 
 (use-package guide-key
   :ensure t
+  :diminish guide-key-mode  
   :init
   (progn
     (setq guide-key/guide-key-sequence '("C-x 4" "C-c p"))
