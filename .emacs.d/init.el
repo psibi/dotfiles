@@ -339,3 +339,25 @@
   (progn
     (setq guide-key/guide-key-sequence '("C-x 4" "C-c p"))
     (guide-key-mode 1)))
+
+(use-package window-numbering
+  :ensure t
+  :init
+  (progn
+    (window-numbering-mode t)))
+
+(use-package spaceline
+  :ensure t
+  :init
+  (progn
+    (require 'spaceline-config)
+    (setq powerline-height '18)
+    (setq powerline-default-separator 'wave)
+    (spaceline-spacemacs-theme)))
+
+(use-package nyan-mode
+  :ensure t
+  :init
+  (progn
+    (nyan-mode 1))
+  )
