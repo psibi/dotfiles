@@ -113,6 +113,8 @@
 (setq default-process-coding-system     '(utf-8 . utf-8))
 (add-to-list 'auto-coding-alist         '("." . utf-8))
 
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
 ;;Tramp for editing protected files in existing Emacs session.(C-x C-f /sudo)
 (setq tramp-default-method "ssh")
 
