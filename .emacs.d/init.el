@@ -138,6 +138,14 @@
 ;; (setq url-proxy-services '(("https" . "127.0.0.1:3129")
 ;;                            ("http" . "127.0.0.1:3129")))
 
+;; Hooks before saving file
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+(add-hook 'before-save-hook 'untabify)
+
+;; No tabs for indendation
+(setq-default indent-tabs-mode nil)
+(setq tab-width 4)
+
 ;; -------------
 ;; flyspell-mode
 ;; -------------
