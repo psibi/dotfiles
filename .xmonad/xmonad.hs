@@ -65,14 +65,13 @@ main = do
     , workspaces = myWorkspaces
     } `additionalKeys`
     [ ((mod4Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
-    , ((controlMask, xK_Print), spawn "xfce4-screenshooter")
+    , ((0, xK_Print), spawn "xfce4-screenshooter")
     , ((mod4Mask, xK_x), spawn "xkill")
     , ((mod4Mask, xK_c), kill)
-    , ((0, xK_Print), spawn "scrot")
-    , ((mod4Mask, xK_o), shellPrompt $ defaultXPConfig {promptKeymap = sibiEmacsKeymap})
-    , ((mod4Mask, xK_u), promptSearch (greenXPConfig {promptKeymap = emacsLikeXPKeymap}) multiEngine)
+    , ((mod4Mask, xK_p), shellPrompt $ defaultXPConfig {promptKeymap = sibiEmacsKeymap})
+    , ((mod4Mask, xK_s), promptSearch (greenXPConfig {promptKeymap = sibiEmacsKeymap}) multiEngine)
+    , ((mod4Mask, xK_f), selectSearch multiEngine)
     , ((mod4Mask, xK_g), spawn "unity-control-center")
-    , ((mod4Mask, xK_p), spawn "dmenu_run")
     ]
 
 sibiEmacsKeymap = sibiEmacsKeymap' isSpace
@@ -115,6 +114,7 @@ sibiEmacsKeymap' p = M.fromList $
   , (xK_Up, moveHistory W.focusDown')
   , (xK_Escape, quit)
   ]
+
 
 multiEngine :: SearchEngine
 multiEngine = intelligent (wikipedia !> hackage !> (prefixAware google))
