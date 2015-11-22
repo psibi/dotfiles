@@ -25,7 +25,7 @@ fi
 # fi    
 
 xmodmap ~/.Xmodmap
-xmodmap -e 'keycode 135=Super_L' #Only for my laptop
+# xmodmap -e 'keycode 135=Super_L' #Only for my laptop
 
 #Audio failed working
 # Some try
