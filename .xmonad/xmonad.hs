@@ -12,6 +12,7 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.Prompt
 import XMonad.Prompt.Shell
 import XMonad.Actions.Search
+import XMonad.Actions.Submap
 import qualified Data.Map as M
 import Control.Arrow (first)
 import Data.Char (isSpace)
@@ -69,17 +70,25 @@ main = do
     , ((mod4Mask, xK_x), spawn "xkill")
     , ((mod4Mask, xK_c), kill)
     , ((mod4Mask, xK_p), shellPrompt sibiXPConfig)
-    , ((mod4Mask, xK_s), promptSearch greenSibiXPConfig multiEngine)
-    , ((mod4Mask, xK_f), selectSearch multiEngine)
+    , ((mod4Mask, xK_s), submap $ searchEngineMap $ promptSearch greenSibiXPConfig)
+    , ((mod4Mask, xK_f), submap $ searchEngineMap $ selectSearch)
     , ((mod4Mask, xK_g), spawn "unity-control-center")
     ]
 
+stackage      = searchEngine "stackage"      "www.stackage.org/lts/hoogle?q="
+vocabulary    = searchEngine "vocabulary"    "http://www.vocabulary.com/search?q="
+
 sibiXPConfig = defaultXPConfig {
-                 alwaysHighlight = True,
+                 alwaysHighlight = False,  -- There is a bug with True
                  promptKeymap = sibiEmacsKeymap,
                  position = Top,
                  font = "-*-Fixed-Bold-R-Normal-*-15-*-*-*-*-*-*-*"
                }
+
+-- Bug description
+-- Activate True and then try some new seach which is not on history.
+-- Browser will open an empty url.
+-- Probably the way prompt handles that is buggy.
 
 greenSibiXPConfig = sibiXPConfig { fgColor = "green", bgColor = "black", promptBorderWidth = 0 }
 
@@ -125,9 +134,13 @@ sibiEmacsKeymap' p = M.fromList $
   , (xK_Escape, quit)
   ]
 
+searchEngineMap method = M.fromList $
+       [ ((0, xK_g), method google)
+       , ((0, xK_h), method stackage)
+       , ((0, xK_w), method wikipedia)
+       , ((0, xK_v), method vocabulary)
+       ]
 
-multiEngine :: SearchEngine
-multiEngine = intelligent (wikipedia !> hackage !> (prefixAware google))
 -- main = do
 --   xmonad $ defaultConfig
 -- Reference
