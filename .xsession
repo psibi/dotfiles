@@ -4,11 +4,6 @@
  
 xrdb -merge ~/.Xresources
 
-# Set up an icon tray
- 
-trayer --edge top --align right --SetDockType true --SetPartialStrut true \
- --expand true --width 10 --transparent true --tint 0x00ff00 --height 12 &
- 
 # Set the background color<
 
 # dmenu was throwing Segmentation Error
@@ -18,10 +13,6 @@ export LANG="en_US.utf8"
  
 xscreensaver -no-splash &
  
-if [ -x /usr/bin/nm-applet ] ; then
-   nm-applet --sm-disable &
-fi
-
 # Because I like GNOME's settings and themes
 if [ -x /usr/bin/gnome-settings-daemon ] ; then
    sleep 3
