@@ -68,12 +68,22 @@ main = do
     , ((0, xK_Print), spawn "xfce4-screenshooter")
     , ((mod4Mask, xK_x), spawn "xkill")
     , ((mod4Mask, xK_c), kill)
-    , ((mod4Mask, xK_p), shellPrompt $ defaultXPConfig {promptKeymap = sibiEmacsKeymap})
-    , ((mod4Mask, xK_s), promptSearch (greenXPConfig {promptKeymap = sibiEmacsKeymap}) multiEngine)
+    , ((mod4Mask, xK_p), shellPrompt sibiXPConfig)
+    , ((mod4Mask, xK_s), promptSearch greenSibiXPConfig multiEngine)
     , ((mod4Mask, xK_f), selectSearch multiEngine)
     , ((mod4Mask, xK_g), spawn "unity-control-center")
     ]
 
+sibiXPConfig = defaultXPConfig {
+                 alwaysHighlight = True,
+                 promptKeymap = sibiEmacsKeymap,
+                 position = Top,
+                 font = "-*-Fixed-Bold-R-Normal-*-15-*-*-*-*-*-*-*"
+               }
+
+greenSibiXPConfig = sibiXPConfig { fgColor = "green", bgColor = "black", promptBorderWidth = 0 }
+
+sibiEmacsKeymap :: M.Map (KeyMask,KeySym) (XP ())
 sibiEmacsKeymap = sibiEmacsKeymap' isSpace
 
 -- Modified from source to suit my key binding
