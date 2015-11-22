@@ -12,7 +12,7 @@ Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
                     , Run StdinReader
                     , Run Wireless "wlan0" 
                           [ "-a", "l"
-                          , "-w", "7"
+                          , "-w", "5"
                           , "-t", "<fc=#8888FF>WLAN:</fc> <essid> <quality>"
                           , "-L", "50"
                           , "-H", "75"
@@ -25,5 +25,5 @@ Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %cpu% | %memory% * %swap% * %battery% | %eth0% %eth1% | %wlan0wi% | <fc=#ee9a00>%date%</fc> | %VOMM%"
+       , template = "%StdinReader% }{ %wlan0wi% | %eth0% %eth1% | %cpu% | %memory% * %swap% * %battery% | <fc=#ee9a00>%date%</fc> | %VOMM%"
        }
