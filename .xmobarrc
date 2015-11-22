@@ -10,8 +10,10 @@ Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
                     , Run Battery ["-t","<left>","-L","30","-H","70","--low", "red","--normal","yellow","--high","green"] 10
                     , Run Date "%a %b %_d %l:%M" "date" 10
                     , Run StdinReader
+                    , Run Network "eth0" ["-L","0","-H","32","--normal","green","--high","red"] 10
+                    , Run Network "eth1" ["-L","0","-H","32","--normal","green","--high","red"] 10
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %cpu% | %memory% * %swap% * %battery% <fc=#ee9a00>%date%</fc> | %VOMM%"
+       , template = "%StdinReader% }{ %cpu% | %memory% * %swap% * %battery% | %eth0% - %eth1% | <fc=#ee9a00>%date%</fc> | %VOMM%"
        }
