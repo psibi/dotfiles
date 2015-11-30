@@ -372,6 +372,15 @@
     (setq powerline-default-separator 'wave)
     (spaceline-spacemacs-theme)))
 
+(use-package ace-jump-mode
+  :ensure t
+  :init
+  (progn
+    (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+    ;; Also with universal argument: C-u C-c SPC
+    ;; For line jumping: C-u C-u C-c SPC
+    ))
+
 (use-package nyan-mode
   :ensure t
   :init
