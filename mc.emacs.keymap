@@ -78,7 +78,7 @@ PutOtherLink = ctrl-r
 
 [panel]
 Search = ctrl-s; alt-s
-Mark = insert; ctrl-t
+Mark = insert; ctrl-u
 MarkUp = shift-up
 MarkDown = shift-down
 # MarkLeft =
