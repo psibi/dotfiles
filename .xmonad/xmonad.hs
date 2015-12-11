@@ -132,6 +132,7 @@ sibiEmacsKeymap' p = M.fromList $
   , (xK_Down, moveHistory W.focusUp')
   , (xK_Up, moveHistory W.focusDown')
   , (xK_Escape, quit)
+  , (xK_BackSpace, deleteString Prev)
   ]
 
 searchEngineMap method = M.fromList $
