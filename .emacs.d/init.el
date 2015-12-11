@@ -378,5 +378,4 @@
   :ensure t
   :init
   (progn
-    (nyan-mode 1))
-  )
+    (nyan-mode 1)))

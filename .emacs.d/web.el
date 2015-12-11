@@ -17,6 +17,7 @@
   :mode "\\.jsx$"
   :config
   (progn
+    (flycheck-mode 1)
     (defun sibi-web-hook ()
       (setq web-mode-code-indent-offset 4)
       (setq web-mode-markup-indent-offset 4))
