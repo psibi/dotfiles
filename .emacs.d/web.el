@@ -6,9 +6,28 @@
   (progn
     (use-package skewer-mode
       :ensure t
+      :diminish skewer-mode
       :init
       (progn
-        (add-hook 'js2-mode-hook 'skewer-mode)))))
+        (add-hook 'js2-mode-hook 'skewer-mode)
+        (add-hook 'js2-mode-hook '(auto-fill-mode -1))))))
+
+(use-package web-mode
+  :ensure t
+  :mode "\\.jsx$"
+  :config
+  (progn
+    (defun sibi-web-hook ()
+      (setq web-mode-code-indent-offset 4)
+      (setq web-mode-markup-indent-offset 4))
+    (add-hook 'web-mode-hook 'sibi-web-hook)
+    (setq-default flycheck-disabled-checkers
+                  (append flycheck-disabled-checkers
+                          '(javascript-jshint)))
+    (flycheck-add-mode 'javascript-eslint 'web-mode)
+    (setq-default flycheck-disabled-checkers
+                  (append flycheck-disabled-checkers
+                          '(json-jsonlist)))))
 
 (use-package html-mode
   :mode "\\.html\\'"
