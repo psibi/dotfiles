@@ -79,16 +79,11 @@ stackage      = searchEngine "stackage"      "www.stackage.org/lts/hoogle?q="
 vocabulary    = searchEngine "vocabulary"    "http://www.vocabulary.com/search?q="
 
 sibiXPConfig = defaultXPConfig {
-                 alwaysHighlight = False,  -- There is a bug with True
+                 alwaysHighlight = True, 
                  promptKeymap = sibiEmacsKeymap,
                  position = Top,
                  font = "-*-Fixed-Bold-R-Normal-*-15-*-*-*-*-*-*-*"
                }
-
--- Bug description
--- Activate True and then try some new seach which is not on history.
--- Browser will open an empty url.
--- Probably the way prompt handles that is buggy.
 
 greenSibiXPConfig = sibiXPConfig { fgColor = "green", bgColor = "black", promptBorderWidth = 0 }
 
