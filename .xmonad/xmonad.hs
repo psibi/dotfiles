@@ -79,13 +79,19 @@ stackage      = searchEngine "stackage"      "www.stackage.org/lts/hoogle?q="
 vocabulary    = searchEngine "vocabulary"    "http://www.vocabulary.com/search?q="
 
 sibiXPConfig = defaultXPConfig {
-                 alwaysHighlight = True, 
+                 alwaysHighlight = True,  
                  promptKeymap = sibiEmacsKeymap,
                  position = Top,
-                 font = "-*-Fixed-Bold-R-Normal-*-15-*-*-*-*-*-*-*"
+                 font = "-*-Fixed-Bold-R-Normal-*-15-*-*-*-*-*-*-*",
+                 completionKey = (controlMask, xK_i)
                }
 
-greenSibiXPConfig = sibiXPConfig { fgColor = "green", bgColor = "black", promptBorderWidth = 0 }
+greenSibiXPConfig = sibiXPConfig { 
+                      alwaysHighlight = False,
+                      fgColor = "green", 
+                      bgColor = "black", 
+                      promptBorderWidth = 0 
+                    }
 
 sibiEmacsKeymap :: M.Map (KeyMask,KeySym) (XP ())
 sibiEmacsKeymap = sibiEmacsKeymap' isSpace
@@ -106,6 +112,7 @@ sibiEmacsKeymap' p = M.fromList $
   , (xK_g, quit)
   , (xK_bracketleft, quit)
   , (xK_h, deleteString Prev)
+  , (xK_j, setSuccess True >> setDone True)
   ] ++
   map (first $ (,) mod1Mask) -- meta key + <key>
   [ (xK_BackSpace, killWord' p Prev)
