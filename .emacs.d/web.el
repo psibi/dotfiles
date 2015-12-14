@@ -20,7 +20,8 @@
     (flycheck-mode 1)
     (defun sibi-web-hook ()
       (setq web-mode-code-indent-offset 4)
-      (setq web-mode-markup-indent-offset 4))
+      (setq web-mode-markup-indent-offset 4)
+      (flycheck-mode 1))
     (add-hook 'web-mode-hook 'sibi-web-hook)
     (setq-default flycheck-disabled-checkers
                   (append flycheck-disabled-checkers
