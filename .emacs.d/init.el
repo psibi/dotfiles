@@ -65,7 +65,13 @@
 (use-package google-this
   :ensure t)
 (use-package flycheck
-  :ensure t)
+  :ensure t
+  :config
+  (progn
+    (setq flycheck-check-syntax-automatically '(mode-enabled save))
+    (define-key flycheck-mode-map (kbd "C-c f l") #'flycheck-list-errors)
+    (define-key flycheck-mode-map (kbd "C-c f n") #'flycheck-next-error)
+    (define-key flycheck-mode-map (kbd "C-c f p") #'flycheck-previous-error)))
 
 (load-file "~/.emacs.d/haskell.el")
 (load-file "~/.emacs.d/python.el")
