@@ -86,7 +86,7 @@
 (size-indication-mode 1)
 
 ;; My Details
-(setq user-full-name "Sibi")
+(setq user-full-name "Sibi Prabakaran")
 (setq user-mail-address "sibi@psibi.in")
 
 ;; Unbind C-z
@@ -385,3 +385,10 @@
   :init
   (progn
     (nyan-mode 1)))
+
+(use-package flycheck-pos-tip
+  :ensure t
+  :init
+  (progn
+    (with-eval-after-load 'flycheck
+      (flycheck-pos-tip-mode))))
