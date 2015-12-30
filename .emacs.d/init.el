@@ -46,13 +46,6 @@
   (progn
     (ac-config-default)))
 
-(use-package autopair
-  :ensure t
-  :diminish autopair-mode
-  :init
-  (progn
-    (autopair-global-mode)))
-
 (use-package fullscreen-mode
   :ensure t
   :init 
@@ -394,3 +387,9 @@
   (progn
     (with-eval-after-load 'flycheck
       (flycheck-pos-tip-mode))))
+
+(use-package electric
+  :ensure t
+  :init
+  (progn
+    (electric-pair-mode 1)))
