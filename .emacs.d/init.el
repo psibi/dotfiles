@@ -171,7 +171,9 @@
   :config
   (progn
     (emms-standard)
-    (emms-default-players)))
+    (emms-default-players)
+    (setq emms-playlist-buffer-name "Music-EMMS")
+    (setq emms-source-file-default-directory "~/Music/")))
 
 (use-package magit
   :ensure t
