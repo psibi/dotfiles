@@ -16,6 +16,8 @@ import XMonad.Actions.Submap
 import qualified Data.Map as M
 import Control.Arrow (first)
 import Data.Char (isSpace)
+import XMonad.Util.SpawnOnce (spawnOnce)
+import System.Environment (getArgs)
 
 myWorkspaces = ["main", "web", "chat", "dev", "media", "float", "misc"]
 
@@ -48,6 +50,14 @@ myManageHook = composeAll . concat $
         myClassMiscShifts = ["nautilus"]
         myClassMainShifts = [".urxvt-wrapped"]
 
+sibiStartupHook :: X ()
+sibiStartupHook = do
+  as <- io getArgs
+  when (null as) $ do
+      spawnOnce "firefox"
+      spawnOnce "emacs"
+      spawnOnce myTerminal
+
 main = do
   xmproc <- spawnPipe "xmobar"
   xmonad $ withUrgencyHook NoUrgencyHook defaultConfig
@@ -56,6 +66,7 @@ main = do
                    <+> manageHook defaultConfig
     -- No red border for media players
     , terminal = myTerminal
+    , startupHook = sibiStartupHook
     , layoutHook = smartBorders $ avoidStruts $ layoutHook defaultConfig 
     , logHook = dynamicLogWithPP xmobarPP
                         { ppOutput = hPutStrLn xmproc
