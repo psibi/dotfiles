@@ -393,3 +393,7 @@
   :init
   (progn
     (electric-pair-mode 1)))
+
+;; Isearch convenience, space matches anything (non-greedy)
+;; Note that you can use universal argument
+(setq search-whitespace-regexp ".*?")
