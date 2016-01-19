@@ -46,12 +46,6 @@
   (progn
     (ac-config-default)))
 
-(use-package fullscreen-mode
-  :ensure t
-  :init 
-  (progn
-    (fullscreen-mode-fullscreen)))
-
 (use-package paredit
   :diminish paredit-mode  
   :ensure t)
