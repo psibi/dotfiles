@@ -391,3 +391,5 @@
 ;; Isearch convenience, space matches anything (non-greedy)
 ;; Note that you can use universal argument
 (setq search-whitespace-regexp ".*?")
+(toggle-frame-fullscreen)
+(global-set-key (kbd "M-/") 'hippie-expand)
