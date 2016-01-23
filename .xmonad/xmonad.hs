@@ -91,9 +91,6 @@ main = do
     , ((0, xF86XK_AudioMute), toggleMute >> return ())
     ]
 
-stackage      = searchEngine "stackage"      "www.stackage.org/lts/hoogle?q="
-vocabulary    = searchEngine "vocabulary"    "http://www.vocabulary.com/search?q="
-
 sibiXPConfig = defaultXPConfig {
                  alwaysHighlight = True,  
                  promptKeymap = sibiEmacsKeymap,
