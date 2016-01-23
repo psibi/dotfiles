@@ -13,11 +13,13 @@ import XMonad.Prompt
 import XMonad.Prompt.Shell
 import XMonad.Actions.Search
 import XMonad.Actions.Submap
+import XMonad.Util.SpawnOnce (spawnOnce)
+import XMonad.Actions.Volume
 import qualified Data.Map as M
 import Control.Arrow (first)
 import Data.Char (isSpace)
-import XMonad.Util.SpawnOnce (spawnOnce)
 import System.Environment (getArgs)
+import Graphics.X11.ExtraTypes.XF86
 
 myWorkspaces = ["main", "web", "chat", "dev", "media", "float", "misc"]
 
@@ -84,6 +86,9 @@ main = do
     , ((mod4Mask, xK_s), submap $ searchEngineMap $ promptSearch greenSibiXPConfig)
     , ((mod4Mask, xK_f), submap $ searchEngineMap $ selectSearch)
     , ((mod4Mask, xK_g), spawn "unity-control-center")
+    , ((0, xF86XK_AudioRaiseVolume), raiseVolume 2 >> return ())
+    , ((0, xF86XK_AudioLowerVolume), lowerVolume 2 >> return ())
+    , ((0, xF86XK_AudioMute), toggleMute >> return ())
     ]
 
 stackage      = searchEngine "stackage"      "www.stackage.org/lts/hoogle?q="
