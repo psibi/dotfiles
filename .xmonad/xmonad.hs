@@ -15,6 +15,7 @@ import XMonad.Actions.Search
 import XMonad.Actions.Submap
 import XMonad.Util.SpawnOnce (spawnOnce)
 import XMonad.Actions.Volume
+import XMonad.Prompt.Window
 import qualified Data.Map as M
 import Control.Arrow (first)
 import Data.Char (isSpace)
@@ -89,6 +90,8 @@ main = do
     , ((0, xF86XK_AudioRaiseVolume), raiseVolume 2 >> return ())
     , ((0, xF86XK_AudioLowerVolume), lowerVolume 2 >> return ())
     , ((0, xF86XK_AudioMute), toggleMute >> return ())
+    , ((mod4Mask, xK_b), windowPromptBring sibiXPConfig)
+    , ((mod4Mask, xK_g), windowPromptGoto sibiXPConfig)
     ]
 
 sibiXPConfig = defaultXPConfig {
