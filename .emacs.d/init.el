@@ -207,7 +207,8 @@
           helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
           helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
           helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
-          helm-ff-file-name-history-use-recentf t)
+          helm-ff-file-name-history-use-recentf t
+          helm-ff-newfile-prompt-p nil)
     (global-set-key (kbd "M-x") 'helm-M-x)
     (global-set-key "\C-x\C-m" 'helm-M-x)
     (global-set-key (kbd "M-y") 'helm-show-kill-ring)
@@ -393,3 +394,6 @@
 (setq search-whitespace-regexp ".*?")
 (toggle-frame-fullscreen)
 (global-set-key (kbd "M-/") 'hippie-expand)
+
+(fset 'yes-or-no-p 'y-or-n-p)
+(setq confirm-nonexistent-file-or-buffer nil)
