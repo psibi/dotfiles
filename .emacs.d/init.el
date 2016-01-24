@@ -397,3 +397,12 @@
 
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq confirm-nonexistent-file-or-buffer nil)
+
+
+;; Refresher:
+;; C-c r - Root file in HELM
+;; C-c h o - Helm occur
+;; C-c h i - helm-imenu
+;; C-c h b - Resume previous helm session
+
+
