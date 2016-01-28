@@ -404,5 +404,9 @@
 ;; C-c h o - Helm occur
 ;; C-c h i - helm-imenu
 ;; C-c h b - Resume previous helm session
+;; C- Spc : Marks
+;; C-c C-i  : insert mark content
 
-
+(show-paren-mode 1)
+;; For proof related
+;; (load "/home/sibi/Downloads/ProofGeneral-4.2/generic/proof-site.el")
