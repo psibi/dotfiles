@@ -410,3 +410,13 @@
 (show-paren-mode 1)
 ;; For proof related
 ;; (load "/home/sibi/Downloads/ProofGeneral-4.2/generic/proof-site.el")
+
+;; Backup related
+(setq backup-directory-alist '(("" . "~/.emacs.d/emacs_backup"))
+      backup-by-copying t
+      version-control t
+      kept-old-versions 2
+      kept-new-versions 20
+      delete-old-versions t)
+(setq tramp-backup-directory-alist backup-directory-alist)
+(setq auto-save-file-name-transforms nil) 
