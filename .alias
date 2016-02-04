@@ -58,3 +58,6 @@ alias hpkg='ghc-pkg list | grep'
 
 alias bc='bc -q'
 alias mc='mc --keymap=/home/sibi/github/dotfiles/mc.emacs.keymap'
+
+alias act='source VIRTUAL/bin/activate'
+alias dact='deactivate'
