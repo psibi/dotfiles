@@ -421,3 +421,6 @@
       delete-old-versions t)
 (setq tramp-backup-directory-alist backup-directory-alist)
 (setq auto-save-file-name-transforms nil) 
+
+(global-auto-revert-mode 1)
+(blink-cursor-mode -1)
