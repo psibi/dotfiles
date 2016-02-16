@@ -424,3 +424,5 @@
 
 (global-auto-revert-mode 1)
 (blink-cursor-mode -1)
+
+(setq inhibit-startup-message t)
