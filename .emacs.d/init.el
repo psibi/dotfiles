@@ -2,6 +2,10 @@
 ;; Author: Sibi <sibi@psibi.in>
 ;; File path: ~/.emacs.d/init.el
 
+;; Remove menu, tool and scroll bar.
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+
 (setq package-archives
       '(("gnu"         . "http://elpa.gnu.org/packages/")
         ("melpa" . "http://melpa.milkbox.net/packages/")))
@@ -67,9 +71,6 @@
 (load-file "~/.emacs.d/sibi-utils.el")
 (load-file "~/.emacs.d/sml.el")
 
-;; Remove menu, tool and scroll bar.
-(menu-bar-mode -1)
-(tool-bar-mode -1)
 (set-scroll-bar-mode 'nil)
 (size-indication-mode 1)
 
