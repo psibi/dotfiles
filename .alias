@@ -65,3 +65,6 @@ alias dact='deactivate'
 alias mv='mv -v'
 alias rm='rm -i -v'
 alias cp='cp -v'
+
+alias vim='emacsclient -n $@'
+alias vi='emacsclient -n $@'
