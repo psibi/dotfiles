@@ -118,3 +118,21 @@ alias ...='ndir 2'
 alias ....='ndir 3'
 alias .....='ndir 4'
 alias ......='ndir 5'
+
+# Make bash append rather than override
+shopt -s histappend        
+
+PROMPT_COMMAND='history -a'
+
+function c2nix () {
+    cabalFile=`ls *.cabal | head -n 1`
+    fileName="${cabalFile%.*}"
+    nixFile="$fileName.nix"
+    cabal2nix . > $nixFile
+    defaultFile="{ nixpkgs ? import <nixpkgs> {}, compiler ? \"ghc7103\" }:\n
+                   nixpkgs.pkgs.haskell.packages.\${compiler}.callPackage ./$nixFile { }"
+    echo -e $defaultFile > default.nix
+    shellFile='{ nixpkgs ? import <nixpkgs> {}, compiler ? "ghc7103" }:\n
+               (import ./default.nix { inherit nixpkgs compiler; }).env'
+    echo -e $shellFile > shell.nix
+}
