@@ -391,6 +391,11 @@
   (progn
     (electric-pair-mode 1)))
 
+(use-package mode-icons
+  :ensure t
+  :init
+  (mode-icons-mode))
+
 ;; Isearch convenience, space matches anything (non-greedy)
 ;; Note that you can use universal argument
 (setq search-whitespace-regexp ".*?")
