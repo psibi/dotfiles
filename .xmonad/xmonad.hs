@@ -2,6 +2,7 @@ import XMonad
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.UrgencyHook
+import XMonad.Hooks.EwmhDesktops (fullscreenEventHook)
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
 import qualified XMonad.StackSet as W
@@ -76,6 +77,7 @@ main = do
                         , ppTitle = xmobarColor "green" "" . shorten 50
                         , ppUrgent = xmobarColor "yellow" "red" . xmobarStrip
                         }
+    , handleEventHook = handleEventHook defaultConfig <+> fullscreenEventHook
     , modMask = mod4Mask     -- Rebind Mod to the Windows key
     , workspaces = myWorkspaces
     } `additionalKeys`
