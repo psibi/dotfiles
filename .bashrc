@@ -136,3 +136,7 @@ function c2nix () {
                (import ./default.nix { inherit nixpkgs compiler; }).env'
     echo -e $shellFile > shell.nix
 }
+
+if [ -x /home/sibi/.nix-profile/bin/cowsay -a -x /home/sibi/.nix-profile/bin/fortune ]; then
+   fortune | cowsay
+fi
