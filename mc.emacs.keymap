@@ -127,7 +127,7 @@ Bottom = alt-gt; end; c1
 
 [dialog]
 Ok = enter
-Cancel = f10; esc
+Cancel = f10; esc; ctrl-g
 Up = left; up
 #Left = left; up
 Down = right; down
@@ -301,7 +301,7 @@ Replace = f4
 ReplaceContinue = f14
 Complete = alt-tab
 InsertFile = f15
-Quit = f10; esc
+Quit = f10; esc; ctrl-g
 InsertOverwrite = insert
 Help = f1
 # Date =
@@ -355,7 +355,7 @@ EditNew = k
 [viewer]
 Help = f1
 WrapMode = f2
-Quit = f3; f10; q; esc
+Quit = f3; f10; q; esc; ctrl-g
 HexMode = f4
 Goto = f5
 Search = f7
@@ -391,7 +391,7 @@ Ruler = alt-r
 [viewer:hex]
 Help = f1
 HexEditMode = f2
-Quit = f3; f10; q; esc
+Quit = f3; f10; q; esc; ctrl-g
 HexMode = f4
 Goto = f5
 Save = f6
@@ -452,6 +452,6 @@ PageUp = pgup
 Home = home
 End = end
 Help = f1
-Quit = f10; q; shift-q; esc
+Quit = f10; q; esc; ctrl-g
 Shell = ctrl-o
 SelectCodepage = alt-e
