@@ -407,6 +407,7 @@
               ("q" . selected-off)
               ("u" . upcase-region)
               ("d" . downcase-region)
+              ("g" . google-this)
               ("m" . apply-macro-to-region-lines)))
 
 ;; Isearch convenience, space matches anything (non-greedy)
