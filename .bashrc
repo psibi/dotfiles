@@ -140,3 +140,5 @@ function c2nix () {
 if [ -x /home/sibi/.nix-profile/bin/cowsay -a -x /home/sibi/.nix-profile/bin/fortune ]; then
    fortune | cowsay
 fi
+
+export GPGKEY=BB557613
