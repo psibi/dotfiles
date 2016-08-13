@@ -171,6 +171,7 @@
   (progn
     (global-set-key (kbd "C-c g") 'magit-status)
     (setq magit-auto-revert-mode 1)
+    (setq magit-commit-arguments (quote ("--gpg-sign=BB557613")))
     (setq magit-last-seen-setup-instructions "1.4.0")))
 
 (setq gc-cons-threshold 20000000)
