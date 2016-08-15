@@ -18,6 +18,7 @@ fi
 cp -v init.el ~/.emacs.d/init.el
 
 git config --global core.excludefile ~/.global_ignore
+git config --global commit.gpgsign true
 
 ln ./.bashrc ~/.sibi_bashrc
 echo "source ~/.sibi_bashrc" >> ~/.bashrc
