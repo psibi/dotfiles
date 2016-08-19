@@ -18,11 +18,11 @@
 
 `gpg --keyserver hkp://pgp.mit.edu --send-key keyid`
 
+Hints:
+
+Typing passwords suck. Use keepassx for auto typing.
+Use no-grab option: http://unix.stackexchange.com/a/266351/29539
 
 Reference: 
 
 * [Fedora GPG guide](https://fedoraproject.org/wiki/Creating_GPG_Keys)
-
-
-
-
