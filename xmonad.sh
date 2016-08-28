@@ -3,4 +3,5 @@
 # Note: Doesn't take care of installation of the related softwares.
 
 cp -r ./.xmonad ~/
+cp ./.xsession ~/
 cp ./.xmobarrc ~/
