@@ -13,3 +13,21 @@ Files
 * setup.sh - Devops script
 * .Xresource - X resource settings
 * emacsSync.hs - Emacs synchronization script
+
+
+Softwares needed
+-----------------
+
+Haskell:
+
+* xmonad        
+* xmonad-contrib        
+* xmonad-extras
+* split
+* xmobar
+
+Distro related:
+
+* xclip
+* rxvt-unicode
+* screen
