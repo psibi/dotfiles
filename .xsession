@@ -24,7 +24,7 @@ fi
 #     gnome-sound-applet &
 # fi    
 
-xmodmap ~/.Xmodmap
+#xmodmap ~/.Xmodmap
 # xmodmap -e 'keycode 135=Super_L' #Only for my laptop
 
 #Audio failed working
