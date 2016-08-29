@@ -31,3 +31,4 @@ Distro related:
 * xclip
 * rxvt-unicode
 * screen
+* xsel
