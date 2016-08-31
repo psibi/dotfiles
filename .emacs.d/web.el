@@ -12,6 +12,11 @@
         (add-hook 'js2-mode-hook 'skewer-mode)
         (add-hook 'js2-mode-hook '(auto-fill-mode -1))))))
 
+;; If you are using nvm and want to use the proper eslint then make
+;; sure to include it in the $PATH. Example:
+;; ln -s /home/sibi/.nvm/versions/node/v4.5.0/bin/eslint eslint
+;; ln -s /home/sibi/.nvm/versions/node/v4.5.0/bin/node node
+
 (use-package web-mode
   :ensure t
   :mode "\\.jsx$"
