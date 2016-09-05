@@ -20,8 +20,8 @@ Softwares needed
 
 Haskell:
 
-* xmonad        
-* xmonad-contrib        
+* xmonad
+* xmonad-contrib
 * xmonad-extras
 * split
 * xmobar
@@ -32,3 +32,4 @@ Distro related:
 * rxvt-unicode
 * screen
 * xsel
+* xfce4-screenshooter
