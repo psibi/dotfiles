@@ -95,6 +95,13 @@ function extract () {
     fi
 }
 
+function compress () {
+    tar -czvf $1.tar.gz $1
+}
+
+alias uncompress='extract'
+export -f compress
+
 function ndir () {
     if [[ $# -eq 2 && "$1" -eq 0 ]] ; then
         cd $2
