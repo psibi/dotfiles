@@ -63,8 +63,12 @@ alias act='source VIRTUAL/bin/activate'
 alias dact='deactivate'
 
 alias mv='mv -v'
-alias rm='rm -i -v'
+alias rm='rm -v'
 alias cp='cp -v'
 
 alias vim='emacsclient -n $@'
 alias vi='emacsclient -n $@'
+
+
+alias sb='stack build'
+alias se='stack exec '
