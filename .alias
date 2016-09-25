@@ -72,3 +72,7 @@ alias vi='emacsclient -n $@'
 
 alias sb='stack build'
 alias se='stack exec '
+
+alias mhd='sudo mount /dev/disk/by-label/My\\x20Book /mnt'
+
+alias grep='grep --color=auto -Er --exclude=*~ --exclude-dir=node_modules --exclude-dir=.git'
