@@ -90,7 +90,14 @@ hardstatus alwayslastline "%H %-Lw%{= BW}%50>%n%f* %t%{-}%+Lw%<"
 # 2.3) Autoload two screen tabs for emacs/bash.
 screen -t ghci 0
 screen -t bash 1
+screen -t yesod 2
+screen -t db 3
 screen -t dev 4
+screen -t d1 5
+screen -t d2 6
+screen -t d3 7
+screen mc
+select 4
 
 # Split it
 # split -v
