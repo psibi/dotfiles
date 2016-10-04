@@ -17,12 +17,6 @@ fi
 
 cp -v init.el ~/.emacs.d/init.el
 
-git config --global user.name "Sibi Prabakaran"
-git config --global core.excludefile ~/.global_ignore
-git config --global commit.gpgsign true
-git config --global user.email "sibi@psibi.in"
-
-
 ln ./.bashrc ~/.sibi_bashrc
 echo "source ~/.sibi_bashrc" >> ~/.bashrc
 
@@ -31,8 +25,6 @@ echo "source ~/.sibi_bashrc" >> ~/.bashrc
 
 # # And set the new bindings here itself.
 # xmodmap ~/.Xmodmap
-
-cp -v ./.Xresources ~/
 
 "echo Setting up GNU Screen configurations"
 cp -v ./.screenrc ~/
@@ -48,7 +40,7 @@ chmod 700 ~/.ghci
 #      See virtual.sh for more details."
 
 # https://nixmeal.wordpress.com/2012/07/24/copypaste-text-in-urxvt-rxvt-unicode-using-keyboard/
-echo "Setting up urxvt clipboard config"
+# echo "Setting up urxvt clipboard config"
 
 
 
