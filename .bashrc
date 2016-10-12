@@ -155,5 +155,3 @@ export JAVA_HOME
 
 ANDROID_HOME=/home/sibi/Android/Sdk/
 export ANDROID_HOME
-
-

@@ -1,4 +1,3 @@
-
 Here you will find few of the configuration which I use in my Linux system. You can tailor it according it to your needs.
 
 Files
