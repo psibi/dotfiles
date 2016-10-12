@@ -26,6 +26,18 @@
     t
     ))
 
+(use-package intero
+  :ensure t
+  :init
+  (add-hook 'haskell-mode-hook 'intero-mode))
+
+(use-package hindent
+  :ensure t
+  :init
+  (progn
+    (setq hindent-reformat-buffer-on-save t)
+    (add-hook 'haskell-mode-hook 'hindent-mode)))
+
 (defun haskell-lhs-clean (beginning end)
   (interactive "r")
   (if (use-region-p)
