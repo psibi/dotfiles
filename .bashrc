@@ -149,3 +149,6 @@ if [ -x /home/sibi/.nix-profile/bin/cowsay -a -x /home/sibi/.nix-profile/bin/for
 fi
 
 export GPGKEY=BB557613
+
+GPG_TTY=$(tty)
+export GPG_TTY
