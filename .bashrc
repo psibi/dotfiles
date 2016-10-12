@@ -5,7 +5,7 @@ PS1='\[\033[01;32m\]\u\[\033[01;34m\]::\[\033[01;31m\]\h \[\033[00;34m\]{ \[\033
 
 export ALTERNATE_EDITOR=emacs EDITOR=emacsclient VISUAL=emacsclient
 
-export PATH=${PATH}:~/bin:~/.cabal/bin
+export PATH=${PATH}:~/bin:~/.cabal/bin:/home/sibi/Android/Sdk/platform-tools:/home/sibi/Android/Sdk/tools:/home/sibi/Downloads/jdk1.8.0_102/bin
 
 ## http://jeroenjanssens.com/2013/08/16/quickly-navigate-your-filesystem-from-the-command-line.html
 export MARKPATH=$HOME/.marks
@@ -149,3 +149,11 @@ if [ -x /home/sibi/.nix-profile/bin/cowsay -a -x /home/sibi/.nix-profile/bin/for
 fi
 
 export GPGKEY=BB557613
+
+JAVA_HOME=/home/sibi/Downloads/jdk1.8.0_102/
+export JAVA_HOME
+
+ANDROID_HOME=/home/sibi/Android/Sdk/
+export ANDROID_HOME
+
+
