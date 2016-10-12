@@ -90,7 +90,7 @@ main = do
                   , ppUrgent = xmobarColor "yellow" "red" . xmobarStrip
                   }
             , handleEventHook = handleEventHook defaultConfig <+>
-              fullscreenEventHook
+              fullscreenEventHook <+> docksEventHook
             , modMask = mod4Mask     -- Rebind Mod to the Windows key
             , workspaces = myWorkspaces
             } `additionalKeys`
