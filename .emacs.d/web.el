@@ -16,7 +16,9 @@
 ;; sure to include it in the $PATH. Example:
 ;; ln -s /home/sibi/.nvm/versions/node/v4.5.0/bin/eslint eslint
 ;; ln -s /home/sibi/.nvm/versions/node/v4.5.0/bin/node node
-
+;; Another way I have been doing:
+;;     (setq exec-path (append exec-path '("/home/sibi/.nvm/versions/node/v4.5.0/bin/"
+;;                                       "/home/sibi/github/yesod-rest/static/node_modules/.bin")))
 (use-package web-mode
   :ensure t
   :mode "\\.jsx$"
