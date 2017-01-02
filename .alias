@@ -81,3 +81,5 @@ alias grep='grep --color=auto'
 alias regrep='grep --color=auto -Er --exclude=*~ --exclude-dir=node_modules --exclude-dir=.git'
 
 alias nmcliui='nmtui'
+alias dk='sudo docker'
+alias nwork='sudo netstat -lnp'
