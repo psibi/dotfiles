@@ -1,17 +1,17 @@
-(use-package js2-mode
-  :ensure t
-  :mode "\\.js\\'"
-  :interpreter "node"
-  :config
-  (progn
-    (use-package skewer-mode
-      :ensure t
-      :diminish skewer-mode
-      :init
-      (progn
-        (setq js2-basic-offset 2)
-        (add-hook 'js2-mode-hook 'skewer-mode)
-        (add-hook 'js2-mode-hook '(auto-fill-mode -1))))))
+;; (use-package js2-mode
+;;   :ensure t
+;;   :mode "\\.js\\'"
+;;   :interpreter "node"
+;;   :config
+;;   (progn
+;;     (use-package skewer-mode
+;;       :ensure t
+;;       :diminish skewer-mode
+;;       :init
+;;       (progn
+;;         (setq js2-basic-offset 2)
+;;         (add-hook 'js2-mode-hook 'skewer-mode)
+;;         (add-hook 'js2-mode-hook '(auto-fill-mode -1))))))
 
 ;; If you are using nvm and want to use the proper eslint then make
 ;; sure to include it in the $PATH. Example:
@@ -24,23 +24,29 @@
 (use-package web-mode
   :ensure t
   :mode "\\.jsx$"
+  :mode "\\.js\\'"
   :config
   (progn
     (flycheck-mode 1)
     (defun sibi-web-hook ()
       (setq web-mode-code-indent-offset 2)
+      (setq web-mode-attr-indent-offset 2)
       (setq web-mode-markup-indent-offset 2)
+      (if (equal web-mode-content-type "javascript")
+            (web-mode-set-content-type "jsx")
+          (message "now set to: %s" web-mode-content-type))
       (flycheck-mode 1))
     (add-hook 'web-mode-hook 'sibi-web-hook)
     (setq-default flycheck-disabled-checkers
                   (append flycheck-disabled-checkers
                           '(javascript-jshint)))
-    (setq exec-path (append exec-path '("/home/sibi/.nvm/versions/node/v4.6.0/bin/"
-                                        "/home/sibi/github/smafia/yesod-server/static/node_modules/.bin")))
+    (setq exec-path (append exec-path '("/home/sibi/.nvm/versions/node/v4.6.0/bin"
+                                        "/home/sibi/github/justchow/static/node_modules/.bin")))
     (flycheck-add-mode 'javascript-eslint 'web-mode)
     (setq-default flycheck-disabled-checkers
                   (append flycheck-disabled-checkers
                           '(json-jsonlist)))))
+
 
 (use-package html-mode
   :mode "\\.html\\'"
