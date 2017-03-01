@@ -174,6 +174,11 @@
     (setq magit-commit-arguments (quote ("--gpg-sign=BB557613")))
     (setq magit-last-seen-setup-instructions "1.4.0")))
 
+(use-package magithub
+  :ensure t
+  :after magit
+  :config (magithub-feature-autoinject t))
+
 (setq gc-cons-threshold 20000000)
 
 ;;Projectile related config
