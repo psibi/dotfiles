@@ -31,6 +31,7 @@ alias gsd='gnome-session-quit --power-off'
 # alias lg='gnome-session-quit --logout'
 
 #Git Related
+alias git='hub'
 alias gp='git push'
 alias ga='git add'
 alias gc='git commit'
