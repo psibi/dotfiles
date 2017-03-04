@@ -31,6 +31,7 @@ alias gsd='gnome-session-quit --power-off'
 # alias lg='gnome-session-quit --logout'
 
 #Git Related
+alias git='hub'
 alias gp='git push'
 alias ga='git add'
 alias gc='git commit'
@@ -73,6 +74,7 @@ alias vi='emacsclient -n $@'
 alias sb='stack build'
 alias se='stack exec '
 alias sf='stack build --fast --file-watch'
+alias sfp='stack build --fast --file-watch --pedantic'
 
 alias mhd='sudo mount /dev/disk/by-label/My\\x20Book /mnt'
 
@@ -81,3 +83,4 @@ alias regrep='grep --color=auto -Er --exclude=*~ --exclude-dir=node_modules --ex
 
 alias nmcliui='nmtui'
 alias dk='sudo docker'
+alias nwork='sudo netstat -lnp'

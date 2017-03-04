@@ -155,3 +155,11 @@ export JAVA_HOME
 
 ANDROID_HOME=/home/sibi/Android/Sdk/
 export ANDROID_HOME
+
+# google autocomplete api
+# Modified from https://news.ycombinator.com/item?id=13065670
+g(){
+curl -sS "https://suggestqueries.google.com/complete/search?client=firefox&q=$1" \
+| sed -E 's,.*\[([^]]*)\].*,\1,;s,",,g' | tr , '\n'
+echo;
+}
