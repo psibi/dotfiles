@@ -1,8 +1,10 @@
-#!/usr/bin/env runhaskell
-
--- Script to sync New emacs config without removing elpa directory and
--- so on. (Dependency: Brent Yorgey's split)
--- Author: Sibi <sibi@psibi.in>
+#!/usr/bin/env stack
+{- stack
+     --resolver lts-8.2
+     --install-ghc
+     runghc
+     --package split
+ -}
 
 import System.Directory
 import Data.List.Split (splitOn)
