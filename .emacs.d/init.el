@@ -177,7 +177,17 @@
 (use-package magithub
   :ensure t
   :after magit
-  :config (magithub-feature-autoinject t))
+  :config 
+  (progn 
+    (magithub-feature-autoinject t)
+    (magithub-ci-disable)
+    ;; https://github.com/vermiculus/magithub/issues/75#issuecomment-284256987
+    (defun magithub--api-available-p ()
+      't
+      )
+    ;; (magithub-toggle-issues)
+    ;; (magithub-toggle-pull-requests)
+    ))
 
 (setq gc-cons-threshold 20000000)
 
