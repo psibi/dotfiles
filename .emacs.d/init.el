@@ -8,7 +8,7 @@
 
 (setq package-archives
       '(("gnu"         . "http://elpa.gnu.org/packages/")
-        ("melpa" . "http://melpa.milkbox.net/packages/")))
+        ("melpa" . "https://melpa.org/packages/")))
 
 (package-initialize)
 
@@ -414,6 +414,10 @@
 
 (use-package expand-region
   :ensure t)
+
+(use-package centered-cursor-mode
+  :ensure t
+  :init (global-centered-cursor-mode +1))
 
 (use-package selected
   :ensure t
