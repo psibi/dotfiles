@@ -434,6 +434,9 @@
   :ensure t
   :mode "\\.md\\'")
 
+(use-package tldr
+  :ensure t)
+
 ;; Shift the selected region right if distance is postive, left if
 ;; negative
 
