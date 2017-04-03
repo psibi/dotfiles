@@ -19,9 +19,8 @@ alias pi='ping 8.8.8.8'
 alias pg='ping goo.gl'
 
 #Power Commands
-alias sd='sudo shutdown -h now'
-alias sr='sudo shutdown -r now'
-alias gsd='gnome-session-quit --power-off'
+alias sd='systemctl poweroff'
+alias sr='systemctl reboot'
 
 #Logout
 #KDE Desktop
