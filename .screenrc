@@ -85,7 +85,10 @@ bind 'b' focus bottom
 sorendition "+b kG"   
 
 # 2.2) hardstatus = navigation bar @ bottom
-hardstatus alwayslastline "%H %-Lw%{= BW}%50>%n%f* %t%{-}%+Lw%<"  
+# https://superuser.com/a/598128/177053
+# TODO: Add uptime backtick 1 1200 1200 /usr/bin/uptime
+
+hardstatus alwayslastline "%{b kw}%H %{r}%1` %{w}| %{g}%C%A %{w}| %{y}%d-%m-%y %{w}| %{g} TODO | %{-b kw}%u %-Lw%{= rW}%50> %n%f %t %{-}%+Lw%<"
 
 # 2.3) Autoload two screen tabs for emacs/bash.
 screen -t ghci 0
