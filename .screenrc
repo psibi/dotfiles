@@ -86,9 +86,11 @@ sorendition "+b kG"
 
 # 2.2) hardstatus = navigation bar @ bottom
 # https://superuser.com/a/598128/177053
-# TODO: Add uptime backtick 1 1200 1200 /usr/bin/uptime
+backtick 1 1200 1200 sibi-uptime
+backtick 2 0 0 sibi-distro
+backtick 3 10800 10800 sibi-disk
 
-hardstatus alwayslastline "%{b kw}%H %{r}%1` %{w}| %{g}%C%A %{w}| %{y}%d-%m-%y %{w}| %{g} TODO | %{-b kw}%u %-Lw%{= rW}%50> %n%f %t %{-}%+Lw%<"
+hardstatus alwayslastline "%{b kw}%H %{r}%1` %{m}%2` %{w}|%{g}%C%A %{w}| %{y}%d-%m-%y %{w}|%{c}%3`| %{-b kw}%u %-Lw%{= rW}%50> %n%f %t %{-}%+Lw%<"
 
 # 2.3) Autoload two screen tabs for emacs/bash.
 screen -t ghci 0
@@ -105,7 +107,6 @@ select 4
 # Split it
 # split -v
 # focus
-
 
 # 2.4) Description of the keywords used in hardstatus
 # caption always "%?%F%{-b bc}%:%{-b bb}%?%C|%D|%M %d|%H%?%F%{+u wb}%? %L=%-Lw%45>%{+b by}%n%f* %t%{-}%+Lw%-0<"
