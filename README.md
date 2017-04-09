@@ -25,6 +25,14 @@ Haskell:
 * split
 * xmobar
 
+Note:
+
+Make sure you install with `with_xft` and `with_iwlib` flag:
+
+``` shellsession
+cabal install -f with_xft -f with_iwlib xmobar
+```
+
 Distro related:
 
 * xclip
