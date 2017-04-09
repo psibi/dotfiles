@@ -28,5 +28,5 @@ Config { font = "xft:Ubuntu Mono:size=12:bold:antialias=true"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %wlp2s0wi% | %eth0% %eth1% | %cpu% | %memory% * %swap% * %battery% | <fc=#ee9a00>%date%</fc> | %VOMM%"
+       , template = "%StdinReader% }{ %wlp1s0wi% | %eth0% %eth1% | %cpu% | %memory% * %swap% * %battery% | <fc=#ee9a00>%date%</fc> | %VOMM%"
        }
