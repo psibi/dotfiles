@@ -1,4 +1,4 @@
-Config { font = "xft:Ubuntu Mono:size=3:bold:antialias=true"
+Config { font = "xft:Ubuntu Mono:size=12:bold:antialias=true"
        , bgColor = "black"
        , fgColor = "grey"
        , position = TopW L 100
@@ -13,7 +13,7 @@ Config { font = "xft:Ubuntu Mono:size=3:bold:antialias=true"
                     , Run Battery ["-t","<left>","-L","30","-H","70","--low", "red","--normal","yellow","--high","green"] 10
                     , Run Date "%a %b %_d %l:%M" "date" 10
                     , Run StdinReader
-                    , Run Wireless "wlp2s0" 
+                    , Run Wireless "wlp1s0" 
                           [ "-a", "l"
                           , "-w", "5"
                           , "-t", "<fc=#8888FF>WLAN:</fc> <essid> <quality>"
