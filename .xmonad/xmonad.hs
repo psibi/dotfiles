@@ -111,7 +111,7 @@ sibiXPConfig =
   { alwaysHighlight = True
   , promptKeymap = sibiEmacsKeymap
   , position = Top
-  , font = "-*-Fixed-Bold-R-Normal-*-15-*-*-*-*-*-*-*"
+  , font = "xft:Ubuntu Mono:size=12:bold:antialias=true"
   , completionKey = (controlMask, xK_i)
   }
 
