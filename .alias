@@ -51,6 +51,7 @@ alias xgf='tar -xzf'
 alias mn='sudo mount'
 alias um='sudo umount'
 
+alias ed='emacs --daemon'
 alias ec='emacsclient -n'
 alias fs='du -h' # Filesize
 alias lsd='ls -l --color | grep "^d"'
