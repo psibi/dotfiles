@@ -57,7 +57,7 @@ myManageHook =
     myClassDevShifts = ["emacs"]
     myClassMediaShifts = ["mplayer", "vlc"]
     myClassFloatShifts = ["gimp", "SMPlayer", "smplayer"]
-    myClassMiscShifts = ["nautilus"]
+    myClassMiscShifts = ["nautilus", "seahorse"]
     myClassMainShifts = [".urxvt-wrapped"]
 
 sibiStartupHook :: X ()
@@ -67,6 +67,7 @@ sibiStartupHook = do
     do spawnOnce "firefox"
        spawnOnce "emacs --daemon"
        spawnOnce myTerminal
+       spawnOnce "seahorse"
 
 main = do
   xmproc <- spawnPipe "xmobar"
