@@ -33,6 +33,8 @@ silencewait           15              # default: 30
 activity              "activity in %n (%t) [%w:%s]~"
 bell                  "bell     in %n (%t) [%w:%s]~"
 
+shell "/usr/bin/fish"
+
 # Change keybindings for convenience
 bind ^Q mapdefault
 bind q mapdefault 
