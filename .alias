@@ -39,8 +39,8 @@ alias gs='git status'
 
 alias c='clear'
 alias e='exit'
-alias rst='. ~/.profile'
-alias ~='cd ~'
+alias rst='source ~/.config/fish/config.fish'
+# alias rst='. ~/.profile'
 
 alias clipboard='xclip -sel clip'
 
@@ -67,8 +67,8 @@ alias mv='mv -v'
 alias rm='rm -v'
 alias cp='cp -v'
 
-alias vim='emacsclient -n $@'
-alias vi='emacsclient -n $@'
+alias vim='emacsclient -n '
+alias vi='emacsclient -n'
 
 
 alias sb='stack build'
