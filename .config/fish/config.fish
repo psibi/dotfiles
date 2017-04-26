@@ -1,0 +1,1 @@
+source ~/github/dotfiles/.alias
