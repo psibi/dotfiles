@@ -104,7 +104,14 @@ screen -t d1 5
 screen -t d2 6
 screen -t d3 7
 screen mc
+select 1
+select 2
+select 3
 select 4
+select 5
+select 6
+select 7
+select 0
 
 # Split it
 # split -v
