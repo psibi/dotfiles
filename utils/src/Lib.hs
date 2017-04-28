@@ -11,6 +11,8 @@ module Lib
   , spaceInfo
   , uncompress_
   , compress
+  , navigateParent
+  , deployFish
   ) where
 
 import Data.Conduit.Shell hiding (strip)
@@ -23,9 +25,11 @@ import Data.Monoid ((<>))
 import Data.Char (isAlpha, isSpace, isPunctuation, digitToInt)
 import qualified Data.Text.IO as TIO
 import Data.Text (Text, pack)
-import Data.Attoparsec.Text
+import Data.Attoparsec.Text hiding (take)
 import Data.Word
-import Data.List (isSuffixOf)
+import Data.List (isSuffixOf, intersperse)
+import System.Directory (doesDirectoryExist, getHomeDirectory)
+import System.FilePath
 
 releaseInfo :: IO ()
 releaseInfo = do
@@ -120,3 +124,31 @@ uncompress_ fname =
 
 compress :: FilePath -> IO ()
 compress fname = run $ tar "-czvf" (fname <> ".tar.gz") fname
+
+navigateParent :: Int -> IO ()
+navigateParent level = if (level <= 2)
+                       then return ()
+                       else cd dir
+    where
+      dots = take (level - 1) $ repeat ".."
+      dir = concat $ intersperse "/" dots
+
+dotfilesDir :: IO FilePath
+dotfilesDir = do
+  hdir <- getHomeDirectory
+  return $ hdir </> "github/dotfiles"
+
+deployFish :: IO ()
+deployFish = do
+  dotDir <- dotfilesDir
+  hdir <- getHomeDirectory
+  exist <- doesDirectoryExist dotDir
+  let filesDep = [dotDir </> ".config" </> "fish" </> "config.fish"]
+      dirsDep = [dotDir </> ".config" </> "fish" </> "functions"]
+      fishDir = hdir </> ".config" </> "fish"
+  case exist of
+    True -> run $ do
+               mapM_ (\x -> cp "-v" x fishDir) filesDep
+               mapM_ (\x -> cp "-rv" x fishDir) dirsDep
+    False -> putStrLn "Error: dotfiles in invalid location"
+  
