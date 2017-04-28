@@ -9,9 +9,11 @@ module Lib
   , uptimeInfo
   , DiskInfo
   , spaceInfo
+  , uncompress_
   ) where
 
 import Data.Conduit.Shell hiding (strip)
+import qualified Data.Conduit.Shell as S
 import Data.Conduit.Shell.Segments (strings, texts)
 import Data.List.Split (splitOn)
 import Data.String.Utils (strip)
@@ -19,9 +21,10 @@ import Data.Bits.Utils (c2w8)
 import Data.Monoid ((<>))
 import Data.Char (isAlpha, isSpace, isPunctuation, digitToInt)
 import qualified Data.Text.IO as TIO
-import Data.Text hiding (splitOn, head, strip, last, tail)
+import Data.Text (Text, pack)
 import Data.Attoparsec.Text
 import Data.Word
+import Data.List (isSuffixOf)
 
 releaseInfo :: IO ()
 releaseInfo = do
@@ -88,3 +91,28 @@ spaceInfo = do
   case parseOnly parseDiskInfo (last val) of
     Left _ -> putStrLn ""
     Right inf -> TIO.putStrLn $ (diAvail inf) <> (pack " ") <> (diUse inf)
+
+getExtension :: FilePath -> Maybe String
+getExtension fname =
+  case (filter (\x -> isSuffixOf x fname) (doubleExts <> singleExts)) of
+    [] -> Nothing
+    (x:_) -> Just x
+  where
+    doubleExts = ["tar.bz2", "tar.gz"]
+    singleExts = ["rar", "gz", "tar", "tbz2", "bz2", "tgz", "zip"]
+
+uncompress_ :: FilePath -> IO ()
+uncompress_ fname =
+  case (getExtension fname) of
+    Nothing -> putStrLn "file format not supported"
+    Just xs ->
+      run $
+      case xs of
+        "tar.bz2" -> tar "xvjf" fname
+        "tar.gz" -> tar "xvzf" fname
+        "rar" -> unrar "x" fname
+        "gz" -> gunzip fname
+        "tar" -> tar "xvf" fname
+        "tbz2" -> tar "xvjf" fname
+        "tgz" -> tar "xvzf" fname
+        "zip" -> S.unzip' fname
