@@ -13,6 +13,7 @@ module Lib
   , compress
   , navigateParent
   , deployFish
+  , syncFish
   ) where
 
 import Data.Conduit.Shell hiding (strip)
@@ -152,3 +153,18 @@ deployFish = do
                mapM_ (\x -> cp "-rv" x fishDir) dirsDep
     False -> putStrLn "Error: dotfiles in invalid location"
   
+syncFish :: IO ()
+syncFish = do
+  dotDir <- dotfilesDir
+  hdir <- getHomeDirectory
+  exists <- doesDirectoryExist dotDir
+  let files = ["config.fish"]
+      dirs = ["functions"]
+      fishDir = hdir </> ".config" </> "fish"
+      fishDotDir = dotDir </> ".config" </> "fish"
+  case exists of
+    True -> run $ do
+                mapM_ (\x -> cp "-v" (fishDir </> x) fishDotDir) files
+                mapM_ (\x -> cp "-vr" (fishDir </> x) fishDotDir) dirs
+    False -> putStrLn "Error: dotfiles in invalid location"
+                
