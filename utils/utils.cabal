@@ -21,7 +21,9 @@ library
                        MissingH,
                        split,
                        text,
-                       attoparsec
+                       attoparsec,
+                       directory,
+                       filepath
   default-language:    Haskell2010
 
 executable sibi-uptime
