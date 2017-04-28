@@ -10,6 +10,7 @@ module Lib
   , DiskInfo
   , spaceInfo
   , uncompress_
+  , compress
   ) where
 
 import Data.Conduit.Shell hiding (strip)
@@ -116,3 +117,6 @@ uncompress_ fname =
         "tbz2" -> tar "xvjf" fname
         "tgz" -> tar "xvzf" fname
         "zip" -> S.unzip' fname
+
+compress :: FilePath -> IO ()
+compress fname = run $ tar "-czvf" (fname <> ".tar.gz") fname
