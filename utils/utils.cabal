@@ -48,6 +48,15 @@ executable sibi-disk
                      , utils
   default-language:    Haskell2010
 
+executable sibi-utils
+  hs-source-dirs:      app
+  main-is:             Main.hs
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+                     , utils
+                     , optparse-applicative
+  default-language:    Haskell2010
+
 test-suite utils-test
   type:                exitcode-stdio-1.0
   hs-source-dirs:      test
