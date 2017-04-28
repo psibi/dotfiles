@@ -13,9 +13,13 @@ data Command
   | Compress String
   | UpDir Int
   | Deploy Config
+  | Sync Config
   deriving (Show, Eq, Ord)
 
-data Config = Fish | Bash deriving (Show, Eq, Ord)
+data Config
+  = Fish
+  | Bash
+  deriving (Show, Eq, Ord)
 
 main :: IO ()
 main = do
@@ -26,6 +30,7 @@ main = do
     UpDir level -> navigateParent level
     Deploy Fish -> deployFish
     Deploy Bash -> print "bash"
+    Sync Fish -> syncFish
 
 optsParser :: ParserInfo SibiUtilsOpts
 optsParser =
@@ -38,7 +43,10 @@ optsParser =
     versionOption = infoOption "0.1" (long "version" <> help "Show version")
     programOptions :: Parser SibiUtilsOpts
     programOptions =
-      SibiUtilsOpts <$> hsubparser (uncompressCommand <> compressCommand <> upDirCommand <> deployCommand)
+      SibiUtilsOpts <$>
+      hsubparser
+        (uncompressCommand <> compressCommand <> upDirCommand <> deployCommand <>
+         syncCommand)
     uncompressCommand :: Mod CommandFields Command
     uncompressCommand =
       command "uncompress" (info uncompressOptions (progDesc "Uncompress file"))
@@ -51,18 +59,31 @@ optsParser =
     compressOptions =
       Compress <$> strArgument (metavar "FILENAME" <> help "File to compress")
     upDirCommand :: Mod CommandFields Command
-    upDirCommand = command "updir" (info updirOptions (progDesc "Go to parsent dir"))
-    updirOptions = UpDir <$> argument auto (metavar "LEVEL" <> help "Integer representing parent level")
+    upDirCommand =
+      command "updir" (info updirOptions (progDesc "Go to parsent dir"))
+    updirOptions =
+      UpDir <$>
+      argument
+        auto
+        (metavar "LEVEL" <> help "Integer representing parent level")
     deployCommand :: Mod CommandFields Command
-    deployCommand = command "deploy" (info deployOptions (progDesc "Deploy dotfiles"))
+    deployCommand =
+      command "deploy" (info deployOptions (progDesc "Deploy dotfiles"))
     deployOptions :: Parser Command
     deployOptions = Deploy <$> hsubparser (fishCommand <> bashCommand)
     fishCommand :: Mod CommandFields Config
-    fishCommand = command "fish" (info fishOptions (progDesc "Load fresh fish config"))
+    fishCommand =
+      command "fish" (info fishOptions (progDesc "Load fresh fish config"))
     fishOptions :: Parser Config
     fishOptions = pure Fish
     bashCommand :: Mod CommandFields Config
-    bashCommand = command "bash" (info bashOptions (progDesc "Load fresh bash config"))
+    bashCommand =
+      command "bash" (info bashOptions (progDesc "Load fresh bash config"))
     bashOptions :: Parser Config
     bashOptions = pure Bash
-
+    syncCommand :: Mod CommandFields Command
+    syncCommand = command "sync" (info syncOptions (progDesc "Sync machine config to dotfiles"))
+    syncOptions :: Parser Command
+    syncOptions = Sync <$> hsubparser (fishSyncCommand)
+    fishSyncCommand :: Mod CommandFields Config
+    fishSyncCommand = command "fish" (info (pure Fish) (progDesc "Sync fish configuration"))
