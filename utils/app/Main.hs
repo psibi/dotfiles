@@ -14,10 +14,13 @@ data Command
   | UpDir Int
   | Deploy Config
   | Sync Config
+  | Init
   deriving (Show, Eq, Ord)
 
 data Config
   = Fish
+  | Emacs
+  | XMonad
   | Bash
   deriving (Show, Eq, Ord)
 
@@ -29,8 +32,13 @@ main = do
     Compress fname -> compress fname
     UpDir level -> navigateParent level
     Deploy Fish -> deployFish
-    Deploy Bash -> print "bash"
+    Deploy Emacs -> deployEmacs
+    Deploy XMonad -> deployXMonad
+    Deploy Bash -> deployBash
     Sync Fish -> syncFish
+    Sync Emacs -> syncEmacs
+    Sync XMonad -> syncXMonad
+    Init -> initializeSystem
 
 optsParser :: ParserInfo SibiUtilsOpts
 optsParser =
@@ -46,7 +54,11 @@ optsParser =
       SibiUtilsOpts <$>
       hsubparser
         (uncompressCommand <> compressCommand <> upDirCommand <> deployCommand <>
-         syncCommand)
+         syncCommand <>
+         initCommand)
+    initCommand :: Mod CommandFields Command
+    initCommand =
+      command "init" (info (pure Init) (progDesc "Initialize system"))
     uncompressCommand :: Mod CommandFields Command
     uncompressCommand =
       command "uncompress" (info uncompressOptions (progDesc "Uncompress file"))
@@ -70,20 +82,42 @@ optsParser =
     deployCommand =
       command "deploy" (info deployOptions (progDesc "Deploy dotfiles"))
     deployOptions :: Parser Command
-    deployOptions = Deploy <$> hsubparser (fishCommand <> bashCommand)
+    deployOptions =
+      Deploy <$>
+      hsubparser (fishCommand <> emacsCommand <> xmonadCommand <> bashCommand)
     fishCommand :: Mod CommandFields Config
     fishCommand =
       command "fish" (info fishOptions (progDesc "Load fresh fish config"))
     fishOptions :: Parser Config
     fishOptions = pure Fish
-    bashCommand :: Mod CommandFields Config
+    emacsCommand :: Mod CommandFields Config
+    emacsCommand =
+      command "emacs" (info emacsOptions (progDesc "Load fresh bash config"))
+    emacsOptions :: Parser Config
+    emacsOptions = pure Emacs
+    xmonadCommand =
+      command
+        "xmonad"
+        (info (pure XMonad) (progDesc "Load fresh xmonad config"))
     bashCommand =
-      command "bash" (info bashOptions (progDesc "Load fresh bash config"))
-    bashOptions :: Parser Config
-    bashOptions = pure Bash
+      command "bash" (info (pure Bash) (progDesc "Load fresh bash config"))
     syncCommand :: Mod CommandFields Command
-    syncCommand = command "sync" (info syncOptions (progDesc "Sync machine config to dotfiles"))
+    syncCommand =
+      command
+        "sync"
+        (info syncOptions (progDesc "Sync machine config to dotfiles"))
     syncOptions :: Parser Command
-    syncOptions = Sync <$> hsubparser (fishSyncCommand)
+    syncOptions =
+      Sync <$>
+      hsubparser (fishSyncCommand <> emacsSyncCommand <> xmonadSyncCommand)
     fishSyncCommand :: Mod CommandFields Config
-    fishSyncCommand = command "fish" (info (pure Fish) (progDesc "Sync fish configuration"))
+    fishSyncCommand =
+      command "fish" (info (pure Fish) (progDesc "Sync fish configuration"))
+    emacsSyncCommand :: Mod CommandFields Config
+    emacsSyncCommand =
+      command "emacs" (info (pure Emacs) (progDesc "Sync Emacs configuration"))
+    xmonadSyncCommand :: Mod CommandFields Config
+    xmonadSyncCommand =
+      command
+        "xmonad"
+        (info (pure XMonad) (progDesc "Synx Xmonad configuration"))
