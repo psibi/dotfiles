@@ -474,6 +474,9 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq confirm-nonexistent-file-or-buffer nil)
 
+(use-package rg
+  :ensure t)
+
 (show-paren-mode 1)
 ;; For proof related
 ;; (load "/home/sibi/Downloads/ProofGeneral-4.2/generic/proof-site.el")
