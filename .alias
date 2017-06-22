@@ -30,7 +30,7 @@ alias sr='systemctl reboot'
 # alias lg='gnome-session-quit --logout'
 
 #Git Related
-alias git='hub'
+#alias git='hub'
 alias gp='git push'
 alias ga='git add'
 alias gc='git commit'
