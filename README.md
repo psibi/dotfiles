@@ -40,3 +40,4 @@ Distro related:
 * screen
 * xsel
 * xfce4-screenshooter
+* feh
