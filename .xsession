@@ -50,7 +50,7 @@ fi
 
 # In Debian based systems, manage your network connections using nm-connection-editor
 
-feh --bg-scale ~/github/dotfiles/.data/ecstasy-do-not-go-gentle-into-that-good-night-dylan-thomas-page-4597358.jpg
+feh --bg-scale ~/github/dotfiles/.data/ecstasy-do-not-go-gentle-into-that-good-night-dylan-thomas-page-4597358.jpg &
 
 setxkbmap -option ctrl:nocaps
 exec xmonad
