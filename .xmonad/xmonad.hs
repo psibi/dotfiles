@@ -2,6 +2,7 @@ import XMonad
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.UrgencyHook
+import XMonad.Hooks.SetWMName (setWMName)
 import XMonad.Hooks.EwmhDesktops (fullscreenEventHook)
 import XMonad.Util.Run (spawnPipe)
 import XMonad.Util.EZConfig (additionalKeys)
@@ -63,6 +64,7 @@ myManageHook =
 sibiStartupHook :: X ()
 sibiStartupHook = do
   as <- io getArgs
+  setWMName "LG3D"
   when (null as) $
     do spawnOnce "firefox"
        spawnOnce "emacs --daemon"
