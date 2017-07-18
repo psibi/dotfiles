@@ -437,6 +437,11 @@
 (use-package tldr
   :ensure t)
 
+(use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1))
+
 ;; Shift the selected region right if distance is postive, left if
 ;; negative
 
