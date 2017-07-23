@@ -162,3 +162,6 @@ select 0
 # Adapted from here with change in the command key (ofcourse!):
 # http://www.commandlinefu.com/commands/view/2276/getting-screens-copy-buffer-into-xs-copy-buffer-on-linux
 bind b eval writebuf 'exec /bin/sh -c "xsel -i -b < /tmp/screen-exchange"' 'exec /bin/sh -c "killall xsel"'
+
+# For MacOS: https://stackoverflow.com/a/41070816/1651941
+# bindkey -m ' ' eval 'stuff \040' 'writebuf' 'exec sh -c "/usr/bin/pbcopy < /tmp/screen-exchange"'

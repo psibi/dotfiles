@@ -437,6 +437,11 @@
 (use-package tldr
   :ensure t)
 
+(use-package editorconfig
+  :ensure t
+  :config
+  (editorconfig-mode 1))
+
 ;; Shift the selected region right if distance is postive, left if
 ;; negative
 
@@ -477,8 +482,13 @@
 (use-package rg
   :ensure t)
 
+(if (eq system-type 'darwin)
+    (progn
+      (set-face-attribute 'default nil :height 150)))
+
 (show-paren-mode 1)
 ;; For proof related
+(load "/Users/sibi/github/PG/generic/proof-site.el")
 ;; (load "/home/sibi/Downloads/ProofGeneral-4.2/generic/proof-site.el")
 
 ;; Backup related
