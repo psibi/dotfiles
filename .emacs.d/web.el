@@ -47,6 +47,11 @@
                   (append flycheck-disabled-checkers
                           '(json-jsonlist)))))
 
+(use-package prettier-js
+  :ensure t
+  :config
+  (progn
+    (add-hook 'web-mode-hook 'prettier-js-mode)))
 
 (use-package html-mode
   :mode "\\.html\\'"
