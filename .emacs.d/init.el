@@ -482,6 +482,10 @@
 (use-package rg
   :ensure t)
 
+(use-package idris-mode
+  :ensure t
+  :mode "\\.idr\\'")
+
 (if (eq system-type 'darwin)
     (progn
       (set-face-attribute 'default nil :height 150)))
