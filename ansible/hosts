@@ -1,3 +1,5 @@
+127.0.0.1 ansible_connection=local
+
 # This is the default ansible 'hosts' file.
 #
 # It should live in /etc/ansible/hosts
