@@ -5,3 +5,5 @@
   with_items:
     - .alias
     - .global_ignore
+
+- include: softwares.yml
