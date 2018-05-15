@@ -13,4 +13,10 @@ ansible "*" -m ping
 
 ## 
 
+## Run playbook
+
+``` shellsession
+ansible-playbook ./playbooks/apply-common.yml
+```
+
 
