@@ -1,0 +1,7 @@
+- name: setup hard links
+  file:
+    src: "/home/sibi/github/dotfiles/{{ item }}"
+    dest: "~/{{ item  }}"
+  with_items:
+    - .alias
+    - .global_ignore
