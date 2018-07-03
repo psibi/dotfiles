@@ -19,13 +19,12 @@ set proper git config:
       - HOME: /home/sibi
 
 x server related setup:
-  file.copy:
+  {% for fname in ['.xmobarrc','.Xresources','.xsession'] %}
+  {{ file.copy }}:
     - source: /home/sibi/github/dotfiles/
-    - names:
-        - /home/sibi/.xmobarrc
-        - /home/sibi/.Xresources
-        - /home/sibi/.xsession
+    - name: /home/sibi/{{ fname }}
     - preserve: True
+  {% endfor %}
 
 x monad setup:
   file.copy:
