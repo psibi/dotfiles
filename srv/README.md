@@ -20,8 +20,8 @@ master: 127.0.0.1
 * Restart the master and minion:
 
 ```
-$ sudo systemctl salt-master
-$ sudo systemctl salt-minion
+$ sudo systemctl restart salt-master
+$ sudo systemctl restart salt-minion
 ```
 
 * Accept the keys
