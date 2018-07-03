@@ -8,6 +8,7 @@ ghci config setup:
   file.copy:
     - source: /home/sibi/github/dotfiles/.ghci
     - name: /home/sibi/.ghci
+    - preserve: True
     - mode: '0700'
 
 set proper git config:
@@ -29,7 +30,8 @@ x server related setup:
 x monad setup:
   file.copy:
     - source: /home/sibi/github/dotfiles/.xmonad/
-    - name: /home/sibi/.xmonad/xmonad.hs
+    - name: /home/sibi/.xmonad
+    - preserve: True
     - makedirs: True
 
 setup links:
@@ -38,6 +40,7 @@ setup links:
         - ln /home/sibi/github/dotfiles/.alias /home/sibi/.alias
         - ln /home/sibi/github/dotfiles/.global_ignore /home/sibi/.global_ignore
         - ln /home/sibi/github/dotfiles/.bashrc /home/sibi/.sibi_bashrc
+    - runas: sibi
         
   file.append:
     - name: /home/sibi/.bashrc
