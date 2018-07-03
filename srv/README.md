@@ -9,6 +9,7 @@
 file_roots:
  base:
    - /home/sibi/github/dotfiles/srv/salt/
+user: sibi
 ```
 
 * Edit `/etc/salt/minion`:
