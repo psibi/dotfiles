@@ -1,7 +1,8 @@
 copy emacs config:
   file.copy:
-    - source: /home/sibi/github/dotfiles/.emacs.d/
-    - name: /home/sibi/.emacs.d/
+    - source: /home/sibi/github/dotfiles/.emacs.d
+    - name: /home/sibi/
     - makedirs: True
-    - preserve: True
+    - user: sibi
+    - group: sibi
     - subdir: True
