@@ -62,7 +62,7 @@ myManageHook =
     viewShift = doF . liftM2 (.) W.greedyView W.shift
     myClassWebShifts = ["Firefox"]
     myClassChatShifts = ["Pidgin", "eboard", "slack"]
-    myClassDevShifts = ["emacs"]
+    myClassDevShifts = []
     myClassMediaShifts = ["mplayer", "vlc"]
     myClassFloatShifts = ["gimp", "SMPlayer", "smplayer"]
     myClassMiscShifts = ["nautilus", "seahorse"]
@@ -71,7 +71,7 @@ myManageHook =
 sibiStartupHook :: X ()
 sibiStartupHook = do
   as <- io getArgs
-  Bright.setBrightness 1270
+  Bright.setBrightness 1260
   setWMName "LG3D"
   when (null as) $
     do spawnOnce "firefox"
@@ -108,6 +108,7 @@ main = do
     , ((mod4Mask, xK_x), spawn "xkill")
     , ((mod4Mask, xK_c), kill)
     , ((mod4Mask, xK_p), shellPrompt sibiXPConfig)
+    , ((mod4Mask, xK_h), spawn "/home/sibi/.emacs_everywhere/bin/run")
     , ((0, xF86XK_MonBrightnessUp), Bright.increase) 
     , ((0, xF86XK_MonBrightnessDown), Bright.decrease)
     , ((mod4Mask, xK_s), submap $ searchEngineMap $ promptSearch greenSibiXPConfig)
