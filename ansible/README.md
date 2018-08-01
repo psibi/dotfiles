@@ -10,8 +10,13 @@ Or
 ```
 ansible "*" -m ping
 ```
+## Running shell commands
 
-## 
+``` shellsession
+$ ansible -m shell -a 'hostname' all
+$ ansible -m shell -a 'df -h /' all
+$ ansible -m shell -a 'who am i' all
+```
 
 ## Run playbook
 
