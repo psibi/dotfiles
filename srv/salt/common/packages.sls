@@ -9,6 +9,15 @@ common_packages:
       - xfce4-screenshooter
       - feh
       - screen
+      - libx11-dev
+      - libxinerama-dev
+      - libxrandr-dev
+      - libxft-dev
+      - libasound2
+      - libasound-dev
+      - libtinfo-dev
+      - libiw-dev
+      - gcc
 
 stack.deb:
   file.managed:

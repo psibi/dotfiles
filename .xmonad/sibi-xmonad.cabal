@@ -1,0 +1,17 @@
+name:               sibi-xmonad
+version:            1.0
+homepage:           https://github.com/psibi/dotfiles
+synopsis:           Xmonad
+description:        Sibi's conf for Xmoand
+category:           System
+license:            BSD3
+author:             Sibi <sibi@psibi.in>
+maintainer:         Sibi <sibi@psibi.in>
+cabal-version:      >= 1.2.1
+build-type:         Simple
+extra-source-files:  README.md
+
+executable xmonad
+    main-is: xmonad.hs
+    build-depends:      X11, xmonad, xmonad-contrib, xmonad-extras, base, containers
+    ghc-options:        -Wall

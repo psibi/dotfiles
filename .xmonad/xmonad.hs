@@ -1,3 +1,5 @@
+{-#LANGUAGE RankNTypes#-}
+
 import XMonad
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
@@ -16,6 +18,7 @@ import XMonad.Prompt.Shell
 import XMonad.Actions.Search
 import XMonad.Actions.Submap
 import XMonad.Util.SpawnOnce (spawnOnce)
+import qualified XMonad.Util.Brightness as Bright
 import XMonad.Actions.Volume
 import XMonad.Prompt.Window
 import qualified Data.Map as M
@@ -23,14 +26,18 @@ import Control.Arrow (first)
 import Data.Char (isSpace)
 import System.Environment (getArgs)
 import Graphics.X11.ExtraTypes.XF86
+import Data.Monoid (Endo)
 
+myWorkspaces :: [String]
 myWorkspaces = ["main", "web", "chat", "dev", "media", "float", "misc"]
 
-myTerminal = "urxvt -e screen"
+myTerminal :: String
+myTerminal = "urxvtc"
 
 -- Notes
 -- Mod Key + Q refreshes XMonad session
 -- Define the workspace an application has to go to
+myManageHook :: XMonad.Query (Endo WindowSet)
 myManageHook =
   composeAll . concat $
   [ [isFullscreen --> doFullFloat] -- For Media Players
@@ -55,7 +62,7 @@ myManageHook =
     viewShift = doF . liftM2 (.) W.greedyView W.shift
     myClassWebShifts = ["Firefox"]
     myClassChatShifts = ["Pidgin", "eboard", "slack"]
-    myClassDevShifts = ["emacs"]
+    myClassDevShifts = []
     myClassMediaShifts = ["mplayer", "vlc"]
     myClassFloatShifts = ["gimp", "SMPlayer", "smplayer"]
     myClassMiscShifts = ["nautilus", "seahorse"]
@@ -64,24 +71,26 @@ myManageHook =
 sibiStartupHook :: X ()
 sibiStartupHook = do
   as <- io getArgs
+  Bright.setBrightness 1260
   setWMName "LG3D"
   when (null as) $
     do spawnOnce "firefox"
+       spawnOnce "urxvtd"
        spawnOnce "emacs --daemon"
-       spawnOnce myTerminal
        spawnOnce "seahorse"
 
+main :: IO ()
 main = do
   xmproc <- spawnPipe "xmobar"
   xmonad $
     withUrgencyHook
       NoUrgencyHook
-      defaultConfig
-      { manageHook = manageDocks <+> myManageHook <+> manageHook defaultConfig
+      def
+      { manageHook = manageDocks <+> myManageHook <+> manageHook def
       -- No red border for media players
       , terminal = myTerminal
       , startupHook = sibiStartupHook
-      , layoutHook = smartBorders $ avoidStruts $ layoutHook defaultConfig
+      , layoutHook = smartBorders $ avoidStruts $ layoutHook def
       , logHook =
         dynamicLogWithPP
           xmobarPP
@@ -90,7 +99,7 @@ main = do
           , ppUrgent = xmobarColor "yellow" "red" . xmobarStrip
           }
       , handleEventHook =
-        handleEventHook defaultConfig <+> fullscreenEventHook <+> docksEventHook
+        handleEventHook def <+> fullscreenEventHook <+> docksEventHook
       , modMask = mod4Mask -- Rebind Mod to the Windows key
       , workspaces = myWorkspaces
       } `additionalKeys`
@@ -99,6 +108,9 @@ main = do
     , ((mod4Mask, xK_x), spawn "xkill")
     , ((mod4Mask, xK_c), kill)
     , ((mod4Mask, xK_p), shellPrompt sibiXPConfig)
+    , ((mod4Mask, xK_h), spawn "/home/sibi/.emacs_everywhere/bin/run")
+    , ((0, xF86XK_MonBrightnessUp), Bright.increase) 
+    , ((0, xF86XK_MonBrightnessDown), Bright.decrease)
     , ((mod4Mask, xK_s), submap $ searchEngineMap $ promptSearch greenSibiXPConfig)
     , ((mod4Mask, xK_f), submap $ searchEngineMap $ selectSearch)
     , ((mod4Mask, xK_g), spawn "unity-control-center")
@@ -109,8 +121,9 @@ main = do
     , ((mod4Mask, xK_g), windowPromptGoto sibiXPConfig)
     ]
 
+sibiXPConfig :: XPConfig
 sibiXPConfig =
-  defaultXPConfig
+  def
   { alwaysHighlight = True
   , promptKeymap = sibiEmacsKeymap
   , position = Top
@@ -118,6 +131,7 @@ sibiXPConfig =
   , completionKey = (controlMask, xK_i)
   }
 
+greenSibiXPConfig :: XPConfig
 greenSibiXPConfig =
   sibiXPConfig
   { alwaysHighlight = False
@@ -173,6 +187,8 @@ sibiEmacsKeymap' p =
     , (xK_BackSpace, deleteString Prev)
     ]
 
+
+searchEngineMap :: forall a b.(Ord a, Num a) => (SearchEngine -> b) -> M.Map (a, KeySym) b
 searchEngineMap method =
   M.fromList $
   [ ((0, xK_g), method google)

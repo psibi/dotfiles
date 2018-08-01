@@ -2,13 +2,13 @@ screen config setup:
   file.copy:
     - source: /home/sibi/github/dotfiles/.screenrc
     - name: /home/sibi/.screenrc
-    - preserve: True
+    - user: sibi
 
 ghci config setup:
   file.copy:
     - source: /home/sibi/github/dotfiles/.ghci
     - name: /home/sibi/.ghci
-    - preserve: True
+    - user: sibi
     - mode: '0700'
 
 set proper git config:
@@ -20,17 +20,19 @@ set proper git config:
       - HOME: /home/sibi
 
 {% for fname in ['.xmobarrc','.Xresources','.xsession'] %}
-{{ file.copy }}:
-  - source: /home/sibi/github/dotfiles/
-  - name: /home/sibi/{{ fname }}
-  - user: sibi
+{{ fname }}:
+  file.copy:
+    - source: /home/sibi/github/dotfiles/{{ fname }}
+    - name: /home/sibi/{{ fname }}
+    - user: sibi
+    - group: sibi
 {% endfor %}
 
 x monad setup:
   file.copy:
     - source: /home/sibi/github/dotfiles/.xmonad/
     - name: /home/sibi/.xmonad
-    - preserve: True
+    - user: sibi
     - makedirs: True
 
 setup links:
