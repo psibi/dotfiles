@@ -57,7 +57,7 @@ alias fs='du -h' # Filesize
 alias lsd='ls -l --color | grep "^d"'
 alias hpkg='ghc-pkg list | grep'
 
-alias bc='bc -q'
+alias bc='bc -q -l'
 alias mc='mc --keymap=/home/sibi/github/dotfiles/mc.emacs.keymap'
 
 alias act='source VIRTUAL/bin/activate'
