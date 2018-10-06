@@ -51,6 +51,15 @@
     (setq ac-ignore-case nil)
     (ac-config-default)))
 
+(use-package rust-mode
+  :ensure t
+  :mode "\\.rs\\'"
+  :config
+  (progn
+   (add-to-list 'load-path "~/.cargo/bin")
+   (setq rust-format-on-save t)
+  ))
+
 (use-package paredit
   :diminish paredit-mode  
   :ensure t)
