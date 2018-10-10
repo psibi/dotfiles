@@ -12,7 +12,7 @@
 
 ## Import your public key from MIT server
 
-`gpg --keyserver hkp://pgp.mit.edu --recv BB557613`
+`gpg --keyserver hkp://pgp.mit.edu --recv 0xD19E3E0EBB557613`
 
 ## Export to keyserver
 
@@ -26,3 +26,4 @@ Use no-grab option: http://unix.stackexchange.com/a/266351/29539
 Reference: 
 
 * [Fedora GPG guide](https://fedoraproject.org/wiki/Creating_GPG_Keys)
+* [Command reference](https://kb.iu.edu/d/awiu)
