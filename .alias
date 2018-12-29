@@ -1,10 +1,10 @@
 #Installation commands
-alias install='sudo apt-get -y install'
-alias upgrade='sudo apt-get upgrade'
-alias update='sudo apt-get update'
-alias search='sudo apt-cache search'
-alias info='sudo apt-cache show'
-alias depends='sudo apt-cache depends'
+alias install='sudo apt install'
+alias upgrade='sudo apt upgrade'
+alias update='sudo apt update'
+alias search='sudo apt search'
+alias info='sudo apt show'
+alias depends='sudo apt depends'
 
 #For Fedora
 #alias install='sudo yum install'
@@ -24,7 +24,7 @@ alias sr='systemctl reboot'
 
 #Logout
 #KDE Desktop
-# alias lg='qdbus org.kde.ksmserver /KSMServer logout 1 0 -1' 
+# alias lg='qdbus org.kde.ksmserver /KSMServer logout 1 0 -1'
 #GNOME
 #alias lg='gnome-session-save --logout'
 # alias lg='gnome-session-quit --logout'
