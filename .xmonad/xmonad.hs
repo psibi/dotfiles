@@ -1,68 +1,78 @@
-{-#LANGUAGE RankNTypes#-}
+{-# LANGUAGE RankNTypes #-}
+{-# LANGUAGE KindSignatures #-}
 
-import XMonad
-import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.ManageDocks
-import XMonad.Hooks.UrgencyHook
-import XMonad.Hooks.SetWMName (setWMName)
-import XMonad.Hooks.EwmhDesktops (fullscreenEventHook)
-import XMonad.Util.Run (spawnPipe)
-import XMonad.Util.EZConfig (additionalKeys)
-import qualified XMonad.StackSet as W
-import System.IO
+import Control.Arrow (first)
 import Control.Monad
-import XMonad.Layout.NoBorders
-import XMonad.Hooks.ManageHelpers
-import XMonad.Prompt
-import XMonad.Prompt.Shell
+import Data.Char (isSpace)
+import Data.Kind (Type)
+import qualified Data.Map as M
+import Data.Monoid (Endo)
+import Graphics.X11.ExtraTypes.XF86
+import System.Environment (getArgs)
+import System.IO
+import XMonad
+import XMonad.Actions.DynamicProjects
 import XMonad.Actions.Search
 import XMonad.Actions.Submap
-import XMonad.Util.SpawnOnce (spawnOnce)
-import qualified XMonad.Util.Brightness as Bright
 import XMonad.Actions.Volume
+import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.EwmhDesktops (fullscreenEventHook)
+import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.ManageHelpers
+import XMonad.Hooks.SetWMName (setWMName)
+import XMonad.Hooks.UrgencyHook
+import XMonad.Layout.Magnifier (MagnifyMsg(..))
+import XMonad.Layout.NoBorders
+import XMonad.Prompt
+import XMonad.Prompt.Shell
 import XMonad.Prompt.Window
-import qualified Data.Map as M
-import Control.Arrow (first)
-import Data.Char (isSpace)
-import System.Environment (getArgs)
-import Graphics.X11.ExtraTypes.XF86
-import Data.Monoid (Endo)
+import qualified XMonad.StackSet as W
+import qualified XMonad.Util.Brightness as Bright
+import XMonad.Util.EZConfig (additionalKeys)
+import XMonad.Util.Run (spawnPipe)
+import XMonad.Util.SpawnOnce (spawnOnce)
 
+------------------------------------------- Keybinings Refresher
+-- * mod-space: Rotate through available layout algorithms
+-- * mod-j : Move focus to the next window
+-- * mod-l : Expand the master area
+-- * mod-i : Shrink the master area (Custom binding)
+-- * mod-shift-/ : Show the keybindings!
+-- * mod-return: Make the focused window with the master window
+-- * mod-m : Focus on the master window
+-- * mod-j : Focus on the next window
+-- * mod-k : Focus on the previous window
+-- * mod-shift-j: Swap the focused window with the next window
+-- * mod-shift-k: Swap the focused window with the previous window
+-- * mod-,: Increase the number of window in master area
+-- * mod-.: Decrease the number of window in master area
+-- * Searching: Select world + mod-(g|v|w)
+--------------------------------------------
 myWorkspaces :: [String]
 myWorkspaces = ["main", "web", "chat", "dev", "media", "float", "misc"]
 
 myTerminal :: String
 myTerminal = "urxvtc"
 
--- Notes
--- Mod Key + Q refreshes XMonad session
--- Define the workspace an application has to go to
 myManageHook :: XMonad.Query (Endo WindowSet)
 myManageHook =
   composeAll . concat $
   [ [isFullscreen --> doFullFloat] -- For Media Players
     -- Applications that go to web
-  , [ className =? b --> viewShift "web"
-    | b <- myClassWebShifts ]
+  , [className =? b --> viewShift "web" | b <- myClassWebShifts]
     -- Applications that go to chat
-  , [ resource =? c --> doF (W.shift "chat")
-    | c <- myClassChatShifts ]
-  , [ resource =? c --> doF (W.shift "dev")
-    | c <- myClassDevShifts ]
-  , [ resource =? c --> doF (W.shift "media")
-    | c <- myClassMediaShifts ]
-  , [ resource =? c --> doF (W.shift "float")
-    | c <- myClassFloatShifts ]
-  , [ resource =? c --> doF (W.shift "misc")
-    | c <- myClassMiscShifts ]
-  , [ resource =? c --> doF (W.shift "main")
-    | c <- myClassMainShifts ]
+  , [resource =? c --> doF (W.shift "chat") | c <- myClassChatShifts]
+  , [resource =? c --> doF (W.shift "dev") | c <- myClassDevShifts]
+  , [resource =? c --> doF (W.shift "media") | c <- myClassMediaShifts]
+  , [resource =? c --> doF (W.shift "float") | c <- myClassFloatShifts]
+  , [resource =? c --> doF (W.shift "misc") | c <- myClassMiscShifts]
+  , [resource =? c --> doF (W.shift "main") | c <- myClassMainShifts]
   ]
   where
     viewShift = doF . liftM2 (.) W.greedyView W.shift
     myClassWebShifts = ["Firefox"]
     myClassChatShifts = ["Pidgin", "eboard", "slack"]
-    myClassDevShifts = []
+    myClassDevShifts = ["emacs"]
     myClassMediaShifts = ["mplayer", "vlc"]
     myClassFloatShifts = ["gimp", "SMPlayer", "smplayer"]
     myClassMiscShifts = ["nautilus", "seahorse"]
@@ -73,11 +83,11 @@ sibiStartupHook = do
   as <- io getArgs
   Bright.setBrightness 1260
   setWMName "LG3D"
-  when (null as) $
-    do spawnOnce "firefox"
-       spawnOnce "urxvtd"
-       spawnOnce "emacs --daemon"
-       spawnOnce "seahorse"
+  when (null as) $ do
+    spawnOnce "firefox"
+    spawnOnce myTerminal
+    spawnOnce "emacs --daemon" >> spawnOnce "em"
+    spawnOnce "seahorse"
 
 main :: IO ()
 main = do
@@ -86,59 +96,64 @@ main = do
     withUrgencyHook
       NoUrgencyHook
       def
-      { manageHook = manageDocks <+> myManageHook <+> manageHook def
+        { manageHook = manageDocks <+> myManageHook <+> manageHook def
       -- No red border for media players
-      , terminal = myTerminal
-      , startupHook = sibiStartupHook
-      , layoutHook = smartBorders $ avoidStruts $ layoutHook def
-      , logHook =
-        dynamicLogWithPP
-          xmobarPP
-          { ppOutput = hPutStrLn xmproc
-          , ppTitle = xmobarColor "green" "" . shorten 50
-          , ppUrgent = xmobarColor "yellow" "red" . xmobarStrip
-          }
-      , handleEventHook =
-        handleEventHook def <+> fullscreenEventHook <+> docksEventHook
-      , modMask = mod4Mask -- Rebind Mod to the Windows key
-      , workspaces = myWorkspaces
-      } `additionalKeys`
+        , terminal = myTerminal
+        , startupHook = sibiStartupHook
+        , layoutHook = smartBorders $ avoidStruts $ layoutHook def
+        , logHook =
+            dynamicLogWithPP
+              xmobarPP
+                { ppOutput = hPutStrLn xmproc
+                , ppTitle = xmobarColor "green" "" . shorten 50
+                , ppUrgent = xmobarColor "yellow" "red" . xmobarStrip
+                }
+        , handleEventHook =
+            handleEventHook def <+> fullscreenEventHook <+> docksEventHook
+        , modMask = mod4Mask -- Rebind Mod to the Windows key
+        , workspaces = myWorkspaces
+        } `additionalKeys`
     [ ((mod4Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
     , ((0, xK_Print), spawn "xfce4-screenshooter")
     , ((mod4Mask, xK_x), spawn "xkill")
     , ((mod4Mask, xK_c), kill)
     , ((mod4Mask, xK_p), shellPrompt sibiXPConfig)
     , ((mod4Mask, xK_h), spawn "/home/sibi/.emacs_everywhere/bin/run")
-    , ((0, xF86XK_MonBrightnessUp), Bright.increase) 
+    , ((0, xF86XK_MonBrightnessUp), Bright.increase)
     , ((0, xF86XK_MonBrightnessDown), Bright.decrease)
-    , ((mod4Mask, xK_s), submap $ searchEngineMap $ promptSearch greenSibiXPConfig)
+    , ( (mod4Mask, xK_s)
+      , submap $ searchEngineMap $ promptSearch greenSibiXPConfig)
     , ((mod4Mask, xK_f), submap $ searchEngineMap $ selectSearch)
     , ((mod4Mask, xK_g), spawn "unity-control-center")
     , ((0, xF86XK_AudioRaiseVolume), raiseVolume 2 >> return ())
     , ((0, xF86XK_AudioLowerVolume), lowerVolume 2 >> return ())
     , ((0, xF86XK_AudioMute), toggleMute >> return ())
-    , ((mod4Mask, xK_b), windowPromptBring sibiXPConfig)
-    , ((mod4Mask, xK_g), windowPromptGoto sibiXPConfig)
+    , ((mod4Mask, xK_b), windowPrompt sibiXPConfig Bring allWindows)
+    , ((mod4Mask, xK_g), windowPrompt sibiXPConfig Goto wsWindows)
+    , ((mod4Mask, xK_m), sendMessage MagnifyMore)
+    , ((mod4Mask .|. shiftMask, xK_m), sendMessage MagnifyLess)
+    , ((mod4Mask, xK_i), sendMessage Shrink)
+    , ((mod4Mask, xK_slash), switchProjectPrompt sibiXPConfig)
     ]
 
 sibiXPConfig :: XPConfig
 sibiXPConfig =
   def
-  { alwaysHighlight = True
-  , promptKeymap = sibiEmacsKeymap
-  , position = Top
-  , font = "xft:Ubuntu Mono:size=12:bold:antialias=true"
-  , completionKey = (controlMask, xK_i)
-  }
+    { alwaysHighlight = True
+    , promptKeymap = sibiEmacsKeymap
+    , position = Top
+    , font = "xft:Ubuntu Mono:size=12:bold:antialias=true"
+    , completionKey = (controlMask, xK_i)
+    }
 
 greenSibiXPConfig :: XPConfig
 greenSibiXPConfig =
   sibiXPConfig
-  { alwaysHighlight = False
-  , fgColor = "green"
-  , bgColor = "black"
-  , promptBorderWidth = 0
-  }
+    { alwaysHighlight = False
+    , fgColor = "green"
+    , bgColor = "black"
+    , promptBorderWidth = 0
+    }
 
 sibiEmacsKeymap :: M.Map (KeyMask, KeySym) (XP ())
 sibiEmacsKeymap = sibiEmacsKeymap' isSpace
@@ -187,15 +202,18 @@ sibiEmacsKeymap' p =
     , (xK_BackSpace, deleteString Prev)
     ]
 
-
-searchEngineMap :: forall a b.(Ord a, Num a) => (SearchEngine -> b) -> M.Map (a, KeySym) b
+searchEngineMap ::
+     forall a b. (Ord a, Num a)
+  => (SearchEngine -> b)
+  -> M.Map (a, KeySym) b
 searchEngineMap method =
   M.fromList $
   [ ((0, xK_g), method google)
   , ((0, xK_h), method stackage)
   , ((0, xK_w), method wikipedia)
-  , ((0, xK_v), method vocabulary) -- main = do
+  , ((0, xK_v), method vocabulary)
   ]
---   xmonad $ defaultConfig
--- Reference
--- https://wiki.haskell.org/Xmonad/Frequently_asked_questions#I_need_to_find_the_class_title_or_some_other_X_property_of_my_program
+--
+--
+-- Reference:
+--  * https://wiki.haskell.org/Xmonad/Frequently_asked_questions#I_need_to_find_the_class_title_or_some_other_X_property_of_my_program
