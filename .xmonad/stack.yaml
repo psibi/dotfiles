@@ -1,8 +1,6 @@
-resolver: lts-11.16
+resolver: lts-13.23
 
 packages:
 - .
 
-extra-deps:
-- ../../xmonad-extras
 
