@@ -28,6 +28,7 @@
 
 (use-package spacemacs-theme
   :ensure t
+  :defer t
   :init
   (progn
     (load-theme 'spacemacs-dark t)
@@ -78,7 +79,7 @@
 (load-file "~/.emacs.d/python.el")
 (load-file "~/.emacs.d/web.el")
 (load-file "~/.emacs.d/sibi-utils.el")
-(load-file "~/.emacs.d/sml.el")
+;; (load-file "~/.emacs.d/sml.el")
 
 (set-scroll-bar-mode 'nil)
 (size-indication-mode 1)
@@ -183,20 +184,20 @@
     (setq magit-commit-arguments (quote ("--gpg-sign=BB557613")))
     (setq magit-last-seen-setup-instructions "1.4.0")))
 
-(use-package magithub
-  :ensure t
-  :after magit
-  :config 
-  (progn 
-    (magithub-feature-autoinject t)
-    (magithub-ci-disable)
-    ;; https://github.com/vermiculus/magithub/issues/75#issuecomment-284256987
-    (defun magithub--api-available-p ()
-      't
-      )
-    ;; (magithub-toggle-issues)
-    ;; (magithub-toggle-pull-requests)
-    ))
+;; (use-package magithub
+;;   :ensure t
+;;   :after magit
+;;   :config 
+;;   (progn 
+;;     (magithub-feature-autoinject t)
+;;     (magithub-ci-disable)
+;;     ;; https://github.com/vermiculus/magithub/issues/75#issuecomment-284256987
+;;     (defun magithub--api-available-p ()
+;;       't
+;;       )
+;;     ;; (magithub-toggle-issues)
+;;     ;; (magithub-toggle-pull-requests)
+;;     ))
 
 (setq gc-cons-threshold 20000000)
 
@@ -426,7 +427,9 @@
 
 (use-package centered-cursor-mode
   :ensure t
-  :init (global-centered-cursor-mode +1))
+  :init 
+  (progn (require 'centered-cursor-mode)
+         (global-centered-cursor-mode)))
 
 (use-package selected
   :ensure t
@@ -501,7 +504,7 @@
 
 (show-paren-mode 1)
 ;; For proof related
-(load "/Users/sibi/github/PG/generic/proof-site.el")
+;; (load "/Users/sibi/github/PG/generic/proof-site.el")
 ;; (load "/home/sibi/Downloads/ProofGeneral-4.2/generic/proof-site.el")
 
 ;; Backup related
