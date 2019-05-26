@@ -4,7 +4,6 @@
 import Control.Arrow (first)
 import Control.Monad
 import Data.Char (isSpace)
-import Data.Kind (Type)
 import qualified Data.Map as M
 import Data.Monoid (Endo)
 import Graphics.X11.ExtraTypes.XF86
@@ -42,6 +41,7 @@ import XMonad.Util.SpawnOnce (spawnOnce)
 -- * mod-m : Focus on the master window
 -- * mod-j : Focus on the next window
 -- * mod-k : Focus on the previous window
+-- * mod-f : Toggle fullscreen (xmobar presence)
 -- * mod-shift-j: Swap the focused window with the next window
 -- * mod-shift-k: Swap the focused window with the previous window
 -- * mod-,: Increase the number of window in master area
@@ -133,6 +133,7 @@ main = do
     , ((mod4Mask, xK_m), sendMessage MagnifyMore)
     , ((mod4Mask .|. shiftMask, xK_m), sendMessage MagnifyLess)
     , ((mod4Mask, xK_i), sendMessage Shrink)
+    , ((mod4Mask, xK_f), sendMessage ToggleStruts)
     , ((mod4Mask, xK_slash), switchProjectPrompt sibiXPConfig)
     ]
 
