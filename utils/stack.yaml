@@ -1,5 +1,1 @@
-resolver: lts-8.8
-
-extra-deps:
-  - shell-conduit-4.6.1
-
+resolver: lts-13.23

@@ -47,6 +47,7 @@ import XMonad.Util.SpawnOnce (spawnOnce)
 -- * mod-,: Increase the number of window in master area
 -- * mod-.: Decrease the number of window in master area
 -- * Searching: Select world + mod-(g|v|w)
+-- * mod-q: Restart xmonad
 --------------------------------------------
 myWorkspaces :: [String]
 myWorkspaces = ["main", "web", "chat", "dev", "media", "float", "misc"]

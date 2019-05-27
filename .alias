@@ -1,10 +1,10 @@
 #Installation commands
-alias install='sudo apt install'
+alias i='sudo apt install -y'
 alias upgrade='sudo apt upgrade'
 alias update='sudo apt update'
 alias search='sudo apt search'
-alias info='sudo apt show'
-alias depends='sudo apt depends'
+alias ai='sudo apt show'
+alias ad='sudo apt depends'
 
 #For Fedora
 #alias install='sudo yum install'
@@ -37,8 +37,7 @@ alias gc='git commit'
 alias gd='git diff'
 alias gs='git status'
 
-alias c='clear'
-alias e='exit'
+alias o='xdg-open'
 alias rst='source ~/.config/fish/config.fish'
 # alias rst='. ~/.profile'
 
