@@ -85,7 +85,7 @@ sibiStartupHook = do
   Bright.setBrightness 1260
   setWMName "LG3D"
   when (null as) $ do
-    spawnOnce "firefox"
+    spawnOnce "google-chrome-stable"
     spawnOnce myTerminal
     spawnOnce "emacs --daemon" >> spawnOnce "em"
     spawnOnce "seahorse"
@@ -130,7 +130,7 @@ main = do
     , ((0, xF86XK_AudioLowerVolume), lowerVolume 2 >> return ())
     , ((0, xF86XK_AudioMute), toggleMute >> return ())
     , ((mod4Mask, xK_b), windowPrompt sibiXPConfig Bring allWindows)
-    , ((mod4Mask, xK_g), windowPrompt sibiXPConfig Goto wsWindows)
+    , ((mod4Mask, xK_o), windowPrompt sibiXPConfig Goto allWindows)
     , ((mod4Mask, xK_m), sendMessage MagnifyMore)
     , ((mod4Mask .|. shiftMask, xK_m), sendMessage MagnifyLess)
     , ((mod4Mask, xK_i), sendMessage Shrink)
