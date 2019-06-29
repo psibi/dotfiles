@@ -42,6 +42,8 @@ import XMonad.Util.SpawnOnce (spawnOnce)
 -- * mod-j : Focus on the next window
 -- * mod-k : Focus on the previous window
 -- * mod-f : Toggle fullscreen (xmobar presence)
+-- * mod-o : Go to the specific application in that workspace
+-- * mod-b : Bring the specific application from that workspace
 -- * mod-shift-j: Swap the focused window with the next window
 -- * mod-shift-k: Swap the focused window with the previous window
 -- * mod-,: Increase the number of window in master area
