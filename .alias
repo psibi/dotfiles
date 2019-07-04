@@ -88,3 +88,5 @@ alias l='ls -CF'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
+
+alias please='/usr/bin/sudo $(history -p !!)'
