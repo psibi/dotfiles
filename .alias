@@ -89,4 +89,4 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 
-alias please='/usr/bin/sudo $(history -p !!)'
+# alias please='/usr/bin/sudo $(history -p !!)'
