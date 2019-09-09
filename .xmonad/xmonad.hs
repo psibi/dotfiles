@@ -88,7 +88,7 @@ sibiStartupHook = do
   Bright.setBrightness 1260
   setWMName "LG3D"
   when (null as) $ do
-    startProcess (proc myTerminal ["-e", "fish"])
+    startProcess (proc myTerminal ["-e", "screen"])
     startProcess (proc "emacs" ["--daemon"])
     startProcess "google-chrome-stable"
     startProcess "seahorse"
