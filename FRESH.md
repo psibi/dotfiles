@@ -21,12 +21,20 @@
 * zoom
 * gnucash
 * [keepassxc](https://github.com/keepassxreboot/keepassxc)
+* unrar
+* tldr
+* pavucontrol
 * libasound2-dev
 * libx11-dev
 * libxrandr-dev
 * libxss-dev
 * libtinfo-dev
 * libxft-dev
+* libiw-dev
+
+## Debian/Ubuntu quirks
+
+* gnome-tweaks
 
 ## Haskell softwares
 
@@ -38,15 +46,10 @@
 Make sure you install `xmobar` with `with_xft` and `with_iwlib` flag:
 
 ``` shellsession
-stack install --flag xmobar:with_xft xmobar:with_iwlib
+stack install --flag xmobar:with_xft --flag xmobar:with_iwlib
 ```
-
 
 ## Other links
 
 * [Non graphical boot with systemd](https://unix.stackexchange.com/a/164028/29539)
 * [Boot into shell](https://askubuntu.com/questions/148717/how-do-i-boot-into-the-console-and-then-launch-the-ubuntu-desktop-from-it?noredirect=1&lq=1)
-
-## Debian/Ubuntu quirks
-
-* gnome-tweaks
