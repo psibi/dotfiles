@@ -74,7 +74,7 @@ myManageHook =
   ]
   where
     viewShift = doF . liftM2 (.) W.greedyView W.shift
-    myClassWebShifts = ["Firefox"]
+    myClassWebShifts = ["google-chrome"]
     myClassChatShifts = ["Pidgin", "eboard", "slack"]
     myClassDevShifts = []
     myClassMediaShifts = ["mplayer", "vlc"]
