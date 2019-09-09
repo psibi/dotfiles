@@ -1,5 +1,6 @@
 {-# LANGUAGE RankNTypes #-}
 {-# LANGUAGE KindSignatures #-}
+{-# LANGUAGE OverloadedStrings #-}
 
 import Control.Arrow (first)
 import Control.Monad
@@ -29,7 +30,7 @@ import qualified XMonad.StackSet as W
 import qualified XMonad.Util.Brightness as Bright
 import XMonad.Util.EZConfig (additionalKeys)
 import XMonad.Util.Run (spawnPipe)
-import XMonad.Util.SpawnOnce (spawnOnce)
+import System.Process.Typed (startProcess, proc)
 
 ------------------------------------------- Keybinings Refresher
 -- * mod-space: Rotate through available layout algorithms
@@ -55,7 +56,7 @@ myWorkspaces :: [String]
 myWorkspaces = ["main", "web", "chat", "dev", "media", "float", "misc"]
 
 myTerminal :: String
-myTerminal = "urxvtc"
+myTerminal = "urxvt"
 
 myManageHook :: XMonad.Query (Endo WindowSet)
 myManageHook =
@@ -87,10 +88,11 @@ sibiStartupHook = do
   Bright.setBrightness 1260
   setWMName "LG3D"
   when (null as) $ do
-    spawnOnce "google-chrome-stable"
-    spawnOnce myTerminal
-    spawnOnce "emacs --daemon" >> spawnOnce "em"
-    spawnOnce "seahorse"
+    startProcess (proc myTerminal ["-e", "fish"])
+    startProcess (proc "emacs" ["--daemon"])
+    startProcess "google-chrome-stable"
+    startProcess "seahorse"
+    return ()
 
 main :: IO ()
 main = do
