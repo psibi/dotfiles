@@ -14,30 +14,5 @@ Files
 * emacsSync.hs - Emacs synchronization script
 
 
-Softwares needed
------------------
-
-Haskell:
-
-* xmonad
-* xmonad-contrib
-* xmonad-extras
-* split
-* xmobar
 
 Note:
-
-Make sure you install `xmobar` with `with_xft` and `with_iwlib` flag:
-
-``` shellsession
-cabal install -f with_xft -f with_iwlib xmobar
-```
-
-Distro related:
-
-* xclip
-* rxvt-unicode
-* screen
-* xsel
-* xfce4-screenshooter
-* feh
