@@ -9,13 +9,13 @@ export PATH=${PATH}:~/bin:~/.cabal/bin:/home/sibi/Android/Sdk/platform-tools:/ho
 
 ## http://jeroenjanssens.com/2013/08/16/quickly-navigate-your-filesystem-from-the-command-line.html
 export MARKPATH=$HOME/.marks
-function jump { 
+function jump {
     cd -P "$MARKPATH/$1" 2>/dev/null || echo "No such mark: $1"
 }
-function mark { 
+function mark {
     mkdir -p "$MARKPATH"; ln -s "$(pwd)" "$MARKPATH/$1"
 }
-function unmark { 
+function unmark {
     rm -i "$MARKPATH/$1"
 }
 function marks {
@@ -127,7 +127,7 @@ alias .....='ndir 4'
 alias ......='ndir 5'
 
 # Make bash append rather than override
-shopt -s histappend        
+shopt -s histappend
 
 PROMPT_COMMAND='history -a'
 
@@ -150,12 +150,6 @@ fi
 
 export GPGKEY=BB557613
 
-JAVA_HOME=/home/sibi/Downloads/jdk1.8.0_102/
-export JAVA_HOME
-
-ANDROID_HOME=/home/sibi/Android/Sdk/
-export ANDROID_HOME
-
 # google autocomplete api
 # Modified from https://news.ycombinator.com/item?id=13065670
 g(){
@@ -163,5 +157,10 @@ curl -sS "https://suggestqueries.google.com/complete/search?client=firefox&q=$1"
 | sed -E 's,.*\[([^]]*)\].*,\1,;s,",,g' | tr , '\n'
 echo;
 }
+
+# export AWS_CONFIG_FILE=/home/sibi/fpco/.aws/config
+# export AWS_SHARED_CREDENTIALS_FILE=/home/sibi/fpco/.aws/credentials
+# export AWS_ENV_CACHE_DIR=/home/sibi/fpco/.aws-env
+# export GNUPGHOME=/home/sibi/fpco/.gnupg
 
 export XDG_DATA_HOME="$HOME/.local/share"
