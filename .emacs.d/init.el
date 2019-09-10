@@ -207,6 +207,7 @@
   :diminish projectile-mode "p"
   :init 
   (progn
+    (setq projectile-keymap-prefix (kbd "C-c p"))
     (projectile-global-mode))
   :config
   (progn
