@@ -31,6 +31,8 @@
 * libtinfo-dev
 * libxft-dev
 * libiw-dev
+* rust
+* ripgrep
 
 ## Debian/Ubuntu quirks
 

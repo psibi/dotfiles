@@ -10,6 +10,7 @@ import Data.Monoid (Endo)
 import Graphics.X11.ExtraTypes.XF86
 import System.Environment (getArgs)
 import System.IO
+import System.Process.Typed (proc, startProcess)
 import XMonad
 import XMonad.Actions.DynamicProjects
 import XMonad.Actions.Search
@@ -30,7 +31,6 @@ import qualified XMonad.StackSet as W
 import qualified XMonad.Util.Brightness as Bright
 import XMonad.Util.EZConfig (additionalKeys)
 import XMonad.Util.Run (spawnPipe)
-import System.Process.Typed (startProcess, proc)
 
 ------------------------------------------- Keybinings Refresher
 -- * mod-space: Rotate through available layout algorithms
@@ -88,11 +88,10 @@ sibiStartupHook = do
   Bright.setBrightness 1260
   setWMName "LG3D"
   when (null as) $ do
-    startProcess (proc myTerminal ["-e", "screen"])
-    startProcess (proc "emacs" ["--daemon"])
-    startProcess "google-chrome-stable"
-    startProcess "seahorse"
-    return ()
+    void $ startProcess (proc myTerminal ["-e", "screen"])
+    void $ (startProcess (proc "emacs" ["--daemon"]))
+    void $ startProcess "google-chrome-stable"
+    void $ startProcess "seahorse"
 
 main :: IO ()
 main = do
