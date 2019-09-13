@@ -525,6 +525,8 @@
 
 (setq inhibit-startup-message t)
 
+(setq browse-url-browser-function 'browse-url-chrome)
+
 ;; Refresher:
 ;; C-c r - Root file in HELM
 ;; C-c h o - Helm occur
