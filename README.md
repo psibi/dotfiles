@@ -12,7 +12,3 @@ Files
 * setup.sh - Devops script
 * .Xresource - X resource settings
 * emacsSync.hs - Emacs synchronization script
-
-
-
-Note:

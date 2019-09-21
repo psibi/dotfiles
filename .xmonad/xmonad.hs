@@ -25,11 +25,13 @@ import XMonad.Hooks.UrgencyHook
 import XMonad.Layout.Magnifier (MagnifyMsg(..))
 import XMonad.Layout.NoBorders
 import XMonad.Prompt
+import XMonad.Prompt.FuzzyMatch (fuzzyMatch)
 import XMonad.Prompt.Shell
 import XMonad.Prompt.Window
 import qualified XMonad.StackSet as W
 import qualified XMonad.Util.Brightness as Bright
 import XMonad.Util.EZConfig (additionalKeys)
+import XMonad.Util.NamedScratchpad
 import XMonad.Util.Run (spawnPipe)
 
 ------------------------------------------- Keybinings Refresher
@@ -100,7 +102,10 @@ main = do
     withUrgencyHook
       NoUrgencyHook
       def
-        { manageHook = manageDocks <+> myManageHook <+> manageHook def
+        { manageHook =
+            manageDocks <+>
+            myManageHook <+>
+            namedScratchpadManageHook sibiScratchPads <+> manageHook def
       -- No red border for media players
         , terminal = myTerminal
         , startupHook = sibiStartupHook
@@ -139,6 +144,8 @@ main = do
     , ((mod4Mask, xK_i), sendMessage Shrink)
     , ((mod4Mask, xK_f), sendMessage ToggleStruts)
     , ((mod4Mask, xK_slash), switchProjectPrompt sibiXPConfig)
+    , ( (mod4Mask .|. controlMask, xK_k)
+      , namedScratchpadAction sibiScratchPads "keepass")
     ]
 
 sibiXPConfig :: XPConfig
@@ -149,6 +156,7 @@ sibiXPConfig =
     , position = Top
     , font = "xft:Ubuntu Mono:size=12:bold:antialias=true"
     , completionKey = (controlMask, xK_i)
+    , searchPredicate = fuzzyMatch
     }
 
 greenSibiXPConfig :: XPConfig
@@ -218,7 +226,12 @@ searchEngineMap method =
   , ((0, xK_w), method wikipedia)
   , ((0, xK_v), method vocabulary)
   ]
+
+sibiScratchPads :: [NamedScratchpad]
+sibiScratchPads =
+  [NS "keepass" "keepassxc" (className =? "keepassxc") nonFloating]
 --
 --
+-- Use xprop for finding properties
 -- Reference:
 --  * https://wiki.haskell.org/Xmonad/Frequently_asked_questions#I_need_to_find_the_class_title_or_some_other_X_property_of_my_program

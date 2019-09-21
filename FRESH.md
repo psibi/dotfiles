@@ -33,6 +33,8 @@
 * libiw-dev
 * rust
 * ripgrep
+* hlint
+* hindent
 
 ## Debian/Ubuntu quirks
 
