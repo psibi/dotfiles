@@ -12,3 +12,9 @@ Files
 * setup.sh - Devops script
 * .Xresource - X resource settings
 * emacsSync.hs - Emacs synchronization script
+
+Related docs:
+
+* [Software dependencies](./FRESH.md)
+* [GPG Refresher](./GPG.md)
+
