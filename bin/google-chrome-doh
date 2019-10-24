@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Check using this https://1.1.1.1/help
+
+exec google-chrome --enable-features="dns-over-https<DoHTrial" --force-fieldtrials="DoHTrial/Group1" --force-fieldtrial-params="DoHTrial.Group1:server/https%3A%2F%2F1.1.1.1%2Fdns-query/method/POST"
