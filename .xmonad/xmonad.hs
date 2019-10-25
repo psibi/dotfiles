@@ -92,7 +92,7 @@ sibiStartupHook = do
   when (null as) $ do
     void $ startProcess (proc myTerminal ["-e", "screen"])
     void $ (startProcess (proc "emacs" ["--daemon"]))
-    void $ startProcess "google-chrome-stable"
+    void $ startProcess "google-chrome-doh"
     void $ startProcess "seahorse"
 
 main :: IO ()
