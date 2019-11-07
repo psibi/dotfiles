@@ -527,6 +527,10 @@
 
 (setq browse-url-browser-function 'browse-url-chrome)
 
+(use-package helm-flyspell
+  :ensure t
+  :config ())
+
 (use-package org-mode
   :ensure t
   :config 
