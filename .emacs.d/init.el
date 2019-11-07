@@ -527,6 +527,10 @@
 
 (setq browse-url-browser-function 'browse-url-chrome)
 
+(use-package org-mode
+  :ensure t
+  :config 
+  (org-clock-into-drawer "CLOCKING"))
 ;; Refresher:
 ;; C-c r - Root file in HELM
 ;; C-c h o - Helm occur
@@ -538,3 +542,4 @@
 ;; Recusively find & replace in text files
 ;; M-x find-name-dired
 ;; t, Q, query-replace-regexp
+

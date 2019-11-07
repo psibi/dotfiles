@@ -123,3 +123,10 @@
     (mapc 'kill-buffer 
           (delq (current-buffer) 
                 (remove-if-not 'buffer-file-name (buffer-list)))))
+
+(defun sibi-org-clock-remove ()
+  "Remove all the clock timers in the current buffer"
+  (interactive)
+  (save-excursion
+    (goto-char (point-min))
+    (delete-matching-lines ".*CLOCK.*")))
