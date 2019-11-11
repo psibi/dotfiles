@@ -162,5 +162,6 @@ echo;
 # export AWS_SHARED_CREDENTIALS_FILE=/home/sibi/fpco/.aws/credentials
 # export AWS_ENV_CACHE_DIR=/home/sibi/fpco/.aws-env
 # export GNUPGHOME=/home/sibi/fpco/.gnupg
+# export TF_CLI_CONFIG_FILE=/home/sibi/fpco/.terraformrc
 
 export XDG_DATA_HOME="$HOME/.local/share"

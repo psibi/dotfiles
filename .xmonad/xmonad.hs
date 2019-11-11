@@ -92,7 +92,7 @@ sibiStartupHook = do
   when (null as) $ do
     void $ startProcess (proc myTerminal ["-e", "screen"])
     void $ (startProcess (proc "emacs" ["--daemon"]))
-    void $ startProcess "google-chrome-stable"
+    void $ startProcess "google-chrome-doh"
     void $ startProcess "seahorse"
 
 main :: IO ()
@@ -229,7 +229,12 @@ searchEngineMap method =
 
 sibiScratchPads :: [NamedScratchpad]
 sibiScratchPads =
-  [NS "keepass" "keepassxc" (className =? "keepassxc") nonFloating]
+  [ NS
+      "keepass"
+      "keepassxc"
+      (className =? "keepassxc")
+      (customFloating $ W.RationalRect (1 / 6) (1 / 6) (2 / 3) (2 / 3))
+  ]
 --
 --
 -- Use xprop for finding properties

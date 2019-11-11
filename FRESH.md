@@ -79,3 +79,4 @@ Working configuration in Laptop (elric):
 * [Boot into shell](https://askubuntu.com/questions/148717/how-do-i-boot-into-the-console-and-then-launch-the-ubuntu-desktop-from-it?noredirect=1&lq=1)
 * [Bluetooth issue](https://askubuntu.com/a/1009114)
 * [gnome-control-center is empty](https://www.reddit.com/r/archlinux/comments/75zpfe/gnomecontrolcenter32611_is_empty/)
+* [Making the router as repeater](http://electrodisc.com/dd-wrt/atheros/repeater.htm)
