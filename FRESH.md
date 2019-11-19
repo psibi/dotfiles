@@ -58,4 +58,11 @@ stack install --flag xmobar:with_xft --flag xmobar:with_iwlib
 * [Non graphical boot with systemd](https://unix.stackexchange.com/a/164028/29539)
 * [Boot into shell](https://askubuntu.com/questions/148717/how-do-i-boot-into-the-console-and-then-launch-the-ubuntu-desktop-from-it?noredirect=1&lq=1)
 * [Bluetooth issue](https://askubuntu.com/a/1009114)
+
+## Wireless
+
 * [Making the router as repeater](http://electrodisc.com/dd-wrt/atheros/repeater.htm)
+* [Check Acess point types](https://unix.stackexchange.com/a/62271/29539)
+* [Real life speed of wireless networks](https://www.speedguide.net/faq/what-is-the-actual-real-life-speed-of-wireless-374)
+* [Interpreting Signal strength](https://www.speedguide.net/faq/what-is-the-actual-real-life-speed-of-wireless-374)
+* [Get station information](https://superuser.com/a/1146324/177053)
