@@ -26,17 +26,39 @@
     t
     ))
 
-(use-package intero
-  :ensure t
-  :init
-  (add-hook 'haskell-mode-hook 'intero-mode))
+;; (use-package intero
+;;   :ensure t
+;;   :init
+;;   (add-hook 'haskell-mode-hook 'intero-mode))
 
-(use-package hindent
+;; (use-package hindent
+;;   :ensure t
+;;   :init
+;;   (progn
+;;     (setq hindent-reformat-buffer-on-save t)
+;;     (add-hook 'haskell-mode-hook 'hindent-mode)))
+
+(use-package lsp-mode
   :ensure t
-  :init
+  :config
   (progn
-    (setq hindent-reformat-buffer-on-save t)
-    (add-hook 'haskell-mode-hook 'hindent-mode)))
+    (require 'lsp-clients)
+    (setq lsp-enable-snippet nil)))
+
+(use-package lsp-haskell
+  :ensure t
+  :config
+  (progn
+    (add-hook 'haskell-mode-hook #'lsp)
+    (setq lsp-haskell-process-path-hie "hie-wrapper")))
+
+(use-package lsp-ui 
+  :ensure t
+  :commands lsp-ui-mode)
+
+(use-package helm-lsp 
+  :ensure t
+  :commands helm-lsp-workspace-symbol)
 
 (defun haskell-lhs-clean (beginning end)
   (interactive "r")

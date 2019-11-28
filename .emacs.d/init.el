@@ -55,6 +55,7 @@
 (use-package rust-mode
   :ensure t
   :mode "\\.rs\\'"
+  :hook (rust-mode . lsp)
   :config
   (progn
    (add-to-list 'load-path "~/.cargo/bin")

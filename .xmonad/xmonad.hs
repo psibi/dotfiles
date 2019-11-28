@@ -232,11 +232,12 @@ sibiScratchPads =
   [ NS
       "keepass"
       "keepassxc"
-      (className =? "keepassxc")
+      (className =? "KeePassXC")
       (customFloating $ W.RationalRect (1 / 6) (1 / 6) (2 / 3) (2 / 3))
   ]
 --
 --
+-- WM_CLASS(STRING) = "keepassxc", "KeePassXC"
 -- Use xprop for finding properties
 -- Reference:
 --  * https://wiki.haskell.org/Xmonad/Frequently_asked_questions#I_need_to_find_the_class_title_or_some_other_X_property_of_my_program
