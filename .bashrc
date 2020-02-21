@@ -1,11 +1,9 @@
 #My own extra customization :)
 source ~/.alias
 
+source ~/.sibi-env
+
 PS1='\[\033[01;32m\]\u\[\033[01;34m\]::\[\033[01;31m\]\h \[\033[00;34m\]{ \[\033[01;34m\]\w \[\033[00;34m\]}\[\033[01;32m\]-> \[\033[00m\]'
-
-export ALTERNATE_EDITOR=emacs EDITOR=emacsclient VISUAL=emacsclient
-
-export PATH=${PATH}:~/bin:~/.cabal/bin:/home/sibi/Android/Sdk/platform-tools:/home/sibi/Android/Sdk/tools:/home/sibi/Downloads/jdk1.8.0_102/bin
 
 ## http://jeroenjanssens.com/2013/08/16/quickly-navigate-your-filesystem-from-the-command-line.html
 export MARKPATH=$HOME/.marks
@@ -131,24 +129,9 @@ shopt -s histappend
 
 PROMPT_COMMAND='history -a'
 
-function c2nix () {
-    cabalFile=`ls *.cabal | head -n 1`
-    fileName="${cabalFile%.*}"
-    nixFile="$fileName.nix"
-    cabal2nix . > $nixFile
-    defaultFile="{ nixpkgs ? import <nixpkgs> {}, compiler ? \"ghc7103\" }:\n
-                   nixpkgs.pkgs.haskell.packages.\${compiler}.callPackage ./$nixFile { }"
-    echo -e $defaultFile > default.nix
-    shellFile='{ nixpkgs ? import <nixpkgs> {}, compiler ? "ghc7103" }:\n
-               (import ./default.nix { inherit nixpkgs compiler; }).env'
-    echo -e $shellFile > shell.nix
-}
-
 if [ -x /home/sibi/.nix-profile/bin/cowsay -a -x /home/sibi/.nix-profile/bin/fortune ]; then
    fortune | cowsay
 fi
-
-export GPGKEY=BB557613
 
 # google autocomplete api
 # Modified from https://news.ycombinator.com/item?id=13065670
@@ -158,10 +141,4 @@ curl -sS "https://suggestqueries.google.com/complete/search?client=firefox&q=$1"
 echo;
 }
 
-# export AWS_CONFIG_FILE=/home/sibi/fpco/.aws/config
-# export AWS_SHARED_CREDENTIALS_FILE=/home/sibi/fpco/.aws/credentials
-# export AWS_ENV_CACHE_DIR=/home/sibi/fpco/.aws-env
-# export GNUPGHOME=/home/sibi/fpco/.gnupg
-# export TF_CLI_CONFIG_FILE=/home/sibi/fpco/.terraformrc
-
-export XDG_DATA_HOME="$HOME/.local/share"
+. /home/sibi/.nix-profile/etc/profile.d/nix.sh

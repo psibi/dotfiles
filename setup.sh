@@ -19,7 +19,7 @@ cp -v init.el ~/.emacs.d/init.el
 
 ln ./.bashrc ~/.sibi_bashrc
 echo "source ~/.sibi_bashrc" >> ~/.bashrc
-
+ln ./.sibi-env ~/.sibi-env
 # echo "Copying New Keyboard Bindings"
 # cp -v ./.Xmodmap ~/.Xmodmap
 

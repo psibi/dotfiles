@@ -72,6 +72,13 @@ Working configuration in Laptop (elric):
 * pavucontrol Profile: Analog Stereo Duplex
 * Google hangouts setting: default (for both mic and speaker)
 
+### Desktop machine
+
+pavucontrol settings
+
+* Input Device: Internal Microphone
+* 14% optimal
+
 ## Other links
 
 * [Non graphical boot with systemd](https://unix.stackexchange.com/a/164028/29539)
