@@ -1,40 +1,43 @@
 # Fresh System
 
-* fish
-* git
 * gcc
 * stack
 * emacs
-* xscreensaver
-* feh
 * slack
 * keybase
+* [emacs-everywhere](https://github.com/psibi/emacs-everywhere)
+* google-chrome
+* zoom 
+* [keepassxc](https://github.com/keepassxreboot/keepassxc)
+* tldr
+* pavucontrol
+* libasound2-dev
+* libx11-dev
+* libxrandr-dev (xorg.libXrandr)
+* libxss-dev
+* libtinfo-dev
+* libxft-dev (xorg.libxft)
+* libiw-dev (wirelesstools)
+* rust
+* hlint
+* hindent
+
+## Handled via nix
+
+* git
+* ripgrep
+* xscreensaver
+* feh
 * screen
 * rxvt-unicode
 * xfce4-screenshooter
 * xclip
 * xsel
 * xdotool
-* [emacs-everywhere](https://github.com/psibi/emacs-everywhere)
 * eboard
-* google-chrome
-* zoom
 * gnucash
-* [keepassxc](https://github.com/keepassxreboot/keepassxc)
 * unrar
-* tldr
-* pavucontrol
-* libasound2-dev
-* libx11-dev
-* libxrandr-dev
-* libxss-dev
-* libtinfo-dev
-* libxft-dev
-* libiw-dev
-* rust
-* ripgrep
-* hlint
-* hindent
+* fish
 
 ## Debian/Ubuntu quirks
 
