@@ -46,7 +46,7 @@
 
 (use-package auto-complete
   :ensure t
-  :diminish auto-complete-mode  
+  :diminish auto-complete-mode
   :init
   (progn
     (setq ac-ignore-case nil)
@@ -63,7 +63,7 @@
   ))
 
 (use-package paredit
-  :diminish paredit-mode  
+  :diminish paredit-mode
   :ensure t)
 (use-package google-this
   :ensure t)
@@ -80,6 +80,7 @@
 (load-file "~/.emacs.d/python.el")
 (load-file "~/.emacs.d/web.el")
 (load-file "~/.emacs.d/sibi-utils.el")
+(load-file "~/.emacs.d/org.el")
 ;; (load-file "~/.emacs.d/sml.el")
 
 (set-scroll-bar-mode 'nil)
@@ -130,7 +131,7 @@
    "Copy the region-rectangle instead of `kill-rectangle'."
    (interactive "r")
    (setq killed-rectangle (extract-rectangle start end)))
- 
+
 (global-set-key (kbd "C-x r M-w") 'my-copy-rectangle)
 
 ;; Just in case you are behind a proxy
@@ -155,7 +156,7 @@
   (progn
     (flyspell-mode 1))
   :config
-  (progn 
+  (progn
     (setq ispell-program-name "aspell")
     (setq ispell-list-command "--list") ;; run flyspell with aspell, not ispell
     ))
@@ -177,7 +178,7 @@
 
 (use-package magit
   :ensure t
-  :diminish magit-auto-revert-mode  
+  :diminish magit-auto-revert-mode
   :init
   (progn
     (global-set-key (kbd "C-c g") 'magit-status)
@@ -188,8 +189,8 @@
 ;; (use-package magithub
 ;;   :ensure t
 ;;   :after magit
-;;   :config 
-;;   (progn 
+;;   :config
+;;   (progn
 ;;     (magithub-feature-autoinject t)
 ;;     (magithub-ci-disable)
 ;;     ;; https://github.com/vermiculus/magithub/issues/75#issuecomment-284256987
@@ -206,7 +207,7 @@
 (use-package projectile
   :ensure t
   :diminish projectile-mode "p"
-  :init 
+  :init
   (progn
     (setq projectile-keymap-prefix (kbd "C-c p"))
     (projectile-global-mode))
@@ -358,7 +359,7 @@
   :defer t
   :config
   (progn
-    (defun complete-dollar () 
+    (defun complete-dollar ()
       "Auto completes dollar symbol"
       (interactive)
       (insert "$$")
@@ -370,7 +371,7 @@
 
 (use-package guide-key
   :ensure t
-  :diminish guide-key-mode  
+  :diminish guide-key-mode
   :init
   (progn
     (setq guide-key/guide-key-sequence '("C-x 4" "C-c p"))
@@ -429,7 +430,7 @@
 
 (use-package centered-cursor-mode
   :ensure t
-  :init 
+  :init
   (progn (require 'centered-cursor-mode)
          (global-centered-cursor-mode)))
 
@@ -477,7 +478,7 @@
   (shift-region -1))
 
 ;; Bind (shift-right) and (shift-left) function to your favorite keys. I use
-;; the following so that Ctrl-Shift-Right Arrow moves selected text one 
+;; the following so that Ctrl-Shift-Right Arrow moves selected text one
 ;; column to the right, Ctrl-Shift-Left Arrow moves selected text one
 ;; column to the left:
 
@@ -517,7 +518,7 @@
       kept-new-versions 20
       delete-old-versions t)
 (setq tramp-backup-directory-alist backup-directory-alist)
-(setq auto-save-file-name-transforms nil) 
+(setq auto-save-file-name-transforms nil)
 
 (global-auto-revert-mode 1)
 (blink-cursor-mode -1)
@@ -534,7 +535,7 @@
 
 (use-package org-mode
   :ensure t
-  :config 
+  :config
   (org-clock-into-drawer "CLOCKING"))
 ;; Refresher:
 ;; C-c r - Root file in HELM
@@ -547,4 +548,3 @@
 ;; Recusively find & replace in text files
 ;; M-x find-name-dired
 ;; t, Q, query-replace-regexp
-
