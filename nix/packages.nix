@@ -13,5 +13,6 @@ with import <nixpkgs> { config = import ./configuration.nix; }; {
   fish
   emacs
   unrar
+  pdftk
   git;
 }
