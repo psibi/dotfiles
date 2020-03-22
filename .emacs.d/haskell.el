@@ -3,9 +3,10 @@
 ;; Sometimes all your require is an inferior mode
 (use-package haskell-mode
   :ensure t
-  :config 
+  :init
+  (flymake-mode -1)                      ; Disable flymake mode
+  :config
   (progn
-    (add-hook 'haskell-mode-hook 'inf-haskell-mode)
     (add-hook 'haskell-mode-hook 'haskell-indent-mode)
     (add-hook 'literate-haskell-mode-hook 'sibi-literate-haskell-bindings)
     (customize-set-variable 'haskell-hoogle-url '"https://www.stackage.org/lts/hoogle?q=%s")))
@@ -26,29 +27,30 @@
     t
     ))
 
-;; (use-package intero
-;;   :ensure t
-;;   :init
-;;   (add-hook 'haskell-mode-hook 'intero-mode))
+(setq package-check-signature nil)
 
-;; (use-package hindent
-;;   :ensure t
-;;   :init
-;;   (progn
-;;     (setq hindent-reformat-buffer-on-save t)
-;;     (add-hook 'haskell-mode-hook 'hindent-mode)))
+;; optional if you want which-key integration
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode))
 
 (use-package lsp-mode
   :ensure t
+  :init (setq lsp-keymap-prefix "C-l")
+  :commands lsp
   :config
   (progn
     (require 'lsp-clients)
+    (setq lsp-idle-delay 0.500)
+    (setq lsp-prefer-flymake -1)
     (setq lsp-enable-snippet nil)))
 
 (use-package lsp-haskell
   :ensure t
   :config
   (progn
+    (flymake-mode -1)                      ; Disable flymake mode
     (add-hook 'haskell-mode-hook #'lsp)
     (setq lsp-haskell-process-path-hie "hie-wrapper")))
 
@@ -59,6 +61,26 @@
 (use-package helm-lsp 
   :ensure t
   :commands helm-lsp-workspace-symbol)
+
+(use-package hlint-refactor
+  :ensure t
+  :config
+  (progn
+    (flymake-mode -1)                      ; Disable flymake mode
+    (add-hook 'haskell-mode-hook 'hlint-refactor-mode)))
+
+;; (use-package intero
+;;   :ensure t
+;;   :init
+;;   (add-hook 'haskell-mode-hook 'intero-mode))
+
+(use-package hindent
+  :ensure t
+  :init
+  (progn
+    (flymake-mode -1)                      ; Disable flymake mode
+    (setq hindent-reformat-buffer-on-save f)
+    (add-hook 'haskell-mode-hook 'hindent-mode)))
 
 (defun haskell-lhs-clean (beginning end)
   (interactive "r")
@@ -137,3 +159,6 @@
 ;; (add-hook 'haskell-mode-hook 'turn-on-hi2)
 ;; (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 ;; (add-hook 'haskell-mode-hook 'turn-on-haskell-decl-scan)
+
+(setq flymake-run-in-place nil)
+(setq temporary-file-directory "~/.emacs.d/tmp/")
