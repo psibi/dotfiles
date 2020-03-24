@@ -1,7 +1,7 @@
 with import <nixpkgs> { config = import ./configuration.nix; }; {
   inherit 
   ripgrep 
-  xscreensaver
+  # xscreensaver
   rxvt_unicode-with-plugins
   feh
   screen
