@@ -14,5 +14,10 @@ with import <nixpkgs> { config = import ./configuration.nix; }; {
   emacs
   unrar
   pdftk
+  kazam
+  vlc
+  ffmpeg
+  bat
+  fd
   git;
 }
