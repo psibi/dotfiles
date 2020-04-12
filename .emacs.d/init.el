@@ -533,6 +533,14 @@
   :ensure t
   :config ())
 
+(use-package dumb-jump
+  :ensure t
+  :bind (("M-g o" . dumb-jump-go-other-window)
+         ("M-g b" . dumb-jump-back))
+  :config (progn
+            (setq dumb-jump-selector 'helm)
+            (setq dumb-jump-force-searcher 'rg)))
+
 (use-package org-mode
   :ensure t
   :config

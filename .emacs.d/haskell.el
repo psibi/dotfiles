@@ -3,8 +3,6 @@
 ;; Sometimes all your require is an inferior mode
 (use-package haskell-mode
   :ensure t
-  :init
-  (flymake-mode -1)                      ; Disable flymake mode
   :config
   (progn
     (add-hook 'haskell-mode-hook 'haskell-indent-mode)
@@ -43,7 +41,7 @@
   (progn
     (require 'lsp-clients)
     (setq lsp-idle-delay 0.500)
-    (setq lsp-prefer-flymake -1)
+    (setq lsp-prefer-flymake nil)
     (setq lsp-enable-snippet nil)))
 
 (use-package lsp-haskell
