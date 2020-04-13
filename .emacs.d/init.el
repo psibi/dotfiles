@@ -545,6 +545,14 @@
   :ensure t
   :config
   (org-clock-into-drawer "CLOCKING"))
+
+(use-package git-link
+  :ensure t)
+
+(use-package copy-as-format
+  :ensure t
+  :custom
+  (copy-as-format-default "slack"))
 ;; Refresher:
 ;; C-c r - Root file in HELM
 ;; C-c h o - Helm occur
