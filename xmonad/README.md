@@ -9,3 +9,5 @@ Software Needed
 * xfce4-screenshooter
 * screen
 * xclip
+
+nix-build --attr sibi-xmonad ./derivation.nix

@@ -10,5 +10,5 @@ pkgs: {
   };
     patches = [];
   });
+  sibi-xmonad = pkgs.haskellPackages.callPackage ../xmonad/default.nix {};
 }
-
