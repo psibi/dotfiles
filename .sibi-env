@@ -6,7 +6,7 @@ export GPGKEY=BB557613
 
 export XDG_DATA_HOME="$HOME/.local/share"
 
-export NIX_PATH="https://releases.nixos.org/nixos/19.09/nixos-19.09.2079.8731aaaf8b3/nixexprs.tar.xz"
+export NIX_PATH="nixpkgs=https://releases.nixos.org/nixos/19.09/nixos-19.09.2079.8731aaaf8b3/nixexprs.tar.xz"
 
 # export AWS_CONFIG_FILE=/home/sibi/fpco/.aws/config
 # export AWS_SHARED_CREDENTIALS_FILE=/home/sibi/fpco/.aws/credentials
