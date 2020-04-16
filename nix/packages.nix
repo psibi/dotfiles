@@ -1,4 +1,4 @@
-with import <nixpkgs> { config = import ./configuration.nix; }; {
+with import ./nixpkgs.nix; {
   inherit ripgrep
     # xscreensaver
     sibi-xmonad rxvt_unicode-with-plugins feh screen xclip xsel xdotool eboard
