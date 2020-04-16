@@ -553,6 +553,9 @@
   :ensure t
   :custom
   (copy-as-format-default "slack"))
+
+(use-package deadgrep
+  :ensure t)
 ;; Refresher:
 ;; C-c r - Root file in HELM
 ;; C-c h o - Helm occur
