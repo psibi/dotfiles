@@ -1,4 +1,4 @@
-# Devops script 
+# Devops script
 # Author: Sibi <sibi@psibi.in>
 
 # Do initial cleanup on existing system
@@ -12,10 +12,6 @@ ln .global_ignore ~/.global_ignore
 if [ ! -d ~/.emacs.d ]; then
     mkdir -v ~/.emacs.d
 fi
-
-[ -f ~/.emacs.d/init.el ] && rm ~/.emacs.d/init.el
-
-cp -v init.el ~/.emacs.d/init.el
 
 ln ./.bashrc ~/.sibi_bashrc
 echo "source ~/.sibi_bashrc" >> ~/.bashrc
@@ -41,7 +37,3 @@ chmod 700 ~/.ghci
 
 # https://nixmeal.wordpress.com/2012/07/24/copypaste-text-in-urxvt-rxvt-unicode-using-keyboard/
 # echo "Setting up urxvt clipboard config"
-
-
-
-
