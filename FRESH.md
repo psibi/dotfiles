@@ -2,16 +2,17 @@
 
 * gcc
 * stack
-* emacs
-* slack
 * keybase
 * [emacs-everywhere](https://github.com/psibi/emacs-everywhere)
-* google-chrome
 * zoom 
-* [keepassxc](https://github.com/keepassxreboot/keepassxc)
 * tldr
 * pavucontrol
+
+## Handled via nix
+
 * libasound2-dev
+* [keepassxc](https://github.com/keepassxreboot/keepassxc)
+* google-chrome
 * libx11-dev
 * libxrandr-dev (xorg.libXrandr)
 * libxss-dev
@@ -21,9 +22,6 @@
 * rust
 * hlint
 * hindent
-
-## Handled via nix
-
 * git
 * ripgrep
 * xscreensaver
@@ -32,12 +30,14 @@
 * rxvt-unicode
 * xfce4-screenshooter
 * xclip
+* emacs
 * xsel
 * xdotool
 * eboard
 * gnucash
 * unrar
 * fish
+* slack
 
 ## Debian/Ubuntu quirks
 
