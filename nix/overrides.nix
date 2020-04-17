@@ -16,7 +16,9 @@ pkgs: rec {
         haskellPackagesNew.callPackage ./overrides/xmonad-extras.nix { };
       xmonad-contrib =
         haskellPackagesNew.callPackage ./overrides/xmonad-contrib.nix { };
-
+      xmobar = let
+        pkg = haskellPackagesNew.callPackage ./overrides/xmobar.nix {};
+        in pkgs.haskell.lib.dontCheck pkg;
     };
   };
   # sibi-xmonad = ../xmonad/derivation.nix;
