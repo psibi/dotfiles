@@ -1,7 +1,15 @@
 # Installation
 
+Installs all the packages defined in `packages.nix`
+
 ```
 $ nix-env -i -f ./packages.nix
+```
+
+To install an individual package:
+
+``` shellsession
+nix-env -i --attr xmobar -f ./packages.nix
 ```
 
 # Generations
@@ -14,7 +22,7 @@ $ nix-env -G 3  # Switch to generation 3
 
 ## REPL
 
-``` markdown
+``` shellsession
 $ nix repl
 nix-repl> x = import <nixpkgs> {}
 nix-repl> x.pkgs.hello
@@ -22,3 +30,7 @@ nix-repl> x.pkgs.hello
 nix-repl> x.haskellPackages.xmonad-contrib
 «derivation /nix/store/vq4j99s88yxny8mg1s48pv2k0d1l51ma-xmonad-contrib-0.15.drv»
 ```
+
+## References
+
+* [Nix Expression language](https://nixos.wiki/wiki/Nix_Expression_Language)
