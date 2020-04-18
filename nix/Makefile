@@ -10,6 +10,14 @@ require-%:
 install:
 	nix-env -i -f ./packages.nix
 
+## List installed packages
+list-packages:
+	nix-env -q
+
+## Install specific package
+install-pkg: require-PKG
+	nix-env -i --attr ${PKG} -f ./packages.nix
+
 ## Uninstall package
 uninstall: require-PKG
 	nix-env -e ${PKG}
