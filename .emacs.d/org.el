@@ -24,3 +24,6 @@
   (org-journal-date-format "%A, %d %B %Y")
   (org-journal-skip-carryover-drawers (list "LOGBOOK"))
   (org-journal-file-type 'daily))
+
+(use-package ox-twbs
+  :ensure t)
