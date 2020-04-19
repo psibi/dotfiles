@@ -12,15 +12,8 @@ module Lib
   , spaceInfo
   ) where
 
-import Data.Conduit.Shell hiding (strip)
-import qualified Data.Conduit.Shell as S
-import Data.Conduit.Shell.Segments (strings, texts)
-import Data.List.Split (splitOn)
-import Data.String.Utils (strip)
-import Data.Bits.Utils (c2w8)
 import Data.Monoid ((<>))
 import Data.Char (isAlpha, isPunctuation, digitToInt)
-import qualified Data.Text.IO as TIO
 import Data.Text (Text, pack)
 import Data.Attoparsec.ByteString.Char8 hiding (take)
 import qualified Data.Attoparsec.ByteString.Char8 as A8
@@ -30,10 +23,6 @@ import System.Directory
        (doesDirectoryExist, getHomeDirectory, doesFileExist,
         createDirectoryIfMissing)
 import System.FilePath
-import Data.Conduit (await)
-import Data.Conduit.Binary (sourceFile)
-import qualified Data.Conduit.Binary as C
-import Control.Monad.Trans.Resource
 import qualified Data.ByteString as BS
 import qualified Data.ByteString.Char8 as B8
 import Control.Monad.IO.Class (liftIO)
