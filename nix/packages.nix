@@ -7,4 +7,5 @@ with import ./nixpkgs.nix;
     cabal2nix keepassxc google-chrome slack jl rustup hlint htop;
   hindent = haskellPackages.hindent;
   latex = texlive.combined.scheme-full;
+  sibi-utils = haskellPackages.callPackage ../utils/sibi-utils.nix {};
 }
