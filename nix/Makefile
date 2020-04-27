@@ -1,5 +1,14 @@
 .DEFAULT_GOAL = help
 
+# https://stackoverflow.com/a/14061796
+# If the first argument is "search"...
+ifeq (search,$(firstword $(MAKECMDGOALS)))
+  # use the rest as arguments for "search"
+  SEARCH_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
+  # ...and turn them into do-nothing targets
+  $(eval $(SEARCH_ARGS):;@:)
+endif
+
 require-%:
 	if [ "${${*}}" = "" ]; then \
 	        @echo "ERROR: Environment variable not set: \"$*\""; \
@@ -21,6 +30,10 @@ install-pkg: require-PKG
 ## Uninstall package
 uninstall: require-PKG
 	nix-env -e ${PKG}
+
+## Search for a package
+search:
+	nix search $(SEARCH_ARGS)
 
 ## Show help screen.
 help:

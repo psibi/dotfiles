@@ -32,7 +32,7 @@ import qualified XMonad.StackSet as W
 import qualified XMonad.Util.Brightness as Bright
 import XMonad.Util.EZConfig (additionalKeys)
 import XMonad.Util.NamedScratchpad
-import XMonad.Util.Run (spawnPipe)
+import XMonad.Util.Run (spawnPipeWithUtf8Encoding)
 
 ------------------------------------------- Keybinings Refresher
 -- * mod-space: Rotate through available layout algorithms
@@ -97,7 +97,7 @@ sibiStartupHook = do
 
 main :: IO ()
 main = do
-  xmproc <- spawnPipe "xmobar"
+  xmproc <- spawnPipeWithUtf8Encoding "xmobar /home/sibi/.xmobarrc"
   xmonad $
     withUrgencyHook
       NoUrgencyHook
