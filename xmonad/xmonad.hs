@@ -58,7 +58,7 @@ myWorkspaces :: [String]
 myWorkspaces = ["main", "web", "chat", "dev", "media", "float", "misc"]
 
 myTerminal :: String
-myTerminal = "urxvt"
+myTerminal = "alacritty"
 
 myManageHook :: XMonad.Query (Endo WindowSet)
 myManageHook =
@@ -90,9 +90,9 @@ sibiStartupHook = do
   Bright.setBrightness 1260
   setWMName "LG3D"
   when (null as) $ do
-    void $ startProcess (proc myTerminal ["-e", "screen"])
+    void $ startProcess (proc myTerminal [])
     void $ (startProcess (proc "emacs" ["--daemon"]))
-    void $ startProcess "google-chrome-doh"
+    void $ startProcess "google-chrome-stable"
     void $ startProcess "seahorse"
 
 main :: IO ()
