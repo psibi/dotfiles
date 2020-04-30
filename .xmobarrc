@@ -1,4 +1,4 @@
-Config { font = "xft:Ubuntu Mono:size=12:bold:antialias=true"
+Config { font = "xft:Ubuntu Mono:size=14:bold:antialias=true"
        , bgColor = "black"
        , fgColor = "grey"
        , position = TopW L 100
@@ -6,14 +6,14 @@ Config { font = "xft:Ubuntu Mono:size=12:bold:antialias=true"
        , hideOnStart = False
        , overrideRedirect = True
        , allDesktops = True
-       , commands = [ Run Weather "VOMM" ["-t","<station>: <tempC>C","-L","20","-H","50","--normal","green","--high","red","--low","lightblue"] 36000
+       , commands = [ Run Weather "VOBL" ["-t","Bangalore: <tempC>C","-L","20","-H","50","--normal","green","--high","red","--low","lightblue"] 36000
                     , Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
                     , Run Memory ["-t","Mem: <usedratio>%"] 10
                     , Run Swap [] 10
                     , Run Battery ["-t","<left>","-L","30","-H","70","--low", "red","--normal","yellow","--high","green"] 10
                     , Run Date "%a %b %_d %l:%M" "date" 10
                     , Run StdinReader
-                    , Run Wireless "wlp1s0" 
+                    , Run Wireless "wlp2s0" 
                           [ "-a", "l"
                           , "-w", "5"
                           , "-t", "<fc=#8888FF>WLAN:</fc> <essid> <quality>"
@@ -28,5 +28,5 @@ Config { font = "xft:Ubuntu Mono:size=12:bold:antialias=true"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %wlp1s0wi% | %eth0% %eth1% | %cpu% | %memory% * %swap% * %battery% | <fc=#ee9a00>%date%</fc> | %VOMM%"
+       , template = "%StdinReader% }{ %wlp2s0wi% | %eth0% %eth1% | %cpu% | %memory% * %swap% * %battery% | <fc=#ee9a00>%date%</fc> | %VOBL%"
        }
