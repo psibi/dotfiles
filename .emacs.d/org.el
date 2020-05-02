@@ -1,5 +1,4 @@
 (use-package org
-  :ensure t
   :bind (("C-c c" . org-capture))
   :custom
   (define-key global-map "\C-cl" 'org-store-link)

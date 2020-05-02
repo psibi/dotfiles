@@ -72,13 +72,13 @@
 ;;   :init
 ;;   (add-hook 'haskell-mode-hook 'intero-mode))
 
-(use-package hindent
-  :ensure t
-  :init
-  (progn
-    (flymake-mode -1)                      ; Disable flymake mode
-    (setq hindent-reformat-buffer-on-save f)
-    (add-hook 'haskell-mode-hook 'hindent-mode)))
+;; (use-package hindent
+;;   :ensure t
+;;   :init
+;;   (progn
+;;     (flymake-mode -1)                      ; Disable flymake mode
+;;     (setq hindent-reformat-buffer-on-save f)
+;;     (add-hook 'haskell-mode-hook 'hindent-mode)))
 
 (defun haskell-lhs-clean (beginning end)
   (interactive "r")

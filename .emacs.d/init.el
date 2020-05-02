@@ -7,7 +7,7 @@
 (tool-bar-mode -1)
 
 (setq package-archives
-      '(("gnu"         . "http://elpa.gnu.org/packages/")
+      '(("gnu"   . "http://elpa.gnu.org/packages/")
         ("melpa" . "https://melpa.org/packages/")))
 
 (package-initialize)
@@ -178,13 +178,11 @@
 
 (use-package magit
   :ensure t
-  :diminish magit-auto-revert-mode
   :init
-  (progn
-    (global-set-key (kbd "C-c g") 'magit-status)
-    (setq magit-auto-revert-mode 1)
-    (setq magit-commit-arguments (quote ("--gpg-sign=BB557613")))
-    (setq magit-last-seen-setup-instructions "1.4.0")))
+  :bind (("C-c g" . 'magit-status))
+  :custom
+  (magit-auto-revert-mode 1)
+  (magit-commit-arguments (quote ("--gpg-sign=BB557613"))))
 
 ;; (use-package magithub
 ;;   :ensure t
@@ -541,9 +539,9 @@
             (setq dumb-jump-selector 'helm)
             (setq dumb-jump-force-searcher 'rg)))
 
-(use-package org-mode
+(use-package org
   :ensure t
-  :config
+  :custom
   (org-clock-into-drawer "CLOCKING"))
 
 (use-package git-link
@@ -570,3 +568,25 @@
 ;; Recusively find & replace in text files
 ;; M-x find-name-dired
 ;; t, Q, query-replace-regexp
+
+(add-hook 'after-init-hook 'org-agenda-list)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (org-mode yaml-mode window-numbering which-key web-mode use-package tldr terraform-mode spacemacs-theme spaceline selected rg rego-mode prettier-js paredit package-lint ox-twbs org-journal nyan-mode nix-mode mode-icons magit lsp-ui lsp-haskell keychain-environment json-mode jedi idris-mode hlint-refactor hindent helm-swoop helm-projectile helm-lsp helm-flyspell guide-key google-this git-link git-gutter flycheck-rust flycheck-pos-tip expand-region emms editorconfig dumb-jump dhall-mode deadgrep copy-as-format centered-cursor-mode cargo aggressive-indent ace-window ace-jump-mode))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+;; (face-attribute 'default :font)
+
+
+
+(set-face-attribute 'default nil :height 110)
