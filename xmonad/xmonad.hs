@@ -1,6 +1,7 @@
 {-# LANGUAGE RankNTypes #-}
 {-# LANGUAGE KindSignatures #-}
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE NamedFieldPuns #-}
 
 import Control.Arrow (first)
 import Control.Monad
@@ -44,7 +45,7 @@ import XMonad.Util.Run (spawnPipeWithUtf8Encoding)
 -- * mod-m : Focus on the master window
 -- * mod-j : Focus on the next window
 -- * mod-k : Focus on the previous window
--- * mod-f : Toggle fullscreen (xmobar presence)
+-- * mod-f: Toggle fullscreen (xmobar presence)
 -- * mod-o : Go to the specific application in that workspace
 -- * mod-b : Bring the specific application from that workspace
 -- * mod-shift-j: Swap the focused window with the next window
@@ -95,58 +96,63 @@ sibiStartupHook = do
     void $ startProcess "google-chrome-stable"
     void $ startProcess "seahorse"
 
-main :: IO ()
-main = do
-  xmproc <- spawnPipeWithUtf8Encoding "xmobar /home/sibi/.xmobarrc"
-  xmonad $
-    withUrgencyHook
-      NoUrgencyHook
-      def
-        { manageHook =
-            manageDocks <+>
-            myManageHook <+>
-            namedScratchpadManageHook sibiScratchPads <+> manageHook def
+xmonadConfig =
+  withUrgencyHook NoUrgencyHook $
+  def
+    { manageHook =
+        manageDocks <+>
+        myManageHook <+>
+        namedScratchpadManageHook sibiScratchPads <+> manageHook def
       -- No red border for media players
-        , terminal = myTerminal
-        , startupHook = sibiStartupHook
-        , layoutHook = smartBorders $ avoidStruts $ layoutHook def
-        , logHook =
-            dynamicLogWithPP
-              xmobarPP
-                { ppOutput = hPutStrLn xmproc
-                , ppTitle = xmobarColor "green" "" . shorten 50
-                , ppUrgent = xmobarColor "yellow" "red" . xmobarStrip
-                }
-        , handleEventHook =
-            handleEventHook def <+> fullscreenEventHook <+> docksEventHook
-        , modMask = mod4Mask -- Rebind Mod to the Windows key
-        , workspaces = myWorkspaces
-        } `additionalKeys`
-    [ ((mod4Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
-    , ((0, xK_Print), spawn "xfce4-screenshooter")
-    , ((mod4Mask, xK_x), spawn "xkill")
-    , ((mod4Mask, xK_c), kill)
-    , ((mod4Mask, xK_p), shellPrompt sibiXPConfig)
-    , ((mod4Mask, xK_h), spawn "/home/sibi/.emacs_everywhere/bin/run")
-    , ((0, xF86XK_MonBrightnessUp), Bright.increase)
-    , ((0, xF86XK_MonBrightnessDown), Bright.decrease)
-    , ( (mod4Mask, xK_s)
-      , submap $ searchEngineMap $ promptSearch greenSibiXPConfig)
-    , ((mod4Mask, xK_f), submap $ searchEngineMap $ selectSearch)
-    , ((mod4Mask, xK_g), spawn "unity-control-center")
-    , ((0, xF86XK_AudioRaiseVolume), raiseVolume 2 >> return ())
-    , ((0, xF86XK_AudioLowerVolume), lowerVolume 2 >> return ())
-    , ((0, xF86XK_AudioMute), toggleMute >> return ())
-    , ((mod4Mask, xK_b), windowPrompt sibiXPConfig Bring allApplications)
-    , ((mod4Mask, xK_o), windowPrompt sibiXPConfig Goto allApplications)
-    , ((mod4Mask, xK_m), sendMessage MagnifyMore)
-    , ((mod4Mask .|. shiftMask, xK_m), sendMessage MagnifyLess)
-    , ((mod4Mask, xK_i), sendMessage Shrink)
-    , ((mod4Mask, xK_f), sendMessage ToggleStruts)
-    , ((mod4Mask, xK_slash), switchProjectPrompt sibiXPConfig)
-    , ( (mod4Mask .|. controlMask, xK_k)
-      , namedScratchpadAction sibiScratchPads "keepass")
-    ]
+    , terminal = myTerminal
+    , startupHook = sibiStartupHook
+    , layoutHook = smartBorders $ avoidStruts $ layoutHook def
+    , handleEventHook =
+        handleEventHook def <+> fullscreenEventHook <+> docksEventHook
+    , modMask = mod4Mask -- Rebind Mod to the Windows key
+    , workspaces = myWorkspaces
+    } `additionalKeys`
+  keybindings
+
+keybindings :: [((KeyMask, KeySym), X ())]
+keybindings =
+  [ ((mod4Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
+  , ((0, xK_Print), spawn "xfce4-screenshooter")
+  , ((mod4Mask, xK_x), spawn "xkill")
+  , ((mod4Mask, xK_c), kill)
+  , ((mod4Mask, xK_p), shellPrompt sibiXPConfig)
+  , ((mod4Mask, xK_h), spawn "/home/sibi/.emacs_everywhere/bin/run")
+  , ((0, xF86XK_MonBrightnessUp), Bright.increase)
+  , ((0, xF86XK_MonBrightnessDown), Bright.decrease)
+  , ( (mod4Mask, xK_s)
+    , submap $ searchEngineMap $ promptSearch greenSibiXPConfig)
+  , ((mod4Mask, xK_f), submap $ searchEngineMap $ selectSearch)
+  , ((mod4Mask, xK_g), spawn "unity-control-center")
+  , ((0, xF86XK_AudioRaiseVolume), raiseVolume 2 >> return ())
+  , ((0, xF86XK_AudioLowerVolume), lowerVolume 2 >> return ())
+  , ((0, xF86XK_AudioMute), toggleMute >> return ())
+  , ((mod4Mask, xK_b), windowPrompt sibiXPConfig Bring allApplications)
+  , ((mod4Mask, xK_o), windowPrompt sibiXPConfig Goto allApplications)
+  , ((mod4Mask, xK_m), sendMessage MagnifyMore)
+  , ((mod4Mask .|. shiftMask, xK_m), sendMessage MagnifyLess)
+  , ((mod4Mask, xK_i), sendMessage Shrink)
+  , ((mod4Mask, xK_f), sendMessage ToggleStruts)
+  , ((mod4Mask, xK_slash), switchProjectPrompt sibiXPConfig)
+  , ( (mod4Mask .|. controlMask, xK_k)
+    , namedScratchpadAction sibiScratchPads "keepass")
+  ]
+
+main :: IO ()
+main
+  -- xmproc <- spawnPipeWithUtf8Encoding "xmobar /home/sibi/.xmobarrc"
+ = do
+  let xmobar =
+        statusBar
+          "xmobar"
+          def
+          (\XConfig {modMask} -> (modMask, xK_b))
+          xmonadConfig
+  xmonad =<< xmobar
 
 sibiXPConfig :: XPConfig
 sibiXPConfig =

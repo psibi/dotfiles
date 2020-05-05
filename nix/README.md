@@ -12,6 +12,12 @@ To install an individual package:
 nix-env -i --attr xmobar -f ./packages.nix
 ```
 
+To go into the environment of an Haskell package:
+
+``` shellsession
+nix-shell --attr env ../xmonad/derivation.nix
+```
+
 # Generations
 
 ``` shellsession
