@@ -1,5 +1,3 @@
 let
   pkgs = import ../nix/nixpkgs.nix;
-in {
-  sibi-xmonad = pkgs.haskellPackages.callPackage ./default.nix {};
-}
+in pkgs.haskellPackages.callPackage ./default.nix {}
