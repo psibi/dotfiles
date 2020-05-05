@@ -550,6 +550,9 @@
   :custom
   (org-clock-into-drawer "CLOCKING"))
 
+(use-package nix-mode
+  :ensure t)
+
 (use-package git-link
   :ensure t)
 
