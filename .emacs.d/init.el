@@ -26,6 +26,12 @@
 (use-package recentf)
 (use-package tramp)
 
+(use-package yaml-mode
+  :ensure t)
+
+(use-package terraform-mode
+  :ensure t)
+
 (use-package spacemacs-theme
   :ensure t
   :defer t
@@ -205,13 +211,13 @@
 (use-package projectile
   :ensure t
   :diminish projectile-mode "p"
+  :bind-keymap
+  ("C-c p" . projectile-command-map)
   :init
   (progn
-    (setq projectile-keymap-prefix (kbd "C-c p"))
     (projectile-global-mode))
-  :config
-  (progn
-    (setq projectile-enable-caching t)))
+  :custom
+  (projectile-enable-caching t))
 
 ;;Helm related config
 (use-package helm

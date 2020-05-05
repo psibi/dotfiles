@@ -21,7 +21,7 @@
   (org-journal-file-format "%Y-%m-%d.org")
   (org-journal-dir "~/github/timebox/2020/")
   (org-journal-date-format "%A, %d %B %Y")
-  (org-journal-skip-carryover-drawers (list "LOGBOOK"))
+  (org-journal-skip-carryover-drawers (list "CLOCKING"))
   (org-journal-file-type 'daily))
 
 (use-package ox-twbs

@@ -37,6 +37,7 @@
   :ensure t
   :init (setq lsp-keymap-prefix "C-l")
   :commands lsp
+  :hook (haskell-mode . lsp)
   :config
   (progn
     (require 'lsp-clients)
@@ -46,11 +47,8 @@
 
 (use-package lsp-haskell
   :ensure t
-  :config
-  (progn
-    (flymake-mode -1)                      ; Disable flymake mode
-    (add-hook 'haskell-mode-hook #'lsp)
-    (setq lsp-haskell-process-path-hie "hie-wrapper")))
+  :custom
+  (lsp-haskell-process-path-hie "hie-wrapper"))
 
 (use-package lsp-ui 
   :ensure t
@@ -63,9 +61,7 @@
 (use-package hlint-refactor
   :ensure t
   :config
-  (progn
-    (flymake-mode -1)                      ; Disable flymake mode
-    (add-hook 'haskell-mode-hook 'hlint-refactor-mode)))
+  :hook (haskell-mode . hlint-refactor-mode))
 
 ;; (use-package intero
 ;;   :ensure t
