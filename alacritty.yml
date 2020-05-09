@@ -116,6 +116,7 @@ font:
 
   # Point size
   size: 14.0
+  # Point size 10.0 for laptop
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.

@@ -596,6 +596,10 @@
 
 ;; (face-attribute 'default :font)
 
-
+(use-package rego-mode
+  :ensure t
+  :custom
+  (rego-repl-executable "/home/sibi/bin/opa")
+  (regg-opa-command "/home/sibi/bin/opa"))
 
 (set-face-attribute 'default nil :height 110)
