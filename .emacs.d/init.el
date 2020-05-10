@@ -42,13 +42,14 @@
     ;; Exploits a bug to get a better modeline
     ))
 
-(use-package server
-  :ensure t
-  :init
-  (server-mode 1)
-  :config
-  (unless (server-running-p)
-    (server-start)))
+;; This is not needed as we start the daemon via xmonad itself
+;; (use-package server
+;;   :ensure t
+;;   :init
+;;   (server-mode 1)
+;;   :config
+;;   (unless (server-running-p)
+;;     (server-start)))
 
 (use-package auto-complete
   :ensure t
