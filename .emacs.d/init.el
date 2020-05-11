@@ -424,10 +424,15 @@
   (progn
     (electric-pair-mode 1)))
 
-(use-package mode-icons
-  :ensure t
-  :init
-  (mode-icons-mode))
+;; (use-package all-the-icons
+;;   :ensure t
+;;   :init
+;;   (all-the-icons-icon-for-mode))
+
+;; (use-package mode-icons
+;;   :ensure t
+;;   :config
+;;   (mode-icons-mode))
 
 (use-package expand-region
   :ensure t)
@@ -586,7 +591,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (org-mode yaml-mode window-numbering which-key web-mode use-package tldr terraform-mode spacemacs-theme spaceline selected rg rego-mode prettier-js paredit package-lint ox-twbs org-journal nyan-mode nix-mode mode-icons magit lsp-ui lsp-haskell keychain-environment json-mode jedi idris-mode hlint-refactor hindent helm-swoop helm-projectile helm-lsp helm-flyspell guide-key google-this git-link git-gutter flycheck-rust flycheck-pos-tip expand-region emms editorconfig dumb-jump dhall-mode deadgrep copy-as-format centered-cursor-mode cargo aggressive-indent ace-window ace-jump-mode))))
+    (all-the-icons dockerfile-mode org-mode yaml-mode window-numbering which-key web-mode use-package tldr terraform-mode spacemacs-theme spaceline selected rg rego-mode prettier-js paredit package-lint ox-twbs org-journal nyan-mode nix-mode magit lsp-ui lsp-haskell keychain-environment json-mode jedi idris-mode hlint-refactor hindent helm-swoop helm-projectile helm-lsp helm-flyspell guide-key google-this git-link git-gutter flycheck-rust flycheck-pos-tip expand-region emms editorconfig dumb-jump dhall-mode deadgrep copy-as-format centered-cursor-mode cargo aggressive-indent ace-window ace-jump-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
