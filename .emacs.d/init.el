@@ -42,13 +42,14 @@
     ;; Exploits a bug to get a better modeline
     ))
 
-(use-package server
-  :ensure t
-  :init
-  (server-mode 1)
-  :config
-  (unless (server-running-p)
-    (server-start)))
+;; This is not needed as we start the daemon via xmonad itself
+;; (use-package server
+;;   :ensure t
+;;   :init
+;;   (server-mode 1)
+;;   :config
+;;   (unless (server-running-p)
+;;     (server-start)))
 
 (use-package auto-complete
   :ensure t
@@ -601,6 +602,10 @@
 
 ;; (face-attribute 'default :font)
 
-
+(use-package rego-mode
+  :ensure t
+  :custom
+  (rego-repl-executable "/home/sibi/bin/opa")
+  (regg-opa-command "/home/sibi/bin/opa"))
 
 (set-face-attribute 'default nil :height 110)
