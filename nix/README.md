@@ -39,4 +39,5 @@ nix-repl> x.haskellPackages.xmonad-contrib
 
 ## References
 
+* [Introduction to Nix family](https://ebzzry.io/en/nix/)
 * [Nix Expression language](https://nixos.wiki/wiki/Nix_Expression_Language)
