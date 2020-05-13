@@ -10,9 +10,9 @@
   (org-capture-templates '(("t" "Personal Task"  entry
                             (file org-default-notes-file)
                             "* TODO %?" :empty-lines 1)
-                           ("s" "Standup" entry
-                            (file+headline "~/github/timebox/status.org" "Greatcall")
-                            "** %k \n %?" :empty-lines 1))))
+                           ("s" "Open Source task" entry
+                            (file+headline "~/github/timebox/oss.org" "Others")
+                            "** TODO %?" :empty-lines 1))))
 
 (use-package org-journal
   :ensure t

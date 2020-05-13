@@ -51,6 +51,9 @@
 ;;   (unless (server-running-p)
 ;;     (server-start)))
 
+(use-package markdown-toc
+  :ensure t)
+
 (use-package auto-complete
   :ensure t
   :diminish auto-complete-mode
@@ -128,7 +131,7 @@
 (global-set-key "\C-c\C-k" 'kill-region)
 
 ;; Rebind Enter
-(define-key global-map (kbd "C-c j") 'newline-and-indent)
+;; (define-key global-map (kbd "C-c j") 'newline-and-indent)
 
 (global-set-key (kbd "C-x m") 'shell)
 
