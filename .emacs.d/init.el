@@ -38,7 +38,7 @@
   :init
   (progn
     (load-theme 'spacemacs-dark t)
-    (load-theme 'wheatgrass t)
+    ;; (load-theme 'wheatgrass t)
     ;; Exploits a bug to get a better modeline
     ))
 
@@ -391,14 +391,12 @@
   (progn
     (window-numbering-mode t)))
 
-(use-package spaceline
-  :ensure t
-  :init
-  (progn
-    (require 'spaceline-config)
-    (setq powerline-height '18)
-    (setq powerline-default-separator 'wave)
-    (spaceline-spacemacs-theme)))
+;; (use-package spaceline
+;;   :ensure t
+;;   :init
+;;   (progn
+;;     (require 'spaceline-config)
+;;     (spaceline-emacs-theme)))
 
 (use-package ace-jump-mode
   :ensure t
@@ -428,15 +426,18 @@
   (progn
     (electric-pair-mode 1)))
 
-;; (use-package all-the-icons
-;;   :ensure t
-;;   :init
-;;   (all-the-icons-icon-for-mode))
+;; Make sure to call (all-the-icons-install-fonts) once
+(use-package all-the-icons
+  :ensure t)
+
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1))
 
 ;; (use-package mode-icons
 ;;   :ensure t
-;;   :config
-;;   (mode-icons-mode))
+;;   :init
+;;   (when (display-graphic-p) (mode-icons-mode)))
 
 (use-package expand-region
   :ensure t)
