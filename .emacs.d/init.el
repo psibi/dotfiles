@@ -588,6 +588,8 @@
 ;; t, Q, query-replace-regexp
 
 (add-hook 'after-init-hook 'org-agenda-list)
+(setq initial-buffer-choice '(lambda () (get-buffer org-agenda-buffer-name)))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
