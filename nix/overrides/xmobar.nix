@@ -4,15 +4,23 @@
 , libXrandr, libXrender, mtl, old-locale, parsec, parsec-numbers
 , process, regex-compat, stdenv, stm, temporary, time
 , timezone-olson, timezone-series, transformers, unix, utf8-string
-, wirelesstools, X11, X11-xft
+, wirelesstools, X11, X11-xft, fetchgit
 }:
 mkDerivation {
   pname = "xmobar";
   version = "0.33";
-  sha256 = "1hr3qqykc5givcpcwrr9f2y920jmiinmxm5mcy6qgpgymgwqb618";
+  src = fetchgit {
+    url = "https://github.com/jaor/xmobar";
+    sha256 = "0xmzm7dr2ag435x8rmykg4zlywg9vrpkgndgvw1ndr9zdzm3pfh1";
+    rev = "b15bb7c20b11a9f148c4757caba7167ee66492fc";
+    fetchSubmodules = true;
+  };  
   configureFlags = [
-    "-fwith_iwlib" "-fwith_rtsopts" "-fwith_threaded" "-fwith_utf8"
-    "-fwith_weather" "-fwith_xft"
+    "-fwith_alsa" "-fwith_conduit" "-fwith_datezone"
+    "-fwith_iwlib" "-fwith_rtsopts" "-fwith_threaded" "-fwith_utf8" 
+    "-fwith_weather" "-fwith_xft" "-fwith_xpm"
+    # "-fwith_dbus" "-fwith_inotify" "-fwith_mpd" "-fwith_mpris"
+    # "-fwith_uvmeter"
   ];
   isLibrary = true;
   isExecutable = true;

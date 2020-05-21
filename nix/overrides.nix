@@ -21,7 +21,9 @@ pkgs: rec {
         in pkgs.haskell.lib.dontCheck pkg;
     };
   };
-  # sibi-xmonad = ../xmonad/derivation.nix;
+  sibi-xmobar = haskellPackages.callPackage ../xmobar/default.nix {
+    xmobar = haskellPackages.xmobar;
+  };
   sibi-xmonad = haskellPackages.callPackage ../xmonad/default.nix {
     xmonad-extras = haskellPackages.xmonad-extras;
     xmonad-contrib = haskellPackages.xmonad-contrib;

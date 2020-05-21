@@ -33,7 +33,7 @@ import qualified XMonad.StackSet as W
 import qualified XMonad.Util.Brightness as Bright
 import XMonad.Util.EZConfig (additionalKeys)
 import XMonad.Util.NamedScratchpad
-import XMonad.Util.Run (spawnPipeWithUtf8Encoding)
+-- import XMonad.Util.Run (spawnPipeWithUtf8Encoding)
 
 ------------------------------------------- Keybinings Refresher
 -- * mod-space: Rotate through available layout algorithms
@@ -148,7 +148,7 @@ main
  = do
   let xmobar =
         statusBar
-          "xmobar"
+          "sibi-xmobar"
           def
           (\XConfig {modMask} -> (modMask, xK_b))
           xmonadConfig
