@@ -42,6 +42,15 @@
     ;; Exploits a bug to get a better modeline
     ))
 
+;; (use-package doom-themes
+;;   :ensure t
+;;   :custom
+;;   (doom-themes-enable-bold t)
+;;   (doom-themes-enable-italic t)
+;;   :init (progn
+;;           (load-theme 'doom-one t)
+;;           (doom-themes-org-config)))
+
 ;; This is not needed as we start the daemon via xmonad itself
 ;; (use-package server
 ;;   :ensure t
@@ -432,7 +441,9 @@
 
 (use-package doom-modeline
   :ensure t
-  :init (doom-modeline-mode 1))
+  :init (doom-modeline-mode 1)
+  :custom
+  (doom-modeline-icon (display-graphic-p)))
 
 ;; (use-package mode-icons
 ;;   :ensure t
