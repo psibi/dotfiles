@@ -75,10 +75,10 @@ xmobarTemplate machine = "%StdinReader% }{" ++
           concatMap inSquareBrackets
               [
                "%top%"
+              , "%cpu%"
               , "%alsa:default:Master%"
               , "%" ++ stationID ++ "%"
               , "%coretemp%"
-              , "%cpu%"
               , "%" <> (wirelessId machine) <> "wi%"
               , "%disku%"
               , if machine == Desktop then mempty else "%battery%"
