@@ -77,6 +77,7 @@ xmobarTemplate machine = "%StdinReader% }{" ++
               , "%" ++ stationID ++ "%"
               , "%coretemp%"
               , "%cpu%"
+              , "%top%"
               , "%" <> (wirelessId machine) <> "wi%"
               , "%disku%"
               , if machine == Desktop then mempty else "%battery%"
@@ -131,7 +132,7 @@ stationID = "VOBL"
 
 wirelessId :: Machine -> String
 wirelessId Desktop = "wlp0s20f3"
-wirelessId Laptop = "wlp0s20f3"
+wirelessId Laptop = "wlp2s0"
 
 machineCommands :: Machine -> [Runnable]
 machineCommands Desktop = [wirelessCommand Desktop]
@@ -158,23 +159,24 @@ myCommands machine = machineCommands machine ++
         , ("mostly cloudy"         , inAltIconFont "🌧")
         , ("considerable cloudines", inAltIconFont "☔")
         ]
-          -- rh: relative humidity
         [ "--template", foldl1' (\a b -> wrap a b (magenta " : "))
-              ["<weather>", "<skyConditionS>", "<tempC>°C", "<rh>%"]
+              ["<weather>", "<skyConditionS>", "<tempC>°C"]
         -- Weather specific options.
         , "--"
-        , "--weathers", "nml"  -- Display this when <weather> is empty.
+        , "--weathers", "BLR"  -- Display this when <weather> is empty.
         ] (minutes 30)
 
     -- Cpu core temperature monitor.
     , Run $ CoreTemp
-        [ "--template", "Tea: <core0>°C  <core1>°C  <core2>°C  <core3>°C"
+        [ "--template", "<core0>°C <core1>°C <core2>°C <core3>°C"
         , "--Low"     , "45"      -- unit: °C
         , "--High"    , "65"      -- unit: °C
         , "--low"     , colorFg
         , "--normal"  , colorFg
         , "--high"    , colorRed
         ] (seconds 10)
+
+    , Run $ TopProc [] (seconds 10)
 
     -- Le current year.
     , Run $ Date ("%a %b %d-%m-%Y " ++ cyan "%l:%M") "date" (seconds 10)

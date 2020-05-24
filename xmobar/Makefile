@@ -10,6 +10,10 @@ generate:
 build:
 	nix-build ./derivation.nix
 
+## Install package
+install:
+	nix-env -i --attr sibi-xmobar -f ../nix/packages.nix
+
 ## Show help screen.
 help:
 	@echo "Please use \`make <target>' where <target> is one of\n"
