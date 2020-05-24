@@ -74,11 +74,11 @@ xmobarTemplate :: Machine -> String
 xmobarTemplate machine = "%StdinReader% }{" ++
           concatMap inSquareBrackets
               [
-               "%cpu%"
+               "%top%"
               , "%alsa:default:Master%"
               , "%" ++ stationID ++ "%"
               , "%coretemp%"
-              , "%top%"
+              , "%cpu%"
               , "%" <> (wirelessId machine) <> "wi%"
               , "%disku%"
               , if machine == Desktop then mempty else "%battery%"
