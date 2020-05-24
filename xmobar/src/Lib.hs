@@ -73,10 +73,11 @@ inSquareBrackets = wrap (xmobarColor "#808080" "" "[")
 xmobarTemplate :: Machine -> String
 xmobarTemplate machine = "%StdinReader% }{" ++
           concatMap inSquareBrackets
-              [ "%alsa:default:Master%"
+              [
+               "%cpu%"
+              , "%alsa:default:Master%"
               , "%" ++ stationID ++ "%"
               , "%coretemp%"
-              , "%cpu%"
               , "%top%"
               , "%" <> (wirelessId machine) <> "wi%"
               , "%disku%"
