@@ -177,7 +177,7 @@ myCommands machine = machineCommands machine ++
         ] (seconds 10)
 
     -- Le current year.
-    , Run $ Date ("%a %b %d-%m-%Y " ++ cyan "%H:%M") "date" (seconds 10)
+    , Run $ Date ("%a %b %d-%m-%Y " ++ cyan "%l:%M") "date" (seconds 10)
 
     -- Volume, with an event based refresh (via alsactl).
     -- 08dec2019 +slot+ event based
