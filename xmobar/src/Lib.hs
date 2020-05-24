@@ -4,11 +4,16 @@ module Lib
 
 import Xmobar
 import Data.List (foldl1')
+import Network.HostName (getHostName)
 
 data Machine = Desktop | Laptop deriving (Eq)
 
 guessMachine :: IO Machine
-guessMachine = pure Desktop
+guessMachine = do
+  hostname <- getHostName
+  case hostname of
+    "elric" -> pure Laptop
+    _ -> pure Desktop
 
 -- | The configuration.
 config :: Machine -> Config
@@ -71,6 +76,7 @@ xmobarTemplate machine = "%StdinReader% }{" ++
               [ "%alsa:default:Master%"
               , "%" ++ stationID ++ "%"
               , "%coretemp%"
+              , "%cpu%"
               , "%" <> (wirelessId machine) <> "wi%"
               , "%disku%"
               , if machine == Desktop then mempty else "%battery%"
@@ -197,6 +203,7 @@ myCommands machine = machineCommands machine ++
     -- Displays any text received by xmobar on its standard input.
     -- Also strips actions from the text received.
     , Run StdinReader
+    , Run $ Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
     ]
 
 -- | Convenience functions
