@@ -10,9 +10,9 @@ mkDerivation {
   pname = "xmobar";
   version = "0.33";
   src = fetchgit {
-    url = "https://github.com/jaor/xmobar";
-    sha256 = "0xmzm7dr2ag435x8rmykg4zlywg9vrpkgndgvw1ndr9zdzm3pfh1";
-    rev = "b15bb7c20b11a9f148c4757caba7167ee66492fc";
+    url = "https://github.com/psibi/xmobar";
+    sha256 = "0bi62qy677q60mxmwxf9if9raaiffdnxr4iyb4jvskqlqqgrnbz6";
+    rev = "763b3887b37990e2768ec354dfca8e4c06963584";
     fetchSubmodules = true;
   };  
   configureFlags = [

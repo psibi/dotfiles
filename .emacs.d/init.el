@@ -626,3 +626,9 @@
   (regg-opa-command "/home/sibi/bin/opa"))
 
 (set-face-attribute 'default nil :height 110)
+(use-package org-roam
+  :ensure t
+  :custom
+  (org-roam-directory "/home/sibi/github/misc/roam")
+  :config
+  (add-hook 'after-init-hook 'org-roam-mode))
