@@ -74,10 +74,8 @@ xmobarTemplate :: Machine -> String
 xmobarTemplate machine = "%StdinReader% }{" ++
           concatMap inSquareBrackets
               [
-               "%top%"
-              , "%alsa:default:Master%"
+                "%alsa:default:Master%"
               , "%" ++ stationID ++ "%"
-              , "%coretemp%"
               , "%cpu%"
               , "%" <> (wirelessId machine) <> "wi%"
               , "%disku%"
@@ -167,20 +165,8 @@ myCommands machine = machineCommands machine ++
         , "--weathers", "BLR"  -- Display this when <weather> is empty.
         ] (minutes 30)
 
-    -- Cpu core temperature monitor.
-    , Run $ CoreTemp
-        [ "--template", "<core0>°C <core1>°C <core2>°C <core3>°C"
-        , "--Low"     , "45"      -- unit: °C
-        , "--High"    , "65"      -- unit: °C
-        , "--low"     , colorFg
-        , "--normal"  , colorFg
-        , "--high"    , colorRed
-        ] (seconds 10)
-
-    , Run $ TopProc [] (seconds 10)
-
     -- Le current year.
-    , Run $ Date ("%a %b %d-%m-%Y " ++ cyan "%l:%M") "date" (seconds 10)
+    , Run $ Date ("%a %b %d-%m-%Y " ++ cyan "%l:%M") "date" (seconds 60)
 
     -- Volume, with an event based refresh (via alsactl).
     -- 08dec2019 +slot+ event based
@@ -206,7 +192,7 @@ myCommands machine = machineCommands machine ++
     -- Displays any text received by xmobar on its standard input.
     -- Also strips actions from the text received.
     , Run StdinReader
-    , Run $ Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
+    , Run $ Cpu ["-L","3","-H","50","--normal","green","--high","red"] (seconds 10)
     ]
 
 -- | Convenience functions
@@ -225,7 +211,7 @@ wirelessCommand machine =
         , "--low"     , colorRed
         , "--normal"  , colorYellow
         , "--high"    , colorGreen
-        ] (seconds 5)
+        ] (seconds 30)
 
 
 --------------------------------------------------------------------------------
