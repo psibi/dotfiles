@@ -625,10 +625,14 @@
   (rego-repl-executable "/home/sibi/bin/opa")
   (regg-opa-command "/home/sibi/bin/opa"))
 
-(set-face-attribute 'default nil :height 110)
+(set-face-attribute 'default nil :height 120)
+
 (use-package org-roam
   :ensure t
   :custom
   (org-roam-directory "/home/sibi/github/misc/roam")
   :config
   (add-hook 'after-init-hook 'org-roam-mode))
+
+(use-package toc-org
+  :ensure t)
