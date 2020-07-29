@@ -7,7 +7,7 @@
   (define-key global-map "\C-ca" 'org-agenda)
   (org-log-done t)
   (org-agenda-files
-   '("/home/sibi/github/timebox/home.org" "/home/sibi/github/timebox/learn.org" "/home/sibi/github/timebox/oss.org"))
+   '("/home/sibi/github/timebox/home.org" "/home/sibi/github/timebox/learn.org" "/home/sibi/github/timebox/oss.org" "/home/sibi/github/misc/notes.org"))
   (org-default-notes-file "/home/sibi/github/misc/notes.org")
   (org-capture-templates '(("t" "Personal Task"  entry
                             (file org-default-notes-file)
