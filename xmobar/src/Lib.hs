@@ -221,7 +221,7 @@ cpuCommand =
     (Run $
      Cpu
        ["-L", "3", "-H", "50", "--normal", "green", "--high", "red"]
-       (seconds 10))
+       (seconds 20))
     ("%cpu%")
 
 -- | Commands that I want displayed in my bar.
@@ -233,7 +233,7 @@ allCommands machine =
 
 myCommands :: Machine -> [XMobarRunnable]
 myCommands machine = 
-  (machineCommands machine <>
+  cpuCommand: (machineCommands machine <>
    [weatherCommand, volumeCommand, diskCommand, dateCommand])
 
 -- | Convenience functions

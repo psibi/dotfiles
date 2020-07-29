@@ -11,8 +11,8 @@ mkDerivation {
   version = "0.33";
   src = fetchgit {
     url = "https://github.com/psibi/xmobar";
-    sha256 = "1mrn29dzxznramlzljnp9cd1xxf95ly1ffwd1v95a089rv11pfjg";
-    rev = "56bea57b9e9fffe0ea9dda4ea44102285316ec30";
+    sha256 = "18xjjgz60jb06wi3n0jfv432nrzpmiqkazgizfclclqdrvrsad2p";
+    rev = "51f0d8a4b0644594d61fe89cf659c649fb9b35f1";
     fetchSubmodules = true;
   };  
   configureFlags = [
