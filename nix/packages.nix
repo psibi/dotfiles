@@ -6,7 +6,7 @@ with import ./nixpkgs.nix;
     # google-chrome
     # slack 
     sibi-xmonad rxvt_unicode-with-plugins feh screen xclip xsel xdotool eboard
-    gnucash fish emacs unrar pdftk kazam vlc ffmpeg bat fd nixfmt git direnv
+    gnucash fish emacs unrar pdftk kazam vlc ffmpeg bat exa fd procs nixfmt git direnv
     cabal2nix keepassxc jl rustup hlint htop powertop font-awesome symbola sibi-xmobar;
   hindent = haskellPackages.hindent;
   pandoc = haskellPackages.pandoc;
