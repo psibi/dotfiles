@@ -48,7 +48,7 @@
 (use-package lsp-haskell
   :ensure t
   :custom
-  (lsp-haskell-process-path-hie "hie-wrapper"))
+  (lsp-haskell-process-path-hie "haskell-language-server-wrapper"))
 
 (use-package lsp-ui 
   :ensure t

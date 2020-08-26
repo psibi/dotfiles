@@ -626,3 +626,18 @@
 
 (use-package hcl-mode
   :ensure t)
+
+(use-package company
+  :ensure t
+  :init 
+  (add-hook 'after-init-hook 'global-company-mode))
+
+(use-package company-suggest
+  :ensure t
+  :init
+  (add-to-list 'company-backends 'company-suggest-google
+  (add-to-list 'company-backends 'company-suggest-wiktionary)))
+
+;; Use pandoc-main-hydra/body
+(use-package pandoc-mode
+  :ensure t)
