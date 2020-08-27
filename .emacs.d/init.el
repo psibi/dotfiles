@@ -566,16 +566,13 @@
             (setq dumb-jump-selector 'helm)
             (setq dumb-jump-force-searcher 'rg)))
 
-(use-package org
-  :ensure t
-  :custom
-  (org-clock-into-drawer "CLOCKING"))
-
 (use-package nix-mode
   :ensure t)
 
 (use-package git-link
-  :ensure t)
+  :ensure t
+  :custom
+  (git-link-use-commit t))
 
 (use-package copy-as-format
   :ensure t
@@ -598,9 +595,6 @@
 ;; Recusively find & replace in text files
 ;; M-x find-name-dired
 ;; t, Q, query-replace-regexp
-
-(add-hook 'after-init-hook 'org-agenda-list)
-(setq initial-buffer-choice '(lambda () (get-buffer org-agenda-buffer-name)))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -627,12 +621,23 @@
 
 (set-face-attribute 'default nil :height 120)
 
-(use-package org-roam
-  :ensure t
-  :custom
-  (org-roam-directory "/home/sibi/github/misc/roam")
-  :config
-  (add-hook 'after-init-hook 'org-roam-mode))
-
 (use-package toc-org
+  :ensure t)
+
+(use-package hcl-mode
+  :ensure t)
+
+(use-package company
+  :ensure t
+  :init 
+  (add-hook 'after-init-hook 'global-company-mode))
+
+(use-package company-suggest
+  :ensure t
+  :init
+  (add-to-list 'company-backends 'company-suggest-google
+  (add-to-list 'company-backends 'company-suggest-wiktionary)))
+
+;; Use pandoc-main-hydra/body
+(use-package pandoc-mode
   :ensure t)
