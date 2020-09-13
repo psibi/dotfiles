@@ -641,3 +641,8 @@
 ;; Use pandoc-main-hydra/body
 (use-package pandoc-mode
   :ensure t)
+
+(use-package find-file-in-project
+  :ensure t
+  :custom
+  (ffip-use-rust-fd t))
