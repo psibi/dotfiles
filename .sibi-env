@@ -1,6 +1,6 @@
 export ALTERNATE_EDITOR=emacs EDITOR=emacsclient VISUAL=emacsclient
 
-export PATH=${PATH}:~/bin:~/.cabal/bin:/home/sibi/Android/Sdk/platform-tools:/home/sibi/Android/Sdk/tools:/home/sibi/Downloads/jdk1.8.0_102/bin
+export PATH=${PATH}:~/bin:~/.cabal/bin
 
 export GPGKEY=BB557613
 
