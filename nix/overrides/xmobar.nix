@@ -8,11 +8,11 @@
 }:
 mkDerivation {
   pname = "xmobar";
-  version = "0.33";
+  version = "0.36";
   src = fetchgit {
-    url = "https://github.com/psibi/xmobar";
-    sha256 = "18xjjgz60jb06wi3n0jfv432nrzpmiqkazgizfclclqdrvrsad2p";
-    rev = "51f0d8a4b0644594d61fe89cf659c649fb9b35f1";
+    url = "https://github.com/jaor/xmobar";
+    sha256 = "165cp3c7nrkhadylfqqbq17n33rc6vq0na4h7wh5vmd9m6qn0qw9";
+    rev = "e71512b7c961ab379aee98c2f4d65ad4bdd3c5bf";
     fetchSubmodules = true;
   };  
   configureFlags = [

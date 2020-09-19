@@ -1,5 +1,5 @@
 { mkDerivation, base, containers, stdenv, typed-process, X11
-, xmonad, xmonad-contrib, xmonad-extras
+, xmonad, xmonad-contrib, xmonad-extras, utf8-string
 }:
 mkDerivation {
   pname = "sibi-xmonad";

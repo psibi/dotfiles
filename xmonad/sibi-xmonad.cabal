@@ -13,5 +13,5 @@ extra-source-files:  README.md
 
 executable xmonad
     main-is: xmonad.hs
-    build-depends:      X11, xmonad, xmonad-contrib, xmonad-extras, base, containers, typed-process
+    build-depends:      X11, xmonad, xmonad-contrib, xmonad-extras, base, containers, typed-process, utf8-string
     ghc-options:        -Wall
