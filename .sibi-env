@@ -6,6 +6,7 @@ export GPGKEY=BB557613
 
 export XDG_DATA_HOME="$HOME/.local/share"
 
+# https://github.com/NixOS/nixpkgs/releases
 export NIX_PATH="nixpkgs=https://releases.nixos.org/nixos/19.09/nixos-19.09.2079.8731aaaf8b3/nixexprs.tar.xz"
 
 # https://github.com/simonmichael/hledger/issues/1033#issuecomment-497940396
