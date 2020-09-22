@@ -1,4 +1,4 @@
-import <nixpkgs> {
-  config = import ./configuration.nix;
-  overlays = [ (import ./emacs-overlay.nix) ];
-}
+import (fetchTarball
+  "https://releases.nixos.org/nixos/19.09/nixos-19.09.2079.8731aaaf8b3/nixexprs.tar.xz") {
+    config = import ./configuration.nix;
+  }
