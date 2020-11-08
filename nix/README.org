@@ -1,41 +1,41 @@
 * Installation
 
-Installs all the packages defined in `packages.nix`
+Installs all the packages defined in *packages.nix*
 
-```
+#+begin_src 
 $ nix-env -i -f ./packages.nix
-```
+#+end_src
 
 To install an individual package:
 
-``` shellsession
+#+begin_src 
 nix-env -i --attr xmobar -f ./packages.nix
-```
+#+end_src
 
 To go into the environment of an Haskell package:
 
-``` shellsession
-nix-shell --attr env ../xmonad/derivation.nix
-```
+#+begin_src 
+$ nix-shell --attr env ../xmonad/derivation.nix
+#+end_src
 
 * Generations
 
-``` shellsession
+#+begin_src 
 $ nix-env --list-generations
 $ nix-env --rollback
 $ nix-env -G 3  # Switch to generation 3
-```
+#+end_src
 
 ** REPL
 
-``` shellsession
+#+begin_src 
 $ nix repl
 nix-repl> x = import <nixpkgs> {}
 nix-repl> x.pkgs.hello
 «derivation /nix/store/dhmin7wq99aw9f59jm41varj0753va9b-hello-2.10.drv»
 nix-repl> x.haskellPackages.xmonad-contrib
 «derivation /nix/store/vq4j99s88yxny8mg1s48pv2k0d1l51ma-xmonad-contrib-0.15.drv»
-```
+#+end_src
 
 * Adding overrides package
 
@@ -49,5 +49,5 @@ a working example.
 
 * References
 
-* [Introduction to Nix family](https://ebzzry.io/en/nix/)
-* [Nix Expression language](https://nixos.wiki/wiki/Nix_Expression_Language)
+- [[https://ebzzry.io/en/nix/][Introduction to Nix family]]
+- [[https://nixos.wiki/wiki/Nix_Expression_Language][Nix Expression language]]
