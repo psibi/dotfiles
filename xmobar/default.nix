@@ -7,7 +7,7 @@ mkDerivation {
   isExecutable = true;
   libraryHaskellDepends = [ base hostname xmobar ];
   libraryToolDepends = [ hpack ];
-  executableHaskellDepends = [ base hostname xmobar ];
+  executableHaskellDepends = [ base hostname xmobar];
   prePatch = "hpack";
   homepage = "https://github.com/psibi/dotfiles#readme";
   license = stdenv.lib.licenses.bsd3;
