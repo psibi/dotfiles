@@ -169,7 +169,7 @@ weatherCommand =
 dateCommand :: XMobarRunnable
 dateCommand =
   mkRunnable
-    (Run $ Date ("%a %b %d-%m-%Y " ++ cyan "%l:%M") "date" (seconds 60))
+    (Run $ DateWithTimeZone ("%a %b %d-%m-%Y " ++ cyan "%l:%M") "date" (seconds 60))
     ("%date%")
 
 -- Volume, with an event based refresh (via alsactl).
