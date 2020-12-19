@@ -147,7 +147,7 @@ main
   -- xmproc <- spawnPipeWithUtf8Encoding "xmobar /home/sibi/.xmobarrc"
  = do
   let xmobar =
-        statusBar
+        statusBarProp
           "sibi-xmobar"
           def
           (\XConfig {modMask} -> (modMask, xK_b))

@@ -30,7 +30,7 @@ config machine =
     , additionalFonts -- Additional fonts to be specified.
        = [iconFont, altIconFont]
     -- Commands to be shown.
-    , commands = (Run UnsafeStdinReader): (map (fst . unRunnable) $ myCommands machine)
+    , commands = (Run UnsafeXMonadLog): (map (fst . unRunnable) $ myCommands machine)
     -- General behaviour.
     , overrideRedirect = False -- Set the Override Redirect flag (Xlib).
     , lowerOnStart = False -- Send to bottom of window stack on start.
@@ -65,7 +65,7 @@ inSquareBrackets =
 
 xmobarTemplate :: Machine -> String
 xmobarTemplate machine =
-  "%UnsafeStdinReader% }{" ++
+  "%UnsafeXMonadLog% }{" ++
   concatMap
     inSquareBrackets (map (snd . unRunnable) $ myCommands machine)
 
@@ -169,7 +169,7 @@ weatherCommand =
 dateCommand :: XMobarRunnable
 dateCommand =
   mkRunnable
-    (Run $ DateWithTimeZone ("%a %b %d-%m-%Y " ++ cyan "%l:%M") "date" (seconds 60))
+    (Run $ Date ("%a %b %d-%m-%Y " ++ cyan "%l:%M") "date" (seconds 60))
     ("%date%")
 
 -- Volume, with an event based refresh (via alsactl).
