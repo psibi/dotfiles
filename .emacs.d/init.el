@@ -88,12 +88,19 @@
   :ensure t)
 (use-package flycheck
   :ensure t
+  :custom
+  (flycheck-sh-shellcheck-executable "shellcheck")
   :config
   (progn
     (setq flycheck-check-syntax-automatically '(mode-enabled save))
     (define-key flycheck-mode-map (kbd "C-c f l") #'flycheck-list-errors)
     (define-key flycheck-mode-map (kbd "C-c f n") #'flycheck-next-error)
-    (define-key flycheck-mode-map (kbd "C-c f p") #'flycheck-previous-error)))
+    (define-key flycheck-mode-map (kbd "C-c f p") #'flycheck-previous-error)
+    (flycheck-add-next-checker 'sh-bash  '(t . sh-shellcheck) 'append)
+    (add-hook 'sh-mode-hook (lambda () (progn
+                                         ;; (flycheck-select-checker 'sh-shellcheck)
+                                         (flycheck-mode))))))
+
 
 (load-file "~/.emacs.d/haskell.el")
 (load-file "~/.emacs.d/python.el")
@@ -128,8 +135,6 @@
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
-
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;;Tramp for editing protected files in existing Emacs session.(C-x C-f /sudo)
 (setq tramp-default-method "ssh")
@@ -657,4 +662,9 @@
   :bind (:map xwidget-webkit-mode-map ("v" . xwwp-follow-link)))
 
 (use-package xwidgete
+  :ensure t)
+(use-package gnuplot
+  :ensure t)
+
+(use-package fzf
   :ensure t)
