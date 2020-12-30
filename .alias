@@ -69,12 +69,7 @@ alias cp='cp -v'
 alias vim='emacsclient -n '
 alias vi='emacsclient -n'
 
-
-alias sb='stack build'
-alias se='stack exec '
-alias sf='stack build --fast --file-watch'
-alias st='stack test'
-alias sfp='stack build --fast --file-watch --pedantic'
+alias ls='exa'
 
 alias mhd='sudo mount /dev/disk/by-label/My\\x20Book /mnt'
 
