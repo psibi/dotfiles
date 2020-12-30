@@ -1,4 +1,5 @@
-export ALTERNATE_EDITOR=emacs EDITOR=emacsclient VISUAL=emacsclient
+# Causing issues by douple spawinging of emacs. Investigate more.
+# export ALTERNATE_EDITOR=emacs EDITOR=emacsclient VISUAL=emacsclient
 
 export PATH=${PATH}:~/bin:~/.cabal/bin
 
