@@ -15,7 +15,7 @@
                            ("s" "Open Source task" entry
                             (file+headline "/home/sibi/github/timebox/oss.org" "Others")
                             "** TODO %?" :empty-lines 1)))
-  (initial-buffer-choice '(get-buffer org-agenda-buffer-name))
+  (initial-buffer-choice org-agenda-buffer-name)
   :config
   (add-hook 'after-init-hook 'org-agenda-list))
 
@@ -80,6 +80,3 @@
 
 (add-to-list 'org-structure-template-alist '("g" . "src sh :exports both :eval never-export :results verbatim\n"))
 (add-to-list 'org-structure-template-alist '("p" . "src awk :in-file countries :exports both :results value verbatim\n"))
-;; (add-hook 'after-init-hook 'org-agenda-list)
-;; (setq initial-buffer-choice '(lambda () (progn (require 'org ) (get-buffer org-agenda-buffer-name))))
-
