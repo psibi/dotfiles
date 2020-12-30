@@ -84,8 +84,10 @@
 (use-package paredit
   :diminish paredit-mode
   :ensure t)
+
 (use-package google-this
   :ensure t)
+
 (use-package flycheck
   :ensure t
   :custom
@@ -102,12 +104,6 @@
                                          (flycheck-mode))))))
 
 
-(load-file "~/.emacs.d/haskell.el")
-(load-file "~/.emacs.d/python.el")
-(load-file "~/.emacs.d/web.el")
-(load-file "~/.emacs.d/sibi-utils.el")
-(load-file "~/.emacs.d/org.el")
-;; (load-file "~/.emacs.d/sml.el")
 
 (set-scroll-bar-mode 'nil)
 (size-indication-mode 1)
@@ -191,14 +187,14 @@
   :mode "\\.m\\'")
 
 ;; emms
-(use-package emms
-  :ensure t
-  :config
-  (progn
-    (emms-standard)
-    (emms-default-players)
-    (setq emms-playlist-buffer-name "Music-EMMS")
-    (setq emms-source-file-default-directory "~/Music/")))
+;; (use-package emms
+;;   :ensure t
+;;   :config
+;;   (progn
+;;     (emms-standard)
+;;     (emms-default-players)
+;;     (setq emms-playlist-buffer-name "Music-EMMS")
+;;     (setq emms-source-file-default-directory "~/Music/")))
 
 (use-package magit
   :ensure t
@@ -668,3 +664,10 @@
 
 (use-package fzf
   :ensure t)
+
+(load-file "~/.emacs.d/haskell.el")
+(load-file "~/.emacs.d/python.el")
+(load-file "~/.emacs.d/web.el")
+(load-file "~/.emacs.d/sibi-utils.el")
+(load-file "~/.emacs.d/org.el")
+;; (load-file "~/.emacs.d/sml.el")
