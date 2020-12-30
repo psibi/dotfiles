@@ -1,2 +1,2 @@
 #!/bin/bash
-exec emacsclient -c -a "" "$@"
+exec emacsclient -c --socket-name=/run/user/1000/emacs/server "$@"
