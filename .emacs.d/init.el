@@ -160,7 +160,7 @@
 
 ;; Hooks before saving file
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-(add-hook 'before-save-hook 'untabify)
+;; (add-hook 'before-save-hook 'untabify)
 
 ;; No tabs for indendation
 (setq-default indent-tabs-mode nil)
@@ -269,7 +269,12 @@
 ;;   :ensure t)
 
 (use-package helm-projectile
-  :ensure t)
+  :ensure t
+  :init
+  (progn
+    (helm-projectile-on))
+  :custom
+  (projectile-completion-system 'helm))
 
 (use-package helm-swoop
   :ensure t

@@ -42,7 +42,11 @@
 (use-package htmlize
   :ensure t)
 
-(load-file "~/github/ox-twbs/ox-twbs.el")
+
+(straight-use-package
+  '(el-patch :type git :host github :repo "psibi/ox-twbs"))
+
+;; (load-file "~/github/ox-twbs/ox-twbs.el")
 
 ;; https://emacs.stackexchange.com/questions/44958/can-i-insert-a-prefix-to-org-babel-source-code-lines-on-export
 (defun my-insert-shell-prompt (_backend)
@@ -73,6 +77,7 @@
  '((awk . t)
    (shell . t)
    (http . t)
+   (octave . t)
    (gnuplot . t)))
 
 ;; https://emacs.stackexchange.com/questions/23946/how-can-i-stop-the-confirmation-to-evaluate-source-code-when-exporting-to-html
@@ -80,3 +85,4 @@
 
 (add-to-list 'org-structure-template-alist '("g" . "src sh :exports both :eval never-export :results verbatim\n"))
 (add-to-list 'org-structure-template-alist '("p" . "src awk :in-file countries :exports both :results value verbatim\n"))
+(add-to-list 'org-structure-template-alist '("o" . "src octave :session :eval never-export :results value verbatim output :exports both\n"))
