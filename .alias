@@ -1,18 +1,7 @@
 #Installation commands
 alias i='sudo apt install -y'
-alias upgrade='sudo apt upgrade'
-alias update='sudo apt update'
-alias search='sudo apt search'
 alias ai='sudo apt show'
 alias ad='sudo apt depends'
-
-#For Fedora
-#alias install='sudo yum install'
-#alias update='sudo yum check-update'
-#alias search='sudo yum search'
-#alias info='sudo yum info'
-
-alias updatedb='sudo updatedb'
 
 #Network commands
 alias pi='ping 8.8.8.8'
@@ -22,21 +11,6 @@ alias pg='ping goo.gl'
 alias sd='systemctl poweroff'
 alias sr='systemctl reboot'
 
-#Logout
-#KDE Desktop
-# alias lg='qdbus org.kde.ksmserver /KSMServer logout 1 0 -1'
-#GNOME
-#alias lg='gnome-session-save --logout'
-# alias lg='gnome-session-quit --logout'
-
-#Git Related
-#alias git='hub'
-alias gp='git push'
-alias ga='git add'
-alias gc='git commit'
-alias gd='git diff'
-alias gs='git status'
-
 alias o='xdg-open'
 alias rst='source ~/.config/fish/config.fish'
 # alias rst='. ~/.profile'
@@ -44,23 +18,8 @@ alias rst='source ~/.config/fish/config.fish'
 alias clipboard='xclip -sel clip'
 
 alias sx='startx'
-alias cgf='tar -czf'
-alias xgf='tar -xzf'
-
-alias mn='sudo mount'
-alias um='sudo umount'
-
-alias ed='emacs --daemon'
-alias ec='emacsclient -n'
-alias fs='du -h' # Filesize
-alias lsd='ls -l --color | grep "^d"'
-alias hpkg='ghc-pkg list | grep'
-
-alias bc='bc -q -l'
-alias mc='mc --keymap=/home/sibi/github/dotfiles/mc.emacs.keymap'
-
-alias act='source VIRTUAL/bin/activate'
-alias dact='deactivate'
+alias bc='qalc'
+alias bcc='bc -q -l'
 
 alias mv='mv -v'
 alias rm='rm -v'
@@ -69,24 +28,9 @@ alias cp='cp -v'
 alias vim='emacsclient -n '
 alias vi='emacsclient -n'
 
-
-alias sb='stack build'
-alias se='stack exec '
-alias sf='stack build --fast --file-watch'
-alias st='stack test'
-alias sfp='stack build --fast --file-watch --pedantic'
-
-alias mhd='sudo mount /dev/disk/by-label/My\\x20Book /mnt'
-
-alias grep='grep --color=auto'
-alias regrep='grep --color=auto -Er --exclude=*~ --exclude-dir=node_modules --exclude-dir=.git'
+alias ls='exa'
 
 alias nmcliui='nmtui'
-alias dk='sudo docker'
-alias nwork='sudo netstat -lnp'
-alias l='ls -CF'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
-
-# alias please='/usr/bin/sudo $(history -p !!)'

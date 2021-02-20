@@ -1,4 +1,6 @@
+# https://github.com/NixOS/nixpkgs/tags
+
 import (fetchTarball
-  "https://releases.nixos.org/nixos/19.09/nixos-19.09.2079.8731aaaf8b3/nixexprs.tar.xz") {
+  "https://github.com/NixOS/nixpkgs/archive/20.09.tar.gz") {
     config = import ./configuration.nix;
   }

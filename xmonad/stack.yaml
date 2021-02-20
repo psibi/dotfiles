@@ -3,7 +3,10 @@ resolver: lts-13.23
 packages:
 - .
 
-extra-deps:
-- ../../xmonad-contrib
+nix:
+  enable: true
+
+# extra-deps:
+# - ../../xmonad-contrib
 
 

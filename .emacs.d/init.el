@@ -88,25 +88,28 @@
 (use-package paredit
   :diminish paredit-mode
   :ensure t)
+
 (use-package google-this
   :ensure t)
+
 (use-package flycheck
   :ensure t
   :hook
   (prog-mode . flycheck-mode)
+  :custom
+  (flycheck-sh-shellcheck-executable "shellcheck")
   :config
   (progn
     (setq flycheck-check-syntax-automatically '(mode-enabled save))
     (define-key flycheck-mode-map (kbd "C-c f l") #'flycheck-list-errors)
     (define-key flycheck-mode-map (kbd "C-c f n") #'flycheck-next-error)
-    (define-key flycheck-mode-map (kbd "C-c f p") #'flycheck-previous-error)))
+    (define-key flycheck-mode-map (kbd "C-c f p") #'flycheck-previous-error)
+    (flycheck-add-next-checker 'sh-bash  '(t . sh-shellcheck) 'append)
+    (add-hook 'sh-mode-hook (lambda () (progn
+                                         ;; (flycheck-select-checker 'sh-shellcheck)
+                                         (flycheck-mode))))))
 
-(load-file "~/.emacs.d/haskell.el")
-(load-file "~/.emacs.d/python.el")
-(load-file "~/.emacs.d/web.el")
-(load-file "~/.emacs.d/sibi-utils.el")
-(load-file "~/.emacs.d/org.el")
-;; (load-file "~/.emacs.d/sml.el")
+
 
 (set-scroll-bar-mode 'nil)
 (size-indication-mode 1)
@@ -134,8 +137,6 @@
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
-
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;;Tramp for editing protected files in existing Emacs session.(C-x C-f /sudo)
 (setq tramp-default-method "ssh")
@@ -165,7 +166,7 @@
 
 ;; Hooks before saving file
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-(add-hook 'before-save-hook 'untabify)
+;; (add-hook 'before-save-hook 'untabify)
 
 ;; No tabs for indendation
 (setq-default indent-tabs-mode nil)
@@ -192,14 +193,14 @@
   :mode "\\.m\\'")
 
 ;; emms
-(use-package emms
-  :ensure t
-  :config
-  (progn
-    (emms-standard)
-    (emms-default-players)
-    (setq emms-playlist-buffer-name "Music-EMMS")
-    (setq emms-source-file-default-directory "~/Music/")))
+;; (use-package emms
+;;   :ensure t
+;;   :config
+;;   (progn
+;;     (emms-standard)
+;;     (emms-default-players)
+;;     (setq emms-playlist-buffer-name "Music-EMMS")
+;;     (setq emms-source-file-default-directory "~/Music/")))
 
 (use-package magit
   :ensure t
@@ -274,7 +275,12 @@
 ;;   :ensure t)
 
 (use-package helm-projectile
-  :ensure t)
+  :ensure t
+  :init
+  (progn
+    (helm-projectile-on))
+  :custom
+  (projectile-completion-system 'helm))
 
 (use-package helm-swoop
   :ensure t
@@ -668,3 +674,15 @@
 
 (use-package xwidgete
   :ensure t)
+(use-package gnuplot
+  :ensure t)
+
+(use-package fzf
+  :ensure t)
+
+(load-file "~/.emacs.d/haskell.el")
+(load-file "~/.emacs.d/python.el")
+(load-file "~/.emacs.d/web.el")
+(load-file "~/.emacs.d/sibi-utils.el")
+(load-file "~/.emacs.d/org.el")
+;; (load-file "~/.emacs.d/sml.el")

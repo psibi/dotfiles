@@ -18,7 +18,7 @@ import XMonad.Actions.Search
 import XMonad.Actions.Submap
 import XMonad.Actions.Volume
 import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.EwmhDesktops (fullscreenEventHook)
+import XMonad.Hooks.EwmhDesktops (fullscreenEventHook, ewmh)
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName (setWMName)
@@ -97,7 +97,7 @@ sibiStartupHook = do
     void $ startProcess "seahorse"
 
 xmonadConfig =
-  withUrgencyHook NoUrgencyHook $
+  withUrgencyHook NoUrgencyHook $ ewmh
   def
     { manageHook =
         manageDocks <+>
@@ -144,15 +144,14 @@ keybindings =
 
 main :: IO ()
 main
-  -- xmproc <- spawnPipeWithUtf8Encoding "xmobar /home/sibi/.xmobarrc"
  = do
   let xmobar =
-        statusBar
+        statusBarProp
           "sibi-xmobar"
           def
           (\XConfig {modMask} -> (modMask, xK_b))
           xmonadConfig
-  xmonad =<< xmobar
+  xmobar >>= xmonad
 
 sibiXPConfig :: XPConfig
 sibiXPConfig =

@@ -12,12 +12,20 @@ pkgs: rec {
   });
   haskellPackages = pkgs.haskellPackages.override {
     overrides = haskellPackagesNew: haskellPackagesOld: rec {
+      libmpd = haskellPackages.callPackage ./overrides/libmpd.nix {};
+      xmonad = let
+        pkg = haskellPackagesNew.callPackage ./overrides/xmonad.nix { };
+        in pkgs.haskell.lib.dontCheck pkg;
       xmonad-extras =
         haskellPackagesNew.callPackage ./overrides/xmonad-extras.nix { };
-      xmonad-contrib =
-        haskellPackagesNew.callPackage ./overrides/xmonad-contrib.nix { };
+      xmonad-contrib = let
+        pkg = haskellPackagesNew.callPackage ./overrides/xmonad-contrib.nix { };
+        in pkgs.haskell.lib.dontCheck pkg;
+      timezone-olson =
+        haskellPackagesNew.callPackage ./overrides/timezone-olson.nix { };
       xmobar = let
-        pkg = haskellPackagesNew.callPackage ./overrides/xmobar.nix {};
+        pkg = haskellPackagesNew.callPackage ./overrides/xmobar.nix {
+        };
         in pkgs.haskell.lib.dontCheck pkg;
     };
   };

@@ -1,4 +1,4 @@
-export ALTERNATE_EDITOR=emacs EDITOR=emacsclient VISUAL=emacsclient
+export EDITOR=emacsclient
 
 export PATH=${PATH}:~/bin:~/.cabal/bin
 
@@ -17,4 +17,3 @@ export LOCALE_ARCHIVE="/usr/lib/locale/locale-archive"
 # export AWS_ENV_CACHE_DIR=/home/sibi/fpco/.aws-env
 # export GNUPGHOME=/home/sibi/fpco/.gnupg
 # export TF_CLI_CONFIG_FILE=/home/sibi/fpco/.terraformrc
-

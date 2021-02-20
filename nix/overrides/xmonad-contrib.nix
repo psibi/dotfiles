@@ -8,8 +8,8 @@ mkDerivation {
   version = "0.16";
   src = fetchgit {
     url = "https://github.com/xmonad/xmonad-contrib";
-    sha256 = "14h8hk69dpkyjjyw1ls8dm3vpjdrnry1gh7nar8jfsyhri5mzx9k";
-    rev = "15dbfeff3200da4eb0e30340912ed87e6731b826";
+    sha256 = "0pm3riv60d6kakgv9yj57pzj3v2wn7gfdmhya63rjv8sw9d3b1yp";
+    rev = "cff344811fabd18641d92b8352aa332aad89ad5f";
     fetchSubmodules = true;
   };
   libraryHaskellDepends = [
