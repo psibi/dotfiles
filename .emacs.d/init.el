@@ -81,6 +81,10 @@
    (setq rust-format-on-save t)
   ))
 
+(use-package flycheck-rust
+  :ensure t
+  :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
+
 (use-package paredit
   :diminish paredit-mode
   :ensure t)
@@ -88,6 +92,8 @@
   :ensure t)
 (use-package flycheck
   :ensure t
+  :hook
+  (prog-mode . flycheck-mode)
   :config
   (progn
     (setq flycheck-check-syntax-automatically '(mode-enabled save))
@@ -595,6 +601,10 @@
 ;; Recusively find & replace in text files
 ;; M-x find-name-dired
 ;; t, Q, query-replace-regexp
+
+
+(setq custom-file (concat user-emacs-directory "custom.el"))
+(load custom-file 'noerror)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
