@@ -33,6 +33,7 @@ import qualified XMonad.StackSet as W
 import qualified XMonad.Util.Brightness as Bright
 import XMonad.Util.EZConfig (additionalKeys)
 import XMonad.Util.NamedScratchpad
+import XMonad.Prompt.OrgMode
 -- import XMonad.Util.Run (spawnPipeWithUtf8Encoding)
 
 ------------------------------------------- Keybinings Refresher
@@ -54,6 +55,8 @@ import XMonad.Util.NamedScratchpad
 -- * mod-.: Decrease the number of window in master area
 -- * Searching: Select world + mod-(g|v|w)
 -- * mod-q: Restart xmonad
+-- * mod-t: Retile
+-- org-mode: https://github.com/xmonad/xmonad-contrib/pull/500/files
 --------------------------------------------
 myWorkspaces :: [String]
 myWorkspaces = ["main", "web", "chat", "dev", "media", "float", "misc"]
@@ -140,18 +143,11 @@ keybindings =
   , ((mod4Mask, xK_slash), switchProjectPrompt sibiXPConfig)
   , ( (mod4Mask .|. controlMask, xK_k)
     , namedScratchpadAction sibiScratchPads "keepass")
+  , ((mod4Mask, xK_i), orgPrompt def "TODO" "/home/sibi/github/timebox/xmonad.org")
   ]
 
 main :: IO ()
-main
- = do
-  let xmobar =
-        statusBarProp
-          "sibi-xmobar"
-          def
-          (\XConfig {modMask} -> (modMask, xK_b))
-          xmonadConfig
-  xmobar >>= xmonad
+main = xmonad xmonadConfig
 
 sibiXPConfig :: XPConfig
 sibiXPConfig =

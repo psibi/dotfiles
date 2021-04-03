@@ -1,11 +1,16 @@
 { mkDerivation, alsa-mixer, base, bytestring, containers, hint
 , libmpd, mtl, network, regex-posix, stdenv, X11, xmonad
-, xmonad-contrib
+, xmonad-contrib, fetchgit
 }:
 mkDerivation {
   pname = "xmonad-extras";
-  version = "0.15.2";
-  sha256 = "9a9ea86b49ce2fe9f4204d09bc5b32c323d42be8017429058b0568300bfb40dc";
+  version = "0.15.3";
+  src = fetchgit {
+    url = "https://github.com/xmonad/xmonad-extras";
+    sha256 = "1iwwhi1c52krvb6lvvwzbv4phxnvfy86rwvnd8b3fy6g41kgvan0";
+    rev = "faae63b8adeeefd013a2652f4050695c2ab186e7";
+    fetchSubmodules = false;
+  };
   configureFlags = [
     "-f-with_hlist" "-fwith_parsec" "-fwith_split"
   ];

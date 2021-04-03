@@ -232,7 +232,7 @@ allCommands machine =
    [weatherCommand, volumeCommand, diskCommand, dateCommand])
 
 myCommands :: Machine -> [XMobarRunnable]
-myCommands machine = 
+myCommands machine =
   cpuCommand: (machineCommands machine <>
    [weatherCommand, volumeCommand, diskCommand, dateCommand])
 

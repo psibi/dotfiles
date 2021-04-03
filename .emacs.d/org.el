@@ -7,7 +7,7 @@
   (define-key global-map "\C-ca" 'org-agenda)
   (org-log-done t)
   (org-agenda-files
-   '("/home/sibi/github/timebox/home.org" "/home/sibi/github/timebox/learn.org" "/home/sibi/github/timebox/oss.org" "/home/sibi/github/misc/notes.org" "/home/sibi/github/timebox/parents.org" "/home/sibi/github/timebox/work.org"))
+   '("/home/sibi/github/timebox/home.org" "/home/sibi/github/timebox/learn.org" "/home/sibi/github/timebox/oss.org" "/home/sibi/github/misc/notes.org" "/home/sibi/github/timebox/parents.org" "/home/sibi/github/timebox/work.org" "/home/sibi/github/timebox/xmonad.org"))
   (org-default-notes-file "/home/sibi/github/misc/notes.org")
   (org-capture-templates '(("t" "Personal Task"  entry
                             (file org-default-notes-file)
@@ -15,7 +15,7 @@
                            ("s" "Open Source task" entry
                             (file+headline "/home/sibi/github/timebox/oss.org" "Others")
                             "** TODO %?" :empty-lines 1)))
-  (initial-buffer-choice org-agenda-buffer-name)
+  ;; (initial-buffer-choice org-agenda-buffer-name)
   :config
   (add-hook 'after-init-hook 'org-agenda-list))
 
@@ -78,6 +78,7 @@
    (shell . t)
    (http . t)
    (octave . t)
+   (haskell . t)
    (gnuplot . t)))
 
 ;; https://emacs.stackexchange.com/questions/23946/how-can-i-stop-the-confirmation-to-evaluate-source-code-when-exporting-to-html

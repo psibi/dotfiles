@@ -3,11 +3,16 @@
 ;; Sometimes all your require is an inferior mode
 (use-package haskell-mode
   :ensure t
+  :init
   :config
   (progn
     (add-hook 'haskell-mode-hook 'haskell-indent-mode)
     (add-hook 'literate-haskell-mode-hook 'sibi-literate-haskell-bindings)
-    (customize-set-variable 'haskell-hoogle-url '"https://www.stackage.org/lts/hoogle?q=%s")))
+    (customize-set-variable 'haskell-hoogle-url '"https://www.stackage.org/lts/hoogle?q=%s")
+    (customize-set-variable 'haskell-process-type 'stack-ghci)))
+
+    ;;
+
 
 (defun sibi-literate-haskell-bindings ()
   (local-set-key (kbd "C-c >") 'haskell-lhs-codify)
@@ -38,23 +43,18 @@
   :init (setq lsp-keymap-prefix "C-l")
   :commands lsp
   :hook (haskell-mode . lsp)
-  :config
-  (progn
-    (require 'lsp-clients)
-    (setq lsp-idle-delay 0.500)
-    (setq lsp-prefer-flymake nil)
-    (setq lsp-enable-snippet nil)))
+  :config)
 
 (use-package lsp-haskell
   :ensure t
   :custom
   (lsp-haskell-process-path-hie "haskell-language-server-wrapper"))
 
-(use-package lsp-ui 
+(use-package lsp-ui
   :ensure t
   :commands lsp-ui-mode)
 
-(use-package helm-lsp 
+(use-package helm-lsp
   :ensure t
   :commands helm-lsp-workspace-symbol)
 

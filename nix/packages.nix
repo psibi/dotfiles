@@ -5,7 +5,7 @@ with import ./nixpkgs.nix;
     # alacritty;
     # google-chrome
     # slack
-    sibi-xmonad rxvt_unicode-with-plugins feh screen xclip xsel xdotool eboard libqalculate
+    sibi-xmonad rxvt_unicode-with-plugins feh screen xclip xsel xdotool eboard libqalculate yaml2json
     gnucash fish emacs unrar pdftk kazam vlc ffmpeg bat exa fd procs nixfmt git direnv octave
     cabal2nix keepassxc jl rustup hlint htop powertop font-awesome symbola alegreya sibi-xmobar;
   hindent = haskellPackages.hindent;
