@@ -645,7 +645,7 @@
 
 (use-package company
   :ensure t
-  :init 
+  :init
   (add-hook 'after-init-hook 'global-company-mode))
 
 (use-package company-suggest
@@ -678,6 +678,22 @@
   :ensure t)
 
 (use-package fzf
+  :ensure t)
+
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+
+(use-package dockerfile-mode
   :ensure t)
 
 (load-file "~/.emacs.d/haskell.el")
