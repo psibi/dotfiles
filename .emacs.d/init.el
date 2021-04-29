@@ -71,15 +71,35 @@
     (setq ac-ignore-case nil)
     (ac-config-default)))
 
-(use-package rust-mode
+;; (use-package rust-mode
+;;   :ensure t
+;;   :mode "\\.rs\\'"
+;;   :hook (rust-mode . lsp)
+;;   :config
+;;   (progn
+;;    (add-to-list 'load-path "~/.cargo/bin")
+;;    (setq rust-format-on-save t)
+;;   ))
+
+(use-package rustic
   :ensure t
-  :mode "\\.rs\\'"
-  :hook (rust-mode . lsp)
+  :bind (:map rustic-mode-map
+              ("M-j" . lsp-ui-imenu)
+              ("M-?" . lsp-find-references)
+              ("C-c C-c l" . flycheck-list-errors)
+              ("C-c C-c a" . lsp-execute-code-action)
+              ("C-c C-c r" . lsp-rename)
+              ("C-c C-c q" . lsp-workspace-restart)
+              ("C-c C-c Q" . lsp-workspace-shutdown)
+              ("C-c C-c s" . lsp-rust-analyzer-status))
   :config
-  (progn
-   (add-to-list 'load-path "~/.cargo/bin")
-   (setq rust-format-on-save t)
-  ))
+  ;; uncomment for less flashiness
+  ;; (setq lsp-eldoc-hook nil)
+  ;; (setq lsp-enable-symbol-highlighting nil)
+  ;; (setq lsp-signature-auto-activate nil)
+
+  ;; comment to disable rustfmt on save
+  (setq rustic-format-on-save t))
 
 (use-package flycheck-rust
   :ensure t
@@ -674,6 +694,23 @@
 
 (use-package xwidgete
   :ensure t)
+
+(use-package lsp-java
+  :ensure t)
+
+(add-hook 'java-mode-hook #'lsp)
+
+(setq lsp-path-java-path "/home/sibi/Downloads/jdk-12.0.2+10/bin/java")
+(setq lsp-java-java-path "/home/sibi/Downloads/jdk-12.0.2+10/bin/java")
+
+;; (use-package java-mode
+;;   :custom
+;;   )
+
+;; (add-to-list 'load-path (concat (getenv "JAVA_HOME") "/bin"))
+
+(add-to-list 'auto-mode-alist '("\\.shell-session\\'" . sh-mode))
+
 (use-package gnuplot
   :ensure t)
 
@@ -694,6 +731,9 @@
   (load bootstrap-file nil 'nomessage))
 
 (use-package dockerfile-mode
+  :ensure t)
+
+(use-package org-make-toc
   :ensure t)
 
 (load-file "~/.emacs.d/haskell.el")
