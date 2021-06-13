@@ -1,6 +1,6 @@
 { mkDerivation, base, containers, data-default, directory
 , extensible-exceptions, fetchgit, filepath, mtl, process
-, QuickCheck, setlocale, stdenv, unix, utf8-string, X11
+, QuickCheck, setlocale, stdenv, unix, utf8-string, X11, typed-process
 }:
 mkDerivation {
   pname = "xmonad";
@@ -15,7 +15,7 @@ mkDerivation {
   isExecutable = true;
   libraryHaskellDepends = [
     base containers data-default directory extensible-exceptions
-    filepath mtl process setlocale unix utf8-string X11
+    filepath mtl process setlocale unix utf8-string X11 typed-process
   ];
   executableHaskellDepends = [ base mtl unix X11 ];
   testHaskellDepends = [

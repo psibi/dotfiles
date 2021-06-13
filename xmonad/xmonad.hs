@@ -97,7 +97,7 @@ sibiStartupHook = do
     void $ startProcess (proc myTerminal [])
     void $ (startProcess (proc "emacs" ["--daemon"]))
     void $ startProcess "google-chrome-stable"
-    void $ startProcess "seahorse"
+    void $ startProcess "cnx"
 
 xmonadConfig =
   withUrgencyHook NoUrgencyHook $ ewmh
