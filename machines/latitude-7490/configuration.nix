@@ -32,6 +32,11 @@
   networking.wireless.networks = {
    dd-wrt_5 = {
      pskRaw = (import ./passwords.nix).wifi.ddwrt_pskRaw;
+     priority = 1;
+   };
+   ichigokurasaki_5hz = {
+     pskRaw = (import ./passwords.nix).wifi.ichigokurasaki_pskRaw;
+     priority = 3;
    };
   };
 
