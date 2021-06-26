@@ -5,6 +5,8 @@
   (org-clock-into-drawer "CLOCKING")
   (define-key global-map "\C-cl" 'org-store-link)
   (define-key global-map "\C-ca" 'org-agenda)
+  (org-confirm-babel-evaluate nil)
+  (org-export-babel-evaluate nil)
   (org-log-done t)
   (org-agenda-files
    '("/home/sibi/github/timebox/home.org" "/home/sibi/github/timebox/learn.org" "/home/sibi/github/timebox/oss.org" "/home/sibi/github/misc/notes.org" "/home/sibi/github/timebox/parents.org" "/home/sibi/github/timebox/work.org" "/home/sibi/github/timebox/xmonad.org"))
@@ -18,6 +20,18 @@
   ;; (initial-buffer-choice org-agenda-buffer-name)
   :config
   (add-hook 'after-init-hook 'org-agenda-list))
+
+
+(use-package sage-shell-mode
+  :ensure t
+  :custom
+  (sage-shell:use-simple-prompt t))
+
+(use-package ob-sagemath
+  :ensure t
+  :custom
+  (org-babel-default-header-args:sage '((:session . t)
+                                        (:results . "output"))))
 
 (use-package org-journal
   :ensure t
