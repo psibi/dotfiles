@@ -38,6 +38,12 @@
      pskRaw = (import ./passwords.nix).wifi.ichigokurasaki_pskRaw;
      priority = 3;
    };
+   ACT_TP_Link_2Gz = {
+     pskRaw = (import ./passwords.nix).wifi.ganesh_house.act_tp_link_2Gz;
+   };
+   ACT_TP_Link_5Gz = {
+     pskRaw = (import ./passwords.nix).wifi.ganesh_house.act_tp_link_5Gz;
+   };
   };
 
   # Set your time zone.
@@ -182,6 +188,10 @@
      tree
      nix-prefetch-git
      nix-prefetch-github
+     texlive.combined.scheme-full
+     sage
+     python3Minimal
+     python39Packages.pygments
   ];
 
   fonts.fonts = with pkgs; [
@@ -199,6 +209,10 @@
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
+  };
+
+  security.pam.services.xmonad.gnupg = {
+    enable = true;
   };
 
   # List services that you want to enable:
