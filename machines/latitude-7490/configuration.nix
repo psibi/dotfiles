@@ -127,16 +127,8 @@
 
   virtualisation.docker.enable = true;
 
-  environment.shellAliases = {
-    pi = "ping 8.8.8.8";
-    o = "xdg-open";
-    ls = "exa";
-    sd = "systemctl poweroff";
-    sr = "systemctl reboot";
-    rm = "rm -v";
-    cp = "cp -v";
-    mv = "mv -v";
-  };
+  environment.shellAliases = import ./alias.nix;
+  programs.fish.shellAliases = import ./alias.nix;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -182,6 +174,7 @@
      htop
      cabal2nix
      lsof
+     ripgrep
      ripgrep-all
      rust-analyzer
      docker
