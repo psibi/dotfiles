@@ -43,7 +43,6 @@ import XMonad.Prompt.OrgMode
 -- * mod-i : Shrink the master area (Custom binding)
 -- * mod-shift-/ : Show the keybindings!
 -- * mod-return: Make the focused window with the master window
--- * mod-m : Focus on the master window
 -- * mod-j : Focus on the next window
 -- * mod-k : Focus on the previous window
 -- * mod-f: Toggle fullscreen (xmobar presence)
@@ -56,7 +55,7 @@ import XMonad.Prompt.OrgMode
 -- * Searching: Select world + mod-(g|v|w)
 -- * mod-q: Restart xmonad
 -- * mod-t: Retile
--- org-mode: https://github.com/xmonad/xmonad-contrib/pull/500/files
+-- * mod-m: org mode
 --------------------------------------------
 myWorkspaces :: [String]
 myWorkspaces = ["main", "web", "chat", "dev", "media", "float", "misc"]
@@ -94,7 +93,7 @@ sibiStartupHook = do
   Bright.setBrightness 1260
   setWMName "LG3D"
   when (null as) $ do
-    void $ startProcess (proc myTerminal [])
+    void $ startProcess (proc myTerminal ["--config-file", "/home/sibi/github/dotfiles/alacritty.yml"])
     void $ (startProcess (proc "emacs" ["--daemon"]))
     void $ startProcess "google-chrome-stable"
     void $ startProcess "seahorse"
@@ -136,14 +135,12 @@ keybindings =
   , ((0, xF86XK_AudioMute), toggleMute >> return ())
   , ((mod4Mask, xK_b), windowPrompt sibiXPConfig Bring allApplications)
   , ((mod4Mask, xK_o), windowPrompt sibiXPConfig Goto allApplications)
-  , ((mod4Mask, xK_m), sendMessage MagnifyMore)
-  , ((mod4Mask .|. shiftMask, xK_m), sendMessage MagnifyLess)
   , ((mod4Mask, xK_i), sendMessage Shrink)
   , ((mod4Mask, xK_f), sendMessage ToggleStruts)
   , ((mod4Mask, xK_slash), switchProjectPrompt sibiXPConfig)
   , ( (mod4Mask .|. controlMask, xK_k)
     , namedScratchpadAction sibiScratchPads "keepass")
-  , ((mod4Mask, xK_i), orgPrompt def "TODO" "/home/sibi/github/timebox/xmonad.org")
+  , ((mod4Mask, xK_m), orgPrompt def "TODO" "/home/sibi/github/timebox/xmonad.org")
   ]
 
 main :: IO ()

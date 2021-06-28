@@ -12,7 +12,7 @@ pkgs: rec {
   });
   haskellPackages = pkgs.haskellPackages.override {
     overrides = haskellPackagesNew: haskellPackagesOld: rec {
-      libmpd = haskellPackages.callPackage ./overrides/libmpd.nix {};
+      libmpd = haskellPackagesNew.callPackage ./overrides/libmpd.nix {};
       xmonad = let
         pkg = haskellPackagesNew.callPackage ./overrides/xmonad.nix { };
         in pkgs.haskell.lib.dontCheck pkg;
