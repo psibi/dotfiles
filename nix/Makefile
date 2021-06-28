@@ -29,7 +29,7 @@ install-pkg: require-PKG
 
 ## Uninstall package
 uninstall: require-PKG
-	nix-env -e ${PKG}
+	nix-env --uninstall ${PKG} -f ./packages.nix
 
 ## Search for a package
 search:
