@@ -96,7 +96,7 @@ sibiStartupHook = do
     void $ startProcess (proc myTerminal ["--config-file", "/home/sibi/github/dotfiles/alacritty.yml"])
     void $ (startProcess (proc "emacs" ["--daemon"]))
     void $ startProcess "google-chrome-stable"
-    void $ startProcess "seahorse"
+    void $ startProcess "cnx"
 
 xmonadConfig =
   withUrgencyHook NoUrgencyHook $ ewmh
