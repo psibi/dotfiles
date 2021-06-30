@@ -31,7 +31,7 @@ silencewait           15              # default: 30
 activity              "activity in %n (%t) [%w:%s]~"
 bell                  "bell     in %n (%t) [%w:%s]~"
 
-shell "/usr/bin/fish"
+shell "/run/current-system/sw/bin/fish"
 
 # Change keybindings for convenience
 bind ^Q mapdefault
@@ -86,11 +86,11 @@ sorendition "+b kG"
 
 # 2.2) hardstatus = navigation bar @ bottom
 # https://superuser.com/a/598128/177053
-backtick 1 1200 1200 sibi-uptime
-backtick 2 0 0 sibi-distro
-backtick 3 10800 10800 sibi-disk
+# backtick 1 1200 1200 sibi-uptime
+# backtick 2 0 0 sibi-distro
+# backtick 3 10800 10800 sibi-disk
 
-hardstatus alwayslastline "%{b kw}%H %{r}%1` %{m}%2` %{w}|%{g}%C%A %{w}| %{y}%d-%m-%y %{w}|%{c}%3`| %{-b kw}%u %-Lw%{= rW}%50> %n%f %t %{-}%+Lw%<"
+hardstatus alwayslastline "%{-b kw}%u %-Lw%{= rW}%50> %n%f %t %{-}%+Lw%<"
 
 # 2.3) Autoload two screen tabs for emacs/bash.
 screen -t ghci 0
