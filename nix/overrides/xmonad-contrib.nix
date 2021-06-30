@@ -5,11 +5,11 @@
 }:
 mkDerivation {
   pname = "xmonad-contrib";
-  version = "0.16";
+  version = "0.17";
   src = fetchgit {
     url = "https://github.com/xmonad/xmonad-contrib";
-    sha256 = "0000v4mrin9d3cg4z82q9gk9q4vkijbbi7mdld60f2hqdkd6vycy";
-    rev = "654fa5045c87b4b71db730d8f4ef02687061c5b4";
+    sha256 = "1sklqw79azpc6wdgyfiaqdamgw6nqccw5y5jgmpf9z59z59xhzk5";
+    rev = "1351f9a931f53e9f1e16c566c70cb8fa98f97785";
     fetchSubmodules = true;
   };
   libraryHaskellDepends = [

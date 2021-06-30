@@ -1,25 +1,25 @@
-{ mkDerivation, base, containers, data-default, directory
-, extensible-exceptions, fetchgit, filepath, mtl, process
-, QuickCheck, setlocale, stdenv, unix, utf8-string, X11, typed-process
+{ mkDerivation, base, containers, data-default, directory, fetchgit
+, filepath, lib, mtl, process, QuickCheck, quickcheck-classes
+, setlocale, transformers, unix, utf8-string, X11, typed-process
 }:
 mkDerivation {
   pname = "xmonad";
-  version = "0.15";
+  version = "0.16.9999";
   src = fetchgit {
-    url = "https://github.com/xmonad/xmonad";
-    sha256 = "1rjaw9xvjk59ia0h097sckgdmq6i9a9cdigm9q1i3x0af5zqvnyg";
-    rev = "ff738988d382c82ae7720b2149e97bd2c8402377";
+    url = "https://github.com/xmonad/xmonad.git";
+    sha256 = "1kip5d7kyl740k96m0wx60v7ix7n0swgly84zrygdivr39g51d9j";
+    rev = "42d319545b36020b9b3cdf121f1ba04cc58b847d";
     fetchSubmodules = true;
   };
   isLibrary = true;
   isExecutable = true;
   libraryHaskellDepends = [
-    base containers data-default directory extensible-exceptions
-    filepath mtl process setlocale unix utf8-string X11 typed-process
+    base containers data-default directory filepath mtl process
+    setlocale transformers unix utf8-string X11 typed-process
   ];
   executableHaskellDepends = [ base mtl unix X11 ];
   testHaskellDepends = [
-    base containers extensible-exceptions QuickCheck X11
+    base containers QuickCheck quickcheck-classes X11
   ];
   postInstall = ''
     install -D man/xmonad.1 ''${!outputDoc}/share/man/man1/xmonad.1
@@ -27,5 +27,5 @@ mkDerivation {
   '';
   homepage = "http://xmonad.org";
   description = "A tiling window manager";
-  license = stdenv.lib.licenses.bsd3;
+  license = lib.licenses.bsd3;
 }

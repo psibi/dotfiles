@@ -7,8 +7,8 @@ mkDerivation {
   version = "0.15.3";
   src = fetchgit {
     url = "https://github.com/xmonad/xmonad-extras";
-    sha256 = "1iwwhi1c52krvb6lvvwzbv4phxnvfy86rwvnd8b3fy6g41kgvan0";
-    rev = "faae63b8adeeefd013a2652f4050695c2ab186e7";
+    sha256 = "1kj8xzp7d8y0w63r46zvgav6a3320c6blsilaldaylgqb10h6aga";
+    rev = "6df82de88474754bc90724251d5fcbeccccbd7e7";
     fetchSubmodules = false;
   };
   configureFlags = [
