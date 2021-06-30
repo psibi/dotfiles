@@ -20,10 +20,15 @@
     };
   };
 
+
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.grub.device = "/dev/disk/by-id/label/boot";
+  boot.loader.grub = {
+   device = "/dev/disk/by-id/label/boot";
+   configurationLimit = 70;
+  };
 
   networking.hostName = "elric"; # Define your hostname.
   networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -192,6 +197,8 @@
      sage
      python3Minimal
      python39Packages.pygments
+     xfce.xfce4-screenshooter
+     pandoc
   ];
 
   fonts.fonts = with pkgs; [
