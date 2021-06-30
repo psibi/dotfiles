@@ -3,10 +3,50 @@
 # For more information, please see the documentation at:
 #   https://docs.haskellstack.org/en/stable/lock_files
 
-packages: []
+packages:
+- completed:
+    name: xmonad-contrib
+    version: 0.16.999
+    git: git@github.com:xmonad/xmonad-contrib.git
+    pantry-tree:
+      size: 22660
+      sha256: 340d0f413c2d9dd7647b2b8c25f54301d12e3a8532b029971b26bcfbc1fe83fa
+    commit: 1351f9a931f53e9f1e16c566c70cb8fa98f97785
+  original:
+    git: git@github.com:xmonad/xmonad-contrib.git
+    commit: 1351f9a931f53e9f1e16c566c70cb8fa98f97785
+- completed:
+    name: xmonad-extras
+    version: 0.15.3
+    git: git@github.com:xmonad/xmonad-extras.git
+    pantry-tree:
+      size: 1457
+      sha256: b96f0edf713cf13d2135671dd14e0d381f644ac63d2806e442a84234e42756cd
+    commit: 6df82de88474754bc90724251d5fcbeccccbd7e7
+  original:
+    git: git@github.com:xmonad/xmonad-extras.git
+    commit: 6df82de88474754bc90724251d5fcbeccccbd7e7
+- completed:
+    name: xmonad
+    version: 0.16.9999
+    git: git@github.com:xmonad/xmonad.git
+    pantry-tree:
+      size: 3481
+      sha256: 352aa4d6692e1d0d9686f9f33d84802d6bbe9ba0f658f4e9cf91ac92395a59e6
+    commit: 42d319545b36020b9b3cdf121f1ba04cc58b847d
+  original:
+    git: git@github.com:xmonad/xmonad.git
+    commit: 42d319545b36020b9b3cdf121f1ba04cc58b847d
+- completed:
+    hackage: X11-1.10@sha256:ed01fba28081d6922462c2727a9a2e71f8ec3d962ed18963eee0c770558817d9,3703
+    pantry-tree:
+      size: 2860
+      sha256: 38ebc2a2423c7bab2aedd7eada874b24a1089bce1392e94bec0859f9082466a3
+  original:
+    hackage: X11-1.10@sha256:ed01fba28081d6922462c2727a9a2e71f8ec3d962ed18963eee0c770558817d9,3703
 snapshots:
 - completed:
-    size: 498398
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/13/23.yaml
-    sha256: 63151ca76f39d5cfbd266ce019236459fdda53fbefd2200aedeb33bcc81f808e
-  original: lts-13.23
+    size: 585393
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/18/0.yaml
+    sha256: c632012da648385b9fa3c29f4e0afd56ead299f1c5528ee789058be410e883c0
+  original: lts-18.0
