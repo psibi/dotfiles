@@ -32,6 +32,9 @@
 
 (setq package-check-signature nil)
 
+(use-package ormolu
+  :ensure t)
+
 ;; optional if you want which-key integration
 (use-package which-key
   :ensure t
