@@ -118,7 +118,7 @@ xmonadConfig =
 
 keybindings :: [((KeyMask, KeySym), X ())]
 keybindings =
-  [ ((mod4Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
+  [ ((mod4Mask .|. shiftMask, xK_z), spawn "dm-tool lock")
   , ((0, xK_Print), spawn "xfce4-screenshooter")
   , ((mod4Mask, xK_x), spawn "xkill")
   , ((mod4Mask, xK_c), kill)

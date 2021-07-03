@@ -23,7 +23,7 @@
   # networking.wireless.userControlled.enable = true;
   # networking.networkmanager.wifi.backend = "iwd";
   networking.networkmanager.enable = true;
-  networking.networkmanager.wifi.powersave = true;
+  networking.networkmanager.wifi.powersave = false;
 
   # Set your time zone.
   time.timeZone = "Asia/Kolkata";
@@ -53,6 +53,7 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+
   # services.xserver.desktopManager = {
   #  xfce.enable = true;
   # };
