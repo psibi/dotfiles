@@ -9,6 +9,10 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  nixpkgs.config.packageOverrides = pkgs: rec {
+    tfswitch = pkgs.callPackage ../packages/tfswitch/default.nix {};
+  };
+
   nix.trustedUsers = [ "root" "sibi" ];
 
   # Use the systemd-boot EFI boot loader.
@@ -176,6 +180,11 @@
     awscli2
     azure-cli
     keybase-gui
+    bc
+    file
+    xfce.xfce4-screenshooter
+    tfswitch
+    any-nix-shell
   ];
 
   fonts.fonts = with pkgs; [ ubuntu_font_family font-awesome symbola alegreya ];
