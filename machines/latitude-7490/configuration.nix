@@ -14,12 +14,10 @@
 
   nix.trustedUsers = [ "root" "sibi"];
 
-  nixpkgs.config.packageOverrides = pkgs: {
-    nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/9c59f807f5c16a30f2ef48f9b4d20464d7d524f4.tar.gz") {
-      inherit pkgs;
-    };
+  nixpkgs.config.packageOverrides = pkgs: rec {
+    tfswitch = pkgs.callPackage ../packages/tfswitch/default.nix {};
+    ouch = pkgs.callPackage ../packages/ouch/default.nix {};
   };
-
 
 
   # Use the systemd-boot EFI boot loader.
@@ -79,31 +77,37 @@
   # services.xserver.desktopManager = {
   #  xfce.enable = true;
   # };
-  location.provider = "geoclue2";
-  services.geoclue2.enable = true;
-  services.redshift.enable = true;
-  services.redshift.brightness = {
-    day = "0.6";
-    night = "0.8";
-  };
+  # location.provider = "geoclue2";
+  # services.geoclue2.enable = true;
+  # services.redshift.enable = true;
+  # services.redshift.brightness = {
+  #   day = "0.6";
+  #   night = "0.8";
+  # };
 
   services.xserver.windowManager.xmonad.enable = true;
   services.xserver.windowManager.xmonad.enableContribAndExtras = true;
   services.xserver.windowManager.xmonad.config = /home/sibi/github/dotfiles/xmonad/xmonad.hs;
 
-  services.xserver.windowManager.xmonad.haskellPackages = pkgs.haskellPackages.override {
-    overrides = haskellPackagesNew: haskellPackagesOld: rec {
-        libmpd = haskellPackagesNew.callPackage /home/sibi/github/dotfiles/nix/overrides/libmpd.nix {};
+  services.xserver.windowManager.xmonad.haskellPackages =
+    pkgs.haskellPackages.override {
+      overrides = haskellPackagesNew: haskellPackagesOld: rec {
+        libmpd = haskellPackagesNew.callPackage
+          /home/sibi/github/dotfiles/nix/overrides/libmpd.nix { };
+        X11 = haskellPackagesNew.callPackage
+          /home/sibi/github/dotfiles/nix/overrides/x11.nix { };
         xmonad = let
-          pkg = haskellPackagesNew.callPackage /home/sibi/github/dotfiles/nix/overrides/xmonad.nix { };
+          pkg = haskellPackagesNew.callPackage
+            /home/sibi/github/dotfiles/nix/overrides/xmonad.nix { };
         in pkgs.haskell.lib.dontCheck pkg;
-        xmonad-extras =
-          haskellPackagesNew.callPackage /home/sibi/github/dotfiles/nix/overrides/xmonad-extras.nix { };
+        xmonad-extras = haskellPackagesNew.callPackage
+          /home/sibi/github/dotfiles/nix/overrides/xmonad-extras.nix { };
         xmonad-contrib = let
-          pkg = haskellPackagesNew.callPackage /home/sibi/github/dotfiles/nix/overrides/xmonad-contrib.nix { };
+          pkg = haskellPackagesNew.callPackage
+            /home/sibi/github/dotfiles/nix/overrides/xmonad-contrib.nix { };
         in pkgs.haskell.lib.dontCheck pkg;
-        timezone-olson =
-          haskellPackagesNew.callPackage /home/sibi/github/dotfiles/nix/overrides/timezone-olson.nix { };
+        timezone-olson = haskellPackagesNew.callPackage
+          /home/sibi/github/dotfiles/nix/overrides/timezone-olson.nix { };
       };
     };
 
@@ -199,6 +203,10 @@
      python39Packages.pygments
      xfce.xfce4-screenshooter
      pandoc
+     killall
+     zoxide
+     starship
+     ouch
   ];
 
   fonts.fonts = with pkgs; [
@@ -206,6 +214,7 @@
      font-awesome
      symbola
      alegreya
+     nerdfonts
   ];
 
   environment.homeBinInPath = true;
