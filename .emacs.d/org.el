@@ -46,8 +46,10 @@
   :ensure t
   :custom
   (org-roam-directory "/home/sibi/github/misc/roam")
-  :config
-  (add-hook 'after-init-hook 'org-roam-mode))
+  :init
+  (progn
+    (setq org-roam-v2-ack t)
+    (org-roam-db-autosync-mode)))
 
 ;; (use-package ox-twbs
 ;;   :ensure t)
