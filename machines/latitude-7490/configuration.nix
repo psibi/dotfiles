@@ -219,6 +219,8 @@
      ormolu
      hlint
      stylish-haskell
+     aws-iam-authenticator
+     kustomize
   ];
 
   fonts.fonts = with pkgs; [
