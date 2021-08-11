@@ -207,6 +207,18 @@
      zoxide
      starship
      ouch
+     just
+     tfswitch
+     jq
+     dnsutils
+     fzf
+     broot
+     du-dust
+     azure-cli
+     awscli2
+     ormolu
+     hlint
+     stylish-haskell
   ];
 
   fonts.fonts = with pkgs; [
