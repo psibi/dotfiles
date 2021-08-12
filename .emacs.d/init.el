@@ -741,5 +741,6 @@
 (load-file "~/.emacs.d/web.el")
 (load-file "~/.emacs.d/sibi-utils.el")
 (load-file "~/.emacs.d/org.el")
-(load-file "~/.emacs.d/devops.el")
+(load-file "./devops.el")
+(load-file "./private.el")
 ;; (load-file "~/.emacs.d/sml.el")
