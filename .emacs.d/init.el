@@ -736,11 +736,27 @@
 (use-package org-make-toc
   :ensure t)
 
+;; Install and load `quelpa-use-package'.
+(package-install 'quelpa-use-package)
+(require 'quelpa-use-package)
+
+(use-package dogears
+  :quelpa (dogears :fetcher github :repo "alphapapa/dogears.el")
+
+  :init (dogears-mode)
+  ;; These bindings are optional, of course:
+  :bind (:map global-map
+              ("M-g d" . dogears-go)
+              ("M-g M-b" . dogears-back)
+              ("M-g M-f" . dogears-forward)
+              ("M-g M-d" . dogears-list)
+              ("M-g M-D" . dogears-sidebar)))
+
 (load-file "~/.emacs.d/haskell.el")
 (load-file "~/.emacs.d/python.el")
 (load-file "~/.emacs.d/web.el")
 (load-file "~/.emacs.d/sibi-utils.el")
 (load-file "~/.emacs.d/org.el")
-(load-file "./devops.el")
-(load-file "./private.el")
+(load-file "~/github/dotfiles/.emacs.d/devops.el")
+(load-file "~/github/dotfiles/.emacs.d/private.el")
 ;; (load-file "~/.emacs.d/sml.el")
