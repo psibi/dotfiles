@@ -85,6 +85,8 @@
   #   night = "0.8";
   # };
 
+  services.earlyoom.enable = true;
+
   services.xserver.windowManager.xmonad.enable = true;
   services.xserver.windowManager.xmonad.enableContribAndExtras = true;
   services.xserver.windowManager.xmonad.config = /home/sibi/github/dotfiles/xmonad/xmonad.hs;
@@ -221,6 +223,7 @@
      stylish-haskell
      aws-iam-authenticator
      kustomize
+     aspell
   ];
 
   fonts.fonts = with pkgs; [
