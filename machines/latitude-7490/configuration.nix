@@ -224,6 +224,7 @@
      aws-iam-authenticator
      kustomize
      aspell
+     ipcalc
   ];
 
   fonts.fonts = with pkgs; [
