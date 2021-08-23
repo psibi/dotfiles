@@ -225,6 +225,7 @@
      kustomize
      aspell
      ipcalc
+     bc
   ];
 
   fonts.fonts = with pkgs; [

@@ -18,7 +18,7 @@ alias rst='source ~/.config/fish/config.fish'
 alias clipboard='xclip -sel clip'
 
 alias sx='startx'
-alias bc='qalc'
+alias bc='bc -l'
 alias bcc='bc -q -l'
 
 alias mv='mv -v'
