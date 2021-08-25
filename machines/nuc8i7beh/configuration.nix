@@ -10,6 +10,11 @@
       ./hardware-configuration.nix
     ];
 
+  nixpkgs.config.packageOverrides = pkgs: rec {
+    tfswitch = pkgs.callPackage ../packages/tfswitch/default.nix {};
+    ouch = pkgs.callPackage ../packages/ouch/default.nix {};
+  };
+
   nixpkgs.config.allowUnfree = true;
   hardware.enableRedistributableFirmware = true;
 
@@ -183,6 +188,8 @@
      ipcalc
      bc
      xorg.libxcb
+     ouch
+     tfswitch
   ];
 
   fonts.fonts = with pkgs; [
