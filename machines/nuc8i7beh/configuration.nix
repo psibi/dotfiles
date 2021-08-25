@@ -2,25 +2,24 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }: {
-  imports = [ # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-  ];
+{ config, pkgs, ... }:
+
+{
+  imports =
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+    ];
 
   nixpkgs.config.allowUnfree = true;
-
-  nixpkgs.config.packageOverrides = pkgs: rec {
-    tfswitch = pkgs.callPackage ../packages/tfswitch/default.nix {};
-  };
-
-  nix.trustedUsers = [ "root" "sibi" ];
+  hardware.enableRedistributableFirmware = true;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.grub.configurationLimit = 25;
+  boot.initrd.luks.devices.crypted.device = "/dev/disk/by-uuid/fb8ed389-a834-48e6-af5e-9dfbc4724490";
+  fileSystems."/home".device = "/dev/mapper/crypted";
 
-  hardware.enableRedistributableFirmware = true;
+  nix.trustedUsers = [ "root" "sibi" ];
 
   networking.hostName = "arya"; # Define your hostname.
   # networking.wireless.enable = true;
@@ -39,11 +38,6 @@
   networking.interfaces.eno1.useDHCP = true;
   networking.interfaces.wlp0s20f3.useDHCP = true;
 
-  fileSystems."/home" = {
-    device = "/dev/disk/by-label/home";
-    fsType = "ext4";
-  };
-
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -57,7 +51,6 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-
   # services.xserver.desktopManager = {
   #  xfce.enable = true;
   # };
@@ -105,91 +98,103 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sibi = {
-    isNormalUser = true;
-    extraGroups = [
-      "wheel"
-      "audio"
-      "sound"
-      "video"
-      "docker"
-      "networkmanager"
-    ]; # Enable ‘sudo’ for the user.
-  };
+     isNormalUser = true;
+     extraGroups = [ "wheel" "audio" "sound" "video" "docker" "networkmanager" ]; # Enable ‘sudo’ for the user.
+   };
 
   virtualisation.docker.enable = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    # vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    curl
-    firefox
-    rxvt_unicode
-    git
-    emacs
-    unzip
-    keepassxc
-    sqlite
-    alacritty
-    google-chrome
-    gnucash
-    screen
-    xclip
-    xsel
-    xdotool
-    xscreensaver
-    fish
-    bat
-    unrar
-    exa
-    fd
-    procs
-    nixfmt
-    direnv
-    gitFull
-    rustup
-    stack
-    pavucontrol
-    gnumake
-    gcc
-    llvm
-    xorg.libxcb
-    pinentry
-    pinentry-emacs
-    pinentry-curses
-    feh
-    htop
-    cabal2nix
-    lsof
-    ripgrep
-    ripgrep-all
-    rust-analyzer
-    docker
-    cachix
-    tree
-    nix-prefetch-git
-    nix-prefetch-github
-    # texlive.combined.scheme-full
-    sage
-    python3Minimal
-    python39Packages.pygments
-    networkmanager
-    ormolu
-    direnv
-    awscli2
-    azure-cli
-    keybase-gui
-    bc
-    file
-    xfce.xfce4-screenshooter
-    tfswitch
-    any-nix-shell
+     wget
+     curl
+     firefox
+     rxvt_unicode
+     git
+     emacs
+     unzip
+     keepassxc
+     alacritty
+     google-chrome
+     gnucash
+     screen
+     xclip
+     xsel
+     xdotool
+     xscreensaver
+     fish
+     bat
+     unrar
+     exa
+     fd
+     procs
+     nixfmt
+     direnv
+     gitFull
+     rustup
+     stack
+     pavucontrol
+     gnumake
+     gcc
+     llvm
+     xorg.libxcb
+     pinentry
+     pinentry-emacs
+     pinentry-curses
+     feh
+     sqlite
+     htop
+     cabal2nix
+     lsof
+     ripgrep
+     ripgrep-all
+     rust-analyzer
+     docker
+     cachix
+     tree
+     nix-prefetch-git
+     nix-prefetch-github
+     texlive.combined.scheme-full
+     sage
+     python3Minimal
+     python39Packages.pygments
+     xfce.xfce4-screenshooter
+     pandoc
+     killall
+     zoxide
+     starship
+     # ouch
+     just
+     # tfswitch
+     jq
+     dnsutils
+     fzf
+     broot
+     du-dust
+     azure-cli
+     awscli2
+     ormolu
+     hlint
+     stylish-haskell
+     aws-iam-authenticator
+     kustomize
+     aspell
+     ipcalc
+     bc
+     xorg.libxcb
   ];
 
-  fonts.fonts = with pkgs; [ ubuntu_font_family font-awesome symbola alegreya ];
+  fonts.fonts = with pkgs; [
+     ubuntu_font_family
+     font-awesome
+     symbola
+     alegreya
+     nerdfonts
+  ];
 
   environment.homeBinInPath = true;
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -205,11 +210,6 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-  services.openssh.knownHosts = {
-    elric = {
-      publicKey = (import ../passwords.nix).ssh_key.personalPublicKey;
-    };
-  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
