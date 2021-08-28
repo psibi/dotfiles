@@ -99,7 +99,9 @@
   ;; (setq lsp-signature-auto-activate nil)
 
   ;; comment to disable rustfmt on save
-  (setq rustic-format-on-save t))
+  (progn
+    (setq rustic-format-on-save t)
+    (add-hook 'rustic-mode-hook #'tree-sitter-hl-mode)))
 
 (use-package flycheck-rust
   :ensure t
@@ -502,10 +504,6 @@
               ("g" . google-this)
               ("m" . apply-macro-to-region-lines)))
 
-(use-package markdown-mode
-  :ensure t
-  :mode "\\.md\\'")
-
 (use-package tldr
   :ensure t)
 
@@ -668,11 +666,11 @@
   :init
   (add-hook 'after-init-hook 'global-company-mode))
 
-(use-package company-suggest
-  :ensure t
-  :init
-  (add-to-list 'company-backends 'company-suggest-google
-  (add-to-list 'company-backends 'company-suggest-wiktionary)))
+;; (use-package company-suggest
+;;   :ensure t
+;;   :init
+;;   (add-to-list 'company-backends 'company-suggest-google
+;;   (add-to-list 'company-backends 'company-suggest-wiktionary)))
 
 ;; Use pandoc-main-hydra/body
 (use-package pandoc-mode
@@ -751,6 +749,51 @@
               ("M-g M-f" . dogears-forward)
               ("M-g M-d" . dogears-list)
               ("M-g M-D" . dogears-sidebar)))
+
+(use-package tree-sitter
+  :ensure t
+  :init
+  (global-tree-sitter-mode))
+
+(use-package tree-sitter-langs
+  :ensure t)
+
+(defun sibi/run-markdown-code-block (&optional insert-to-buffer)
+  "Run markdown code block under curosr."
+  (interactive "P")
+  (let* ((start (nth 0
+                     (markdown-get-enclosing-fenced-block-construct)))
+         (end (nth 1
+                   (markdown-get-enclosing-fenced-block-construct)))
+         (snippet-with-markers (buffer-substring start end))
+         (snippet (string-join (cdr (butlast (split-string snippet-with-markers "\n")))
+                               "\n"))
+         (snippet-runner (car (last (split-string (car (split-string snippet-with-markers "\n"))
+                                                  "[ `]+")))))
+    (setq temp-source-file (make-temp-file "thing-to-run"))
+    (pulse-momentary-highlight-region start end
+                                      'company-template-field)
+    (message "Code: %s" snippet)
+    (message "Runner: %s" snippet-runner)
+    (append-to-file snippet nil temp-source-file)
+    (message "Running code...")
+    (progn
+      (goto-char end)
+      (end-of-line)
+      (newline)
+      (insert "\n```shellsession\n")
+      ;; Todo - Make snippet runner smart. Right now use bash.
+      (insert (shell-command-to-string (format "%s '%s'" "bash" temp-source-file)))
+      (insert "```"))
+    (delete-file temp-source-file t)))
+
+(use-package markdown-mode
+  :ensure t
+  :mode "\\.md\\'"
+  :bind (:map markdown-mode-map
+              ("C-c C-c" . sibi/run-markdown-code-block))
+  :custom
+  (markdown-hide-urls t))
 
 (load-file "~/.emacs.d/haskell.el")
 (load-file "~/.emacs.d/python.el")
