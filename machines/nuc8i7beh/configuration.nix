@@ -190,6 +190,9 @@
      xorg.libxcb
      ouch
      tfswitch
+     whois
+     openssl
+     lsd
   ];
 
   fonts.fonts = with pkgs; [
