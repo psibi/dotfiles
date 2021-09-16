@@ -192,7 +192,6 @@
      cabal2nix
      lsof
      ripgrep
-     ripgrep-all
      rust-analyzer
      docker
      cachix
