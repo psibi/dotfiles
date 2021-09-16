@@ -109,7 +109,9 @@
 
 (use-package paredit
   :diminish paredit-mode
-  :ensure t)
+  :ensure t
+  :config
+  (add-hook 'emacs-lisp-mode-hook 'paredit-mode))
 
 (use-package google-this
   :ensure t)
@@ -794,6 +796,9 @@
               ("C-c C-c" . sibi/run-markdown-code-block))
   :custom
   (markdown-hide-urls t))
+
+(use-package go-mode
+  :ensure t)
 
 (load-file "~/.emacs.d/haskell.el")
 (load-file "~/.emacs.d/python.el")

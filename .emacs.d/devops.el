@@ -9,3 +9,17 @@
 (use-package docker
   :ensure t
   :bind ("C-c d" . docker))
+
+(use-package envrc
+  :ensure t
+  :init
+  (envrc-global-mode))
+
+(use-package ox-reveal
+  :ensure t)
+
+(use-package justl
+  :quelpa (justl :fetcher file
+                 :path "~/github/just/justl.el")
+  :custom
+  (justl-recipe-width 40))
