@@ -13,6 +13,7 @@
   nixpkgs.config.packageOverrides = pkgs: rec {
     tfswitch = pkgs.callPackage ../packages/tfswitch/default.nix {};
     ouch = pkgs.callPackage ../packages/ouch/default.nix {};
+    amber-secret = pkgs.callPackage ../packages/amber/default.nix {};
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -111,89 +112,7 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-     wget
-     curl
-     firefox
-     rxvt_unicode
-     git
-     emacs
-     unzip
-     keepassxc
-     alacritty
-     google-chrome
-     gnucash
-     screen
-     xclip
-     xsel
-     xdotool
-     xscreensaver
-     fish
-     bat
-     unrar
-     exa
-     fd
-     procs
-     nixfmt
-     direnv
-     gitFull
-     rustup
-     stack
-     pavucontrol
-     gnumake
-     gcc
-     llvm
-     xorg.libxcb
-     pinentry
-     pinentry-emacs
-     pinentry-curses
-     feh
-     sqlite
-     htop
-     cabal2nix
-     lsof
-     ripgrep
-     ripgrep-all
-     rust-analyzer
-     docker
-     cachix
-     tree
-     nix-prefetch-git
-     nix-prefetch-github
-     texlive.combined.scheme-full
-     sage
-     python3Minimal
-     python39Packages.pygments
-     xfce.xfce4-screenshooter
-     pandoc
-     killall
-     zoxide
-     starship
-     # ouch
-     just
-     # tfswitch
-     jq
-     dnsutils
-     fzf
-     broot
-     du-dust
-     azure-cli
-     awscli2
-     ormolu
-     hlint
-     stylish-haskell
-     aws-iam-authenticator
-     kustomize
-     aspell
-     ipcalc
-     bc
-     xorg.libxcb
-     ouch
-     tfswitch
-     whois
-     openssl
-     lsd
-  ];
+  environment.systemPackages = import ../packages.nix { pkgs = pkgs; };
 
   fonts.fonts = with pkgs; [
      ubuntu_font_family

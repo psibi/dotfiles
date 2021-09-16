@@ -1,19 +1,18 @@
-{ lib, rustPlatform, fetchFromGitHub, fetchurl, pkgs, git }:
+{ lib, rustPlatform, fetchFromGitHub }:
 
 rustPlatform.buildRustPackage rec {
-  pname = "amber";
-  version = "0.1.0";
+  # Renaming it to amber-secret because another package named amber exists
+  pname = "amber-secret";
+  version = "0.1.1";
 
   src = fetchFromGitHub {
-    owner = "psibi";
-    repo = pname;
-    rev = "1ad3243559cd1f0c06a4f3930f4976a46583136c";
-    sha256 = "0mspv54f46kj9hl1k0615d1xyd8cvzzaq19vpd7byr3lv9k2zrln";
+    owner = "fpco";
+    repo = "amber";
+    rev = "v${version}";
+    sha256 = "1l5c7vdi885z56nqqbm4sw9hvqk3rfzm0mgcwk5cbwjlrz7yjq4m";
   };
 
-  VERGEN_GIT_SHA = "1ad3243559cd1f0c06a4f3930f4976a46583136c";
-
-  cargoSha256 = "0nngyhdg2rszp0a4alnb38n1y6756llv4w98620nvc1x86sfilkn";
+  cargoSha256 = "sha256:0dmhlyrw6yd7p80v7anz5nrd28bcrhq27vzy605dinddvncjn13q";
 
   meta = with lib; {
     description = "Manage secret values in-repo via public key cryptography";
