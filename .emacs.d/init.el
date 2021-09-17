@@ -806,5 +806,5 @@
 (load-file "~/.emacs.d/sibi-utils.el")
 (load-file "~/.emacs.d/org.el")
 (load-file "~/github/dotfiles/.emacs.d/devops.el")
-(load-file "~/github/dotfiles/.emacs.d/private.el")
+;; (load-file "~/github/dotfiles/.emacs.d/private.el")
 ;; (load-file "~/.emacs.d/sml.el")
