@@ -23,6 +23,19 @@
       signByDefault = true;
       key = "BB557613";
     };
+    ignores = [ "*~" "\#*\#" ".\#*"];
+  };
+
+  programs.starship = {
+    enable = true;
+    enableFishIntegration = true;
+    enableZshIntegration = false;
+    settings = {
+      kubernetes = {
+        format = "on [⛵ $context \\($namespace\\)](dimmed green) ";
+        disabled = false;
+      };
+    };
   };
 
   # This value determines the Home Manager release that your
