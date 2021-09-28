@@ -11,3 +11,5 @@ ln -v -s $PWD/.config/fish/config.fish $HOME/.config/fish/config.fish
 ln -v -s $PWD/alacritty.yml $HOME/.alacritty.yml
 
 ln -v -s $PWD/.config/starship.toml $HOME/.config/starship.toml
+
+ln -v -s $PWD/machines/home-manager/latitude.nix $HOME/.config/nixpkgs/home.nix
