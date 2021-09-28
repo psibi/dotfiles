@@ -15,6 +15,16 @@
 
   home.packages = import ./packages.nix { pkgs = pkgs; };
 
+  programs.git = {
+    enable = true;
+    userName = "sibi";
+    userEmail = "sibi@psibi.in";
+    signing = {
+      signByDefault = true;
+      key = "BB557613";
+    };
+  };
+
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards
