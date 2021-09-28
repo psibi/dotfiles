@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 
-{
+ {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
@@ -8,6 +8,10 @@
   # paths it should manage.
   home.username = "sibi";
   home.homeDirectory = "/home/sibi";
+
+  nixpkgs.config.packageOverrides = pkgs: rec {
+    ouch = pkgs.callPackage ../packages/ouch/default.nix {};
+  };
 
   home.packages = import ./packages.nix { pkgs = pkgs; };
 
