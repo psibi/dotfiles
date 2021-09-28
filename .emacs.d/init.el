@@ -81,6 +81,14 @@
 ;;    (setq rust-format-on-save t)
 ;;   ))
 
+(use-package tree-sitter
+  :ensure t
+  :init
+  (global-tree-sitter-mode))
+
+(use-package tree-sitter-langs
+  :ensure t)
+
 (use-package rustic
   :ensure t
   :bind (:map rustic-mode-map
@@ -751,14 +759,6 @@
               ("M-g M-f" . dogears-forward)
               ("M-g M-d" . dogears-list)
               ("M-g M-D" . dogears-sidebar)))
-
-(use-package tree-sitter
-  :ensure t
-  :init
-  (global-tree-sitter-mode))
-
-(use-package tree-sitter-langs
-  :ensure t)
 
 (defun sibi/run-markdown-code-block (&optional insert-to-buffer)
   "Run markdown code block under curosr."

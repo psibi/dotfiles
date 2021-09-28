@@ -20,6 +20,6 @@
 
 (use-package justl
   :quelpa (justl :fetcher file
-                 :path "~/github/just/justl.el")
+                 :path "~/github/justl.el/justl.el")
   :custom
   (justl-recipe-width 40))
