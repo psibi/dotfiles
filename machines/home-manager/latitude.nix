@@ -9,9 +9,11 @@
   home.username = "sibi";
   home.homeDirectory = "/home/sibi";
 
-  home.packages = [
-    pkgs.git
-  ];
+  nixpkgs.config.packageOverrides = pkgs: rec {
+    ouch = pkgs.callPackage ../packages/ouch/default.nix {};
+  };
+
+  home.packages = import ./packages.nix {pkgs = pkgs; };
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
