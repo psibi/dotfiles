@@ -8,16 +8,24 @@
   # paths it should manage.
   home.username = "sibi";
   home.homeDirectory = "/home/sibi";
+  home.language = {
+   monetary = "en_IN";
+   time = "en_US.UTF-8";
+  };
+  home.sessionPath = [ "~/.local/bin" ];
 
   nixpkgs.config.packageOverrides = pkgs: rec {
+    tfswitch = pkgs.callPackage ../packages/tfswitch/default.nix {};
     ouch = pkgs.callPackage ../packages/ouch/default.nix {};
+    amber-secret = pkgs.callPackage ../packages/amber/default.nix {};
+    tgswitch = pkgs.callPackage ../packages/tgswitch/default.nix {};
   };
 
   home.packages = import ./packages.nix { pkgs = pkgs; };
 
   programs.git = {
     enable = true;
-    userName = "sibi";
+    userName = "Sibi Prabakaran";
     userEmail = "sibi@psibi.in";
     signing = {
       signByDefault = true;

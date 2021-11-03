@@ -800,6 +800,17 @@
 (use-package go-mode
   :ensure t)
 
+(use-package forge
+  :after magit
+  :ensure t
+  :config
+  (setq auth-sources '((:source "~/.authinfo.gpg")))
+  (setq gitlab.user "sibi"))
+
+
+
+
+
 (load-file "~/.emacs.d/haskell.el")
 (load-file "~/.emacs.d/python.el")
 (load-file "~/.emacs.d/web.el")

@@ -4,4 +4,5 @@ with pkgs; [
   terraform-docs
   ouch
   dogdns
+  tgswitch
 ]
