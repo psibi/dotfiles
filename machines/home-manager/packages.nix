@@ -5,4 +5,7 @@ with pkgs; [
   ouch
   dogdns
   tgswitch
+  file
+  aspell
+  aspellDicts.en
 ]
