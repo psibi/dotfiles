@@ -8,4 +8,5 @@ with pkgs; [
   file
   aspell
   aspellDicts.en
+  libreoffice
 ]

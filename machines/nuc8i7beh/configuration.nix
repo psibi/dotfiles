@@ -7,6 +7,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
+      <nixos-hardware/intel/nuc/8i7beh>
       ./hardware-configuration.nix
     ];
 
