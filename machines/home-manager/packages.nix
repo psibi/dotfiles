@@ -9,4 +9,6 @@ with pkgs; [
   aspell
   aspellDicts.en
   libreoffice
+  keybase-gui
+  keybase
 ]
