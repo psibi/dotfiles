@@ -8,9 +8,13 @@
   # paths it should manage.
   home.username = "sibi";
   home.homeDirectory = "/home/sibi";
+  home.sessionPath = [ "~/.local/bin" ];
 
   nixpkgs.config.packageOverrides = pkgs: rec {
     ouch = pkgs.callPackage ../packages/ouch/default.nix {};
+    tfswitch = pkgs.callPackage ../packages/tfswitch/default.nix {};
+    amber-secret = pkgs.callPackage ../packages/amber/default.nix {};
+    tgswitch = pkgs.callPackage ../packages/tgswitch/default.nix {};
   };
 
   home.packages = import ./packages.nix {pkgs = pkgs; };

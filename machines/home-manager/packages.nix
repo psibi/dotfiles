@@ -11,4 +11,5 @@ with pkgs; [
   libreoffice
   keybase-gui
   keybase
+  amber-secret
 ]

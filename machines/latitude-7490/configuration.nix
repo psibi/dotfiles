@@ -31,25 +31,27 @@
   };
 
   networking.hostName = "elric"; # Define your hostname.
-  networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.wireless.userControlled.enable  = true;
-  networking.wireless.interfaces = ["wlp2s0"];
-  networking.wireless.networks = {
-   dd-wrt_5 = {
-     pskRaw = (import ./passwords.nix).wifi.ddwrt_pskRaw;
-     priority = 1;
-   };
-   ichigokurasaki_5hz = {
-     pskRaw = (import ./passwords.nix).wifi.ichigokurasaki_pskRaw;
-     priority = 3;
-   };
-   ACT_TP_Link_2Gz = {
-     pskRaw = (import ./passwords.nix).wifi.ganesh_house.act_tp_link_2Gz;
-   };
-   ACT_TP_Link_5Gz = {
-     pskRaw = (import ./passwords.nix).wifi.ganesh_house.act_tp_link_5Gz;
-   };
-  };
+  networking.networkmanager.enable = true;
+  # networking.networkmanager.wifi.powersave = false;
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  # networking.wireless.userControlled.enable  = true;
+  # networking.wireless.interfaces = ["wlp2s0"];
+  # networking.wireless.networks = {
+  #  dd-wrt_5 = {
+  #    pskRaw = (import ./passwords.nix).wifi.ddwrt_pskRaw;
+  #    priority = 1;
+  #  };
+  #  ichigokurasaki_5hz = {
+  #    pskRaw = (import ./passwords.nix).wifi.ichigokurasaki_pskRaw;
+  #    priority = 3;
+  #  };
+  #  ACT_TP_Link_2Gz = {
+  #    pskRaw = (import ./passwords.nix).wifi.ganesh_house.act_tp_link_2Gz;
+  #  };
+  #  ACT_TP_Link_5Gz = {
+  #    pskRaw = (import ./passwords.nix).wifi.ganesh_house.act_tp_link_5Gz;
+  #  };
+  # };
 
   # Set your time zone.
   time.timeZone = "Asia/Kolkata";
