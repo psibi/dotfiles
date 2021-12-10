@@ -6,7 +6,9 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      <nixos-hardware/dell/latitude/7490>
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
