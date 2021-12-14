@@ -1,6 +1,6 @@
 { mkDerivation, alsa-mixer, base, bytestring, containers, hint
 , libmpd, mtl, network, regex-posix, stdenv, X11, xmonad
-, xmonad-contrib, fetchgit
+, xmonad-contrib, fetchgit, lib
 }:
 mkDerivation {
   pname = "xmonad-extras";
@@ -20,5 +20,5 @@ mkDerivation {
   ];
   homepage = "https://github.com/xmonad/xmonad-extras";
   description = "Third party extensions for xmonad with wacky dependencies";
-  license = stdenv.lib.licenses.bsd3;
+  license = lib.licenses.bsd3;
 }

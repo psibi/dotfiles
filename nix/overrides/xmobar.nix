@@ -4,7 +4,7 @@
 , libXrandr, libXrender, mtl, old-locale, parsec, parsec-numbers
 , process, regex-compat, stdenv, stm, temporary, time
 , timezone-olson, timezone-series, transformers, unix, utf8-string
-, wirelesstools, X11, X11-xft, fetchgit
+, wirelesstools, X11, X11-xft, fetchgit, lib
 }:
 mkDerivation {
   pname = "xmobar";
@@ -14,10 +14,10 @@ mkDerivation {
     sha256 = "0cslq6ivirjpz77pvay0p5b3dpwh5ihlqgfmgs23wmvrh23p3pc4";
     rev = "7033fea8a6f1ae10d6b6bae91d9fe252f3ce368b";
     fetchSubmodules = true;
-  };  
+  };
   configureFlags = [
     "-fwith_alsa" "-fwith_conduit" "-fwith_datezone"
-    "-fwith_iwlib" "-fwith_rtsopts" "-fwith_threaded" "-fwith_utf8" 
+    "-fwith_iwlib" "-fwith_rtsopts" "-fwith_threaded" "-fwith_utf8"
     "-fwith_weather" "-fwith_xft" "-fwith_xpm"
     # "-fwith_dbus" "-fwith_inotify" "-fwith_mpd" "-fwith_mpris"
     # "-fwith_uvmeter"
@@ -44,5 +44,5 @@ mkDerivation {
   ];
   homepage = "http://xmobar.org";
   description = "A Minimalistic Text Based Status Bar";
-  license = stdenv.lib.licenses.bsd3;
+  license = lib.licenses.bsd3;
 }

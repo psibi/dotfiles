@@ -1,7 +1,7 @@
 { mkDerivation, attoparsec, base, bytestring, containers
 , data-default-class, fetchgit, filepath, hspec, mtl, network
 , QuickCheck, safe-exceptions, stdenv, text, time, unix
-, utf8-string
+, utf8-string, lib
 }:
 mkDerivation {
   pname = "libmpd";
@@ -23,5 +23,5 @@ mkDerivation {
   ];
   homepage = "http://github.com/vimus/libmpd-haskell#readme";
   description = "An MPD client library";
-  license = stdenv.lib.licenses.mit;
+  license = lib.licenses.mit;
 }

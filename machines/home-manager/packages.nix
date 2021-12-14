@@ -8,8 +8,75 @@ with pkgs; [
   file
   aspell
   aspellDicts.en
-  libreoffice
+  # libreoffice
+  rxvt_unicode
   keybase-gui
   keybase
   amber-secret
+  wget
+  curl
+  firefox
+  git
+  emacs
+  keepassxc
+  alacritty
+  google-chrome
+  gnucash
+  screen
+  xclip
+  xsel
+  xdotool
+  xscreensaver
+  fish
+  bat
+  exa
+  fd
+  procs
+  nixfmt
+  direnv
+  rustup
+  stack
+  pavucontrol
+  gnumake
+  gcc
+  llvm
+  xorg.libxcb
+ # pinentry
+ # pinentry-emacs
+ # pinentry-curses
+  sqlite
+  htop
+  cabal2nix
+  lsof
+  ripgrep
+  docker
+  tree
+  nix-prefetch-git
+  nix-prefetch-github
+  # texlive.combined.scheme-full
+  sage
+  python3Minimal
+  python39Packages.pygments
+  xfce.xfce4-screenshooter
+  pandoc
+  killall
+  zoxide
+  starship
+  ouch
+  just
+  tfswitch
+  jq
+  dnsutils
+  fzf
+  broot
+  du-dust
+  azure-cli
+  awscli2
+  ormolu
+  hlint
+  stylish-haskell
+  aws-iam-authenticator
+  kustomize
+  ipcalc
+  bc
 ]

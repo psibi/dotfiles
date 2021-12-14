@@ -31,7 +31,7 @@ silencewait           15              # default: 30
 activity              "activity in %n (%t) [%w:%s]~"
 bell                  "bell     in %n (%t) [%w:%s]~"
 
-shell "/run/current-system/sw/bin/fish"
+shell "fish"
 
 # Change keybindings for convenience
 bind ^Q mapdefault

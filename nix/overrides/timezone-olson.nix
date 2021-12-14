@@ -1,5 +1,5 @@
 { mkDerivation, base, binary, bytestring, extensible-exceptions
-, fetchgit, stdenv, time, timezone-series
+, fetchgit, stdenv, time, timezone-series, lib
 }:
 mkDerivation {
   pname = "timezone-olson";
@@ -15,5 +15,5 @@ mkDerivation {
   ];
   homepage = "http://projects.haskell.org/time-ng/";
   description = "A pure Haskell parser and renderer for binary Olson timezone files";
-  license = stdenv.lib.licenses.bsd3;
+  license = lib.licenses.bsd3;
 }
