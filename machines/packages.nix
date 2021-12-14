@@ -48,7 +48,7 @@ with pkgs; [
   tree
   nix-prefetch-git
   nix-prefetch-github
-  texlive.combined.scheme-full
+  # texlive.combined.scheme-full
   sage
   python3Minimal
   python39Packages.pygments

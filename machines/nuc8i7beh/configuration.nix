@@ -113,7 +113,7 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = import ../packages.nix { pkgs = pkgs; };
+  environment.systemPackages = with pkgs; []; # import ../packages.nix { pkgs = pkgs; };
 
   fonts.fonts = with pkgs; [
      ubuntu_font_family

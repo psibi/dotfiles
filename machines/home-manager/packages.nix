@@ -42,7 +42,7 @@ with pkgs; [
   llvm
   xorg.libxcb
  # pinentry
- # pinentry-emacs
+ pinentry-emacs
  # pinentry-curses
   sqlite
   htop
