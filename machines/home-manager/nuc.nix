@@ -14,7 +14,9 @@
    monetary = "en_IN";
    time = "en_US.UTF-8";
   };
-  home.sessionPath = [ "~/.local/bin" ];
+  home.sessionPath = [ "$HOME/.local/bin" "$HOME/.cargo/bin" ];
+
+  services.emacs.enable = true;
 
   nixpkgs.config.packageOverrides = pkgs: rec {
     tfswitch = pkgs.callPackage ../packages/tfswitch/default.nix {};
@@ -47,6 +49,8 @@
       };
     };
   };
+
+  home.file.".config/fish/config.fish".source = ../../.config/fish/config.fish;
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

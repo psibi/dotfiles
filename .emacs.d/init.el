@@ -108,7 +108,7 @@
 
   ;; comment to disable rustfmt on save
   (progn
-    (setq rustic-format-on-save t)
+    (setq rustic-format-on-save nil)
     (add-hook 'rustic-mode-hook #'tree-sitter-hl-mode)))
 
 (use-package flycheck-rust

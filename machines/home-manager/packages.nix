@@ -8,7 +8,6 @@ with pkgs; [
   file
   aspell
   aspellDicts.en
-  # libreoffice
   rxvt_unicode
   keybase-gui
   keybase
@@ -41,9 +40,7 @@ with pkgs; [
   gcc
   llvm
   xorg.libxcb
- # pinentry
- pinentry-emacs
- # pinentry-curses
+  pinentry-emacs
   sqlite
   htop
   cabal2nix
@@ -53,7 +50,6 @@ with pkgs; [
   tree
   nix-prefetch-git
   nix-prefetch-github
-  # texlive.combined.scheme-full
   sage
   python3Minimal
   python39Packages.pygments
@@ -79,4 +75,11 @@ with pkgs; [
   kustomize
   ipcalc
   bc
+  any-nix-shell
+  rust-analyzer
+  qpdf
+  # libreoffice
+  # pinentry
+  # pinentry-curses
+  # texlive.combined.scheme-full
 ]

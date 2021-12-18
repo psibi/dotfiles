@@ -17,4 +17,3 @@ Related docs:
 
 * [Software dependencies](./FRESH.md)
 * [GPG Refresher](./GPG.md)
-

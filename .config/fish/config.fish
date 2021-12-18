@@ -11,3 +11,4 @@ alias hr 'history --merge'  # read and merge history from disk
 starship init fish | source
 direnv hook fish | source
 zoxide init fish | source
+any-nix-shell fish --info-right | source
