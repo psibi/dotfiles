@@ -78,7 +78,7 @@ with pkgs; [
   any-nix-shell
   rust-analyzer
   qpdf
-  # libreoffice
+  libreoffice
   # pinentry
   # pinentry-curses
   # texlive.combined.scheme-full
