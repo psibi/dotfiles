@@ -41,14 +41,14 @@
   :config
   (which-key-mode))
 
-(use-package lsp-mode
-  :ensure t
-  :init (setq lsp-keymap-prefix "C-l")
-  :commands lsp
-  :custom
-  (lsp-rust-server 'rls)
-  :hook (haskell-mode . lsp)
-  :config)
+;; (use-package lsp-mode
+;;   :ensure t
+;;   :init (setq lsp-keymap-prefix "C-l")
+;;   :commands lsp
+;;   ;; :custom
+;;   ;; (lsp-rust-server 'rls)
+;;   :hook (haskell-mode . lsp)
+;;   :config)
 
 (use-package lsp-haskell
   :ensure t

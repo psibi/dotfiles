@@ -108,6 +108,7 @@
 
   ;; comment to disable rustfmt on save
   (progn
+    (setq rustic-analyzer-command '("~/.nix-profile/bin/rust-analyzer"))
     (setq rustic-format-on-save nil)
     (add-hook 'rustic-mode-hook #'tree-sitter-hl-mode)))
 

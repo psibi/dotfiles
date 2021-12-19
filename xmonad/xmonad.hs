@@ -94,9 +94,7 @@ sibiStartupHook = do
   setWMName "LG3D"
   when (null as) $ do
     void $ startProcess (proc myTerminal ["--config-file", "/home/sibi/github/dotfiles/alacritty.yml"])
-    void $ (startProcess (proc "emacs" ["--daemon"]))
     void $ startProcess "google-chrome-stable"
-    void $ startProcess "cnx"
 
 xmonadConfig =
   withUrgencyHook NoUrgencyHook $ ewmh
