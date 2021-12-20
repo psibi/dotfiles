@@ -79,6 +79,7 @@ with pkgs; [
   rust-analyzer
   qpdf
   libreoffice
+  cargo-edit
   # pinentry
   # pinentry-curses
   # texlive.combined.scheme-full
