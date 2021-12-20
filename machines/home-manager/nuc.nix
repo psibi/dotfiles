@@ -8,6 +8,8 @@
   imports = [ ../modules/cnx.nix ];
   services.cnx.enable = true;
 
+  services.emacs.enable = true;
+
   nixpkgs.config.allowUnfree = true;
 
   # Home Manager needs a bit of information about you and the
@@ -19,8 +21,6 @@
    time = "en_US.UTF-8";
   };
   home.sessionPath = [ "$HOME/.local/bin" "$HOME/.cargo/bin" ];
-
-  services.emacs.enable = true;
 
   nixpkgs.config.packageOverrides = pkgs: rec {
     tfswitch = pkgs.callPackage ../packages/tfswitch/default.nix {};

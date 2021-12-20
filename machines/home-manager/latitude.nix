@@ -4,22 +4,59 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  # Custom systemd services
+  imports = [ ../modules/cnx.nix ];
+  services.cnx.enable = true;
+
   nixpkgs.config.allowUnfree = true;
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "sibi";
   home.homeDirectory = "/home/sibi";
-  home.sessionPath = [ "~/.local/bin" ];
+  home.language = {
+   monetary = "en_IN";
+   time = "en_US.UTF-8";
+  };
+  home.sessionPath = [ "$HOME/.local/bin" "$HOME/.cargo/bin" ];
+
+  services.emacs.enable = true;
 
   nixpkgs.config.packageOverrides = pkgs: rec {
     ouch = pkgs.callPackage ../packages/ouch/default.nix {};
     tfswitch = pkgs.callPackage ../packages/tfswitch/default.nix {};
     amber-secret = pkgs.callPackage ../packages/amber/default.nix {};
     tgswitch = pkgs.callPackage ../packages/tgswitch/default.nix {};
+    cnx-sibi = pkgs.callPackage ../packages/cnx/default.nix {};
   };
 
   home.packages = import ./packages.nix {pkgs = pkgs; };
+
+  programs.git = {
+    enable = true;
+    userName = "Sibi Prabakaran";
+    userEmail = "sibi@psibi.in";
+    signing = {
+      signByDefault = true;
+      key = "BB557613";
+    };
+    ignores = [ "*~" "\#*\#" ".\#*"];
+  };
+
+  programs.starship = {
+    enable = true;
+    enableFishIntegration = true;
+    enableZshIntegration = false;
+    settings = {
+      kubernetes = {
+        format = "on [⛵ $context \\($namespace\\)](dimmed green) ";
+        disabled = false;
+      };
+    };
+  };
+
+  home.file.".config/fish/config.fish".source = ../../.config/fish/config.fish;
+
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
