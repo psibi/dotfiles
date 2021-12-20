@@ -4,6 +4,10 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  # Custom systemd services
+  imports = [ ../modules/cnx.nix ];
+  services.cnx.enable = true;
+
   nixpkgs.config.allowUnfree = true;
 
   # Home Manager needs a bit of information about you and the
@@ -23,6 +27,7 @@
     ouch = pkgs.callPackage ../packages/ouch/default.nix {};
     amber-secret = pkgs.callPackage ../packages/amber/default.nix {};
     tgswitch = pkgs.callPackage ../packages/tgswitch/default.nix {};
+    cnx-sibi = pkgs.callPackage ../packages/cnx/default.nix {};
   };
 
   home.packages = import ./packages.nix { pkgs = pkgs; };

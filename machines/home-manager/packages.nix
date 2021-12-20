@@ -80,6 +80,7 @@ with pkgs; [
   qpdf
   libreoffice
   cargo-edit
+  cnx-sibi
   # pinentry
   # pinentry-curses
   # texlive.combined.scheme-full
