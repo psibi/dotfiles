@@ -28,6 +28,7 @@
     amber-secret = pkgs.callPackage ../packages/amber/default.nix {};
     tgswitch = pkgs.callPackage ../packages/tgswitch/default.nix {};
     cnx-sibi = pkgs.callPackage ../packages/cnx/default.nix {};
+    kubergrunt = pkgs.callPackage ../packages/kubergrunt/default.nix {};
   };
 
   home.packages = import ./packages.nix { pkgs = pkgs; };

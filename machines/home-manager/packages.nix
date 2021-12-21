@@ -81,6 +81,8 @@ with pkgs; [
   libreoffice
   cargo-edit
   cnx-sibi
+  openssl
+  kubergrunt
   # pinentry
   # pinentry-curses
   # texlive.combined.scheme-full
