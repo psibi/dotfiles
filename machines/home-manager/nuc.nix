@@ -1,5 +1,7 @@
 { config, pkgs, ... }:
-
+let
+  nixpkgs-unstable = import <nixpkgs-unstable> {};
+in
  {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -31,7 +33,7 @@
     kubergrunt = pkgs.callPackage ../packages/kubergrunt/default.nix {};
   };
 
-  home.packages = import ./packages.nix { pkgs = pkgs; };
+  home.packages = import ./packages.nix { pkgs = pkgs; unstable = nixpkgs-unstable; };
 
   programs.git = {
     enable = true;
