@@ -83,6 +83,7 @@ with pkgs; [
   openssl
   kubergrunt
   wirelesstools
+  ifmetric
   unstable.rust-analyzer
   # pinentry
   # pinentry-curses
