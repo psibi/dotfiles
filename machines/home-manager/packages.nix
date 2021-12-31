@@ -84,6 +84,9 @@ with pkgs; [
   kubergrunt
   wirelesstools
   ifmetric
+  tree-sitter
+  tree-sitter-grammars.tree-sitter-rust
+
   unstable.rust-analyzer
   # pinentry
   # pinentry-curses
