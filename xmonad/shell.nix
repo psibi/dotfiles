@@ -1,5 +1,4 @@
-with import (fetchTarball
-  "https://github.com/NixOS/nixpkgs/archive/refs/tags/21.05.tar.gz") { };
+with import <nixpkgs> { };
 stdenv.mkDerivation {
   name = "xmonad";
   buildInputs = [
@@ -12,5 +11,6 @@ stdenv.mkDerivation {
     xorg.libXext
     xorg.libXScrnSaver
     xorg.libXft
+    git
   ];
 }
