@@ -108,8 +108,7 @@
   :ensure t
   :init (setq lsp-keymap-prefix "C-l")
   :commands lsp
-  :hook ((rustic-mode . lsp)
-         (lsp-mode . lsp-enable-which-key-integration))
+  :hook ((lsp-mode . lsp-enable-which-key-integration))
   :config)
 
 (use-package lsp-ui
@@ -121,7 +120,9 @@
   :commands helm-lsp-workspace-symbol)
 
 (use-package rustic
-  :ensure t
+  :quelpa (rustic :fetcher file
+                  :path "~/github/rustic")
+  ;; :ensure t
   :bind (:map rustic-mode-map
               ("M-j" . lsp-ui-imenu)
               ("M-?" . lsp-find-references)
@@ -153,9 +154,6 @@
 
 (use-package google-this
   :ensure t)
-
-
-
 
 (set-scroll-bar-mode 'nil)
 (size-indication-mode 1)
@@ -494,6 +492,7 @@
     (electric-pair-mode 1)))
 
 ;; Make sure to call (all-the-icons-install-fonts) once
+;; (all-the-icons-install-fonts)
 (use-package all-the-icons
   :ensure t)
 

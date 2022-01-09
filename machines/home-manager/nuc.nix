@@ -20,7 +20,10 @@ in
    monetary = "en_IN";
    time = "en_US.UTF-8";
   };
-  home.sessionPath = [ "$HOME/.local/bin" "$HOME/.cargo/bin" ];
+  home.sessionPath = [ "$HOME/.local/bin" "$HOME/.cargo/bin"];
+  home.sessionVariables = {
+    EDITOR = "${pkgs.emacs}/bin/emacsclient";
+  };
 
   services.emacs.enable = true;
 
@@ -46,6 +49,24 @@ in
     ignores = [ "*~" "\#*\#" ".\#*"];
   };
 
+  programs.fish = {
+    enable = true;
+    shellAliases = import ./alias.nix;
+    interactiveShellInit = ''
+    set fish_greeting
+    '';
+  };
+
+  programs.zoxide = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+
+  programs.direnv = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+
   programs.starship = {
     enable = true;
     enableFishIntegration = true;
@@ -58,7 +79,8 @@ in
     };
   };
 
-  home.file.".config/fish/config.fish".source = ../../.config/fish/config.fish;
+  home.file.".stack/config.yaml".source = ../../../.stack/config.yaml;
+  # home.file.".config/fish/config.fish".source = ../../.config/fish/config.fish;
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

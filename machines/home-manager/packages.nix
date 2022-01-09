@@ -86,6 +86,7 @@ with pkgs; [
   ifmetric
   tree-sitter
   tree-sitter-grammars.tree-sitter-rust
+  watchexec
 
   unstable.rust-analyzer
   # pinentry
