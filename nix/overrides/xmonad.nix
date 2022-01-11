@@ -1,23 +1,18 @@
-{ mkDerivation, base, containers, data-default, directory, fetchgit
+{ mkDerivation, base, containers, data-default-class, directory
 , filepath, lib, mtl, process, QuickCheck, quickcheck-classes
-, setlocale, transformers, unix, utf8-string, X11, typed-process
+, setlocale, time, transformers, unix, X11
 }:
 mkDerivation {
   pname = "xmonad";
-  version = "0.16.9999";
-  src = fetchgit {
-    url = "https://github.com/xmonad/xmonad.git";
-    sha256 = "1kip5d7kyl740k96m0wx60v7ix7n0swgly84zrygdivr39g51d9j";
-    rev = "42d319545b36020b9b3cdf121f1ba04cc58b847d";
-    fetchSubmodules = true;
-  };
+  version = "0.17.0";
+  sha256 = "1eb74d69fc62dc0d4124fb169430328c975440ffa257766de0b71b9e7ebb1a13";
   isLibrary = true;
   isExecutable = true;
   libraryHaskellDepends = [
-    base containers data-default directory filepath mtl process
-    setlocale transformers unix utf8-string X11 typed-process
+    base containers data-default-class directory filepath mtl process
+    setlocale time transformers unix X11
   ];
-  executableHaskellDepends = [ base mtl unix X11 ];
+  executableHaskellDepends = [ base ];
   testHaskellDepends = [
     base containers QuickCheck quickcheck-classes X11
   ];
