@@ -1,5 +1,7 @@
 { config, pkgs, ... }:
-
+let
+  nixpkgs-unstable = import <nixpkgs-unstable> {};
+in
  {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -20,7 +22,10 @@
    monetary = "en_IN";
    time = "en_US.UTF-8";
   };
-  home.sessionPath = [ "$HOME/.local/bin" "$HOME/.cargo/bin" ];
+  home.sessionPath = [ "$HOME/.local/bin" "$HOME/.cargo/bin"];
+  home.sessionVariables = {
+    EDITOR = "${pkgs.emacs}/bin/emacsclient";
+  };
 
   nixpkgs.config.packageOverrides = pkgs: rec {
     tfswitch = pkgs.callPackage ../packages/tfswitch/default.nix {};
@@ -28,9 +33,10 @@
     amber-secret = pkgs.callPackage ../packages/amber/default.nix {};
     tgswitch = pkgs.callPackage ../packages/tgswitch/default.nix {};
     cnx-sibi = pkgs.callPackage ../packages/cnx/default.nix {};
+    kubergrunt = pkgs.callPackage ../packages/kubergrunt/default.nix {};
   };
 
-  home.packages = import ./packages.nix { pkgs = pkgs; };
+  home.packages = import ./packages.nix { pkgs = pkgs; unstable = nixpkgs-unstable; };
 
   programs.git = {
     enable = true;
@@ -41,6 +47,24 @@
       key = "BB557613";
     };
     ignores = [ "*~" "\#*\#" ".\#*"];
+  };
+
+  programs.fish = {
+    enable = true;
+    shellAliases = import ./alias.nix;
+    interactiveShellInit = ''
+    set fish_greeting
+    '';
+  };
+
+  programs.zoxide = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+
+  programs.direnv = {
+    enable = true;
+    enableFishIntegration = true;
   };
 
   programs.starship = {
@@ -55,7 +79,8 @@
     };
   };
 
-  home.file.".config/fish/config.fish".source = ../../.config/fish/config.fish;
+  home.file.".stack/config.yaml".source = ../../../.stack/config.yaml;
+  # home.file.".config/fish/config.fish".source = ../../.config/fish/config.fish;
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

@@ -60,6 +60,23 @@
 ;;   (unless (server-running-p)
 ;;     (server-start)))
 
+(use-package flycheck
+  :ensure t
+  :hook
+  (prog-mode . flycheck-mode)
+  :custom
+  (flycheck-sh-shellcheck-executable "shellcheck")
+  :config
+  (progn
+    (setq flycheck-check-syntax-automatically '(mode-enabled save))
+    (define-key flycheck-mode-map (kbd "C-c f l") #'flycheck-list-errors)
+    (define-key flycheck-mode-map (kbd "C-c f n") #'flycheck-next-error)
+    (define-key flycheck-mode-map (kbd "C-c f p") #'flycheck-previous-error)
+    (flycheck-add-next-checker 'sh-bash  '(t . sh-shellcheck) 'append)
+    (add-hook 'sh-mode-hook (lambda () (progn
+                                         ;; (flycheck-select-checker 'sh-shellcheck)
+                                         (flycheck-mode))))))
+
 (use-package markdown-toc
   :ensure t)
 
@@ -71,26 +88,41 @@
     (setq ac-ignore-case nil)
     (ac-config-default)))
 
-;; (use-package rust-mode
-;;   :ensure t
-;;   :mode "\\.rs\\'"
-;;   :hook (rust-mode . lsp)
-;;   :config
-;;   (progn
-;;    (add-to-list 'load-path "~/.cargo/bin")
-;;    (setq rust-format-on-save t)
-;;   ))
-
 (use-package tree-sitter
   :ensure t
   :init
-  (global-tree-sitter-mode))
+  (global-tree-sitter-mode)
+  :config
+  (progn
+    (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)))
 
 (use-package tree-sitter-langs
   :ensure t)
 
-(use-package rustic
+(use-package which-key
   :ensure t
+  :config
+  (which-key-mode))
+
+(use-package lsp-mode
+  :ensure t
+  :init (setq lsp-keymap-prefix "C-l")
+  :commands lsp
+  :hook ((lsp-mode . lsp-enable-which-key-integration))
+  :config)
+
+(use-package lsp-ui
+  :ensure t
+  :commands lsp-ui-mode)
+
+(use-package helm-lsp
+  :ensure t
+  :commands helm-lsp-workspace-symbol)
+
+(use-package rustic
+  :quelpa (rustic :fetcher file
+                  :path "~/github/rustic")
+  ;; :ensure t
   :bind (:map rustic-mode-map
               ("M-j" . lsp-ui-imenu)
               ("M-?" . lsp-find-references)
@@ -110,11 +142,9 @@
   (progn
     (setq rustic-analyzer-command '("~/.nix-profile/bin/rust-analyzer"))
     (setq rustic-format-on-save nil)
-    (add-hook 'rustic-mode-hook #'tree-sitter-hl-mode)))
+    (tree-sitter-require 'rust)
+    (add-hook 'rustic-mode-hook #'tree-sitter-mode)))
 
-(use-package flycheck-rust
-  :ensure t
-  :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))
 
 (use-package paredit
   :diminish paredit-mode
@@ -124,25 +154,6 @@
 
 (use-package google-this
   :ensure t)
-
-(use-package flycheck
-  :ensure t
-  :hook
-  (prog-mode . flycheck-mode)
-  :custom
-  (flycheck-sh-shellcheck-executable "shellcheck")
-  :config
-  (progn
-    (setq flycheck-check-syntax-automatically '(mode-enabled save))
-    (define-key flycheck-mode-map (kbd "C-c f l") #'flycheck-list-errors)
-    (define-key flycheck-mode-map (kbd "C-c f n") #'flycheck-next-error)
-    (define-key flycheck-mode-map (kbd "C-c f p") #'flycheck-previous-error)
-    (flycheck-add-next-checker 'sh-bash  '(t . sh-shellcheck) 'append)
-    (add-hook 'sh-mode-hook (lambda () (progn
-                                         ;; (flycheck-select-checker 'sh-shellcheck)
-                                         (flycheck-mode))))))
-
-
 
 (set-scroll-bar-mode 'nil)
 (size-indication-mode 1)
@@ -481,6 +492,7 @@
     (electric-pair-mode 1)))
 
 ;; Make sure to call (all-the-icons-install-fonts) once
+;; (all-the-icons-install-fonts)
 (use-package all-the-icons
   :ensure t)
 
@@ -808,7 +820,8 @@
   (setq auth-sources '((:source "~/.authinfo.gpg")))
   (setq gitlab.user "sibi"))
 
-
+(use-package prodigy
+  :ensure t)
 
 
 
@@ -820,3 +833,9 @@
 (load-file "~/github/dotfiles/.emacs.d/devops.el")
 ;; (load-file "~/github/dotfiles/.emacs.d/private.el")
 ;; (load-file "~/.emacs.d/sml.el")
+
+(defun my-reload-dir-locals-for-current-buffer ()
+  "reload dir locals for the current buffer"
+  (interactive)
+  (let ((enable-local-variables :all))
+    (hack-dir-local-variables-non-file-buffer)))

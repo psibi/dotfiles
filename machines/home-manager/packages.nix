@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs, unstable }:
 with pkgs; [
   git
   terraform-docs
@@ -76,11 +76,19 @@ with pkgs; [
   ipcalc
   bc
   any-nix-shell
-  rust-analyzer
   qpdf
   libreoffice
   cargo-edit
   cnx-sibi
+  openssl
+  kubergrunt
+  wirelesstools
+  ifmetric
+  tree-sitter
+  tree-sitter-grammars.tree-sitter-rust
+  watchexec
+
+  unstable.rust-analyzer
   # pinentry
   # pinentry-curses
   # texlive.combined.scheme-full

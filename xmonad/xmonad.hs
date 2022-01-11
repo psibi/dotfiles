@@ -34,9 +34,8 @@ import qualified XMonad.Util.Brightness as Bright
 import XMonad.Util.EZConfig (additionalKeys)
 import XMonad.Util.NamedScratchpad
 import XMonad.Prompt.OrgMode
--- import XMonad.Util.Run (spawnPipeWithUtf8Encoding)
 
-------------------------------------------- Keybinings Refresher
+------------------------------------------- Keybindings Refresher
 -- * mod-space: Rotate through available layout algorithms
 -- * mod-j : Move focus to the next window
 -- * mod-l : Expand the master area
