@@ -54,6 +54,7 @@ in
     shellAliases = import ./alias.nix;
     interactiveShellInit = ''
     set fish_greeting
+    ${pkgs.any-nix-shell}/bin/any-nix-shell fish | source
     '';
   };
 
@@ -79,7 +80,7 @@ in
     };
   };
 
-  home.file.".stack/config.yaml".source = ../../../.stack/config.yaml;
+  home.file.".stack/config.yaml".source = ../../.stack/config.yaml;
   # home.file.".config/fish/config.fish".source = ../../.config/fish/config.fish;
 
   # This value determines the Home Manager release that your
