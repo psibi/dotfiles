@@ -62,6 +62,8 @@
   #  xfce.enable = true;
   # };
 
+  services.earlyoom.enable = true;
+
   services.xserver.windowManager.xmonad.enable = true;
   services.xserver.windowManager.xmonad.enableContribAndExtras = true;
   services.xserver.windowManager.xmonad.config =
@@ -70,8 +72,6 @@
   services.xserver.windowManager.xmonad.haskellPackages =
     pkgs.haskellPackages.override {
       overrides = haskellPackagesNew: haskellPackagesOld: rec {
-        libmpd = haskellPackagesNew.callPackage
-          /home/sibi/github/dotfiles/nix/overrides/libmpd.nix { };
         X11 = haskellPackagesNew.callPackage
           /home/sibi/github/dotfiles/nix/overrides/x11.nix { };
         xmonad = let
@@ -84,8 +84,6 @@
           pkg = haskellPackagesNew.callPackage
             /home/sibi/github/dotfiles/nix/overrides/xmonad-contrib.nix { };
         in pkgs.haskell.lib.dontCheck pkg;
-        timezone-olson = haskellPackagesNew.callPackage
-          /home/sibi/github/dotfiles/nix/overrides/timezone-olson.nix { };
       };
     };
 

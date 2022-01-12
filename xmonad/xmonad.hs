@@ -92,7 +92,7 @@ sibiStartupHook = do
   Bright.setBrightness 1260
   setWMName "LG3D"
   when (null as) $ do
-    void $ startProcess (proc myTerminal ["--config-file", "/home/sibi/github/dotfiles/alacritty.yml"])
+    void $ startProcess myTerminal
     void $ startProcess "google-chrome-stable"
 
 xmonadConfig =

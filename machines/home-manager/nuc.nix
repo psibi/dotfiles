@@ -10,6 +10,8 @@ in
   imports = [ ../modules/cnx.nix ];
   services.cnx.enable = true;
 
+  services.emacs.enable = true;
+
   nixpkgs.config.allowUnfree = true;
 
   # Home Manager needs a bit of information about you and the
@@ -24,8 +26,6 @@ in
   home.sessionVariables = {
     EDITOR = "${pkgs.emacs}/bin/emacsclient";
   };
-
-  services.emacs.enable = true;
 
   nixpkgs.config.packageOverrides = pkgs: rec {
     tfswitch = pkgs.callPackage ../packages/tfswitch/default.nix {};
