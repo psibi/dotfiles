@@ -80,6 +80,21 @@ in
     };
   };
 
+  programs.alacritty = {
+    enable = true;
+    settings = {
+      font = {
+        normal=  {
+          family= "Ubuntu Mono";
+        };
+        size = 17.0;
+      };
+      shell = {
+        program = "${pkgs.screen}/bin/screen";
+      };
+    };
+  };
+
   home.file.".stack/config.yaml".source = ../../.stack/config.yaml;
   # home.file.".config/fish/config.fish".source = ../../.config/fish/config.fish;
 
