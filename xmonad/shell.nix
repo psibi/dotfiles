@@ -12,5 +12,6 @@ stdenv.mkDerivation {
     xorg.libXScrnSaver
     xorg.libXft
     git
+    cacert
   ];
 }

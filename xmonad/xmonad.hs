@@ -1,7 +1,6 @@
 {-# LANGUAGE RankNTypes #-}
 {-# LANGUAGE KindSignatures #-}
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE NamedFieldPuns #-}
 
 import Control.Arrow (first)
 import Control.Monad
@@ -10,20 +9,17 @@ import qualified Data.Map as M
 import Data.Monoid (Endo)
 import Graphics.X11.ExtraTypes.XF86
 import System.Environment (getArgs)
-import System.IO
-import System.Process.Typed (proc, startProcess)
+import System.Process.Typed (startProcess)
 import XMonad
 import XMonad.Actions.DynamicProjects
 import XMonad.Actions.Search
 import XMonad.Actions.Submap
 import XMonad.Actions.Volume
-import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.EwmhDesktops (fullscreenEventHook, ewmh)
+import XMonad.Hooks.EwmhDesktops (ewmh, ewmhFullscreen)
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName (setWMName)
 import XMonad.Hooks.UrgencyHook
-import XMonad.Layout.Magnifier (MagnifyMsg(..))
 import XMonad.Layout.NoBorders
 import XMonad.Prompt
 import XMonad.Prompt.FuzzyMatch (fuzzyMatch)
@@ -34,6 +30,7 @@ import qualified XMonad.Util.Brightness as Bright
 import XMonad.Util.EZConfig (additionalKeys)
 import XMonad.Util.NamedScratchpad
 import XMonad.Prompt.OrgMode
+import Data.String (IsString(..))
 
 ------------------------------------------- Keybindings Refresher
 -- * mod-space: Rotate through available layout algorithms
@@ -56,10 +53,11 @@ import XMonad.Prompt.OrgMode
 -- * mod-t: Retile
 -- * mod-m: org mode
 --------------------------------------------
+
 myWorkspaces :: [String]
 myWorkspaces = ["main", "web", "chat", "dev", "media", "float", "misc"]
 
-myTerminal :: String
+myTerminal :: IsString a => a
 myTerminal = "alacritty"
 
 myManageHook :: XMonad.Query (Endo WindowSet)
@@ -96,7 +94,7 @@ sibiStartupHook = do
     void $ startProcess "google-chrome-stable"
 
 xmonadConfig =
-  withUrgencyHook NoUrgencyHook $ ewmh
+  withUrgencyHook NoUrgencyHook $ ewmhFullscreen $ ewmh $ docks
   def
     { manageHook =
         manageDocks <+>
@@ -107,7 +105,7 @@ xmonadConfig =
     , startupHook = sibiStartupHook
     , layoutHook = smartBorders $ avoidStruts $ layoutHook def
     , handleEventHook =
-        handleEventHook def <+> fullscreenEventHook <+> docksEventHook
+        handleEventHook def
     , modMask = mod4Mask -- Rebind Mod to the Windows key
     , workspaces = myWorkspaces
     } `additionalKeys`
