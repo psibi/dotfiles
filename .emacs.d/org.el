@@ -101,5 +101,4 @@
 (setq org-confirm-babel-evaluate nil)
 
 (add-to-list 'org-structure-template-alist '("g" . "src sh :exports both :eval never-export :results verbatim\n"))
-(add-to-list 'org-structure-template-alist '("p" . "src awk :in-file countries :exports both :results value verbatim\n"))
-(add-to-list 'org-structure-template-alist '("o" . "src octave :session :eval never-export :results value verbatim output :exports both\n"))
+(add-to-list 'org-structure-template-alist '("p" . "src sage :session nix :eval never-export :results value verbatim output :exports both\n"))

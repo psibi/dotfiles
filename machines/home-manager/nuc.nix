@@ -96,7 +96,7 @@ in
   };
 
   home.file.".stack/config.yaml".source = ../../.stack/config.yaml;
-  # home.file.".config/fish/config.fish".source = ../../.config/fish/config.fish;
+  home.file.".tfswitch.toml".source = ../../tfswitch.toml;
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
