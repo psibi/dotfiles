@@ -87,6 +87,7 @@ with pkgs; [
   tree-sitter
   tree-sitter-grammars.tree-sitter-rust
   watchexec
+  jwt-cli
 
   unstable.rust-analyzer
   # pinentry
