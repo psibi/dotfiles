@@ -120,9 +120,9 @@
   :commands helm-lsp-workspace-symbol)
 
 (use-package rustic
-  :quelpa (rustic :fetcher file
-                  :path "~/github/rustic")
-  ;; :ensure t
+;;  :quelpa (rustic :fetcher file
+;;                  :path "~/github/rustic")
+  :ensure t
   :bind (:map rustic-mode-map
               ("M-j" . lsp-ui-imenu)
               ("M-?" . lsp-find-references)
@@ -143,8 +143,9 @@
     (setq rustic-analyzer-command '("~/.nix-profile/bin/rust-analyzer"))
     (setq rustic-format-on-save nil)
     (tree-sitter-require 'rust)
-    (add-hook 'rustic-mode-hook #'tree-sitter-mode)))
-
+    (add-hook 'rustic-mode-hook #'tree-sitter-mode)
+    (add-hook 'rustic-mode-hook #'lsp)
+    (customize-set-variable 'lsp-rust-analyzer-server-display-inlay-hints t)))
 
 (use-package paredit
   :diminish paredit-mode
@@ -823,7 +824,8 @@
 (use-package prodigy
   :ensure t)
 
-
+(use-package protobuf-mode
+  :ensure t)
 
 (load-file "~/.emacs.d/haskell.el")
 (load-file "~/.emacs.d/python.el")
