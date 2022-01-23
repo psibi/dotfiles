@@ -19,7 +19,6 @@
   :ensure t)
 
 (use-package justl
-  :quelpa (justl :fetcher file
-                 :path "~/github/justl.el/justl.el")
+  :ensure t
   :custom
   (justl-recipe-width 40))

@@ -10,6 +10,10 @@
       '(("gnu"   . "http://elpa.gnu.org/packages/")
         ("melpa" . "https://melpa.org/packages/")))
 
+;; Install and load `quelpa-use-package'.
+(package-install 'quelpa-use-package)
+(require 'quelpa-use-package)
+
 (package-initialize)
 
 ;; Bootstrap `use-package`
@@ -50,15 +54,6 @@
 ;;   :init (progn
 ;;           (load-theme 'doom-one t)
 ;;           (doom-themes-org-config)))
-
-;; This is not needed as we start the daemon via xmonad itself
-;; (use-package server
-;;   :ensure t
-;;   :init
-;;   (server-mode 1)
-;;   :config
-;;   (unless (server-running-p)
-;;     (server-start)))
 
 (use-package flycheck
   :ensure t
@@ -104,12 +99,16 @@
   :config
   (which-key-mode))
 
+  ;; :quelpa (lsp-mode :fetcher file
+  ;;                   :path "~/github/lsp-mode"
+  ;;                   :files ("*.el" "clients/*.el")
+  ;;                   )
+
 (use-package lsp-mode
   :ensure t
   :init (setq lsp-keymap-prefix "C-l")
   :commands lsp
-  :hook ((lsp-mode . lsp-enable-which-key-integration))
-  :config)
+  :hook ((lsp-mode . lsp-enable-which-key-integration)))
 
 (use-package lsp-ui
   :ensure t
@@ -117,11 +116,12 @@
 
 (use-package helm-lsp
   :ensure t
+  :bind (([remap xref-find-apropos] . helm-lsp-workspace-symbol)
+         ("C-c C-e g" . helm-lsp-global-workspace-symbol)
+         ("C-c C-e d" . helm-lsp-diagnostics))
   :commands helm-lsp-workspace-symbol)
 
 (use-package rustic
-;;  :quelpa (rustic :fetcher file
-;;                  :path "~/github/rustic")
   :ensure t
   :bind (:map rustic-mode-map
               ("M-j" . lsp-ui-imenu)
@@ -145,7 +145,13 @@
     (tree-sitter-require 'rust)
     (add-hook 'rustic-mode-hook #'tree-sitter-mode)
     (add-hook 'rustic-mode-hook #'lsp)
+    (add-hook 'rustic-mode-hook #'lsp-lens-mode)
     (customize-set-variable 'lsp-rust-analyzer-server-display-inlay-hints t)))
+
+(use-package yasnippet
+  :ensure t
+  :hook ((lsp-mode . yasnippet)
+         (lsp-mode . yas-minor-mode)))
 
 (use-package paredit
   :diminish paredit-mode
@@ -757,10 +763,6 @@
 
 (use-package org-make-toc
   :ensure t)
-
-;; Install and load `quelpa-use-package'.
-(package-install 'quelpa-use-package)
-(require 'quelpa-use-package)
 
 (use-package dogears
   :quelpa (dogears :fetcher github :repo "alphapapa/dogears.el")
