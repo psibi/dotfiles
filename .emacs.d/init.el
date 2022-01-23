@@ -36,24 +36,24 @@
 (use-package terraform-mode
   :ensure t)
 
-(use-package spacemacs-theme
-  :ensure t
-  :defer t
-  :init
-  (progn
-    (load-theme 'spacemacs-dark t)
-    ;; (load-theme 'wheatgrass t)
-    ;; Exploits a bug to get a better modeline
-    ))
-
-;; (use-package doom-themes
+;; (use-package spacemacs-theme
 ;;   :ensure t
-;;   :custom
-;;   (doom-themes-enable-bold t)
-;;   (doom-themes-enable-italic t)
-;;   :init (progn
-;;           (load-theme 'doom-one t)
-;;           (doom-themes-org-config)))
+;;   :defer t
+;;   :init
+;;   (progn
+;;     (load-theme 'spacemacs-dark t)
+;;     ;; (load-theme 'wheatgrass t)
+;;     ;; Exploits a bug to get a better modeline
+;;     ))
+
+(use-package doom-themes
+  :ensure t
+  :custom
+  (doom-themes-enable-bold t)
+  (doom-themes-enable-italic t)
+  :init (progn
+          (load-theme 'doom-one t)
+          (doom-themes-org-config)))
 
 (use-package flycheck
   :ensure t
@@ -108,7 +108,8 @@
   :ensure t
   :init (setq lsp-keymap-prefix "C-l")
   :commands lsp
-  :hook ((lsp-mode . lsp-enable-which-key-integration)))
+  :hook ((lsp-mode . lsp-enable-which-key-integration)
+         (lsp-configure . lsp-lens-mode)))
 
 (use-package lsp-ui
   :ensure t
@@ -132,6 +133,7 @@
               ("C-c C-c q" . lsp-workspace-restart)
               ("C-c C-c Q" . lsp-workspace-shutdown)
               ("C-c C-c s" . lsp-rust-analyzer-status))
+  :hook ((rustic-mode . lsp-deferred))
   :config
   ;; uncomment for less flashiness
   ;; (setq lsp-eldoc-hook nil)
@@ -144,8 +146,6 @@
     (setq rustic-format-on-save nil)
     (tree-sitter-require 'rust)
     (add-hook 'rustic-mode-hook #'tree-sitter-mode)
-    (add-hook 'rustic-mode-hook #'lsp)
-    (add-hook 'rustic-mode-hook #'lsp-lens-mode)
     (customize-set-variable 'lsp-rust-analyzer-server-display-inlay-hints t)))
 
 (use-package yasnippet
@@ -505,9 +505,7 @@
 
 (use-package doom-modeline
   :ensure t
-  :init (doom-modeline-mode 1)
-  :custom
-  (doom-modeline-icon (display-graphic-p)))
+  :init (doom-modeline-mode 1))
 
 ;; (use-package mode-icons
 ;;   :ensure t
