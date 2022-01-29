@@ -89,6 +89,7 @@ with pkgs; [
   watchexec
   jwt-cli
   step-cli
+  cargo-outdated
 
   unstable.rust-analyzer
   # pinentry
