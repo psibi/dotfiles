@@ -37,13 +37,14 @@
   :ensure t
   :custom
   (org-journal-file-format "%Y-%m-%d.org")
-  (org-journal-dir "/home/sibi/github/timebox/2021/")
+  (org-journal-dir "/home/sibi/github/timebox/2022/")
   (org-journal-date-format "%A, %d %B %Y")
   (org-journal-skip-carryover-drawers (list "CLOCKING"))
   (org-journal-file-type 'daily))
 
 (use-package org-roam
   :ensure t
+  :bind (("C-c C-o" . org-roam-node-find))
   :custom
   (org-roam-directory "/home/sibi/github/misc/roam")
   :init

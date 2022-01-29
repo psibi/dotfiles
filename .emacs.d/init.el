@@ -31,6 +31,8 @@
 (use-package tramp)
 
 (use-package yaml-mode
+  :mode (
+         ("\\.yml\\'" . yaml-mode))
   :ensure t)
 
 (use-package terraform-mode
@@ -51,9 +53,13 @@
   :custom
   (doom-themes-enable-bold t)
   (doom-themes-enable-italic t)
-  :init (progn
+  :config (progn
           (load-theme 'doom-one t)
           (doom-themes-org-config)))
+
+(use-package doom-modeline
+  :ensure t
+  :config (doom-modeline-mode 1))
 
 (use-package flycheck
   :ensure t
@@ -132,6 +138,7 @@
               ("C-c C-c r" . lsp-rename)
               ("C-c C-c q" . lsp-workspace-restart)
               ("C-c C-c Q" . lsp-workspace-shutdown)
+              ("C-c o" . lsp-rust-analyzer-open-external-docs)
               ("C-c C-c s" . lsp-rust-analyzer-status))
   :hook ((rustic-mode . lsp-deferred))
   :config
@@ -150,8 +157,7 @@
 
 (use-package yasnippet
   :ensure t
-  :hook ((lsp-mode . yasnippet)
-         (lsp-mode . yas-minor-mode)))
+  :hook ((lsp-mode . yas-minor-mode)))
 
 (use-package paredit
   :diminish paredit-mode
@@ -503,9 +509,6 @@
 (use-package all-the-icons
   :ensure t)
 
-(use-package doom-modeline
-  :ensure t
-  :init (doom-modeline-mode 1))
 
 ;; (use-package mode-icons
 ;;   :ensure t
