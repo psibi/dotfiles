@@ -834,6 +834,12 @@
 (use-package protobuf-mode
   :ensure t)
 
+(use-package langtool
+  :ensure t
+  :config
+  (customize-set-variable 'langtool-bin "languagetool-commandline")
+  (customize-set-variable 'langtool-default-language "en-US"))
+
 (load-file "~/.emacs.d/haskell.el")
 (load-file "~/.emacs.d/python.el")
 (load-file "~/.emacs.d/web.el")
@@ -842,9 +848,3 @@
 (load-file "~/github/dotfiles/.emacs.d/devops.el")
 ;; (load-file "~/github/dotfiles/.emacs.d/private.el")
 ;; (load-file "~/.emacs.d/sml.el")
-
-(defun my-reload-dir-locals-for-current-buffer ()
-  "reload dir locals for the current buffer"
-  (interactive)
-  (let ((enable-local-variables :all))
-    (hack-dir-local-variables-non-file-buffer)))

@@ -90,6 +90,8 @@ with pkgs; [
   jwt-cli
   step-cli
   cargo-outdated
+  httplz
+  languagetool
 
   unstable.rust-analyzer
   # pinentry
