@@ -129,7 +129,9 @@
   :commands helm-lsp-workspace-symbol)
 
 (use-package rustic
-  :ensure t
+  :quelpa (rustic :fetcher file
+                  :path "~/github/rustic")
+  ;; :ensure t
   :bind (:map rustic-mode-map
               ("M-j" . lsp-ui-imenu)
               ("M-?" . lsp-find-references)
@@ -641,6 +643,8 @@
   (copy-as-format-default "slack"))
 
 (use-package deadgrep
+  :bind (:map deadgrep-mode-map
+         ("C-c" . deadgrep-visit-result-other-window))
   :ensure t)
 
 (use-package git-gutter
