@@ -95,6 +95,8 @@ in
     };
   };
 
+  fonts.fontconfig.enable = true;
+
   home.file.".stack/config.yaml".source = ../../.stack/config.yaml;
   home.file.".tfswitch.toml".source = ../../tfswitch.toml;
 

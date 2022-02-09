@@ -135,6 +135,7 @@
   :bind (:map rustic-mode-map
               ("M-j" . lsp-ui-imenu)
               ("M-?" . lsp-find-references)
+              ("C-c C-d" . deadgrep)
               ("C-c C-c l" . flycheck-list-errors)
               ("C-c C-c a" . lsp-execute-code-action)
               ("C-c C-c r" . lsp-rename)
@@ -160,6 +161,10 @@
 (use-package yasnippet
   :ensure t
   :hook ((lsp-mode . yas-minor-mode)))
+
+(use-package yasnippet-snippets
+  :ensure t
+    :bind (("C-c C-y i" . yas-insert-snippet)))
 
 (use-package paredit
   :diminish paredit-mode
@@ -187,6 +192,9 @@
 (setq require-final-newline t)
 (setq next-line-extends-end-of-buffer nil)
 (setq next-line-add-newlines nil)
+(setq use-default-font-for-symbols nil)
+;; https://emacs.stackexchange.com/questions/62049/override-the-default-font-for-emoji-characters
+(set-fontset-font t 'symbol "Twitter Color Emoji")
 
 ;; -------------------
 ;; Everything in UTF-8
@@ -643,7 +651,8 @@
   (copy-as-format-default "slack"))
 
 (use-package deadgrep
-  :bind (:map deadgrep-mode-map
+  :bind (("C-c C-d" . deadgrep)
+         :map deadgrep-mode-map
          ("C-c" . deadgrep-visit-result-other-window))
   :ensure t)
 
@@ -681,6 +690,8 @@
  )
 
 ;; (face-attribute 'default :font)
+
+
 
 (use-package rego-mode
   :ensure t

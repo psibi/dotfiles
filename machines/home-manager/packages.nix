@@ -78,7 +78,6 @@ with pkgs; [
   any-nix-shell
   qpdf
   libreoffice
-  cargo-edit
   cnx-sibi
   openssl
   kubergrunt
@@ -89,9 +88,12 @@ with pkgs; [
   watchexec
   jwt-cli
   step-cli
-  cargo-outdated
   httplz
   languagetool
+  twitter-color-emoji
+  cargo-edit
+  cargo-outdated
+  cargo-expand
 
   unstable.rust-analyzer
   # pinentry
