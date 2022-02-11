@@ -51,7 +51,7 @@ in
 
   programs.fish = {
     enable = true;
-    shellAliases = import ./alias.nix;
+    shellAliases = import ./alias.nix { pkgs = pkgs; };
     interactiveShellInit = ''
     set fish_greeting
     ${pkgs.any-nix-shell}/bin/any-nix-shell fish | source

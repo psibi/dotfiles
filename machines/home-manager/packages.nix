@@ -94,6 +94,7 @@ with pkgs; [
   cargo-edit
   cargo-outdated
   cargo-expand
+  kalker
 
   unstable.rust-analyzer
   # pinentry
