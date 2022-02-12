@@ -1,0 +1,18 @@
+Here you will find few of the configuration which I use in my Linux
+system. You can tailor it according it to your needs.
+
+* Configuration
+
+- [[file:machines/latitude-7490/][Latitude 7490 configuration]]
+- [[file:machines/nuc8i7beh/][NUC8I7BEH Configuration]]
+- [[file:machines/home-manager/][Home manager configuration]]
+- [[file:machines/home-manager/packages.nix][packages.nix]]
+
+* setup.sh - Devops script
+* .Xresource - X resource settings
+* emacsSync.hs - Emacs synchronization script
+
+Related docs:
+
+* [Software dependencies](./FRESH.md)
+* [GPG Refresher](./GPG.md)
