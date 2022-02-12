@@ -95,6 +95,10 @@ with pkgs; [
   cargo-outdated
   cargo-expand
   kalker
+  jless
+  jfmt
+  xorg.xwininfo
+  emm
 
   unstable.rust-analyzer
   # pinentry

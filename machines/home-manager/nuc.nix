@@ -14,6 +14,8 @@ in
 
   nixpkgs.config.allowUnfree = true;
 
+  nixpkgs.overlays = [ (import ./overlay.nix { pkgs = pkgs;}) ];
+
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "sibi";
@@ -34,6 +36,8 @@ in
     tgswitch = pkgs.callPackage ../packages/tgswitch/default.nix {};
     cnx-sibi = pkgs.callPackage ../packages/cnx/default.nix {};
     kubergrunt = pkgs.callPackage ../packages/kubergrunt/default.nix {};
+    jfmt = pkgs.callPackage ../packages/jfmt/default.nix {};
+    jless = pkgs.callPackage ../packages/jless/default.nix {};
   };
 
   home.packages = import ./packages.nix { pkgs = pkgs; unstable = nixpkgs-unstable; };
