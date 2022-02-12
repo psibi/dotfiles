@@ -8,11 +8,7 @@ system. You can tailor it according it to your needs.
 - [[file:machines/home-manager/][Home manager configuration]]
 - [[file:machines/home-manager/packages.nix][packages.nix]]
 
-* setup.sh - Devops script
-* .Xresource - X resource settings
-* emacsSync.hs - Emacs synchronization script
+* Old docs
 
-Related docs:
-
-* [Software dependencies](./FRESH.md)
-* [GPG Refresher](./GPG.md)
+- [[file:FRESH.md][Fresh System configuraion]]
+- [[file:GPG.md][GPG docs]]
