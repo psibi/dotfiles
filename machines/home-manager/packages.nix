@@ -98,7 +98,9 @@ with pkgs; [
   jless
   jfmt
   xorg.xwininfo
-  emm
+  em
+  kubectl-argo-rollouts
+  nixpkgs-fmt
 
   unstable.rust-analyzer
   # pinentry
