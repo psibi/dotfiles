@@ -15,7 +15,8 @@
 ;; (setq package-check-signature nil)
 
 (use-package ormolu
-  :ensure t)
+  :ensure t
+  :bind (("C-c C-c C-f" . ormolu-format-buffer)))
 
 (use-package lsp-haskell
   :ensure t
