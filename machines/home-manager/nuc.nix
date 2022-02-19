@@ -14,7 +14,7 @@ in
 
   nixpkgs.config.allowUnfree = true;
 
-  nixpkgs.overlays = [ (import ./overlay.nix { pkgs = pkgs;}) ];
+  nixpkgs.overlays = [ (import ./overlay.nix) ];
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.

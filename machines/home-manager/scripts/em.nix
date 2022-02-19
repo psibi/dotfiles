@@ -1,6 +1,6 @@
 { pkgs }:
 let
-  em = pkgs.writeScriptBin "emm" ''
+  em = pkgs.writeScriptBin "em" ''
   #!${pkgs.stdenv.shell}
 
   # Pass explicit socket name for emacs provisioned via nixpkgs
