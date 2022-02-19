@@ -851,8 +851,12 @@
   (customize-set-variable 'langtool-bin "languagetool-commandline")
   (customize-set-variable 'langtool-default-language "en-US"))
 
+(use-package nixpkgs-fmt
+  :ensure t)
+
 (use-package package-lint
   :ensure t)
+
 (load-file "~/.emacs.d/haskell.el")
 (load-file "~/.emacs.d/python.el")
 (load-file "~/.emacs.d/web.el")
