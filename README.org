@@ -12,3 +12,14 @@ system. You can tailor it according it to your needs.
 
 - [[file:FRESH.md][Fresh System configuraion]]
 - [[file:GPG.md][GPG docs]]
+
+* Usage
+
+#+begin_src sh :exports both :results verbatim
+just
+#+end_src
+
+#+RESULTS:
+: Available recipes:
+:     default  # List all recipies
+:     home-nuc # Symlink for NUC home-manager
