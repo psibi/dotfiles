@@ -10,10 +10,6 @@
       '(("gnu"   . "http://elpa.gnu.org/packages/")
         ("melpa" . "https://melpa.org/packages/")))
 
-;; Install and load `quelpa-use-package'.
-(package-install 'quelpa-use-package)
-(require 'quelpa-use-package)
-
 (package-initialize)
 
 ;; Bootstrap `use-package`
@@ -21,6 +17,11 @@
   (package-refresh-contents)
   (package-install 'use-package))
 (require 'use-package)
+
+;; Install and load `quelpa-use-package'.
+(use-package quelpa-use-package
+  :ensure t)
+(require 'quelpa-use-package)
 
 (use-package cl)
 (use-package saveplace)
