@@ -7,11 +7,11 @@ system. You can tailor it according it to your needs.
 - [[file:machines/nuc8i7beh/][NUC8I7BEH Configuration]]
 - [[file:machines/home-manager/][Home manager configuration]]
 - [[file:machines/home-manager/packages.nix][packages.nix]]
-
-* Old docs
-
-- [[file:FRESH.md][Fresh System configuraion]]
-- [[file:GPG.md][GPG docs]]
+- [[file:cnx/][CNX]]
+- [[file:xmonad/][XMonad]]
+- [[file:xmobar/][XMobar (Outdated: Migrated to CNX instead)]]
+- [[file:.emacs.d/][Emacs configuration]]
+- [[file:machines/packages/][Nix Packages (Maintained out of tree)]]
 
 * Usage
 
@@ -23,3 +23,9 @@ just
 : Available recipes:
 :     default  # List all recipies
 :     home-nuc # Symlink for NUC home-manager
+
+* Old docs
+
+- [[file:FRESH.md][Fresh System configuraion]]
+- [[file:GPG.md][GPG docs]]
+- [[file:Mac.md][Mac notes]]
