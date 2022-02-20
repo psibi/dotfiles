@@ -1,3 +1,7 @@
+# List all recipies
+default:
+    just --list --unsorted
+
 # Symlink for NUC home-manager
 home-nuc:
     rm $HOME/.config/nixpkgs/home.nix
