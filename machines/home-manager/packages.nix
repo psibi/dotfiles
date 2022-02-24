@@ -101,6 +101,7 @@ with pkgs; [
   em
   kubectl-argo-rollouts
   nixpkgs-fmt
+  kube-score
 
   unstable.rust-analyzer
   # pinentry

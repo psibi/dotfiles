@@ -11,7 +11,7 @@ buildGoModule rec {
     sha256 = "0qb1wbv3razwhqsv972ywfazaq73y83iw6f6qdjcbwwfwsybig21";
   };
 
-  vendorSha256 = "1rmw80lvs9qj2d195rvhzz8xrbx71dirv1c0grc113d18q609qwj";
+  vendorSha256 = "00ic1nn3wgg495x2170ik1d1cha20b4w89j9jclq8p0b3nndv0c0";
 
   # Disable tests since some test fail because of missing test data
   doCheck = false;
