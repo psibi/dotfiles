@@ -50,19 +50,24 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  # };
+  i18n.defaultLocale = "en_US.UTF-8";
+  console = {
+     font = "Lat2-Terminus16";
+     keyMap = "us";
+  };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
   # services.xserver.desktopManager = {
   #  xfce.enable = true;
   # };
 
   services.earlyoom.enable = true;
+
+  # Enable the X11 windowing system.
+  services.xserver.enable = true;
+
+  # Configure keymap in X11
+  services.xserver.layout = "us";
+  services.xserver.xkbOptions = "caps:ctrl_modifier";
 
   services.xserver.windowManager.xmonad.enable = true;
   services.xserver.windowManager.xmonad.enableContribAndExtras = true;
@@ -87,9 +92,6 @@
       };
     };
 
-  # Configure keymap in X11
-  services.xserver.layout = "us";
-  services.xserver.xkbOptions = "caps:ctrl_modifier";
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
