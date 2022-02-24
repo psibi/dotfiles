@@ -157,6 +157,8 @@
     (setq rustic-format-on-save nil)
     (tree-sitter-require 'rust)
     (add-hook 'rustic-mode-hook #'tree-sitter-mode)
+    (customize-set-variable 'lsp-rust-analyzer-proc-macro-enable t)
+    (customize-set-variable 'lsp-rust-analyzer-experimental-proc-attr-macros t)
     (customize-set-variable 'lsp-rust-analyzer-server-display-inlay-hints t)))
 
 (use-package yasnippet
@@ -293,7 +295,9 @@
 ;;     ;; (magithub-toggle-pull-requests)
 ;;     ))
 
-(setq gc-cons-threshold 20000000)
+
+;; https://www.reddit.com/r/emacs/comments/sunkzx/is_it_only_me_or_did_emacs_without_native_comp/hxbthxv/?utm_source=reddit&utm_medium=web2x&context=3
+;; (setq gc-cons-threshold 20000000)
 
 ;;Projectile related config
 (use-package projectile
