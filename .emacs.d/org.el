@@ -44,7 +44,7 @@
 
 (use-package org-roam
   :ensure t
-  :bind (("C-c C-o" . org-roam-node-find))
+  :bind (("C-c C-g" . org-roam-node-find))
   :custom
   (org-roam-directory "/home/sibi/github/misc/roam")
   :init
