@@ -14,6 +14,8 @@ in
 
   nixpkgs.config.allowUnfree = true;
 
+  nixpkgs.overlays = [ (import ./overlay.nix) ];
+
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "sibi";
@@ -34,13 +36,16 @@ in
     tgswitch = pkgs.callPackage ../packages/tgswitch/default.nix {};
     cnx-sibi = pkgs.callPackage ../packages/cnx/default.nix {};
     kubergrunt = pkgs.callPackage ../packages/kubergrunt/default.nix {};
+    jfmt = pkgs.callPackage ../packages/jfmt/default.nix {};
+    jless = pkgs.callPackage ../packages/jless/default.nix {};
   };
 
   programs.fish = {
     enable = true;
-    shellAliases = import ./alias.nix;
+    shellAliases = import ./alias.nix { pkgs = pkgs; };
     interactiveShellInit = ''
     set fish_greeting
+    ${pkgs.any-nix-shell}/bin/any-nix-shell fish | source
     '';
   };
 
@@ -94,8 +99,10 @@ in
     };
   };
 
-  home.file.".stack/config.yaml".source = ../../.stack/config.yaml;
+  fonts.fontconfig.enable = true;
 
+  home.file.".stack/config.yaml".source = ../../.stack/config.yaml;
+  home.file.".tfswitch.toml".source = ../../tfswitch.toml;
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
