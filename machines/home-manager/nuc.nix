@@ -119,6 +119,12 @@ in
         identitiesOnly = true;
         identityFile = "~/github/new_keys/key";
       };
+      "github" = {
+        host = "github.com";
+        hostname = "github.com";
+        identitiesOnly = true;
+        identityFile = "~/.ssh/old_id_rsa";
+      };
     };
   };
 
