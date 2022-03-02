@@ -114,15 +114,26 @@ in
         };
       };
       "bitbucket" = {
-        user = "git";
         host = "bitbucket.org";
         hostname = "bitbucket.org";
-        identitiesOnly = false;
+        identitiesOnly = true;
         identityFile = "~/github/new_keys/key";
       };
     };
-    extraConfig = "IdentityFile ~/.ssh/id_rsa
-IdentityFile ~/github/new_keys/key";
+  };
+
+  programs.gpg = {
+    enable = true;
+  };
+
+  services.gpg-agent = {
+    enable = true;
+    enableSshSupport = true;
+    defaultCacheTtl = 60480000;
+    defaultCacheTtlSsh = 60480000;
+    maxCacheTtl = 60480000;
+    maxCacheTtlSsh = 60480000;
+    pinentryFlavor = "emacs";
   };
 
   fonts.fontconfig.enable = true;

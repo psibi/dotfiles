@@ -129,12 +129,12 @@
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
+  # programs.gnupg.agent = {
+  #   enable = true;
+  #   enableSSHSupport = true;
+  # };
 
-  security.pam.services.xmonad.gnupg = { enable = true; };
+  # security.pam.services.xmonad.gnupg = { enable = true; };
 
   # List services that you want to enable:
 
