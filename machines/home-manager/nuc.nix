@@ -99,6 +99,32 @@ in
     };
   };
 
+  programs.ssh = {
+    enable = true;
+    matchBlocks = {
+      "ssh.dev.azure.com" = {
+        user = "git";
+        host = "ssh.dev.azure.com";
+        hostname = "ssh.dev.azure.com";
+        identitiesOnly = true;
+        identityFile = "~/.ssh/id_rsa";
+        extraOptions = {
+          PubkeyAcceptedAlgorithms = "+ssh-rsa";
+          HostkeyAlgorithms = "+ssh-rsa";
+        };
+      };
+      "bitbucket" = {
+        user = "git";
+        host = "bitbucket.org";
+        hostname = "bitbucket.org";
+        identitiesOnly = false;
+        identityFile = "~/github/new_keys/key";
+      };
+    };
+    extraConfig = "IdentityFile ~/.ssh/id_rsa
+IdentityFile ~/github/new_keys/key";
+  };
+
   fonts.fontconfig.enable = true;
 
   home.file.".stack/config.yaml".source = ../../.stack/config.yaml;
