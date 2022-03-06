@@ -40,7 +40,6 @@ with pkgs; [
   gcc
   llvm
   xorg.libxcb
-  pinentry-emacs
   sqlite
   htop
   cabal2nix
@@ -102,6 +101,7 @@ with pkgs; [
   kubectl-argo-rollouts
   nixpkgs-fmt
   kube-score
+  pinentry-qt
 
   unstable.rust-analyzer
   # pinentry

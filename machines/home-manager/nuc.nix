@@ -48,7 +48,10 @@ in
     userEmail = "sibi@psibi.in";
     signing = {
       signByDefault = true;
-      key = "BB557613";
+      key = "0xD19E3E0EBB557613";
+    };
+    extraConfig = {
+      commit.gpgsign = true;
     };
     ignores = [ "*~" "\#*\#" ".\#*"];
   };
@@ -125,6 +128,12 @@ in
         identitiesOnly = true;
         identityFile = "~/.ssh/old_id_rsa";
       };
+      "gitlab" = {
+        host = "gitlab.com";
+        hostname = "gitlab.com";
+        identitiesOnly = true;
+        identityFile = "~/.ssh/old_id_rsa";
+      };
     };
   };
 
@@ -139,7 +148,7 @@ in
     defaultCacheTtlSsh = 60480000;
     maxCacheTtl = 60480000;
     maxCacheTtlSsh = 60480000;
-    pinentryFlavor = "emacs";
+    pinentryFlavor = "qt";
   };
 
   fonts.fontconfig.enable = true;
