@@ -37,7 +37,8 @@
   :ensure t)
 
 (use-package terraform-mode
-  :ensure t)
+  :ensure t
+  :bind (("C-c C-c C-f" . terraform-format-buffer)))
 
 ;; (use-package spacemacs-theme
 ;;   :ensure t
