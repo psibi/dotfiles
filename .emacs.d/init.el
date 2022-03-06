@@ -863,6 +863,18 @@
 (use-package package-lint
   :ensure t)
 
+;;; Workaround to make GPG agent work well with ssh keys till I move
+;;; managing my xmonad configuration with home manager itself
+
+;; https://github.com/nix-community/home-manager/issues/307
+;; https://nix-community.github.io/home-manager/index.html#sec-install-standalone
+;; https://github.com/nix-community/home-manager/issues/292#issuecomment-403104476
+;; We do this to setup GPG integration properly
+
+(setenv "SSH_AUTH_SOCK"
+        (string-trim (shell-command-to-string "gpgconf --list-dirs agent-ssh-socket")))
+
+
 (load-file "~/.emacs.d/haskell.el")
 (load-file "~/.emacs.d/python.el")
 (load-file "~/.emacs.d/web.el")

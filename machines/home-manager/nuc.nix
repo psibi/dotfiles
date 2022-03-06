@@ -120,19 +120,19 @@ in
         host = "bitbucket.org";
         hostname = "bitbucket.org";
         identitiesOnly = true;
-        identityFile = "~/github/new_keys/key";
+        identityFile = "~/.ssh/id_rsa_ed25519";
       };
       "github" = {
         host = "github.com";
         hostname = "github.com";
         identitiesOnly = true;
-        identityFile = "~/.ssh/old_id_rsa";
+        identityFile = "~/.ssh/id_rsa";
       };
       "gitlab" = {
         host = "gitlab.com";
         hostname = "gitlab.com";
         identitiesOnly = true;
-        identityFile = "~/.ssh/old_id_rsa";
+        identityFile = "~/.ssh/id_rsa";
       };
     };
   };
