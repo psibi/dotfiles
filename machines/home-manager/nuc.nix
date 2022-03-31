@@ -120,6 +120,12 @@ in
         host = "bitbucket.org";
         hostname = "bitbucket.org";
         identitiesOnly = true;
+        identityFile = "~/.ssh/id_rsa";
+      };
+      "bitbucket_bl3ndlabs" = {
+        host = "bl3ndlabs";
+        hostname = "bitbucket.org";
+        identitiesOnly = true;
         identityFile = "~/.ssh/id_rsa_ed25519";
       };
       "github" = {

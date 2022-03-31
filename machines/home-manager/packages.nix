@@ -102,6 +102,8 @@ with pkgs; [
   nixpkgs-fmt
   kube-score
   pinentry-qt
+  yq-go
+  difftastic
 
   unstable.rust-analyzer
   # pinentry

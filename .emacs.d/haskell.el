@@ -1,8 +1,13 @@
+(use-package ormolu
+  :ensure t
+  :init)
+
 (use-package haskell-mode
   :ensure t
   :init
   :bind (:map haskell-mode-map
-              ("C-c C-c C-u" . haskell-compile))
+              ("C-c C-c C-u" . haskell-compile)
+              ("C-c C-c C-f" . ormolu-format-buffer))
   :config
   (progn
     (add-hook 'haskell-mode-hook 'haskell-indent-mode)
@@ -14,9 +19,7 @@
 
 ;; (setq package-check-signature nil)
 
-(use-package ormolu
-  :ensure t
-  :bind (("C-c C-c C-f" . ormolu-format-buffer)))
+
 
 (use-package lsp-haskell
   :ensure t
