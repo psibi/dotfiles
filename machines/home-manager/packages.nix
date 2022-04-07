@@ -104,6 +104,7 @@ with pkgs; [
   pinentry-qt
   yq-go
   difftastic
+  docker-compose
 
   unstable.rust-analyzer
   # pinentry
