@@ -105,6 +105,7 @@ with pkgs; [
   yq-go
   difftastic
   docker-compose
+  shellcheck
 
   unstable.rust-analyzer
   # pinentry
