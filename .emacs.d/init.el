@@ -70,6 +70,7 @@
   (prog-mode . flycheck-mode)
   :custom
   (flycheck-sh-shellcheck-executable "shellcheck")
+  (sh-shell 'bash)
   :config
   (progn
     (setq flycheck-check-syntax-automatically '(mode-enabled save))
