@@ -52,6 +52,7 @@ in
     };
     extraConfig = {
       commit.gpgsign = true;
+      init.defaultBranch = "main";
     };
     ignores = [ "*~" "\#*\#" ".\#*"];
   };
