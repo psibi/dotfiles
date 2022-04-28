@@ -70,16 +70,14 @@
   (prog-mode . flycheck-mode)
   :custom
   (flycheck-sh-shellcheck-executable "shellcheck")
-  (sh-shell 'bash)
   :config
   (progn
     (setq flycheck-check-syntax-automatically '(mode-enabled save))
     (define-key flycheck-mode-map (kbd "C-c f l") #'flycheck-list-errors)
     (define-key flycheck-mode-map (kbd "C-c f n") #'flycheck-next-error)
     (define-key flycheck-mode-map (kbd "C-c f p") #'flycheck-previous-error)
-    (flycheck-add-next-checker 'sh-bash  '(t . sh-shellcheck) 'append)
     (add-hook 'sh-mode-hook (lambda () (progn
-                                         ;; (flycheck-select-checker 'sh-shellcheck)
+                                         (sh-set-shell "bash")
                                          (flycheck-mode))))))
 
 (use-package markdown-toc
@@ -223,15 +221,6 @@
 ;; (define-key global-map (kbd "C-c j") 'newline-and-indent)
 
 (global-set-key (kbd "C-x m") 'shell)
-
-;; Emacs doesn't seem to have `copy-rectangle-as-kill`
-;; http://www.gnu.org/software/emacs/manual/html_node/emacs/Rectangles.html
-(defun my-copy-rectangle (start end)
-   "Copy the region-rectangle instead of `kill-rectangle'."
-   (interactive "r")
-   (setq killed-rectangle (extract-rectangle start end)))
-
-(global-set-key (kbd "C-x r M-w") 'my-copy-rectangle)
 
 ;; Just in case you are behind a proxy
 ;; (setq url-proxy-services '(("https" . "127.0.0.1:3129")
@@ -747,14 +736,6 @@
 (use-package xwidgete
   :ensure t)
 
-(use-package lsp-java
-  :ensure t)
-
-(add-hook 'java-mode-hook #'lsp)
-
-(setq lsp-path-java-path "/home/sibi/Downloads/jdk-12.0.2+10/bin/java")
-(setq lsp-java-java-path "/home/sibi/Downloads/jdk-12.0.2+10/bin/java")
-
 ;; (use-package java-mode
 ;;   :custom
 ;;   )
@@ -800,35 +781,6 @@
               ("M-g M-d" . dogears-list)
               ("M-g M-D" . dogears-sidebar)))
 
-(defun sibi/run-markdown-code-block (&optional insert-to-buffer)
-  "Run markdown code block under curosr."
-  (interactive "P")
-  (let* ((start (nth 0
-                     (markdown-get-enclosing-fenced-block-construct)))
-         (end (nth 1
-                   (markdown-get-enclosing-fenced-block-construct)))
-         (snippet-with-markers (buffer-substring start end))
-         (snippet (string-join (cdr (butlast (split-string snippet-with-markers "\n")))
-                               "\n"))
-         (snippet-runner (car (last (split-string (car (split-string snippet-with-markers "\n"))
-                                                  "[ `]+")))))
-    (setq temp-source-file (make-temp-file "thing-to-run"))
-    (pulse-momentary-highlight-region start end
-                                      'company-template-field)
-    (message "Code: %s" snippet)
-    (message "Runner: %s" snippet-runner)
-    (append-to-file snippet nil temp-source-file)
-    (message "Running code...")
-    (progn
-      (goto-char end)
-      (end-of-line)
-      (newline)
-      (insert "\n```shellsession\n")
-      ;; Todo - Make snippet runner smart. Right now use bash.
-      (insert (shell-command-to-string (format "%s '%s'" "bash" temp-source-file)))
-      (insert "```"))
-    (delete-file temp-source-file t)))
-
 (use-package markdown-mode
   :ensure t
   :mode "\\.md\\'"
@@ -865,6 +817,13 @@
 (use-package package-lint
   :ensure t)
 
+(use-package helpful
+  :ensure t)
+
+(use-package typescript-mode
+  :ensure t
+  :custom
+  (typescript-indent-level 2))
 ;;; Workaround to make GPG agent work well with ssh keys till I move
 ;;; managing my xmonad configuration with home manager itself
 
@@ -885,3 +844,10 @@
 (load-file "~/github/dotfiles/.emacs.d/devops.el")
 ;; (load-file "~/github/dotfiles/.emacs.d/private.el")
 ;; (load-file "~/.emacs.d/sml.el")
+
+;; https://emacs.stackexchange.com/a/13096
+(defun sibi-reload-dir-locals-for-current-buffer ()
+  "reload dir locals for the current buffer"
+  (interactive)
+  (let ((enable-local-variables :all))
+    (hack-dir-local-variables-non-file-buffer)))
