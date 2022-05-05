@@ -125,7 +125,8 @@
   :init (setq lsp-keymap-prefix "C-l")
   :commands lsp
   :hook ((lsp-mode . lsp-enable-which-key-integration)
-         (lsp-configure . lsp-lens-mode)))
+         (lsp-configure . lsp-lens-mode)
+         (haskell-mode terraform-mode . lsp-deferred)))
 
 (use-package lsp-treemacs
   :ensure t)
@@ -149,8 +150,7 @@
 (use-package terraform-mode
   :ensure t
   :bind (:map terraform-mode-map
-              ("C-c C-c C-f" . terraform-format-buffer))
-  :hook ((terraform-mode . lsp-deferred)))
+              ("C-c C-c C-f" . terraform-format-buffer)))
 
 (use-package terraform-doc
   :ensure t)

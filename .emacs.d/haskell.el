@@ -8,7 +8,6 @@
   :bind (:map haskell-mode-map
               ("C-c C-c C-u" . haskell-compile)
               ("C-c C-c C-f" . ormolu-format-buffer))
-  :hook ((haskell-mode . lsp-deferred))
   :config
   (progn
     (add-hook 'haskell-mode-hook 'haskell-indent-mode)
