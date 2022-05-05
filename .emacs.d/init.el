@@ -36,11 +36,6 @@
          ("\\.yml\\'" . yaml-mode))
   :ensure t)
 
-(use-package terraform-mode
-  :ensure t
-  :bind (:map terraform-mode-map
-              ("C-c C-c C-f" . terraform-format-buffer)))
-
 ;; (use-package spacemacs-theme
 ;;   :ensure t
 ;;   :defer t
@@ -59,6 +54,16 @@
   :config (progn
           (load-theme 'doom-one t)
           (doom-themes-org-config)))
+
+(use-package treemacs
+  :ensure t
+  :bind
+  (:map global-map
+        ("C-x t o" . treemacs-select-window)))
+
+(use-package treemacs-projectile
+  :after (treemacs projectile)
+  :ensure t)
 
 (use-package doom-modeline
   :ensure t
@@ -113,15 +118,26 @@
   ;;                   )
 
 (use-package lsp-mode
-  :ensure t
+  :quelpa (lsp-mode :fetcher file
+                    :path "~/github/lsp-mode"
+                    :files ("*.el" "clients/*.el"))
+  ;; :ensure t
   :init (setq lsp-keymap-prefix "C-l")
   :commands lsp
   :hook ((lsp-mode . lsp-enable-which-key-integration)
          (lsp-configure . lsp-lens-mode)))
 
+(use-package lsp-treemacs
+  :ensure t)
+
 (use-package lsp-ui
   :ensure t
-  :commands lsp-ui-mode)
+  :commands lsp-ui-mode
+  :custom
+  lsp-ui-doc-enable t
+  lsp-ui-doc-header t
+  lsp-ui-doc-show-with-cursor t
+  lsp-ui-doc-include-signature t)
 
 (use-package helm-lsp
   :ensure t
@@ -129,6 +145,15 @@
          ("C-c C-e g" . helm-lsp-global-workspace-symbol)
          ("C-c C-e d" . helm-lsp-diagnostics))
   :commands helm-lsp-workspace-symbol)
+
+(use-package terraform-mode
+  :ensure t
+  :bind (:map terraform-mode-map
+              ("C-c C-c C-f" . terraform-format-buffer))
+  :hook ((terraform-mode . lsp-deferred)))
+
+(use-package terraform-doc
+  :ensure t)
 
 (use-package rustic
   :quelpa (rustic :fetcher file
@@ -638,7 +663,10 @@
   :ensure t)
 
 (use-package git-link
-  :ensure t
+  :quelpa (git-link :fetcher file
+                    :path "~/github/git-link/git-link.el")
+
+  ;; :ensure t
   :custom
   (git-link-use-commit t))
 
@@ -844,6 +872,8 @@
 (load-file "~/github/dotfiles/.emacs.d/devops.el")
 ;; (load-file "~/github/dotfiles/.emacs.d/private.el")
 ;; (load-file "~/.emacs.d/sml.el")
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
 
 ;; https://emacs.stackexchange.com/a/13096
 (defun sibi-reload-dir-locals-for-current-buffer ()

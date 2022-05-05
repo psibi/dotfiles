@@ -106,7 +106,9 @@ with pkgs; [
   difftastic
   docker-compose
   shellcheck
+  nodePackages.yaml-language-server
 
+  unstable.terraform-ls
   unstable.rust-analyzer
   # pinentry
   # pinentry-curses
