@@ -107,6 +107,8 @@ with pkgs; [
   docker-compose
   shellcheck
   nodePackages.yaml-language-server
+  man-pages
+  man-pages-posix
 
   unstable.terraform-ls
   unstable.rust-analyzer
