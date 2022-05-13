@@ -13,6 +13,7 @@ in
   services.emacs.enable = true;
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.documentation.dev.enable = true;
 
   nixpkgs.overlays = [ (import ./overlay.nix) ];
 
