@@ -126,7 +126,7 @@
   :commands lsp
   :hook ((lsp-mode . lsp-enable-which-key-integration)
          (lsp-configure . lsp-lens-mode)
-         (haskell-mode terraform-mode . lsp-deferred)))
+         (terraform-mode . lsp-deferred)))
 
 (use-package lsp-treemacs
   :ensure t)
