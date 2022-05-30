@@ -36,6 +36,9 @@
          ("\\.yml\\'" . yaml-mode))
   :ensure t)
 
+(use-package dash
+  :ensure t)
+
 ;; (use-package spacemacs-theme
 ;;   :ensure t
 ;;   :defer t
@@ -52,8 +55,8 @@
   (doom-themes-enable-bold t)
   (doom-themes-enable-italic t)
   :config (progn
-          (load-theme 'doom-one t)
-          (doom-themes-org-config)))
+            (load-theme 'doom-one t)
+            (doom-themes-org-config)))
 
 (use-package treemacs
   :ensure t
@@ -64,10 +67,6 @@
 (use-package treemacs-projectile
   :after (treemacs projectile)
   :ensure t)
-
-(use-package doom-modeline
-  :ensure t
-  :config (doom-modeline-mode 1))
 
 (use-package flycheck
   :ensure t
@@ -86,7 +85,9 @@
                                          (flycheck-mode))))))
 
 (use-package markdown-toc
-  :ensure t)
+  :ensure t
+  :custom
+  (markdown-toc-indentation-space 2))
 
 (use-package auto-complete
   :ensure t
@@ -98,8 +99,6 @@
 
 (use-package tree-sitter
   :ensure t
-  :init
-  (global-tree-sitter-mode)
   :config
   (progn
     (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)))
@@ -123,22 +122,31 @@
                     :files ("*.el" "clients/*.el"))
   ;; :ensure t
   :init (setq lsp-keymap-prefix "C-l")
+  :after (dash)
   :commands lsp
+
   :hook ((lsp-mode . lsp-enable-which-key-integration)
          (lsp-configure . lsp-lens-mode)
-         (terraform-mode . lsp-deferred)))
-
-(use-package lsp-treemacs
-  :ensure t)
+         (terraform-mode . lsp-deferred))
+  :custom
+  (lsp-disabled-clients '(tfls))
+  (lsp-semantic-tokens-enable t)
+  (lsp-semantic-tokens-honor-refresh-requests t)
+  (lsp-terraform-ls-enable-show-reference t))
 
 (use-package lsp-ui
   :ensure t
+  :after (lsp-mode)
   :commands lsp-ui-mode
   :custom
   lsp-ui-doc-enable t
   lsp-ui-doc-header t
   lsp-ui-doc-show-with-cursor t
   lsp-ui-doc-include-signature t)
+
+(use-package lsp-treemacs
+  :ensure t
+  :after (treemacs lsp-mode))
 
 (use-package helm-lsp
   :ensure t
@@ -149,6 +157,7 @@
 
 (use-package terraform-mode
   :ensure t
+  :after (lsp-mode)
   :bind (:map terraform-mode-map
               ("C-c C-c C-f" . terraform-format-buffer)))
 
@@ -556,17 +565,6 @@
   (progn (require 'centered-cursor-mode)
          (global-centered-cursor-mode)))
 
-(use-package selected
-  :ensure t
-  :init (selected-minor-mode)
-  :bind (:map selected-keymap
-              ("w" . er/expand-region)
-              ("q" . selected-off)
-              ("u" . upcase-region)
-              ("d" . downcase-region)
-              ("g" . google-this)
-              ("m" . apply-macro-to-region-lines)))
-
 (use-package tldr
   :ensure t)
 
@@ -815,7 +813,8 @@
   :bind (:map markdown-mode-map
               ("C-c C-c" . sibi/run-markdown-code-block))
   :custom
-  (markdown-hide-urls t))
+  (markdown-hide-urls t)
+  (markdown-list-indent-width 2))
 
 (use-package go-mode
   :ensure t)
@@ -847,6 +846,10 @@
 
 (use-package helpful
   :ensure t)
+
+(use-package doom-modeline
+  :ensure t
+  :config (doom-modeline-mode 1))
 
 (use-package typescript-mode
   :ensure t
@@ -881,3 +884,17 @@
   (interactive)
   (let ((enable-local-variables :all))
     (hack-dir-local-variables-non-file-buffer)))
+
+;; Best to have it at bottom
+;; https://github.com/Kungsgeten/selected.el#installation-and-setup
+(use-package selected
+  :ensure t
+  :commands selected-minor-mode
+  :init (selected-global-mode)
+  :bind (:map selected-keymap
+              ("w" . er/expand-region)
+              ("q" . selected-off)
+              ("u" . upcase-region)
+              ("d" . downcase-region)
+              ("g" . google-this)
+              ("m" . apply-macro-to-region-lines)))
