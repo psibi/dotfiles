@@ -19,7 +19,6 @@ with pkgs; [
   emacs
   keepassxc
   alacritty
-  google-chrome
   gnucash
   screen
   xclip
@@ -109,7 +108,15 @@ with pkgs; [
   nodePackages.yaml-language-server
   man-pages
   man-pages-posix
+  vscode
+  gimp
+  vokoscreen
+  vlc
+  ffmpeg
+  mdbook
+  texlive.combined.scheme-small
 
+  unstable.google-chrome
   unstable.terraform-ls
   unstable.rust-analyzer
   # pinentry
