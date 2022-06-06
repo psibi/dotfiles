@@ -154,11 +154,11 @@
   ];
 
   fonts.fonts = with pkgs; [
-     ubuntu_font_family
-     font-awesome
-     symbola
-     alegreya
-     nerdfonts
+    ubuntu_font_family
+    font-awesome
+    symbola
+    alegreya
+    # nerdfonts
   ];
 
   environment.homeBinInPath = true;

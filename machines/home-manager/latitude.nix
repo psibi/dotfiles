@@ -10,7 +10,10 @@ in
   imports = [ ../modules/cnx.nix ];
   services.cnx.enable = true;
 
-  services.emacs.enable = true;
+  services.emacs = {
+    enable = true;
+    package = pkgs.emacs28NativeComp;
+  };
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.documentation.dev.enable = true;
@@ -31,14 +34,14 @@ in
   };
 
   nixpkgs.config.packageOverrides = pkgs: rec {
-    ouch = pkgs.callPackage ../packages/ouch/default.nix {};
-    tfswitch = pkgs.callPackage ../packages/tfswitch/default.nix {};
-    amber-secret = pkgs.callPackage ../packages/amber/default.nix {};
-    tgswitch = pkgs.callPackage ../packages/tgswitch/default.nix {};
+    # ouch = pkgs.callPackage ../packages/ouch/default.nix {};
+    # tfswitch = pkgs.callPackage ../packages/tfswitch/default.nix {};
+    # amber-secret = pkgs.callPackage ../packages/amber/default.nix {};
+    # tgswitch = pkgs.callPackage ../packages/tgswitch/default.nix {};
     cnx-sibi = pkgs.callPackage ../packages/cnx/default.nix {};
-    kubergrunt = pkgs.callPackage ../packages/kubergrunt/default.nix {};
-    jfmt = pkgs.callPackage ../packages/jfmt/default.nix {};
-    jless = pkgs.callPackage ../packages/jless/default.nix {};
+    # kubergrunt = pkgs.callPackage ../packages/kubergrunt/default.nix {};
+    # jfmt = pkgs.callPackage ../packages/jfmt/default.nix {};
+    # jless = pkgs.callPackage ../packages/jless/default.nix {};
   };
 
   programs.fish = {
@@ -57,7 +60,6 @@ in
 
   programs.direnv = {
     enable = true;
-    enableFishIntegration = true;
   };
 
   home.packages = import ./packages.nix {pkgs = pkgs; unstable = nixpkgs-unstable;};

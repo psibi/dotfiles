@@ -1,5 +1,6 @@
 { pkgs, unstable }:
 with pkgs; [
+  cnx-sibi
   git
   terraform-docs
   ouch
@@ -16,7 +17,7 @@ with pkgs; [
   curl
   firefox
   git
-  emacs
+  emacs28NativeComp
   keepassxc
   alacritty
   gnucash
@@ -76,7 +77,6 @@ with pkgs; [
   any-nix-shell
   qpdf
   libreoffice
-  cnx-sibi
   openssl
   kubergrunt
   wirelesstools
