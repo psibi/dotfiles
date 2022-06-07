@@ -158,7 +158,7 @@
     font-awesome
     symbola
     alegreya
-    # nerdfonts
+    nerdfonts
   ];
 
   environment.homeBinInPath = true;
