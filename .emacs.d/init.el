@@ -117,10 +117,10 @@
   ;;                   )
 
 (use-package lsp-mode
-  :quelpa (lsp-mode :fetcher file
-                    :path "~/github/lsp-mode"
-                    :files ("*.el" "clients/*.el"))
-  ;; :ensure t
+  ;; :quelpa (lsp-mode :fetcher file
+  ;;                   :path "~/github/lsp-mode"
+  ;;                   :files ("*.el" "clients/*.el"))
+  :ensure t
   :init (setq lsp-keymap-prefix "C-l")
   :after (dash)
   :commands lsp
@@ -132,7 +132,8 @@
   (lsp-disabled-clients '(tfls))
   (lsp-semantic-tokens-enable t)
   (lsp-semantic-tokens-honor-refresh-requests t)
-  (lsp-terraform-ls-enable-show-reference t))
+  (lsp-terraform-ls-enable-show-reference t)
+  (lsp-terraform-ls-prefer-treemacs-all-the-icons-theme t))
 
 (use-package lsp-ui
   :ensure t
@@ -144,9 +145,12 @@
   lsp-ui-doc-show-with-cursor t
   lsp-ui-doc-include-signature t)
 
+(use-package treemacs-all-the-icons
+  :ensure t)
+
 (use-package lsp-treemacs
   :ensure t
-  :after (treemacs lsp-mode))
+  :after (treemacs lsp-mode treemacs-all-the-icons))
 
 (use-package helm-lsp
   :ensure t
