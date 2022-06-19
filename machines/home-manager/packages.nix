@@ -17,7 +17,6 @@ with pkgs; [
   firefox
   git
   emacs
-  keepassxc
   alacritty
   gnucash
   screen
@@ -33,7 +32,6 @@ with pkgs; [
   nixfmt
   direnv
   rustup
-  stack
   pavucontrol
   gnumake
   gcc
@@ -115,6 +113,9 @@ with pkgs; [
   ffmpeg
   mdbook
   texlive.combined.scheme-small
+  cargo-spellcheck
+  keepassxc
+  stack
 
   unstable.google-chrome
   unstable.terraform-ls
