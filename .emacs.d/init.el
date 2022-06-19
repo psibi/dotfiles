@@ -739,6 +739,11 @@
   :init
   (add-hook 'after-init-hook 'global-company-mode))
 
+(use-package company-box
+  :after company
+  :ensure t
+  :hook (company-mode . company-box-mode))
+
 ;; (use-package company-suggest
 ;;   :ensure t
 ;;   :init

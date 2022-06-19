@@ -38,11 +38,10 @@ rustPlatform.buildRustPackage rec {
     xorg.xcbutilwm
   ];
 
-  # Add libvmi, glibc, clang, glib headers to bindgen search path
+  # Add glibc, clang, glib headers to bindgen search path
   BINDGEN_EXTRA_CLANG_ARGS =
     # Includes with normal include path
     (builtins.map (a: ''-I"${a}/include"'') [
-      pkgs.libvmi
       pkgs.glibc.dev
     ])
     # Includes with special directory paths

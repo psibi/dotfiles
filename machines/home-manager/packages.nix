@@ -1,5 +1,6 @@
 { pkgs, unstable }:
 with pkgs; [
+  cnx-sibi
   git
   terraform-docs
   ouch
@@ -16,7 +17,6 @@ with pkgs; [
   curl
   firefox
   git
-  emacs
   alacritty
   gnucash
   screen
@@ -74,7 +74,6 @@ with pkgs; [
   any-nix-shell
   qpdf
   libreoffice
-  cnx-sibi
   openssl
   kubergrunt
   wirelesstools
@@ -116,6 +115,7 @@ with pkgs; [
   cargo-spellcheck
   keepassxc
   stack
+  emacs28NativeComp
 
   unstable.google-chrome
   unstable.terraform-ls
