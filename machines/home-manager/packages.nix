@@ -86,15 +86,10 @@ with pkgs; [
   httplz
   languagetool
   twitter-color-emoji
-  cargo-edit
-  cargo-outdated
-  cargo-expand
   kalker
   jless
   jfmt
   xorg.xwininfo
-  em
-  kubectl-argo-rollouts
   nixpkgs-fmt
   kube-score
   pinentry-qt
@@ -113,12 +108,21 @@ with pkgs; [
   mdbook
   texlive.combined.scheme-small
   cargo-spellcheck
+  cargo-edit
+  cargo-outdated
+  cargo-expand
   keepassxc
   stack
   emacs28NativeComp
+  argo-rollouts
+
+  # From Overlays
+  mprocs
+  terraform
+  em
+  terraform-ls
 
   unstable.google-chrome
-  unstable.terraform-ls
   unstable.rust-analyzer
   # pinentry
   # pinentry-curses
