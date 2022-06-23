@@ -161,6 +161,7 @@ in {
   home.file.".stack/config.yaml".source = ../../.stack/config.yaml;
   home.file.".tfswitch.toml".source = ../../tfswitch.toml;
   home.file.".aws/config".source = ../../aws-config;
+  home.file.".config/mprocs/mprocs.yaml".source = ../../mprocs.yaml;
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

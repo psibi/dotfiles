@@ -1,0 +1,3 @@
+keymap_procs:
+  <C-p> : { c: prev-proc }
+  <C-n> : { c: next-proc }
