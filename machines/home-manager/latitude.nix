@@ -30,7 +30,7 @@ in
   };
   home.sessionPath = [ "$HOME/.local/bin" "$HOME/.cargo/bin" ];
   home.sessionVariables = {
-    EDITOR = "${pkgs.emacs}/bin/emacsclient";
+    EDITOR = "${pkgs.emacs28NativeComp}/bin/emacsclient";
   };
 
   nixpkgs.config.packageOverrides = pkgs: rec {
