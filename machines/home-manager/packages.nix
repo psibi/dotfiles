@@ -118,7 +118,6 @@ with pkgs; [
 
   # From Overlays
   mprocs
-  terraform
   em
   terraform-ls
 
