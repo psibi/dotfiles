@@ -76,6 +76,8 @@ in {
   programs.zoxide = {
     enable = true;
     enableFishIntegration = true;
+    enableBashIntegration = true;
+    package = nixpkgs-unstable.zoxide;
   };
 
   programs.direnv = { enable = true; };

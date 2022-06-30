@@ -52,7 +52,6 @@ with pkgs; [
   xfce.xfce4-screenshooter
   pandoc
   killall
-  zoxide
   starship
   ouch
   just
@@ -123,6 +122,7 @@ with pkgs; [
 
   unstable.google-chrome
   unstable.rust-analyzer
+  unstable.zoxide
   # pinentry
   # pinentry-curses
   # texlive.combined.scheme-full
