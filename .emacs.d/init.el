@@ -214,6 +214,10 @@
   :config
   (add-hook 'emacs-lisp-mode-hook 'paredit-mode))
 
+(use-package smartparens
+  :ensure t
+  :hook ((rustic-mode . turn-on-smartparens-strict-mode)))
+
 (use-package google-this
   :ensure t)
 
