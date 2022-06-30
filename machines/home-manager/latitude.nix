@@ -1,8 +1,8 @@
 { config, pkgs, ... }:
 let
-  nixpkgs-unstable = import <nixpkgs-unstable> {};
-in
-{
+  nixpkgs-unstable =
+    import <nixpkgs-unstable> { config = { allowUnfree = true; }; };
+in {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
@@ -25,8 +25,8 @@ in
   home.username = "sibi";
   home.homeDirectory = "/home/sibi";
   home.language = {
-   monetary = "en_IN";
-   time = "en_US.UTF-8";
+    monetary = "en_IN";
+    time = "en_US.UTF-8";
   };
   home.sessionPath = [ "$HOME/.local/bin" "$HOME/.cargo/bin" ];
   home.sessionVariables = {
@@ -38,7 +38,7 @@ in
     # tfswitch = pkgs.callPackage ../packages/tfswitch/default.nix {};
     # amber-secret = pkgs.callPackage ../packages/amber/default.nix {};
     # tgswitch = pkgs.callPackage ../packages/tgswitch/default.nix {};
-    cnx-sibi = pkgs.callPackage ../packages/cnx/default.nix {};
+    cnx-sibi = pkgs.callPackage ../packages/cnx/default.nix { };
     # kubergrunt = pkgs.callPackage ../packages/kubergrunt/default.nix {};
     # jfmt = pkgs.callPackage ../packages/jfmt/default.nix {};
     # jless = pkgs.callPackage ../packages/jless/default.nix {};
@@ -48,8 +48,8 @@ in
     enable = true;
     shellAliases = import ./alias.nix { pkgs = pkgs; };
     interactiveShellInit = ''
-    set fish_greeting
-    ${pkgs.any-nix-shell}/bin/any-nix-shell fish | source
+      set fish_greeting
+      ${pkgs.any-nix-shell}/bin/any-nix-shell fish | source
     '';
   };
 
@@ -58,11 +58,12 @@ in
     enableFishIntegration = true;
   };
 
-  programs.direnv = {
-    enable = true;
-  };
+  programs.direnv = { enable = true; };
 
-  home.packages = import ./packages.nix {pkgs = pkgs; unstable = nixpkgs-unstable;};
+  home.packages = import ./packages.nix {
+    pkgs = pkgs;
+    unstable = nixpkgs-unstable;
+  };
 
   programs.git = {
     enable = true;
@@ -72,7 +73,7 @@ in
       signByDefault = true;
       key = "BB557613";
     };
-    ignores = [ "*~" "\#*\#" ".\#*"];
+    ignores = [ "*~" "#*#" ".#*" ];
   };
 
   programs.starship = {
@@ -91,14 +92,10 @@ in
     enable = true;
     settings = {
       font = {
-        normal=  {
-          family= "Ubuntu Mono";
-        };
+        normal = { family = "Ubuntu Mono"; };
         size = 17.0;
       };
-      shell = {
-        program = "${pkgs.screen}/bin/screen";
-      };
+      shell = { program = "${pkgs.screen}/bin/screen"; };
     };
   };
 
