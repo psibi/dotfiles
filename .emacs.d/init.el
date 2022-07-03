@@ -915,3 +915,6 @@
               ("d" . downcase-region)
               ("g" . google-this)
               ("m" . apply-macro-to-region-lines)))
+
+(use-package pdf-tools
+  :init (pdf-tools-install))
