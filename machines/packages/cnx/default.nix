@@ -7,8 +7,8 @@ rustPlatform.buildRustPackage rec {
   src = fetchFromGitHub {
     owner = "psibi";
     repo = "dotfiles";
-    rev = "f034fe6b15869ea4f7bd6aea888311bdfddd5fa7";
-    sha256 = "1z51bycy0f9c8wbywvpyqrzyr7cx6qc3v2hrk03dn7gq4hldq586";
+    rev = "aa1c394dfd7f4b51da5f9d4f2c8970a2f17d922c";
+    sha256 = "sha256-HK7FwOJ3hZhCpayDVVUe70XiwWTMfodMYWhjlDoBrr4=";
   };
 
   sourceRoot = "source/cnx";

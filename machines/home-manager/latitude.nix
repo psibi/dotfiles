@@ -8,7 +8,10 @@ in {
 
   # Custom systemd services
   imports = [ ../modules/cnx.nix ];
-  services.cnx.enable = true;
+  services.cnx = {
+    enable = true;
+    machineName = "LAPTOP";
+  };
 
   services.emacs = {
     enable = true;
@@ -56,6 +59,9 @@ in {
   programs.zoxide = {
     enable = true;
     enableFishIntegration = true;
+    enableBashIntegration = true;
+    enableZshIntegration = false;
+    package = nixpkgs-unstable.zoxide;
   };
 
   programs.direnv = { enable = true; };
