@@ -6,6 +6,8 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 
+(setq package-native-compile t)
+
 (setq package-archives
       '(("gnu"   . "http://elpa.gnu.org/packages/")
         ("melpa" . "https://melpa.org/packages/")))
@@ -738,6 +740,7 @@
 (use-package hcl-mode
   :ensure t)
 
+
 (use-package company
   :ensure t
   :init
@@ -747,6 +750,7 @@
   :after company
   :ensure t
   :hook (company-mode . company-box-mode))
+
 
 ;; (use-package company-suggest
 ;;   :ensure t
@@ -911,3 +915,6 @@
               ("d" . downcase-region)
               ("g" . google-this)
               ("m" . apply-macro-to-region-lines)))
+
+(use-package pdf-tools
+  :init (pdf-tools-install))

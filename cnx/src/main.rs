@@ -6,8 +6,21 @@ use cnx::{Cnx, Position};
 use cnx_contrib::widgets::battery::*;
 use cnx_contrib::widgets::disk_usage::*;
 use cnx_contrib::widgets::*;
-
 use weathernoaa::weather::WeatherInfo;
+
+enum Machine {
+    Laptop,
+    Nuc
+}
+
+impl Machine {
+    pub fn wireless_name(&self) -> &str {
+        match self {
+            Machine::Laptop => "wlp2s0",
+            Machine::Nuc => "wlp0s20f3"
+        }
+    }
+}
 
 
 fn pango_markup_render(color: Color, start_text: String, text: String) -> String {
@@ -42,6 +55,14 @@ fn weather_sky_condition(condition: String) -> &'static str {
 }
 
 fn main() -> Result<()> {
+    let machine = match std::env::var("CNX_MACHINE") {
+        Ok(machine_var) => if machine_var.to_lowercase() == "nuc" {
+            Machine::Nuc
+        } else {
+            Machine::Laptop
+        }
+        Err(_) => anyhow::bail!("No CNX_MACHINE environment variable present")
+    };
     let attr = Attributes {
         font: Font::new("Ubuntu Mono Bold 14"),
         fg_color: Color::white(),
@@ -88,7 +109,7 @@ fn main() -> Result<()> {
 
     let wireless = wireless::Wireless::new(
         attr.clone(),
-        "wlp0s20f3".to_owned(),
+        machine.wireless_name().to_string(),
         Some(default_threshold),
     );
 

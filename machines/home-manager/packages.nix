@@ -122,7 +122,6 @@ with pkgs; [
 
   unstable.google-chrome
   unstable.rust-analyzer
-  unstable.zoxide
   # pinentry
   # pinentry-curses
   # texlive.combined.scheme-full
