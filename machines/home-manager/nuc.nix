@@ -8,7 +8,10 @@ in {
 
   # Custom systemd services
   imports = [ ../modules/cnx.nix ];
-  services.cnx.enable = true;
+  services.cnx = {
+    enable = true;
+    machineName = "NUC";
+  };
 
   services.emacs = {
     enable = true;
