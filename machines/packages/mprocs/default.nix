@@ -2,16 +2,16 @@
 
 rustPlatform.buildRustPackage rec {
   pname = "mprocs";
-  version = "0.5.0";
+  version = "0.6.0";
 
   src = fetchFromGitHub {
     owner = "pvolok";
     repo = pname;
     rev = "v${version}";
-    sha256 = "sha256-in2aCNY86VncbqOWpEnU95FlkUWImNJFobybQI/siOM=";
+    sha256 = "sha256-q5LTfmOh2bn9S/fQQ3SHFd46lRwPxfD68ooTKuOIz5k=";
   };
 
-  cargoSha256 = "sha256-cnFUu5r48vC2emFJSkA8qhmXT3tcZHRj0fMv7plioY8=";
+  cargoSha256 = "sha256-6fDwy658bANj1u4hc4y9KQ2Wi9/AoghlaIyY6XXO6gs=";
 
   meta = with lib; {
     description = "A TUI tool to run multiple commands in parallel and show the output of each command separately";
