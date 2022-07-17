@@ -114,6 +114,7 @@ with pkgs; [
   stack
   emacs28NativeComp
   argo-rollouts
+  haskell-language-server
 
   # From Overlays
   mprocs
