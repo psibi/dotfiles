@@ -9,7 +9,13 @@
   (org-export-babel-evaluate nil)
   (org-log-done t)
   (org-agenda-files
-   '("/home/sibi/github/timebox/home.org" "/home/sibi/github/timebox/learn.org" "/home/sibi/github/timebox/oss.org" "/home/sibi/github/misc/notes.org" "/home/sibi/github/timebox/parents.org" "/home/sibi/github/timebox/work.org" "/home/sibi/github/timebox/xmonad.org"))
+   '("/home/sibi/github/timebox/home.org"
+     "/home/sibi/github/timebox/learn.org"
+     "/home/sibi/github/timebox/oss.org"
+     "/home/sibi/github/misc/notes.org"
+     "/home/sibi/github/timebox/parents.org"
+     "/home/sibi/github/timebox/work.org"
+     "/home/sibi/github/timebox/xmonad.org"))
   (org-default-notes-file "/home/sibi/github/misc/notes.org")
   (org-capture-templates '(("t" "Personal Task"  entry
                             (file org-default-notes-file)
@@ -59,31 +65,30 @@
 (use-package htmlize
   :ensure t)
 
-
 (straight-use-package
   '(el-patch :type git :host github :repo "psibi/ox-twbs"))
 
 ;; (load-file "~/github/ox-twbs/ox-twbs.el")
 
 ;; https://emacs.stackexchange.com/questions/44958/can-i-insert-a-prefix-to-org-babel-source-code-lines-on-export
-(defun my-insert-shell-prompt (_backend)
-  (org-babel-map-src-blocks nil         ; nil implies current buffer
-    (let (;; capture macro-defined variables
-         (lang lang)
-         (beg-body beg-body)
-         (end-body end-body)
-         ;; other variables
-         (shell-langs '("sh" "shell"))
-         (prefix "$ "))
-      (when (member lang shell-langs)
-        (goto-char beg-body)
-        (skip-chars-forward "\n\s-" end-body)
-        (while (< (point) end-body)
-          (insert prefix)
-          (end-of-line)
-          (skip-chars-forward "\n\s-" end-body))))))
+;; (defun my-insert-shell-prompt (_backend)
+;;   (org-babel-map-src-blocks nil         ; nil implies current buffer
+;;     (let (;; capture macro-defined variables
+;;          (lang lang)
+;;          (beg-body beg-body)
+;;          (end-body end-body)
+;;          ;; other variables
+;;          (shell-langs '("sh" "shell"))
+;;          (prefix "$ "))
+;;       (when (member lang shell-langs)
+;;         (goto-char beg-body)
+;;         (skip-chars-forward "\n\s-" end-body)
+;;         (while (< (point) end-body)
+;;           (insert prefix)
+;;           (end-of-line)
+;;           (skip-chars-forward "\n\s-" end-body))))))
 
-(add-hook 'org-export-before-parsing-hook #'my-insert-shell-prompt)
+;; (add-hook 'org-export-before-parsing-hook #'my-insert-shell-prompt)
 
 (use-package ob-http
   :ensure t)

@@ -208,7 +208,7 @@
 
 (use-package yasnippet-snippets
   :ensure t
-    :bind (("C-c C-y i" . yas-insert-snippet)))
+  :bind (("C-c C-y i" . yas-insert-snippet)))
 
 (use-package paredit
   :diminish paredit-mode
@@ -830,8 +830,7 @@
   :bind (:map markdown-mode-map
               ("C-c C-c" . sibi/run-markdown-code-block))
   :custom
-  (markdown-hide-urls t)
-  (markdown-list-indent-width 2))
+  (markdown-hide-urls t))
 
 (use-package go-mode
   :ensure t)
@@ -915,6 +914,9 @@
               ("d" . downcase-region)
               ("g" . google-this)
               ("m" . apply-macro-to-region-lines)))
+
+(use-package bison-mode
+  :ensure t)
 
 (use-package pdf-tools
   :init (pdf-tools-install))
