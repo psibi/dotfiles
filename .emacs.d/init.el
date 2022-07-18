@@ -298,16 +298,6 @@
   :ensure t
   :mode "\\.m\\'")
 
-;; emms
-;; (use-package emms
-;;   :ensure t
-;;   :config
-;;   (progn
-;;     (emms-standard)
-;;     (emms-default-players)
-;;     (setq emms-playlist-buffer-name "Music-EMMS")
-;;     (setq emms-source-file-default-directory "~/Music/")))
-
 (use-package magit
   :ensure t
   :init
@@ -912,7 +902,8 @@
               ("q" . selected-off)
               ("u" . upcase-region)
               ("d" . downcase-region)
-              ("g" . google-this)
+              ("g" . google-this-noconfirm)
+              ("G" . google-this)
               ("m" . apply-macro-to-region-lines)))
 
 (use-package bison-mode
