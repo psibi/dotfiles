@@ -86,6 +86,16 @@
                                          (sh-set-shell "bash")
                                          (flycheck-mode))))))
 
+(use-package markdown-mode
+  ;; :ensure t
+    :quelpa (markdown-mode :fetcher file
+                           :path "~/github/markdown-mode"
+                           :files ("*.el"))
+
+  :mode "\\.md\\'"
+  :custom
+  (markdown-hide-urls t))
+
 (use-package markdown-toc
   :ensure t
   :custom
@@ -135,6 +145,7 @@
   (lsp-semantic-tokens-enable t)
   (lsp-semantic-tokens-honor-refresh-requests t)
   (lsp-terraform-ls-enable-show-reference t)
+  (lsp-semantic-tokens-warn-on-missing-face nil)
   (lsp-terraform-ls-prefer-treemacs-all-the-icons-theme t))
 
 (use-package lsp-ui
@@ -233,6 +244,7 @@
 ;; Unbind C-z
 (when window-system
   (global-unset-key [(control z)]))
+(setq vc-follow-symlinks t)
 
 ;; ----------------------
 ;; Final newline handling
@@ -813,14 +825,6 @@
               ("M-g M-f" . dogears-forward)
               ("M-g M-d" . dogears-list)
               ("M-g M-D" . dogears-sidebar)))
-
-(use-package markdown-mode
-  :ensure t
-  :mode "\\.md\\'"
-  :bind (:map markdown-mode-map
-              ("C-c C-c" . sibi/run-markdown-code-block))
-  :custom
-  (markdown-hide-urls t))
 
 (use-package go-mode
   :ensure t)
