@@ -9,7 +9,7 @@ import qualified Data.Map as M
 import Data.Monoid (Endo)
 import Graphics.X11.ExtraTypes.XF86
 import System.Environment (getArgs)
-import System.Process.Typed (startProcess)
+import System.Process.Typed (startProcess, runProcess, proc)
 import XMonad
 import XMonad.Actions.DynamicProjects
 import XMonad.Actions.Search
@@ -93,6 +93,11 @@ sibiStartupHook = do
     void $ startProcess myTerminal
     void $ startProcess "google-chrome-stable"
 
+spawnProcess :: FilePath -> [String] -> IO ()
+spawnProcess cmd args = do
+  exitCode <- runProcess $ proc cmd args
+  putStrLn $ cmd <> " executed with " <> (show args) <> " exit code: " <> (show exitCode)
+
 xmonadConfig =
   withUrgencyHook NoUrgencyHook $ ewmhFullscreen $ ewmh $ docks
   def
@@ -111,13 +116,15 @@ xmonadConfig =
     } `additionalKeys`
   keybindings
 
+
+
 keybindings :: [((KeyMask, KeySym), X ())]
 keybindings =
   [ ((mod4Mask .|. shiftMask, xK_z), spawn "dm-tool lock")
   , ((0, xK_Print), spawn "xfce4-screenshooter")
   , ((mod4Mask, xK_x), spawn "xkill")
   , ((mod4Mask, xK_c), kill)
-  , ((mod4Mask, xK_p), shellPrompt sibiXPConfig)
+  , ((mod4Mask, xK_p), liftIO $ spawnProcess "albert" ["show"])
   , ((mod4Mask, xK_h), spawn "/home/sibi/.emacs_everywhere/bin/run")
   , ((0, xF86XK_MonBrightnessUp), Bright.increase)
   , ((0, xF86XK_MonBrightnessDown), Bright.decrease)

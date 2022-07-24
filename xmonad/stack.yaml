@@ -1,16 +1,7 @@
-resolver: lts-18.20
+resolver: lts-19.16
 
 packages:
 - .
-
-allow-newer: true
-
-extra-deps:
-  - git: https://github.com/xmonad/xmonad-contrib.git
-    commit: 41ca79986bc3b29f5092ea54104c4d90223a07dd
-  - xmonad-extras-0.17.0
-  - xmonad-0.17.0
-  - X11-1.10@sha256:ed01fba28081d6922462c2727a9a2e71f8ec3d962ed18963eee0c770558817d9,3703
 
 nix:
   shell-file: shell.nix
