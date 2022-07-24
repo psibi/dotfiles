@@ -7,11 +7,13 @@ in {
   programs.home-manager.enable = true;
 
   # Custom systemd services
-  imports = [ ../modules/cnx.nix ];
+  imports = [ ../modules/cnx.nix ../modules/albert.nix ];
+
   services.cnx = {
     enable = true;
     machineName = "NUC";
   };
+  services.albert.enable = true;
 
   services.emacs = {
     enable = true;
@@ -165,6 +167,7 @@ in {
 
   home.file.".stack/config.yaml".source = ../../.stack/config.yaml;
   home.file.".tfswitch.toml".source = ../../tfswitch.toml;
+  home.file.".tgswitch.toml".source = ../../tgswitch.toml;
   home.file.".aws/config".source = ../../aws-config;
   home.file.".config/mprocs/mprocs.yaml".source = ../../mprocs.yaml;
 
