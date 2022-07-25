@@ -13,7 +13,7 @@ in {
     enable = true;
     machineName = "NUC";
   };
-  services.albert.enable = true;
+  services.albert.enable = false;
 
   services.emacs = {
     enable = true;
@@ -52,6 +52,14 @@ in {
   home.packages = import ./packages.nix {
     pkgs = pkgs;
     unstable = nixpkgs-unstable;
+  };
+
+  programs.rofi = {
+    enable = true;
+    location = "center";
+    pass.enable = false;
+    theme = "fancy";
+    extraConfig = { show-icons = false; };
   };
 
   programs.git = {

@@ -115,7 +115,6 @@ with pkgs; [
   emacs28NativeComp
   argo-rollouts
   haskell-language-server
-  albert
 
   # From Overlays
   mprocs
