@@ -23,7 +23,6 @@ import XMonad.Hooks.UrgencyHook
 import XMonad.Layout.NoBorders
 import XMonad.Prompt
 import XMonad.Prompt.FuzzyMatch (fuzzyMatch)
-import XMonad.Prompt.Shell
 import XMonad.Prompt.Window
 import qualified XMonad.StackSet as W
 import qualified XMonad.Util.Brightness as Bright
@@ -94,9 +93,9 @@ sibiStartupHook = do
     void $ startProcess "google-chrome-stable"
 
 spawnProcess :: FilePath -> [String] -> IO ()
-spawnProcess cmd args = do
-  exitCode <- runProcess $ proc cmd args
-  putStrLn $ cmd <> " executed with " <> (show args) <> " exit code: " <> (show exitCode)
+spawnProcess program pargs = do
+  exitCode <- runProcess $ proc program pargs
+  putStrLn $ program <> " executed with " <> show pargs <> " exit code: " <> show exitCode
 
 xmonadConfig =
   withUrgencyHook NoUrgencyHook $ ewmhFullscreen $ ewmh $ docks
@@ -124,17 +123,17 @@ keybindings =
   , ((0, xK_Print), spawn "xfce4-screenshooter")
   , ((mod4Mask, xK_x), spawn "xkill")
   , ((mod4Mask, xK_c), kill)
-  , ((mod4Mask, xK_p), liftIO $ spawnProcess "albert" ["show"])
+  , ((mod4Mask, xK_p), liftIO $ spawnProcess "rofi" ["-show", "run"])
   , ((mod4Mask, xK_h), spawn "/home/sibi/.emacs_everywhere/bin/run")
   , ((0, xF86XK_MonBrightnessUp), Bright.increase)
   , ((0, xF86XK_MonBrightnessDown), Bright.decrease)
   , ( (mod4Mask, xK_s)
     , submap $ searchEngineMap $ promptSearch greenSibiXPConfig)
-  , ((mod4Mask, xK_f), submap $ searchEngineMap $ selectSearch)
+  , ((mod4Mask, xK_f), submap $ searchEngineMap selectSearch)
   , ((mod4Mask, xK_g), spawn "unity-control-center")
-  , ((0, xF86XK_AudioRaiseVolume), raiseVolume 2 >> return ())
-  , ((0, xF86XK_AudioLowerVolume), lowerVolume 2 >> return ())
-  , ((0, xF86XK_AudioMute), toggleMute >> return ())
+  , ((0, xF86XK_AudioRaiseVolume), void (raiseVolume 2))
+  , ((0, xF86XK_AudioLowerVolume), void (lowerVolume 2))
+  , ((0, xF86XK_AudioMute), void toggleMute)
   , ((mod4Mask, xK_b), windowPrompt sibiXPConfig Bring allApplications)
   , ((mod4Mask, xK_o), windowPrompt sibiXPConfig Goto allApplications)
   , ((mod4Mask, xK_i), sendMessage Shrink)
@@ -220,7 +219,7 @@ searchEngineMap ::
   => (SearchEngine -> b)
   -> M.Map (a, KeySym) b
 searchEngineMap method =
-  M.fromList $
+  M.fromList
   [ ((0, xK_g), method google)
   , ((0, xK_h), method stackage)
   , ((0, xK_w), method wikipedia)
