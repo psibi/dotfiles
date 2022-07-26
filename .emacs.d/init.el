@@ -769,18 +769,6 @@
   :custom
   (ffip-use-rust-fd t))
 
-(use-package xwwp
-  :ensure t)
-
-(use-package xwwp-follow-link-helm
-  :ensure t
-  :custom
-  (xwwp-follow-link-completion-system 'helm)
-  :bind (:map xwidget-webkit-mode-map ("v" . xwwp-follow-link)))
-
-(use-package xwidgete
-  :ensure t)
-
 ;; (use-package java-mode
 ;;   :custom
 ;;   )
