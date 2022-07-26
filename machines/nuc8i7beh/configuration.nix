@@ -23,8 +23,13 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelModules = [ "v4l2loopback" "snd-aloop"];
+  boot.extraModulePackages = [
+    config.boot.kernelPackages.v4l2loopback
+  ];
   boot.initrd.luks.devices.crypted.device = "/dev/disk/by-uuid/fb8ed389-a834-48e6-af5e-9dfbc4724490";
   fileSystems."/home".device = "/dev/mapper/crypted";
+
 
   nix.trustedUsers = [ "root" "sibi" ];
 

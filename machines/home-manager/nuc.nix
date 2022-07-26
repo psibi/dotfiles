@@ -171,6 +171,8 @@ in {
     pinentryFlavor = "qt";
   };
 
+  programs.obs-studio.enable = true;
+
   fonts.fontconfig.enable = true;
 
   home.file.".stack/config.yaml".source = ../../.stack/config.yaml;
