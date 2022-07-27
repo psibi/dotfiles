@@ -23,10 +23,21 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelModules = [ "v4l2loopback" "snd-aloop"];
+  boot.kernelModules = [
+                         # Virtual Camera
+                         "v4l2loopback"
+                         # Virtual Microphone, built-in
+                         "snd-aloop"];
   boot.extraModulePackages = [
     config.boot.kernelPackages.v4l2loopback
   ];
+  # Set initial kernel module settings
+  boot.extraModprobeConfig = ''
+    # exclusive_caps: Skype, Zoom, Teams etc. will only show device when actually streaming
+    # card_label: Name of virtual camera, how it'll show up in Skype, Zoom, Teams
+    # https://github.com/umlaeute/v4l2loopback
+    options v4l2loopback exclusive_caps=1 card_label="Virtual Camera"
+  '';
   boot.initrd.luks.devices.crypted.device = "/dev/disk/by-uuid/fb8ed389-a834-48e6-af5e-9dfbc4724490";
   fileSystems."/home".device = "/dev/mapper/crypted";
 
