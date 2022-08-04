@@ -20,8 +20,7 @@
   (lsp-haskell-process-path-hie "haskell-language-server-wrapper")
   :hook (haskell-mode . lsp-deferred))
 
-
-(use-package hlint-refactor
-  :ensure t
-  :config
-  :hook (haskell-mode . hlint-refactor-mode))
+;; (use-package hlint-refactor
+;;   :ensure t
+;;   :config
+;;   :hook (haskell-mode . hlint-refactor-mode))

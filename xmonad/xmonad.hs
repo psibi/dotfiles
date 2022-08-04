@@ -1,6 +1,6 @@
-{-# LANGUAGE RankNTypes #-}
 {-# LANGUAGE KindSignatures #-}
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE RankNTypes #-}
 
 import Control.Arrow (first)
 import Control.Monad

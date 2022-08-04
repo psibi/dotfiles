@@ -8,16 +8,15 @@
 
 (setq package-native-compile t)
 
+;; https://github.com/jrblevin/markdown-mode/issues/578#issuecomment-1126380098
+(setq native-comp-deferred-compilation-deny-list '("markdown-mode\\.el$"))
+
 (setq package-archives
       '(("gnu"   . "http://elpa.gnu.org/packages/")
         ("melpa" . "https://melpa.org/packages/")))
 
 (package-initialize)
 
-;; Bootstrap `use-package`
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
 (require 'use-package)
 
 ;; Install and load `quelpa-use-package'.
@@ -97,7 +96,11 @@
   (markdown-hide-urls t))
 
 (use-package markdown-toc
-  :ensure t
+  ;; :ensure t
+  :quelpa (markdown-toc :fetcher file
+                         :path "~/github/markdown-toc"
+                         :files ("*.el"))
+
   :custom
   (markdown-toc-indentation-space 2))
 
@@ -902,4 +905,8 @@
   :ensure t)
 
 (use-package pdf-tools
+  :ensure t
   :init (pdf-tools-install))
+
+(use-package php-mode
+  :ensure t)

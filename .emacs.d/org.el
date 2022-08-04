@@ -65,8 +65,8 @@
 (use-package htmlize
   :ensure t)
 
-(straight-use-package
-  '(el-patch :type git :host github :repo "psibi/ox-twbs"))
+;; (straight-use-package
+;;   '(el-patch :type git :host github :repo "psibi/ox-twbs"))
 
 ;; (load-file "~/github/ox-twbs/ox-twbs.el")
 
