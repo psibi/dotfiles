@@ -115,6 +115,7 @@ with pkgs; [
   emacs28NativeComp
   argo-rollouts
   haskell-language-server
+  obs-studio
 
   # From Overlays
   mprocs

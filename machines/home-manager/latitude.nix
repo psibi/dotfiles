@@ -47,6 +47,34 @@ in {
     # jless = pkgs.callPackage ../packages/jless/default.nix {};
   };
 
+  home.packages = import ./packages.nix {
+    pkgs = pkgs;
+    unstable = nixpkgs-unstable;
+  };
+
+  programs.rofi = {
+    enable = true;
+    location = "center";
+    pass.enable = false;
+    theme = "fancy";
+    extraConfig = { show-icons = false; };
+  };
+
+  programs.git = {
+    enable = true;
+    userName = "Sibi Prabakaran";
+    userEmail = "sibi@psibi.in";
+    signing = {
+      signByDefault = true;
+      key = "0xD19E3E0EBB557613";
+    };
+    extraConfig = {
+      commit.gpgsign = true;
+      init.defaultBranch = "main";
+    };
+    ignores = [ "*~" "#*#" ".#*" ];
+  };
+
   programs.fish = {
     enable = true;
     shellAliases = import ./alias.nix { pkgs = pkgs; };
@@ -59,28 +87,10 @@ in {
   programs.zoxide = {
     enable = true;
     enableFishIntegration = true;
-    enableBashIntegration = true;
-    enableZshIntegration = false;
     package = nixpkgs-unstable.zoxide;
   };
 
   programs.direnv = { enable = true; };
-
-  home.packages = import ./packages.nix {
-    pkgs = pkgs;
-    unstable = nixpkgs-unstable;
-  };
-
-  programs.git = {
-    enable = true;
-    userName = "Sibi Prabakaran";
-    userEmail = "sibi@psibi.in";
-    signing = {
-      signByDefault = true;
-      key = "BB557613";
-    };
-    ignores = [ "*~" "#*#" ".#*" ];
-  };
 
   programs.starship = {
     enable = true;
@@ -105,10 +115,24 @@ in {
     };
   };
 
+  programs.gpg = { enable = true; };
+
+  services.gpg-agent = {
+    enable = true;
+    enableSshSupport = true;
+    defaultCacheTtl = 60480000;
+    defaultCacheTtlSsh = 60480000;
+    maxCacheTtl = 60480000;
+    maxCacheTtlSsh = 60480000;
+    pinentryFlavor = "qt";
+  };
+
   fonts.fontconfig.enable = true;
 
   home.file.".stack/config.yaml".source = ../../.stack/config.yaml;
   home.file.".tfswitch.toml".source = ../../tfswitch.toml;
+  home.file.".aws/config".source = ../../aws-config;
+  home.file.".config/mprocs/mprocs.yaml".source = ../../mprocs.yaml;
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

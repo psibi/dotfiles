@@ -12,23 +12,39 @@
       ./hardware-configuration.nix
     ];
 
-  nixpkgs.config.allowUnfree = true;
-
-  nix.trustedUsers = [ "root" "sibi"];
-
   nixpkgs.config.packageOverrides = pkgs: rec {
     tfswitch = pkgs.callPackage ../packages/tfswitch/default.nix {};
     ouch = pkgs.callPackage ../packages/ouch/default.nix {};
   };
 
+  nixpkgs.config.allowUnfree = true;
+  hardware.enableRedistributableFirmware = true;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelModules = [
+                         # Virtual Camera
+                         "v4l2loopback"
+                         # Virtual Microphone, built-in
+                         "snd-aloop"];
+  boot.extraModulePackages = [
+    config.boot.kernelPackages.v4l2loopback
+  ];
+  # Set initial kernel module settings
+  boot.extraModprobeConfig = ''
+    # exclusive_caps: Skype, Zoom, Teams etc. will only show device when actually streaming
+    # card_label: Name of virtual camera, how it'll show up in Skype, Zoom, Teams
+    # https://github.com/umlaeute/v4l2loopback
+    options v4l2loopback exclusive_caps=1 card_label="Virtual Camera"
+  '';
+
   boot.loader.grub = {
    device = "/dev/disk/by-id/label/boot";
    configurationLimit = 70;
   };
+
+  nix.trustedUsers = [ "root" "sibi"];
 
   networking.hostName = "elric"; # Define your hostname.
   networking.networkmanager.enable = true;
@@ -69,13 +85,14 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
-  # i18n.defaultLocale = "en_US.UTF-8";
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  # };
+  i18n.defaultLocale = "en_US.UTF-8";
+  console = {
+    font = "Lat2-Terminus16";
+    keyMap = "us";
+  };
 
   # Enable the X11 windowing system.
+  services.earlyoom.enable = true;
   services.xserver.enable = true;
   #services.xserver.desktopManager.xterm.enable = false;
   # services.xserver.desktopManager = {
@@ -89,7 +106,9 @@
   #   night = "0.8";
   # };
 
-  services.earlyoom.enable = true;
+  # Configure keymap in X11
+  services.xserver.layout = "us";
+  services.xserver.xkbOptions = "caps:ctrl_modifier";
 
   services.xserver.windowManager.xmonad.enable = true;
   services.xserver.windowManager.xmonad.enableContribAndExtras = true;
@@ -115,11 +134,6 @@
 
   # For laptop touchpad
   services.xserver.libinput.enable = true;
-
-
-  # Configure keymap in X11
-  services.xserver.layout = "us";
-  services.xserver.xkbOptions = "caps:ctrl_modifier";
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -163,17 +177,21 @@
 
   environment.homeBinInPath = true;
 
+  # This makes gnucash preferences work for a specific user
+  # More details here: https://github.com/NixOS/nixpkgs/issues/168205
+  programs.dconf.enable = true;
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
+  # programs.gnupg.agent = {
+  #   enable = true;
+  #   enableSSHSupport = true;
+  # };
 
-  security.pam.services.xmonad.gnupg = {
-    enable = true;
-  };
+  # security.pam.services.xmonad.gnupg = {
+  #   enable = true;
+  # };
 
   # List services that you want to enable:
 
