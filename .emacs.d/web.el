@@ -67,6 +67,5 @@
 (use-package json-mode
   :ensure t
   :mode "\\.json\\'"
-  :config
-  (progn
-(setq json-reformat:indent-width 2)))
+  :bind (:map json-mode-map
+              ("C-c C-c C-f" . json-pretty-print-buffer)))
