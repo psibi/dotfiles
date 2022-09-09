@@ -7,13 +7,12 @@ in {
   programs.home-manager.enable = true;
 
   # Custom systemd services
-  imports = [ ../modules/cnx.nix ../modules/albert.nix ];
+  imports = [ ../modules/cnx.nix];
 
   services.cnx = {
     enable = true;
     machineName = "NUC";
   };
-  services.albert.enable = false;
 
   services.emacs = {
     enable = true;
@@ -75,6 +74,11 @@ in {
       init.defaultBranch = "main";
     };
     ignores = [ "*~" "#*#" ".#*" ];
+  };
+
+  programs.gh = {
+    enable = true;
+    enableGitCredentialHelper = true;
   };
 
   programs.fish = {
