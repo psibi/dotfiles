@@ -53,7 +53,6 @@ with pkgs; [
   pandoc
   killall
   starship
-  ouch
   just
   tfswitch
   jq
@@ -110,18 +109,24 @@ with pkgs; [
   cargo-edit
   cargo-outdated
   cargo-expand
+  cargo-generate
   keepassxc
   stack
   emacs28NativeComp
   argo-rollouts
   haskell-language-server
-  obs-studio
+  paprefs
+  sqlx-cli
+
+  # Ethereum
+  nodejs
 
   # From Overlays
   mprocs
   em
   terraform-ls
 
+  unstable.cargo-workspaces
   unstable.google-chrome
   unstable.rust-analyzer
   # pinentry

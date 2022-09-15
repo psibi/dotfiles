@@ -82,7 +82,7 @@
     (define-key flycheck-mode-map (kbd "C-c f n") #'flycheck-next-error)
     (define-key flycheck-mode-map (kbd "C-c f p") #'flycheck-previous-error)
     (add-hook 'sh-mode-hook (lambda () (progn
-                                         (sh-set-shell "bash")
+                                         (sh-set-shell "bash") ;; Fixme later
                                          (flycheck-mode))))))
 
 (use-package markdown-mode
@@ -90,7 +90,9 @@
     :quelpa (markdown-mode :fetcher file
                            :path "~/github/markdown-mode"
                            :files ("*.el"))
-
+  :bind (:map markdown-mode-map
+              ;; ("C-c p" . markdown-previous-visible-heading)
+              ("C-c n" . markdown-next-visible-heading))
   :mode "\\.md\\'"
   :custom
   (markdown-hide-urls t))
@@ -100,7 +102,6 @@
   :quelpa (markdown-toc :fetcher file
                          :path "~/github/markdown-toc"
                          :files ("*.el"))
-
   :custom
   (markdown-toc-indentation-space 2))
 
@@ -132,10 +133,10 @@
   ;;                   )
 
 (use-package lsp-mode
-  ;; :quelpa (lsp-mode :fetcher file
-  ;;                   :path "~/github/lsp-mode"
-  ;;                   :files ("*.el" "clients/*.el"))
-  :ensure t
+  :quelpa (lsp-mode :fetcher file
+                    :path "~/github/lsp-mode"
+                    :files ("*.el" "clients/*.el"))
+  ;; :ensure t
   :init (setq lsp-keymap-prefix "C-l")
   :after (dash)
   :commands lsp
@@ -145,6 +146,7 @@
          (terraform-mode . lsp-deferred))
   :custom
   (lsp-disabled-clients '(tfls))
+  (lsp-log-io nil)
   (lsp-semantic-tokens-enable t)
   (lsp-semantic-tokens-honor-refresh-requests t)
   (lsp-terraform-ls-enable-show-reference t)
@@ -212,9 +214,12 @@
     (setq rustic-format-on-save nil)
     (tree-sitter-require 'rust)
     (add-hook 'rustic-mode-hook #'tree-sitter-mode)
+    (customize-set-variable 'rustic-default-clippy-arguments nil)
     (customize-set-variable 'lsp-rust-analyzer-proc-macro-enable t)
     (customize-set-variable 'lsp-rust-analyzer-experimental-proc-attr-macros t)
     (customize-set-variable 'lsp-rust-analyzer-server-display-inlay-hints t)))
+
+
 
 (use-package yasnippet
   :ensure t

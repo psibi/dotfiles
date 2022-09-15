@@ -9,13 +9,14 @@
     [ # Include the results of the hardware scan.
       <nixos-hardware/intel/nuc/8i7beh>
       ./hardware-configuration.nix
+      ../system-modules/cloudflare-warp.nix
     ];
 
   nixpkgs.config.packageOverrides = pkgs: rec {
-    tfswitch = pkgs.callPackage ../packages/tfswitch/default.nix {};
-    ouch = pkgs.callPackage ../packages/ouch/default.nix {};
-    amber-secret = pkgs.callPackage ../packages/amber/default.nix {};
+    cloudflare-warp = pkgs.callPackage ../packages/cloudflare-warp/default.nix {};
   };
+
+  services.cloudflare-warp.enable = true;
 
   nixpkgs.config.allowUnfree = true;
   hardware.enableRedistributableFirmware = true;
@@ -129,7 +130,8 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; []; # import ../packages.nix { pkgs = pkgs; };
+  environment.systemPackages = with pkgs; [
+  ]; # import ../packages.nix { pkgs = pkgs; };
 
   fonts.fonts = with pkgs; [
      ubuntu_font_family
