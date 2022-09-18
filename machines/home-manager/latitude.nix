@@ -84,6 +84,11 @@ in {
     '';
   };
 
+  programs.gh = {
+    enable = true;
+    enableGitCredentialHelper = true;
+  };
+
   programs.zoxide = {
     enable = true;
     enableFishIntegration = true;
