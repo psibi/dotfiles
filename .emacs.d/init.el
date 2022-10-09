@@ -114,13 +114,9 @@
     (ac-config-default)))
 
 (use-package tree-sitter
-  :ensure t
   :config
   (progn
     (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)))
-
-(use-package tree-sitter-langs
-  :ensure t)
 
 (use-package which-key
   :ensure t
@@ -212,7 +208,6 @@
   (progn
     (setq rustic-analyzer-command '("~/.nix-profile/bin/rust-analyzer"))
     (setq rustic-format-on-save nil)
-    (tree-sitter-require 'rust)
     (add-hook 'rustic-mode-hook #'tree-sitter-mode)
     (customize-set-variable 'rustic-default-clippy-arguments nil)
     (customize-set-variable 'lsp-rust-analyzer-proc-macro-enable t)
@@ -890,6 +885,10 @@
   (interactive)
   (let ((enable-local-variables :all))
     (hack-dir-local-variables-non-file-buffer)))
+
+(use-package vterm
+  :custom
+  (vterm-shell "fish"))
 
 ;; Best to have it at bottom
 ;; https://github.com/Kungsgeten/selected.el#installation-and-setup

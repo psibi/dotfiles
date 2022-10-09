@@ -15,7 +15,7 @@ in {
 
   services.emacs = {
     enable = true;
-    package = pkgs.emacs28NativeComp;
+    package = pkgs.sibiEmacs;
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -42,6 +42,14 @@ in {
     # amber-secret = pkgs.callPackage ../packages/amber/default.nix {};
     # tgswitch = pkgs.callPackage ../packages/tgswitch/default.nix {};
     cnx-sibi = pkgs.callPackage ../packages/cnx/default.nix { };
+    # https://github.com/NixOS/nixpkgs/pull/150239#issuecomment-1107638773
+    sibiEmacs = pkgs.emacs28NativeComp.pkgs.withPackages (epkgs:
+      (with epkgs.melpaPackages; [
+        vterm
+        tree-sitter
+        (epkgs.tree-sitter-langs.withPlugins
+          (p: epkgs.tree-sitter-langs.plugins ++ [p.tree-sitter-markdown]))
+      ]));
     # kubergrunt = pkgs.callPackage ../packages/kubergrunt/default.nix {};
     # jfmt = pkgs.callPackage ../packages/jfmt/default.nix {};
     # jless = pkgs.callPackage ../packages/jless/default.nix {};
