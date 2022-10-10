@@ -1,2 +1,5 @@
 [profile development]
 credential_process = zehut creds --json --server https://zehut.fpcomplete.com --role sandbox-admin
+
+[profile production]
+credential_process = zehut creds --json --server https://zehut.fpcomplete.com --role prod-admin
