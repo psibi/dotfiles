@@ -214,6 +214,7 @@
     (setq rustic-format-on-save nil)
     (tree-sitter-require 'rust)
     (add-hook 'rustic-mode-hook #'tree-sitter-mode)
+    (customize-set-variable 'rustic-cargo-default-install-arguments '("--path" "." "--locked" "--profile" "dev"))
     (customize-set-variable 'rustic-default-clippy-arguments nil)
     (customize-set-variable 'lsp-rust-analyzer-proc-macro-enable t)
     (customize-set-variable 'lsp-rust-analyzer-experimental-proc-attr-macros t)
@@ -647,7 +648,8 @@
 ;; (load "/home/sibi/Downloads/ProofGeneral-4.2/generic/proof-site.el")
 
 ;; Backup related
-(setq backup-directory-alist '(("" . "~/.emacs.d/emacs_backup"))
+(setq backup-directory-alist '(("." . "~/.emacs.d/emacs_backup"))
+      auto-save-file-name-transforms `((".*" ,"~/.emacs.d/emacs_backup/" t))
       backup-by-copying t
       version-control t
       kept-old-versions 2
