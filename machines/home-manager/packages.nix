@@ -117,6 +117,7 @@ with pkgs; [
   haskell-language-server
   paprefs
   sqlx-cli
+  grpcurl
 
   # Ethereum
   nodejs
