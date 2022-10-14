@@ -16,7 +16,7 @@ in {
 
   services.emacs = {
     enable = true;
-    package = pkgs.emacs28NativeComp;
+    package = pkgs.sibiEmacs;
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -34,7 +34,7 @@ in {
   };
   home.sessionPath = [ "$HOME/.local/bin" "$HOME/.cargo/bin" ];
   home.sessionVariables = {
-    EDITOR = "${pkgs.emacs28NativeComp}/bin/emacsclient";
+    EDITOR = "${pkgs.sibiEmacs}/bin/emacsclient";
   };
 
   nixpkgs.config.packageOverrides = pkgs: rec {
@@ -43,6 +43,7 @@ in {
     # amber-secret = pkgs.callPackage ../packages/amber/default.nix {};
     # tgswitch = pkgs.callPackage ../packages/tgswitch/default.nix {};
     cnx-sibi = pkgs.callPackage ../packages/cnx/default.nix { };
+    sibiEmacs = pkgs.callPackage ../packages/emacs/default.nix {};
     # kubergrunt = pkgs.callPackage ../packages/kubergrunt/default.nix {};
     # jfmt = pkgs.callPackage ../packages/jfmt/default.nix {};
     # jless = pkgs.callPackage ../packages/jless/default.nix {};

@@ -119,9 +119,6 @@ with pkgs; [
   sqlx-cli
   grpcurl
 
-  # Ethereum
-  nodejs
-
   # From Overlays
   mprocs
   em
@@ -130,6 +127,7 @@ with pkgs; [
   unstable.cargo-workspaces
   unstable.google-chrome
   unstable.rust-analyzer
+  unstable.velero
   # pinentry
   # pinentry-curses
   # texlive.combined.scheme-full

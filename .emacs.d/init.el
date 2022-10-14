@@ -85,17 +85,6 @@
                                          (sh-set-shell "bash") ;; Fixme later
                                          (flycheck-mode))))))
 
-(use-package markdown-mode
-  ;; :ensure t
-    :quelpa (markdown-mode :fetcher file
-                           :path "~/github/markdown-mode"
-                           :files ("*.el"))
-  :bind (:map markdown-mode-map
-              ;; ("C-c p" . markdown-previous-visible-heading)
-              ("C-c n" . markdown-next-visible-heading))
-  :mode "\\.md\\'"
-  :custom
-  (markdown-hide-urls t))
 
 (use-package markdown-toc
   ;; :ensure t
@@ -117,6 +106,23 @@
   :config
   (progn
     (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)))
+
+(use-package tree-sitter-langs
+  :config
+  (progn
+    (add-to-list 'tree-sitter-major-mode-language-alist '(markdown-mode . markdown))))
+
+(use-package markdown-mode
+  ;; :ensure t
+    :quelpa (markdown-mode :fetcher file
+                           :path "~/github/markdown-mode"
+                           :files ("*.el"))
+  :bind (:map markdown-mode-map
+              ;; ("C-c p" . markdown-previous-visible-heading)
+              ("C-c n" . markdown-next-visible-heading))
+  :mode "\\.md\\'"
+  :custom
+  (markdown-hide-urls t))
 
 (use-package which-key
   :ensure t
@@ -280,7 +286,7 @@
 ;; Rebind Enter
 ;; (define-key global-map (kbd "C-c j") 'newline-and-indent)
 
-(global-set-key (kbd "C-x m") 'shell)
+(global-set-key (kbd "C-x m") 'vterm)
 
 ;; Just in case you are behind a proxy
 ;; (setq url-proxy-services '(("https" . "127.0.0.1:3129")
