@@ -128,6 +128,7 @@ with pkgs; [
   unstable.google-chrome
   unstable.rust-analyzer
   unstable.velero
+  unstable.etcd_3_5
   # pinentry
   # pinentry-curses
   # texlive.combined.scheme-full
