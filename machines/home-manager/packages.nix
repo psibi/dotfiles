@@ -61,7 +61,6 @@ with pkgs; [
   broot
   du-dust
   azure-cli
-  awscli2
   ormolu
   hlint
   stylish-haskell
@@ -118,6 +117,9 @@ with pkgs; [
   paprefs
   sqlx-cli
   grpcurl
+  adoptopenjdk-bin
+  plantuml
+  zola
 
   # From Overlays
   mprocs
@@ -129,6 +131,8 @@ with pkgs; [
   unstable.rust-analyzer
   unstable.velero
   unstable.etcd_3_5
+  unstable.awscli2
+
   # pinentry
   # pinentry-curses
   # texlive.combined.scheme-full

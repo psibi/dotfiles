@@ -286,7 +286,7 @@
 ;; Rebind Enter
 ;; (define-key global-map (kbd "C-c j") 'newline-and-indent)
 
-(global-set-key (kbd "C-x m") 'vterm)
+(global-set-key (kbd "C-x m") 'eshell)
 
 ;; Just in case you are behind a proxy
 ;; (setq url-proxy-services '(("https" . "127.0.0.1:3129")
@@ -897,6 +897,11 @@
 (use-package vterm
   :custom
   (vterm-shell "fish"))
+
+;;; https://www.reddit.com/r/emacs/comments/y92y4b/tramp_users_slowness_got_you_down_check/
+(setq vc-handled-backends '(Git))
+;; https://www.reddit.com/r/emacs/comments/4c0mi3/the_biggest_performance_improvement_to_emacs_ive/
+(remove-hook 'find-file-hooks 'vc-find-file-hook)
 
 ;; Best to have it at bottom
 ;; https://github.com/Kungsgeten/selected.el#installation-and-setup

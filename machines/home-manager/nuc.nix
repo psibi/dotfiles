@@ -7,7 +7,7 @@ in {
   programs.home-manager.enable = true;
 
   # Custom systemd services
-  imports = [ ../modules/cnx.nix];
+  imports = [ ../modules/cnx.nix ];
 
   services.cnx = {
     enable = true;
@@ -33,9 +33,7 @@ in {
     time = "en_US.UTF-8";
   };
   home.sessionPath = [ "$HOME/.local/bin" "$HOME/.cargo/bin" ];
-  home.sessionVariables = {
-    EDITOR = "${pkgs.sibiEmacs}/bin/emacsclient";
-  };
+  home.sessionVariables = { EDITOR = "${pkgs.sibiEmacs}/bin/emacsclient"; };
 
   nixpkgs.config.packageOverrides = pkgs: rec {
     # tfswitch = pkgs.callPackage ../packages/tfswitch/default.nix {};
@@ -43,7 +41,7 @@ in {
     # amber-secret = pkgs.callPackage ../packages/amber/default.nix {};
     # tgswitch = pkgs.callPackage ../packages/tgswitch/default.nix {};
     cnx-sibi = pkgs.callPackage ../packages/cnx/default.nix { };
-    sibiEmacs = pkgs.callPackage ../packages/emacs/default.nix {};
+    sibiEmacs = pkgs.callPackage ../packages/emacs/default.nix { };
     # kubergrunt = pkgs.callPackage ../packages/kubergrunt/default.nix {};
     # jfmt = pkgs.callPackage ../packages/jfmt/default.nix {};
     # jless = pkgs.callPackage ../packages/jless/default.nix {};
@@ -176,7 +174,11 @@ in {
     pinentryFlavor = "qt";
   };
 
-  programs.obs-studio.enable = true;
+  programs.obs-studio = {
+    enable = true;
+    package = nixpkgs-unstable.obs-studio;
+    plugins = [ nixpkgs-unstable.obs-studio-plugins.obs-backgroundremoval ];
+  };
 
   fonts.fontconfig.enable = true;
 
