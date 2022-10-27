@@ -32,9 +32,7 @@ in {
     time = "en_US.UTF-8";
   };
   home.sessionPath = [ "$HOME/.local/bin" "$HOME/.cargo/bin" ];
-  home.sessionVariables = {
-    EDITOR = "${pkgs.emacs28NativeComp}/bin/emacsclient";
-  };
+  home.sessionVariables = { EDITOR = "${pkgs.sibiEmacs}/bin/emacsclient"; };
 
   nixpkgs.config.packageOverrides = pkgs: rec {
     # ouch = pkgs.callPackage ../packages/ouch/default.nix {};
@@ -42,14 +40,8 @@ in {
     # amber-secret = pkgs.callPackage ../packages/amber/default.nix {};
     # tgswitch = pkgs.callPackage ../packages/tgswitch/default.nix {};
     cnx-sibi = pkgs.callPackage ../packages/cnx/default.nix { };
+    sibiEmacs = pkgs.callPackage ../packages/emacs/default.nix { };
     # https://github.com/NixOS/nixpkgs/pull/150239#issuecomment-1107638773
-    sibiEmacs = pkgs.emacs28NativeComp.pkgs.withPackages (epkgs:
-      (with epkgs.melpaPackages; [
-        vterm
-        tree-sitter
-        (epkgs.tree-sitter-langs.withPlugins
-          (p: epkgs.tree-sitter-langs.plugins ++ [p.tree-sitter-markdown]))
-      ]));
     # kubergrunt = pkgs.callPackage ../packages/kubergrunt/default.nix {};
     # jfmt = pkgs.callPackage ../packages/jfmt/default.nix {};
     # jless = pkgs.callPackage ../packages/jless/default.nix {};
@@ -144,6 +136,7 @@ in {
 
   home.file.".stack/config.yaml".source = ../../.stack/config.yaml;
   home.file.".tfswitch.toml".source = ../../tfswitch.toml;
+  home.file.".tgswitch.toml".source = ../../tgswitch.toml;
   home.file.".aws/config".source = ../../aws-config;
   home.file.".config/mprocs/mprocs.yaml".source = ../../mprocs.yaml;
 
