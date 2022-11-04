@@ -64,6 +64,7 @@ in {
     enable = true;
     userName = "Sibi Prabakaran";
     userEmail = "sibi@psibi.in";
+    lfs.enable = true;
     signing = {
       signByDefault = true;
       key = "0xD19E3E0EBB557613";
