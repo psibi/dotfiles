@@ -120,6 +120,7 @@ with pkgs; [
   adoptopenjdk-bin
   plantuml
   zola
+  jl
 
   # From Overlays
   mprocs
