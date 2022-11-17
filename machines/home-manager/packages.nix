@@ -133,6 +133,7 @@ with pkgs; [
   unstable.velero
   unstable.etcd_3_5
   unstable.awscli2
+  unstable.hwatch
 
   # pinentry
   # pinentry-curses
