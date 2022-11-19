@@ -121,6 +121,10 @@ with pkgs; [
   plantuml
   zola
   jl
+  krew
+  kubectl
+  yubikey-manager
+  yubioath-desktop
 
   # From Overlays
   mprocs

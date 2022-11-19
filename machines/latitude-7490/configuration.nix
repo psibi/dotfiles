@@ -17,6 +17,9 @@
     ouch = pkgs.callPackage ../packages/ouch/default.nix {};
   };
 
+  services.udev.packages = [ pkgs.yubikey-personalization];
+  services.pcscd.enable = true;
+
   nixpkgs.config.allowUnfree = true;
   hardware.enableRedistributableFirmware = true;
 
