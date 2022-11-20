@@ -22,6 +22,8 @@ in {
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.documentation.dev.enable = true;
 
+  pam.yubico.authorizedYubiKeys.ids = ["cccccbejcehh"];
+
   nixpkgs.overlays = [ (import ./overlay.nix) ];
 
   # Home Manager needs a bit of information about you and the

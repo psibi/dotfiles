@@ -16,8 +16,17 @@
     cloudflare-warp = pkgs.callPackage ../packages/cloudflare-warp/default.nix {};
   };
 
+  # Yubikey
   services.udev.packages = [ pkgs.yubikey-personalization];
   services.pcscd.enable = true;
+
+  # For sudo/login with Yubikey
+  security.pam.yubico = {
+    enable = true;
+    debug = true;
+    mode = "challenge-response";
+    control = "required";
+  };
 
   services.cloudflare-warp.enable = true;
 
@@ -134,7 +143,9 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  ]; # import ../packages.nix { pkgs = pkgs; };
+    yubico-pam
+    yubikey-manager
+  ];
 
   fonts.fonts = with pkgs; [
      ubuntu_font_family

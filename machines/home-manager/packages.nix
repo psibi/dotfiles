@@ -125,6 +125,7 @@ with pkgs; [
   kubectl
   yubikey-manager
   yubioath-desktop
+  yubico-pam
 
   # From Overlays
   mprocs
