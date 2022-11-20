@@ -16,6 +16,9 @@
     cloudflare-warp = pkgs.callPackage ../packages/cloudflare-warp/default.nix {};
   };
 
+  services.udev.packages = [ pkgs.yubikey-personalization];
+  services.pcscd.enable = true;
+
   services.cloudflare-warp.enable = true;
 
   nixpkgs.config.allowUnfree = true;
