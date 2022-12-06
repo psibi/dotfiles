@@ -1,5 +1,10 @@
 (use-package just-mode
-  :ensure t)
+  :ensure t
+  :bind
+  (:map just-mode-map
+        ("C-c C-j" . justl))
+  (:map justl-compile-mode-map
+        ("C-c C-j" . justl)))
 
 (use-package kubel
   :ensure t
