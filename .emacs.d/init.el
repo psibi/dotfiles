@@ -147,13 +147,19 @@
          (lsp-configure . lsp-lens-mode)
          (terraform-mode . lsp-deferred))
   :custom
-  (lsp-disabled-clients '(tfls))
+  (lsp-disabled-clients '(tfls clangd))
+  ;; (lsp-log-io t)
   (lsp-log-io nil)
   (lsp-semantic-tokens-enable t)
   (lsp-semantic-tokens-honor-refresh-requests t)
   (lsp-terraform-ls-enable-show-reference t)
   (lsp-semantic-tokens-warn-on-missing-face nil)
   (lsp-terraform-ls-prefer-treemacs-all-the-icons-theme t))
+
+(use-package ccls
+  :ensure t
+  :after (lsp-mode)
+  :hook ((c-mode c++-mode) . (lambda () (require 'ccls) (lsp))))
 
 (use-package lsp-ui
   :ensure t
@@ -876,14 +882,6 @@
         (string-trim (shell-command-to-string "gpgconf --list-dirs agent-ssh-socket")))
 
 
-(load-file "~/.emacs.d/haskell.el")
-(load-file "~/.emacs.d/python.el")
-(load-file "~/.emacs.d/web.el")
-(load-file "~/.emacs.d/sibi-utils.el")
-(load-file "~/.emacs.d/org.el")
-(load-file "~/github/dotfiles/.emacs.d/devops.el")
-;; (load-file "~/github/dotfiles/.emacs.d/private.el")
-;; (load-file "~/.emacs.d/sml.el")
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
@@ -922,8 +920,14 @@
   :ensure t)
 
 (use-package pdf-tools
-  :ensure t
   :init (pdf-tools-install))
 
 (use-package php-mode
   :ensure t)
+
+(load-file "~/.emacs.d/haskell.el")
+(load-file "~/.emacs.d/python.el")
+(load-file "~/.emacs.d/web.el")
+(load-file "~/.emacs.d/sibi-utils.el")
+(load-file "~/.emacs.d/org.el")
+(load-file "~/github/dotfiles/.emacs.d/devops.el")  ; Have this at the end because of envrc
