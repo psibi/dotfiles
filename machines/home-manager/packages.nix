@@ -126,6 +126,9 @@ with pkgs; [
   yubikey-manager
   yubioath-desktop
   yubico-pam
+  flex
+  bison
+  ccls
 
   # From Overlays
   mprocs
