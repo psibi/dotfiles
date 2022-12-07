@@ -11,6 +11,11 @@
 ;; https://github.com/jrblevin/markdown-mode/issues/578#issuecomment-1126380098
 (setq native-comp-deferred-compilation-deny-list '("markdown-mode\\.el$"))
 
+
+;;; https://emacs-lsp.github.io/lsp-mode/page/performance/
+(setq gc-cons-threshold 100000000)
+(setq read-process-output-max (* 1024 1024)) ;; 1mb
+
 (setq package-archives
       '(("gnu"   . "http://elpa.gnu.org/packages/")
         ("melpa" . "https://melpa.org/packages/")))
@@ -31,11 +36,6 @@
 (use-package ansi-color)
 (use-package recentf)
 (use-package tramp)
-
-(use-package yaml-mode
-  :mode (
-         ("\\.yml\\'" . yaml-mode))
-  :ensure t)
 
 (use-package dash
   :ensure t)
@@ -160,6 +160,12 @@
   :ensure t
   :after (lsp-mode)
   :hook ((c-mode c++-mode) . (lambda () (require 'ccls) (lsp))))
+
+(use-package yaml-mode
+  :ensure t
+  :after (lsp-mode)
+  :mode (("\\.yml\\'" . yaml-mode))
+  :hook ((yaml-mode . lsp-deferred)))
 
 (use-package lsp-ui
   :ensure t
@@ -725,23 +731,6 @@
 
 (setq custom-file (concat user-emacs-directory "custom.el"))
 (load custom-file 'noerror)
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (all-the-icons dockerfile-mode org-mode yaml-mode window-numbering which-key web-mode use-package tldr terraform-mode spacemacs-theme spaceline selected rg rego-mode prettier-js paredit package-lint ox-twbs org-journal nyan-mode nix-mode magit lsp-ui lsp-haskell keychain-environment json-mode jedi idris-mode hlint-refactor hindent helm-swoop helm-projectile helm-lsp helm-flyspell guide-key google-this git-link git-gutter flycheck-rust flycheck-pos-tip expand-region emms editorconfig dumb-jump dhall-mode deadgrep copy-as-format centered-cursor-mode cargo aggressive-indent ace-window ace-jump-mode))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-
-;; (face-attribute 'default :font)
 
 
 
