@@ -6,7 +6,6 @@
 
 {
   imports = [
-    <nixos-hardware/dell/latitude/7490>
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
@@ -121,14 +120,6 @@
     extraPackages = self: [ self.typed-process self.utf8-string ];
   };
 
-  #services.xserver.windowManager.xmonad.enable = true;
-  #services.xserver.windowManager.xmonad.enableContribAndExtras = true;
-  #services.xserver.windowManager.xmonad.config = /home/sibi/github/dotfiles/xmonad/xmonad.hs;
-  #services.xserver.windowManager.xmonad.extraPackages = hpkgs: [
-  #      hpkgs.typed-process
-  #	hpkgs.utf8-string
-  #        hpkgs.containers];
-
   # For laptop touchpad
   services.xserver.libinput.enable = true;
 
@@ -200,9 +191,9 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-  services.openssh.knownHosts = {
-    nuc = { publicKey = (import ./passwords.nix).ssh_key.personalPublicKey; };
-  };
+  # services.openssh.knownHosts = {
+  #   nuc = { publicKey = (import ./passwords.nix).ssh_key.personalPublicKey; };
+  # };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

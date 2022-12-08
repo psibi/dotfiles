@@ -8,13 +8,13 @@
 
   outputs = { self, nixpkgs, nixos-hardware}: {
 
-    nixosConfigurations.latitude = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.elric = nixpkgs.lib.nixosSystem {
 
       system = "x86_64-linux";
 
       modules = [
         ./configuration.nix
-        nixos-hardware
+        nixos-hardware.nixosModules.dell-latitude-7490
       ];
 
     };
