@@ -45,7 +45,10 @@
     configurationLimit = 70;
   };
 
-  nix.settings.trusted-users = [ "root" "sibi" ];
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    trusted-users = [ "root" "sibi" ];
+  };
 
   networking.hostName = "elric"; # Define your hostname.
   networking.networkmanager.enable = true;
