@@ -129,21 +129,16 @@ with pkgs; [
   flex
   bison
   ccls
+  mprocs
+  google-chrome
+  velero
+  etcd_3_5
+  awscli2
+  hwatch
 
   # From Overlays
-  mprocs
   em
   terraform-ls
 
-  unstable.cargo-workspaces
-  unstable.google-chrome
-  unstable.rust-analyzer
-  unstable.velero
-  unstable.etcd_3_5
-  unstable.awscli2
-  unstable.hwatch
-
-  # pinentry
-  # pinentry-curses
-  # texlive.combined.scheme-full
+  # unstable.google-chrome
 ]
