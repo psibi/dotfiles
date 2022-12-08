@@ -116,7 +116,7 @@
   services.xserver.windowManager.xmonad = {
     enable = true;
     enableContribAndExtras = true;
-    config = /home/sibi/github/dotfiles/xmonad/xmonad.hs;
+    config = ../../xmonad/xmonad.hs;
     extraPackages = self: [ self.typed-process self.utf8-string ];
   };
 
