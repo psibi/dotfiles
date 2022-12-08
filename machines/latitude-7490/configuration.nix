@@ -5,19 +5,18 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [
-      <nixos-hardware/dell/latitude/7490>
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    <nixos-hardware/dell/latitude/7490>
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   nixpkgs.config.packageOverrides = pkgs: rec {
-    tfswitch = pkgs.callPackage ../packages/tfswitch/default.nix {};
-    ouch = pkgs.callPackage ../packages/ouch/default.nix {};
+    tfswitch = pkgs.callPackage ../packages/tfswitch/default.nix { };
+    ouch = pkgs.callPackage ../packages/ouch/default.nix { };
   };
 
-  services.udev.packages = [ pkgs.yubikey-personalization];
+  services.udev.packages = [ pkgs.yubikey-personalization ];
   services.pcscd.enable = true;
 
   nixpkgs.config.allowUnfree = true;
@@ -27,13 +26,12 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelModules = [
-                         # Virtual Camera
-                         "v4l2loopback"
-                         # Virtual Microphone, built-in
-                         "snd-aloop"];
-  boot.extraModulePackages = [
-    config.boot.kernelPackages.v4l2loopback
+    # Virtual Camera
+    "v4l2loopback"
+    # Virtual Microphone, built-in
+    "snd-aloop"
   ];
+  boot.extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
   # Set initial kernel module settings
   boot.extraModprobeConfig = ''
     # exclusive_caps: Skype, Zoom, Teams etc. will only show device when actually streaming
@@ -43,11 +41,11 @@
   '';
 
   boot.loader.grub = {
-   device = "/dev/disk/by-id/label/boot";
-   configurationLimit = 70;
+    device = "/dev/disk/by-id/label/boot";
+    configurationLimit = 70;
   };
 
-  nix.trustedUsers = [ "root" "sibi"];
+  nix.settings.trusted-users = [ "root" "sibi" ];
 
   networking.hostName = "elric"; # Define your hostname.
   networking.networkmanager.enable = true;
@@ -113,27 +111,20 @@
   services.xserver.layout = "us";
   services.xserver.xkbOptions = "caps:ctrl_modifier";
 
-  services.xserver.windowManager.xmonad.enable = true;
-  services.xserver.windowManager.xmonad.enableContribAndExtras = true;
-  services.xserver.windowManager.xmonad.config = /home/sibi/github/dotfiles/xmonad/xmonad.hs;
+  services.xserver.windowManager.xmonad = {
+    enable = true;
+    enableContribAndExtras = true;
+    config = /home/sibi/github/dotfiles/xmonad/xmonad.hs;
+    extraPackages = self: [ self.typed-process self.utf8-string ];
+  };
 
-  services.xserver.windowManager.xmonad.haskellPackages =
-    pkgs.haskellPackages.override {
-      overrides = haskellPackagesNew: haskellPackagesOld: rec {
-        X11 = haskellPackagesNew.callPackage
-          /home/sibi/github/dotfiles/nix/overrides/x11.nix { };
-        xmonad = let
-          pkg = haskellPackagesNew.callPackage
-            /home/sibi/github/dotfiles/nix/overrides/xmonad.nix { };
-        in pkgs.haskell.lib.dontCheck pkg;
-        xmonad-extras = haskellPackagesNew.callPackage
-          /home/sibi/github/dotfiles/nix/overrides/xmonad-extras.nix { };
-        xmonad-contrib = let
-          pkg = haskellPackagesNew.callPackage
-            /home/sibi/github/dotfiles/nix/overrides/xmonad-contrib.nix { };
-        in pkgs.haskell.lib.dontCheck pkg;
-      };
-    };
+  #services.xserver.windowManager.xmonad.enable = true;
+  #services.xserver.windowManager.xmonad.enableContribAndExtras = true;
+  #services.xserver.windowManager.xmonad.config = /home/sibi/github/dotfiles/xmonad/xmonad.hs;
+  #services.xserver.windowManager.xmonad.extraPackages = hpkgs: [
+  #      hpkgs.typed-process
+  #	hpkgs.utf8-string
+  #        hpkgs.containers];
 
   # For laptop touchpad
   services.xserver.libinput.enable = true;
@@ -150,14 +141,19 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jane = {
-     isNormalUser = true;
-     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    isNormalUser = true;
+    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
   };
   users.users.sibi = {
-     isNormalUser = true;
-     extraGroups = [ "wheel" "audio" "sound" "video" "docker" ]; # Enable ‘sudo’ for the user.
+    isNormalUser = true;
+    extraGroups = [
+      "wheel"
+      "audio"
+      "sound"
+      "video"
+      "docker"
+    ]; # Enable ‘sudo’ for the user.
   };
-
 
   virtualisation.docker.enable = true;
 
@@ -166,9 +162,10 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-  #   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  ];
+  environment.systemPackages = with pkgs;
+    [
+      #   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    ];
 
   fonts.fonts = with pkgs; [
     ubuntu_font_family
@@ -201,9 +198,7 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   services.openssh.knownHosts = {
-    nuc = {
-      publicKey = (import ./passwords.nix).ssh_key.personalPublicKey;
-    };
+    nuc = { publicKey = (import ./passwords.nix).ssh_key.personalPublicKey; };
   };
 
   # Open ports in the firewall.

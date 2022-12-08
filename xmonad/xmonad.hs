@@ -30,6 +30,7 @@ import XMonad.Util.EZConfig (additionalKeys)
 import XMonad.Util.NamedScratchpad
 import XMonad.Prompt.OrgMode
 import Data.String (IsString(..))
+import XMonad.Prompt.Shell
 
 ------------------------------------------- Keybindings Refresher
 -- * mod-space: Rotate through available layout algorithms
@@ -123,7 +124,8 @@ keybindings =
   , ((0, xK_Print), spawn "xfce4-screenshooter")
   , ((mod4Mask, xK_x), spawn "xkill")
   , ((mod4Mask, xK_c), kill)
-  , ((mod4Mask, xK_p), liftIO $ spawnProcess "rofi" ["-show", "run"])
+  -- , ((mod4Mask, xK_p), shellPrompt sibiXPConfig)
+  , ((mod4Mask, xK_p), spawn "rofi -show run")
   , ((mod4Mask, xK_h), spawn "/home/sibi/.emacs_everywhere/bin/run")
   , ((0, xF86XK_MonBrightnessUp), Bright.increase)
   , ((0, xF86XK_MonBrightnessDown), Bright.decrease)
