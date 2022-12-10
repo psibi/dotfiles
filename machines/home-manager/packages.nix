@@ -1,6 +1,6 @@
 { pkgs, unstable }:
 with pkgs; [
-  cnx-sibi
+  # cnx-sibi
   git
   terraform-docs
   ouch
@@ -97,7 +97,6 @@ with pkgs; [
   nodePackages.yaml-language-server
   man-pages
   man-pages-posix
-  vscode
   gimp
   vokoscreen
   vlc
@@ -130,15 +129,20 @@ with pkgs; [
   bison
   ccls
   mprocs
-  google-chrome
   velero
   etcd_3_5
   awscli2
   hwatch
+  home-manager
+
+  # Unfree
+  google-chrome
+  # vscode
 
   # From Overlays
   em
   terraform-ls
+  cnx-sibi
 
   # unstable.google-chrome
 ]
