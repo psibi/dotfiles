@@ -1,4 +1,4 @@
-{ pkgs, nixpkgs-unstable, ... }:
+{ pkgs, unstable-pkgs, ... }:
 
 {
   imports = [ ../../modules/cnx.nix ];
@@ -18,7 +18,7 @@
 
     packages = import ../packages.nix {
       pkgs = pkgs;
-      unstable = nixpkgs-unstable;
+      unstable = unstable-pkgs;
     };
 
     file = {

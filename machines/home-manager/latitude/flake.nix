@@ -10,10 +10,19 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager }: {
-    homeConfigurations.elric = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      modules = [ ./home.nix ];
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager }:
+    let
+      unstable = import nixpkgs-unstable {
+        config.allowUnfree = true;
+        system = "x86_64-linux";
+      };
+    in {
+      homeConfigurations.elric = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        modules = [ ./home.nix ];
+        extraSpecialArgs = {
+          unstable-pkgs = unstable.pkgs;
+        };
+      };
     };
-  };
 }

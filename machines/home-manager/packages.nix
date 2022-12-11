@@ -1,6 +1,5 @@
 { pkgs, unstable }:
 with pkgs; [
-  # cnx-sibi
   git
   terraform-docs
   ouch
@@ -137,7 +136,7 @@ with pkgs; [
 
   # Unfree
   google-chrome
-  # vscode
+  unstable.vscode
 
   # From Overlays
   em
