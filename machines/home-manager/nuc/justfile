@@ -1,0 +1,19 @@
+# List all recipes
+default:
+    just --list --unsorted
+
+# Build flake
+build:
+    nix build '.#homeConfigurations.arya.activationPackage'
+
+# Activate
+activate:
+    ./result/activate
+
+# Build flake (with trace)
+build-trace:
+    nix build '.#homeConfigurations.arya.activationPackage' --show-trace
+
+# Build via home manager
+build-hm:
+    home-manager switch --flake .#arya

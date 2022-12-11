@@ -132,7 +132,6 @@ with pkgs; [
   etcd_3_5
   awscli2
   hwatch
-  home-manager
 
   # Unfree
   google-chrome
