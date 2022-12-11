@@ -131,6 +131,7 @@ with pkgs; [
   etcd_3_5
   awscli2
   hwatch
+  sibiEmacs
 
   # Unfree
   google-chrome
