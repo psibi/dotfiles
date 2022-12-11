@@ -7,9 +7,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      <nixos-hardware/intel/nuc/8i7beh>
       ./hardware-configuration.nix
-      ../system-modules/cloudflare-warp.nix
     ];
 
   nixpkgs.config.packageOverrides = pkgs: rec {
@@ -23,7 +21,7 @@
   # For sudo/login with Yubikey
   security.pam.yubico = {
     enable = true;
-    debug = true;
+    debug = false;
     mode = "challenge-response";
     control = "required";
   };
@@ -54,8 +52,10 @@
   boot.initrd.luks.devices.crypted.device = "/dev/disk/by-uuid/fb8ed389-a834-48e6-af5e-9dfbc4724490";
   fileSystems."/home".device = "/dev/mapper/crypted";
 
-
-  nix.trustedUsers = [ "root" "sibi" ];
+  nix.settings = {
+    trusted-users = [ "root" "sibi" ];
+    experimental-features = [ "nix-command" "flakes" ];
+  };
 
   networking.hostName = "arya"; # Define your hostname.
   # networking.wireless.enable = true;
@@ -98,29 +98,12 @@
   services.xserver.layout = "us";
   services.xserver.xkbOptions = "caps:ctrl_modifier";
 
-  services.xserver.windowManager.xmonad.enable = true;
-  services.xserver.windowManager.xmonad.enableContribAndExtras = true;
-  services.xserver.windowManager.xmonad.config =
-    /home/sibi/github/dotfiles/xmonad/xmonad.hs;
-
-  services.xserver.windowManager.xmonad.haskellPackages =
-    pkgs.haskellPackages.override {
-      overrides = haskellPackagesNew: haskellPackagesOld: rec {
-        X11 = haskellPackagesNew.callPackage
-          /home/sibi/github/dotfiles/nix/overrides/x11.nix { };
-        xmonad = let
-          pkg = haskellPackagesNew.callPackage
-            /home/sibi/github/dotfiles/nix/overrides/xmonad.nix { };
-        in pkgs.haskell.lib.dontCheck pkg;
-        xmonad-extras = haskellPackagesNew.callPackage
-          /home/sibi/github/dotfiles/nix/overrides/xmonad-extras.nix { };
-        xmonad-contrib = let
-          pkg = haskellPackagesNew.callPackage
-            /home/sibi/github/dotfiles/nix/overrides/xmonad-contrib.nix { };
-        in pkgs.haskell.lib.dontCheck pkg;
-      };
-    };
-
+  services.xserver.windowManager.xmonad = {
+    enable = true;
+    enableContribAndExtras = true;
+    config = ../../xmonad/xmonad.hs;
+    extraPackages = self: [ self.typed-process self.utf8-string ];
+  };
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -160,7 +143,6 @@
   # This makes gnucash preferences work for a specific user
   # More details here: https://github.com/NixOS/nixpkgs/issues/168205
   programs.dconf.enable = true;
-
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
