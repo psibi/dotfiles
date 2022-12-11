@@ -3,8 +3,14 @@
 {
   imports = [ ../../modules/cnx.nix ];
 
-  nixpkgs.config.allowUnfreePredicate = (_:true);
-  nixpkgs.overlays = [ (import ../overlay.nix) ];
+  nixpkgs = {
+    overlays = [ (import ../overlay.nix) ];
+    config = {
+      allowUnfreePredicate = (_: true);
+      allowUnfree = true;
+      documentation.dev.enable = true;
+    };
+  };
 
   home = {
     username = "sibi";

@@ -109,7 +109,6 @@ with pkgs; [
   cargo-generate
   keepassxc
   stack
-  emacs28NativeComp
   argo-rollouts
   haskell-language-server
   paprefs
