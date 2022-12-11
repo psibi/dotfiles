@@ -17,3 +17,7 @@ build-trace:
 # Build via home manager
 build-hm:
     home-manager switch --flake .#arya
+
+# Flake metadata
+metadata:
+    nix flake metadata
