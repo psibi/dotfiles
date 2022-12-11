@@ -1,12 +1,15 @@
-{ pkgs, unstable-pkgs, ... }:
-{
+{ pkgs, unstable-pkgs, ... }: {
   # Custom systemd services
   imports = [ ../../modules/cnx.nix ];
 
-  nixpkgs.config.allowUnfreePredicate = (_:true);
-  nixpkgs.overlays = [ (import ../overlay.nix) ];
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.documentation.dev.enable = true;
+  nixpkgs = {
+    overlays = [ (import ../overlay.nix) ];
+    config = {
+      allowUnfreePredicate = (_: true);
+      allowUnfree = true;
+      documentation.dev.enable = true;
+    };
+  };
 
   home = {
     username = "sibi";
