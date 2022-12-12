@@ -102,21 +102,8 @@
     (setq ac-ignore-case nil)
     (ac-config-default)))
 
-(use-package tree-sitter
-  :config
-  (progn
-    (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)))
-
-(use-package tree-sitter-langs
-  :config
-  (progn
-    (add-to-list 'tree-sitter-major-mode-language-alist '(markdown-mode . markdown))))
-
 (use-package markdown-mode
-  ;; :ensure t
-    :quelpa (markdown-mode :fetcher file
-                           :path "~/github/markdown-mode"
-                           :files ("*.el"))
+  :ensure t
   :bind (:map markdown-mode-map
               ;; ("C-c p" . markdown-previous-visible-heading)
               ("C-c n" . markdown-next-visible-heading))
@@ -147,7 +134,7 @@
          (lsp-configure . lsp-lens-mode)
          (terraform-mode . lsp-deferred))
   :custom
-  (lsp-disabled-clients '(tfls clangd))
+  (lsp-disabled-clients '(tfls clangd rls))
   ;; (lsp-log-io t)
   (lsp-log-io nil)
   (lsp-semantic-tokens-enable t)
@@ -207,7 +194,7 @@
   :bind (:map rustic-mode-map
               ("M-j" . lsp-ui-imenu)
               ("M-?" . lsp-find-references)
-              ("C-c C-d" . deadgrep)
+              ("C-c C-c C-i" . rustic-cargo-install)
               ("C-c C-c l" . flycheck-list-errors)
               ("C-c C-c a" . lsp-execute-code-action)
               ("C-c C-c r" . lsp-rename)

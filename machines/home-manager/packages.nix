@@ -135,7 +135,10 @@ with pkgs; [
 
   # Unfree
   google-chrome
-  unstable.vscode
+  vscode
+
+  # Unstable
+  unstable.rust-analyzer
 
   # From Overlays
   em
