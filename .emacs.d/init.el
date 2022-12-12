@@ -190,16 +190,14 @@
 (use-package rustic
   :quelpa (rustic :fetcher file
                   :path "~/github/rustic")
+  :after (lsp-mode)
   ;; :ensure t
   :bind (:map rustic-mode-map
               ("M-j" . lsp-ui-imenu)
               ("M-?" . lsp-find-references)
-              ("C-c C-c C-i" . rustic-cargo-install)
+              ([remap rustic-cargo-init] . rustic-cargo-install)
+              ("C-c C-c <tab>" . rustic-cargo-build)
               ("C-c C-c l" . flycheck-list-errors)
-              ("C-c C-c a" . lsp-execute-code-action)
-              ("C-c C-c r" . lsp-rename)
-              ("C-c C-c q" . lsp-workspace-restart)
-              ("C-c C-c Q" . lsp-workspace-shutdown)
               ("C-c o" . lsp-rust-analyzer-open-external-docs)
               ("C-c C-c s" . lsp-rust-analyzer-status))
   :hook ((rustic-mode . lsp-deferred))
@@ -213,14 +211,11 @@
   (progn
     (setq rustic-analyzer-command '("~/.nix-profile/bin/rust-analyzer"))
     (setq rustic-format-on-save nil)
-    (add-hook 'rustic-mode-hook #'tree-sitter-mode)
     (customize-set-variable 'rustic-cargo-default-install-arguments '("--path" "." "--locked" "--profile" "dev"))
     (customize-set-variable 'rustic-default-clippy-arguments nil)
     (customize-set-variable 'lsp-rust-analyzer-proc-macro-enable t)
     (customize-set-variable 'lsp-rust-analyzer-experimental-proc-attr-macros t)
     (customize-set-variable 'lsp-rust-analyzer-server-display-inlay-hints t)))
-
-
 
 (use-package yasnippet
   :ensure t
@@ -494,10 +489,6 @@
 (global-set-key (kbd "C-x 2") 'vsplit-last-buffer)
 (global-set-key (kbd "C-x 3") 'hsplit-last-buffer)
 
-;; Use shell-like backspace C-h, rebind help to F1
-(define-key key-translation-map [?\C-h] [?\C-?])
-(global-set-key (kbd "<f1>") 'help-command)
-
 ;; (add-to-list 'load-path "~/.emacs.d/site-lisp/auctex")
 ;; (load "auctex.el" nil t t)
 ;; (load "preview-latex.el" nil t t)
@@ -572,8 +563,7 @@
   :ensure t)
 
 
-;; (use-package mode-icons
-;;   :ensure t
+;; (use-package mode-icons;;   :ensure t
 ;;   :init
 ;;   (when (display-graphic-p) (mode-icons-mode)))
 
@@ -719,8 +709,6 @@
 (setq custom-file (concat user-emacs-directory "custom.el"))
 (load custom-file 'noerror)
 
-
-
 (use-package rego-mode
   :ensure t
   :custom
@@ -735,7 +723,6 @@
 (use-package hcl-mode
   :ensure t)
 
-
 (use-package company
   :ensure t
   :init
@@ -746,13 +733,6 @@
   :ensure t
   :hook (company-mode . company-box-mode))
 
-
-;; (use-package company-suggest
-;;   :ensure t
-;;   :init
-;;   (add-to-list 'company-backends 'company-suggest-google
-;;   (add-to-list 'company-backends 'company-suggest-wiktionary)))
-
 ;; Use pandoc-main-hydra/body
 (use-package pandoc-mode
   :ensure t)
@@ -761,10 +741,6 @@
   :ensure t
   :custom
   (ffip-use-rust-fd t))
-
-;; (use-package java-mode
-;;   :custom
-;;   )
 
 ;; (add-to-list 'load-path (concat (getenv "JAVA_HOME") "/bin"))
 
@@ -835,8 +811,17 @@
 (use-package package-lint
   :ensure t)
 
+;; Use shell-like backspace C-h, rebind help to F1
+(define-key key-translation-map [?\C-h] [?\C-?])
+(global-set-key (kbd "<f1>") 'help-command)
+
 (use-package helpful
-  :ensure t)
+  :ensure t
+  :config
+  (progn
+    (global-set-key (kbd "C-h F") 'helpful-function)
+    (global-set-key (kbd "C-h k") 'helpful-key)
+    (global-set-key (kbd "C-h v") 'helpful-variable)))
 
 (use-package doom-modeline
   :ensure t
