@@ -71,20 +71,16 @@
 
 (use-package flycheck
   :ensure t
-  :hook
-  (prog-mode . flycheck-mode)
+  :init
+  (global-flycheck-mode)
+  :bind (:map flycheck-mode-map
+              ("C-c f l" . flycheck-list-errors)
+              ("C-c f n" . flycheck-next-error)
+              ("C-c f p" . flycheck-previous-error))
   :custom
+  (flycheck-idle-change-delay 0.5)
   (flycheck-sh-shellcheck-executable "shellcheck")
-  :config
-  (progn
-    (setq flycheck-check-syntax-automatically '(mode-enabled save))
-    (define-key flycheck-mode-map (kbd "C-c f l") #'flycheck-list-errors)
-    (define-key flycheck-mode-map (kbd "C-c f n") #'flycheck-next-error)
-    (define-key flycheck-mode-map (kbd "C-c f p") #'flycheck-previous-error)
-    (add-hook 'sh-mode-hook (lambda () (progn
-                                         (sh-set-shell "bash") ;; Fixme later
-                                         (flycheck-mode))))))
-
+  (flycheck-check-syntax-automatically '(save idle-change mode-enabled)))
 
 (use-package markdown-toc
   ;; :ensure t
@@ -94,20 +90,11 @@
   :custom
   (markdown-toc-indentation-space 2))
 
-(use-package auto-complete
-  :ensure t
-  :diminish auto-complete-mode
-  :init
-  (progn
-    (setq ac-ignore-case nil)
-    (ac-config-default)))
-
 (use-package markdown-mode
   :ensure t
   :bind (:map markdown-mode-map
               ;; ("C-c p" . markdown-previous-visible-heading)
               ("C-c n" . markdown-next-visible-heading))
-  :mode "\\.md\\'"
   :custom
   (markdown-hide-urls t))
 
@@ -115,11 +102,6 @@
   :ensure t
   :config
   (which-key-mode))
-
-  ;; :quelpa (lsp-mode :fetcher file
-  ;;                   :path "~/github/lsp-mode"
-  ;;                   :files ("*.el" "clients/*.el")
-  ;;                   )
 
 (use-package lsp-mode
   :quelpa (lsp-mode :fetcher file
@@ -129,19 +111,35 @@
   :init (setq lsp-keymap-prefix "C-l")
   :after (dash)
   :commands lsp
-
   :hook ((lsp-mode . lsp-enable-which-key-integration)
-         (lsp-configure . lsp-lens-mode)
-         (terraform-mode . lsp-deferred))
+         (lsp-configure . lsp-lens-mode))
   :custom
   (lsp-disabled-clients '(tfls clangd rls))
   ;; (lsp-log-io t)
   (lsp-log-io nil)
   (lsp-semantic-tokens-enable t)
-  (lsp-semantic-tokens-honor-refresh-requests t)
+  (lsp-lens-auto-enable t)
+  (lsp-semantic-tokens-honor-refresh-requests nil)
+  (lsp-semantic-tokens-allow-delta-requests t)
+  (lsp-semantic-tokens-allow-ranged-requests t)
+  (lsp-semantic-tokens-warn-on-missing-face nil))
+
+(use-package lsp-terraform
+  :ensure lsp-mode
+  :after lsp-mode
+  :demand t
+  :custom
   (lsp-terraform-ls-enable-show-reference t)
-  (lsp-semantic-tokens-warn-on-missing-face nil)
   (lsp-terraform-ls-prefer-treemacs-all-the-icons-theme t))
+
+(use-package lsp-rust
+  :ensure lsp-mode
+  :after lsp-mode
+  :demand t
+  :custom
+  (lsp-rust-analyzer-server-display-inlay-hints t)
+  (lsp-rust-analyzer-experimental-proc-attr-macros t)
+  (lsp-rust-analyzer-proc-macro-enable t))
 
 (use-package ccls
   :ensure t
@@ -159,10 +157,10 @@
   :after (lsp-mode)
   :commands lsp-ui-mode
   :custom
-  lsp-ui-doc-enable t
-  lsp-ui-doc-header t
-  lsp-ui-doc-show-with-cursor t
-  lsp-ui-doc-include-signature t)
+  (lsp-ui-doc-enable t)
+  (lsp-ui-doc-header t)
+  (lsp-ui-doc-show-with-cursor t)
+  (lsp-ui-doc-include-signature t))
 
 (use-package treemacs-all-the-icons
   :ensure t)
@@ -181,6 +179,7 @@
 (use-package terraform-mode
   :ensure t
   :after (lsp-mode)
+  :hook (terraform-mode . lsp-deferred)
   :bind (:map terraform-mode-map
               ("C-c C-c C-f" . terraform-format-buffer)))
 
@@ -196,26 +195,19 @@
               ("M-j" . lsp-ui-imenu)
               ("M-?" . lsp-find-references)
               ([remap rustic-cargo-init] . rustic-cargo-install)
+              ("C-c C-c C-i" . rustic-cargo-install)
               ("C-c C-c <tab>" . rustic-cargo-build)
               ("C-c C-c l" . flycheck-list-errors)
               ("C-c o" . lsp-rust-analyzer-open-external-docs)
               ("C-c C-c s" . lsp-rust-analyzer-status))
   :hook ((rustic-mode . lsp-deferred))
   :config
-  ;; uncomment for less flashiness
-  ;; (setq lsp-eldoc-hook nil)
-  ;; (setq lsp-enable-symbol-highlighting nil)
-  ;; (setq lsp-signature-auto-activate nil)
-
-  ;; comment to disable rustfmt on save
   (progn
-    (setq rustic-analyzer-command '("~/.nix-profile/bin/rust-analyzer"))
-    (setq rustic-format-on-save nil)
-    (customize-set-variable 'rustic-cargo-default-install-arguments '("--path" "." "--locked" "--profile" "dev"))
-    (customize-set-variable 'rustic-default-clippy-arguments nil)
-    (customize-set-variable 'lsp-rust-analyzer-proc-macro-enable t)
-    (customize-set-variable 'lsp-rust-analyzer-experimental-proc-attr-macros t)
-    (customize-set-variable 'lsp-rust-analyzer-server-display-inlay-hints t)))
+    (setq rustic-format-on-save nil))
+  :custom
+  (rustic-analyzer-command '("rust-analyzer"))
+  (rustic-default-clippy-arguments nil)
+  (rustic-cargo-default-install-arguments '("--path" "." "--locked" "--offline" "--profile" "dev")))
 
 (use-package yasnippet
   :ensure t
@@ -449,21 +441,6 @@
   (progn
     (global-set-key (kbd "C-x o") 'ace-window)))
 
-;; (use-package smart-mode-line
-;;   :ensure t
-;;   :init
-;;   (progn
-;;     (setq sml/no-confirm-load-theme t)
-;;     (sml/setup)))
-
-;; (use-package smart-mode-line-powerline-theme
-;;   :ensure t
-;;   :init
-;;   (progn
-;;     (setq sml/theme 'powerline)
-;;     (setq powerline-arrow-shape 'curve)
-;;     (setq powerline-default-separator-dir '(right . left))))
-
 ;; Enable clipboard
 (setq x-select-enable-clipboard t)
 
@@ -551,21 +528,10 @@
     (with-eval-after-load 'flycheck
       (flycheck-pos-tip-mode))))
 
-(use-package electric
-  :ensure t
-  :init
-  (progn
-    (electric-pair-mode 1)))
-
 ;; Make sure to call (all-the-icons-install-fonts) once
 ;; (all-the-icons-install-fonts)
 (use-package all-the-icons
   :ensure t)
-
-
-;; (use-package mode-icons;;   :ensure t
-;;   :init
-;;   (when (display-graphic-p) (mode-icons-mode)))
 
 (use-package expand-region
   :ensure t)
@@ -633,9 +599,6 @@
       (set-face-attribute 'default nil :height 150)))
 
 (show-paren-mode 1)
-;; For proof related
-;; (load "/Users/sibi/github/PG/generic/proof-site.el")
-;; (load "/home/sibi/Downloads/ProofGeneral-4.2/generic/proof-site.el")
 
 ;; Backup related
 (setq backup-directory-alist '(("." . "~/.emacs.d/emacs_backup"))
@@ -710,10 +673,7 @@
 (load custom-file 'noerror)
 
 (use-package rego-mode
-  :ensure t
-  :custom
-  (rego-repl-executable "/home/sibi/bin/opa")
-  (regg-opa-command "/home/sibi/bin/opa"))
+  :ensure t)
 
 (set-face-attribute 'default nil :height 120)
 
@@ -726,7 +686,9 @@
 (use-package company
   :ensure t
   :init
-  (add-hook 'after-init-hook 'global-company-mode))
+  (add-hook 'after-init-hook 'global-company-mode)
+  :custom
+  (company-minimum-prefix-length 0))
 
 (use-package company-box
   :after company
