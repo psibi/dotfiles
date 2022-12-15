@@ -10,7 +10,6 @@
               ("C-c C-c C-f" . ormolu-format-buffer)
               ("C-c C-c C-i" . haskell-stack-install)
               ("C-c C-c C-t" . haskell-stack-test))
-
   :custom
   (haskell-mode-hook '(haskell-indentation-mode lsp-deferred))
   (haskell-compiler-type 'stack)
