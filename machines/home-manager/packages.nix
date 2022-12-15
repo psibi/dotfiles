@@ -62,7 +62,6 @@ with pkgs; [
   azure-cli
   ormolu
   hlint
-  stylish-haskell
   aws-iam-authenticator
   kustomize
   ipcalc
@@ -132,6 +131,7 @@ with pkgs; [
   awscli2
   hwatch
   sibiEmacs
+  haskellPackages.implicit-hie
 
   # Unfree
   google-chrome
