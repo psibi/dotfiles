@@ -2,62 +2,95 @@
 ;; Author: Sibi <sibi@psibi.in>
 ;; File path: ~/.emacs.d/init.el
 
-;; Remove menu, tool and scroll bar.
-(menu-bar-mode -1)
-(tool-bar-mode -1)
 
-(setq package-native-compile t)
+(setq package-archives '(("gnu"   . "http://elpa.gnu.org/packages/")
+                        ("melpa" . "https://melpa.org/packages/")))
 
-;; https://github.com/jrblevin/markdown-mode/issues/578#issuecomment-1126380098
-(setq native-comp-deferred-compilation-deny-list '("markdown-mode\\.el$"))
+(require 'use-package)
 
+(package-initialize)
+(unless package-archive-contents
+  (package-refresh-contents))
+(setq sibi-packages '(use-package))
+(dolist (package sibi-packages)
+  (unless (package-installed-p package)
+   (package-install package)))
 
 ;;; https://emacs-lsp.github.io/lsp-mode/page/performance/
 (setq gc-cons-threshold 100000000)
 (setq read-process-output-max (* 1024 1024)) ;; 1mb
 
-(setq package-archives
-      '(("gnu"   . "http://elpa.gnu.org/packages/")
-        ("melpa" . "https://melpa.org/packages/")))
+(setq user-mail-address "sibi@psibi.in")
+(setq user-full-name "Sibi Prabakaran")
 
-(package-initialize)
+;; Unbind C-z
+(when window-system
+  (global-unset-key [(control z)]))
 
-(require 'use-package)
+(if (eq system-type 'darwin)
+    (progn
+      (set-face-attribute 'default nil :height 150)))
 
-;; Install and load `quelpa-use-package'.
+;; https://emacs.stackexchange.com/questions/62049/override-the-default-font-for-emoji-characters
+(setq use-default-font-for-symbols nil)
+(set-fontset-font t 'symbol "Twitter Color Emoji")
+
+(fset 'yes-or-no-p 'y-or-n-p)
+(setq inhibit-startup-message t)
+
+;;; Workaround to make GPG agent work well with ssh keys till I move
+;;; managing my xmonad configuration with home manager itself
+
+;; https://github.com/nix-community/home-manager/issues/307
+;; https://nix-community.github.io/home-manager/index.html#sec-install-standalone
+;; https://github.com/nix-community/home-manager/issues/292#issuecomment-403104476
+;; We do this to setup GPG integration properly
+(setenv "SSH_AUTH_SOCK"
+        (string-trim (shell-command-to-string "gpgconf --list-dirs agent-ssh-socket")))
+
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
+
+;; Remove menu, tool and scroll bar.
+(use-package menu-bar
+  :ensure nil
+  :config
+  (menu-bar-mode -1))
+
+(use-package tool-bar
+  :ensure nil
+  :config
+  (tool-bar-mode -1))
+
+(use-package package
+  :ensure nil
+  :config
+  (package-initialize)
+  :custom
+  (package-native-compile t)
+  (package-archives '(("gnu"   . "http://elpa.gnu.org/packages/")
+                      ("melpa" . "https://melpa.org/packages/"))))
+
+(use-package comp
+  :ensure nil
+  :custom
+  ;; https://github.com/jrblevin/markdown-mode/issues/578#issuecomment-1126380098
+  (native-comp-deferred-compilation-deny-list '("markdown-mode\\.el$")))
+
 (use-package quelpa-use-package
   :ensure t)
-(require 'quelpa-use-package)
-
-(use-package cl)
-(use-package saveplace)
-(use-package ffap)
-(use-package uniquify)
-(use-package ansi-color)
-(use-package recentf)
-(use-package tramp)
 
 (use-package dash
   :ensure t)
-
-;; (use-package spacemacs-theme
-;;   :ensure t
-;;   :defer t
-;;   :init
-;;   (progn
-;;     (load-theme 'spacemacs-dark t)
-;;     ;; (load-theme 'wheatgrass t)
-;;     ;; Exploits a bug to get a better modeline
-;;     ))
 
 (use-package doom-themes
   :ensure t
   :custom
   (doom-themes-enable-bold t)
   (doom-themes-enable-italic t)
-  :config (progn
-            (load-theme 'doom-one t)
-            (doom-themes-org-config)))
+  :config
+  (load-theme 'doom-one t)
+  (doom-themes-org-config))
 
 (use-package treemacs
   :ensure t
@@ -83,10 +116,7 @@
   (flycheck-check-syntax-automatically '(save idle-change mode-enabled)))
 
 (use-package markdown-toc
-  ;; :ensure t
-  :quelpa (markdown-toc :fetcher file
-                         :path "~/github/markdown-toc"
-                         :files ("*.el"))
+  :ensure t
   :custom
   (markdown-toc-indentation-space 2))
 
@@ -104,10 +134,7 @@
   (which-key-mode))
 
 (use-package lsp-mode
-  :quelpa (lsp-mode :fetcher file
-                    :path "~/github/lsp-mode"
-                    :files ("*.el" "clients/*.el"))
-  ;; :ensure t
+  :ensure t
   :init (setq lsp-keymap-prefix "C-l")
   :after (dash)
   :commands lsp
@@ -169,13 +196,6 @@
   :ensure t
   :after (treemacs lsp-mode treemacs-all-the-icons))
 
-(use-package helm-lsp
-  :ensure t
-  :bind (([remap xref-find-apropos] . helm-lsp-workspace-symbol)
-         ("C-c C-e g" . helm-lsp-global-workspace-symbol)
-         ("C-c C-e d" . helm-lsp-diagnostics))
-  :commands helm-lsp-workspace-symbol)
-
 (use-package terraform-mode
   :ensure t
   :after (lsp-mode)
@@ -187,10 +207,10 @@
   :ensure t)
 
 (use-package rustic
-  :quelpa (rustic :fetcher file
-                  :path "~/github/rustic")
+  ;; :quelpa (rustic :fetcher file
+  ;;                 :path "~/github/rustic")
   :after (lsp-mode)
-  ;; :ensure t
+  :ensure t
   :bind (:map rustic-mode-map
               ("M-j" . lsp-ui-imenu)
               ("M-?" . lsp-find-references)
@@ -202,8 +222,7 @@
               ("C-c C-c s" . lsp-rust-analyzer-status))
   :hook ((rustic-mode . lsp-deferred))
   :config
-  (progn
-    (setq rustic-format-on-save nil))
+  (setq rustic-format-on-save nil)
   :custom
   (rustic-analyzer-command '("rust-analyzer"))
   (rustic-default-clippy-arguments nil)
@@ -211,6 +230,7 @@
 
 (use-package yasnippet
   :ensure t
+  :after (lsp-mode)
   :hook ((lsp-mode . yas-minor-mode)))
 
 (use-package yasnippet-snippets
@@ -230,81 +250,74 @@
 (use-package google-this
   :ensure t)
 
-(set-scroll-bar-mode 'nil)
-(size-indication-mode 1)
+(use-package simple
+  :ensure nil
+  :config
+  (size-indication-mode 1)
+  :bind
+  (("C-w" . backward-kill-word)
+   ("C-x C-k" . kill-region)
+   ("C-c C-k" . kill-region))
+  :custom
+  (next-line-add-newlines nil))
 
-;; My Details
-(setq user-full-name "Sibi Prabakaran")
-(setq user-mail-address "sibi@psibi.in")
+(use-package scroll-bar
+  :ensure nil
+  :config
+  (set-scroll-bar-mode 'nil))
 
-;; Unbind C-z
-(when window-system
-  (global-unset-key [(control z)]))
-(setq vc-follow-symlinks t)
+(use-package vc-hooks
+  :ensure nil
+  :custom
+  (vc-follow-symlinks t)
+  ;;; https://www.reddit.com/r/emacs/comments/y92y4b/tramp_users_slowness_got_you_down_check/
+  (vc-handled-backends '(Git))
+  :config
+  ;; https://www.reddit.com/r/emacs/comments/4c0mi3/the_biggest_performance_improvement_to_emacs_ive/
+  (remove-hook 'find-file-hooks 'vc-find-file-hook))
 
-;; ----------------------
-;; Final newline handling
-;; ----------------------
-(setq require-final-newline t)
-(setq next-line-extends-end-of-buffer nil)
-(setq next-line-add-newlines nil)
-(setq use-default-font-for-symbols nil)
-;; https://emacs.stackexchange.com/questions/62049/override-the-default-font-for-emoji-characters
-(set-fontset-font t 'symbol "Twitter Color Emoji")
+(use-package files
+  :ensure nil
+  :custom
+  (require-final-newline t)
+  (confirm-nonexistent-file-or-buffer nil)
+  (backup-directory-alist '(("." . "~/.emacs.d/emacs_backup")))
+  (backup-by-copying t)
+  (version-control t)
+  (kept-old-versions 2)
+  (kept-new-versions 20)
+  (delete-old-versions t)
+  (auto-save-file-name-transforms nil)
+  :config
+  (add-hook 'before-save-hook 'delete-trailing-whitespace))
 
-;; -------------------
-;; Everything in UTF-8
-;; -------------------
-;; Not everything - as this stops the installation of auctex
-(prefer-coding-system 'utf-8)
-(set-default-coding-systems 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(set-keyboard-coding-system 'utf-8)
+(use-package mule
+  :ensure nil
+  :config
+  (prefer-coding-system 'utf-8)
+  (set-default-coding-systems 'utf-8)
+  (set-terminal-coding-system 'utf-8)
+  (set-keyboard-coding-system 'utf-8))
 
-;;Tramp for editing protected files in existing Emacs session.(C-x C-f /sudo)
-(setq tramp-default-method "ssh")
+(use-package tramp
+  :ensure nil
+  :custom
+  ;;Tramp for editing protected files in existing Emacs session.(C-x C-f /sudo)
+  (tramp-default-method "ssh")
+  (tramp-backup-directory-alist backup-directory-alist))
 
-;; Custom Shortcuts
-(global-set-key "\C-w" 'backward-kill-word)
-(global-set-key "\C-x\C-k" 'kill-region)
-(global-set-key "\C-c\C-k" 'kill-region)
-
-;; Rebind Enter
-;; (define-key global-map (kbd "C-c j") 'newline-and-indent)
-
-(global-set-key (kbd "C-x m") 'eshell)
-
-;; Just in case you are behind a proxy
-;; (setq url-proxy-services '(("https" . "127.0.0.1:3129")
-;;                            ("http" . "127.0.0.1:3129")))
-
-;; Hooks before saving file
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
-;; (add-hook 'before-save-hook 'untabify)
-
-;; No tabs for indendation
-(setq-default indent-tabs-mode nil)
-(setq tab-width 4)
-
-;; -------------
-;; flyspell-mode
-;; -------------
+(use-package ehsell
+  :ensure nil
+  :bind
+  (("C-x m" . eshell)))
 
 (use-package flyspell
-  :ensure t
-  :init
-  (progn
-    (flyspell-mode 1))
-  :config
-  (progn
-    (setq ispell-program-name "aspell")
-    (setq ispell-list-command "--list") ;; run flyspell with aspell, not ispell
-    ))
+  :ensure nil
+  :custom
+  (ispell-program-name "aspell"))
 
-;; Octave-mode
 (use-package octave
-  :ensure t
-  :mode "\\.m\\'")
+  :ensure t)
 
 (use-package magit
   :ensure t
@@ -314,34 +327,14 @@
   (magit-auto-revert-mode 1)
   (magit-commit-arguments (quote ("--gpg-sign=BB557613"))))
 
-;; (use-package magithub
-;;   :ensure t
-;;   :after magit
-;;   :config
-;;   (progn
-;;     (magithub-feature-autoinject t)
-;;     (magithub-ci-disable)
-;;     ;; https://github.com/vermiculus/magithub/issues/75#issuecomment-284256987
-;;     (defun magithub--api-available-p ()
-;;       't
-;;       )
-;;     ;; (magithub-toggle-issues)
-;;     ;; (magithub-toggle-pull-requests)
-;;     ))
-
-
-;; https://www.reddit.com/r/emacs/comments/sunkzx/is_it_only_me_or_did_emacs_without_native_comp/hxbthxv/?utm_source=reddit&utm_medium=web2x&context=3
-;; (setq gc-cons-threshold 20000000)
-
 ;;Projectile related config
 (use-package projectile
   :ensure t
   :diminish projectile-mode "p"
   :bind-keymap
   ("C-c p" . projectile-command-map)
-  :init
-  (progn
-    (projectile-global-mode))
+  :config
+  (projectile-global-mode)
   :custom
   (projectile-enable-caching t))
 
@@ -353,14 +346,20 @@
   (progn
     (require 'helm-config)
     (helm-mode 1))
+  :bind
+  (("C-c h" . helm-command-prefix)
+   ("M-x" . helm-M-x)
+   ("C-x C-m" . helm-M-x)
+   ("M-y" . helm-show-kill-ring)
+   ("C-x b" . helm-mini)
+   ("C-x C-f" . helm-find-files)
+   :map helm-map
+   ("<tab>" . helm-execute-persistent-action)
+   ("C-i" . helm-execute-persistent-action)
+   ("C-z" . helm-select-action))
   :config
   (progn
-    (global-set-key (kbd "C-c h") 'helm-command-prefix)
     (global-unset-key (kbd "C-x c"))
-    (global-set-key (kbd "C-x p") 'helm-list-elisp-packages-no-fetch)
-    (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
-    (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
-    (define-key helm-map (kbd "C-z") 'helm-select-action) ; list actions using C-z
     (when (executable-find "curl")
       (setq helm-google-suggest-use-curl-p t))
     (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
@@ -369,16 +368,7 @@
           helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
           helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
           helm-ff-file-name-history-use-recentf t
-          helm-ff-newfile-prompt-p nil)
-    (global-set-key (kbd "M-x") 'helm-M-x)
-    (global-set-key "\C-x\C-m" 'helm-M-x)
-    (global-set-key (kbd "M-y") 'helm-show-kill-ring)
-    (global-set-key (kbd "C-x b") 'helm-mini)
-    (global-set-key (kbd "C-x C-f") 'helm-find-files)
-    (global-set-key (kbd "C-c h o") 'helm-occur)))
-
-;; (use-package imenu-anywhere
-;;   :ensure t)
+          helm-ff-newfile-prompt-p nil)))
 
 (use-package helm-projectile
   :ensure t
@@ -390,44 +380,22 @@
 
 (use-package helm-swoop
   :ensure t
-  :config
-  (progn
-    (global-set-key (kbd "M-i") 'helm-swoop)
-    (global-set-key (kbd "M-I") 'helm-swoop-back-to-last-point)
-    (global-set-key (kbd "C-c M-i") 'helm-multi-swoop)
-    (global-set-key (kbd "C-x M-i") 'helm-multi-swoop-all)
-
-    ;; When doing isearch, hand the word over to helm-swoop
-    (define-key isearch-mode-map (kbd "M-i") 'helm-swoop-from-isearch)
-    ;; From helm-swoop to helm-multi-swoop-all
-    (define-key helm-swoop-map (kbd "M-i") 'helm-multi-swoop-all-from-helm-swoop)
-    ;; When doing evil-search, hand the word over to helm-swoop
-    ;; (define-key evil-motion-state-map (kbd "M-i") 'helm-swoop-from-evil-search)
-
-    ;; Move up and down like isearch
-    (define-key helm-swoop-map (kbd "C-r") 'helm-previous-line)
-    (define-key helm-swoop-map (kbd "C-s") 'helm-next-line)
-    (define-key helm-multi-swoop-map (kbd "C-r") 'helm-previous-line)
-    (define-key helm-multi-swoop-map (kbd "C-s") 'helm-next-line)
-
-    ;; Save buffer when helm-multi-swoop-edit complete
-    (setq helm-multi-swoop-edit-save t)
-
-    ;; If this value is t, split window inside the current window
-    (setq helm-swoop-split-with-multiple-windows nil)
-
-    ;; Split direcion. 'split-window-vertically or 'split-window-horizontally
-    (setq helm-swoop-split-direction 'split-window-vertically)
-
-    ;; If nil, you can slightly boost invoke speed in exchange for text color
-    (setq helm-swoop-speed-or-color nil)
-
-    ;; ;; Go to the opposite side of line from the end or beginning of line
-    (setq helm-swoop-move-to-line-cycle t)
-
-    ;; Optional face for line numbers
-    ;; Face name is `helm-swoop-line-number-face`
-    (setq helm-swoop-use-line-number-face t)))
+  :bind
+  (("M-i" . helm-swoop)
+   ("M-I" . helm-swoop-back-to-last-point)
+   ("C-c M-i" . helm-multi-swoop)
+   ("C-x M-i" . helm-multi-swoop-all)
+   :map isearch-mode-map
+   ("M-i" . helm-swoop-from-isearch)
+   :map helm-swoop-map
+   ("M-i" . helm-multi-swoop-all-from-helm-swoop))
+  :custom
+  (helm-multi-swoop-edit-save t)
+  (helm-swoop-split-with-multiple-windows nil)
+  (helm-swoop-split-direction 'split-window-vertically)
+  (helm-swoop-speed-or-color nil)
+  (helm-swoop-move-to-line-cycle t)
+  (helm-swoop-use-line-number-face t))
 
 (use-package doc-view
   :ensure t
@@ -437,61 +405,35 @@
 
 (use-package ace-window
   :ensure t
-  :init
-  (progn
-    (global-set-key (kbd "C-x o") 'ace-window)))
+  :bind
+  (("C-x o" . ace-window)))
 
-;; Enable clipboard
-(setq x-select-enable-clipboard t)
+(use-package select
+  :ensure nil
+  :custom
+  (x-select-enable-clipboard t))
 
-;; Dired is better with human readable format
-(setq dired-listing-switches "-alh")
+(use-package dired
+  :custom
+  (dired-listing-switches "-alh"))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Custom splitting functions ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defun vsplit-last-buffer ()
-  (interactive)
-  (split-window-vertically)
-  (other-window 1 nil)
-  (switch-to-next-buffer))
-
-(defun hsplit-last-buffer ()
-  (interactive)
-  (split-window-horizontally)
-  (other-window 1 nil)
-  (switch-to-next-buffer))
-
-(global-set-key (kbd "C-x 2") 'vsplit-last-buffer)
-(global-set-key (kbd "C-x 3") 'hsplit-last-buffer)
-
-;; (add-to-list 'load-path "~/.emacs.d/site-lisp/auctex")
-;; (load "auctex.el" nil t t)
-;; (load "preview-latex.el" nil t t)
+(use-package window
+  :ensure nil
+  :bind
+  (("C-x 2" . split-window-vertically)
+   ("C-x 3" . split-window-horizontally)))
 
 (use-package tex-mode
   :ensure t
-  :defer t
-  :config
-  (progn
-    (defun complete-dollar ()
-      "Auto completes dollar symbol"
-      (interactive)
-      (insert "$$")
-      (backward-char 1))
-    (defun sibi-latex-keys ()
-      "Modify keymaps by latex-mode"
-      (local-set-key (kbd "$") 'complete-dollar))
-    (add-hook 'LaTeX-mode-hook 'sibi-latex-keys)))
+  :defer t)
 
 (use-package guide-key
   :ensure t
   :diminish guide-key-mode
-  :init
-  (progn
-    (setq guide-key/guide-key-sequence '("C-x 4" "C-c p"))
-    (guide-key-mode 1)))
+  :custom
+  (guide-key/guide-key-sequence '("C-x 4" "C-c p"))
+  :config
+  (guide-key-mode 1))
 
 (use-package window-numbering
   :ensure t
@@ -499,34 +441,23 @@
   (progn
     (window-numbering-mode t)))
 
-;; (use-package spaceline
-;;   :ensure t
-;;   :init
-;;   (progn
-;;     (require 'spaceline-config)
-;;     (spaceline-emacs-theme)))
-
 (use-package ace-jump-mode
   :ensure t
-  :init
-  (progn
-    (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
-    ;; Also with universal argument: C-u C-c SPC
-    ;; For line jumping: C-u C-u C-c SPC
-    ))
+  :bind
+  ;; Also with universal argument: C-u C-c SPC
+  ;; For line jumping: C-u C-u C-c SPC
+  (("C-c SPC" . ace-jump-mode)))
 
 (use-package nyan-mode
   :ensure t
-  :init
-  (progn
-    (nyan-mode 1)))
+  :config
+  (nyan-mode 1))
 
 (use-package flycheck-pos-tip
   :ensure t
-  :init
-  (progn
-    (with-eval-after-load 'flycheck
-      (flycheck-pos-tip-mode))))
+  :after (flycheck)
+  :config
+  (flycheck-pos-tip-mode))
 
 ;; Make sure to call (all-the-icons-install-fonts) once
 ;; (all-the-icons-install-fonts)
@@ -538,9 +469,8 @@
 
 (use-package centered-cursor-mode
   :ensure t
-  :init
-  (progn (require 'centered-cursor-mode)
-         (global-centered-cursor-mode)))
+  :config
+  (global-centered-cursor-mode))
 
 (use-package tldr
   :ensure t)
@@ -550,79 +480,42 @@
   :config
   (editorconfig-mode 1))
 
-;; Shift the selected region right if distance is postive, left if
-;; negative
+(use-package isearch
+  :ensure nil
+  :custom
+  (search-whitespace-regexp ".*?"))
 
-(defun shift-region (distance)
-  (let ((mark (mark)))
-    (save-excursion
-      (indent-rigidly (region-beginning) (region-end) distance)
-      (push-mark mark t t)
-      ;; Tell the command loop not to deactivate the mark
-      ;; for transient mark mode
-      (setq deactivate-mark nil))))
+(use-package frame
+  :ensure nil
+  :config
+  (toggle-frame-fullscreen)
+  (blink-cursor-mode -1))
 
-(defun shift-right ()
-  (interactive)
-  (shift-region 1))
-
-(defun shift-left ()
-  (interactive)
-  (shift-region -1))
-
-;; Bind (shift-right) and (shift-left) function to your favorite keys. I use
-;; the following so that Ctrl-Shift-Right Arrow moves selected text one
-;; column to the right, Ctrl-Shift-Left Arrow moves selected text one
-;; column to the left:
-
-(global-set-key (kbd "C-c >") 'shift-right)
-(global-set-key (kbd "C-c <") 'shift-left)
-
-;; Isearch convenience, space matches anything (non-greedy)
-;; Note that you can use universal argument
-(setq search-whitespace-regexp ".*?")
-(toggle-frame-fullscreen)
-(global-set-key (kbd "M-/") 'hippie-expand)
-
-(fset 'yes-or-no-p 'y-or-n-p)
-(setq confirm-nonexistent-file-or-buffer nil)
-
-(use-package rg
-  :ensure t)
+(use-package hippie-exp
+  :ensure nil
+  :bind
+  ("M-/" . hippie-expand))
 
 (use-package idris-mode
-  :ensure t
-  :mode "\\.idr\\'")
+  :ensure t)
 
-(if (eq system-type 'darwin)
-    (progn
-      (set-face-attribute 'default nil :height 150)))
+(use-package paren
+  :ensure nil
+  :config
+  (add-hook 'emacs-lisp-mode-hook 'show-paren-mode))
 
-(show-paren-mode 1)
+(use-package avoid
+  :ensure nil
+  :config
+  (mouse-avoidance-mode 'cat-and-mouse))
 
-;; Backup related
-(setq backup-directory-alist '(("." . "~/.emacs.d/emacs_backup"))
-      auto-save-file-name-transforms `((".*" ,"~/.emacs.d/emacs_backup/" t))
-      backup-by-copying t
-      version-control t
-      kept-old-versions 2
-      kept-new-versions 20
-      delete-old-versions t)
-(setq tramp-backup-directory-alist backup-directory-alist)
-(setq auto-save-file-name-transforms nil)
-
-(global-auto-revert-mode 1)
-(blink-cursor-mode -1)
-
-(mouse-avoidance-mode 'cat-and-mouse)
-
-(setq inhibit-startup-message t)
-
-(setq browse-url-browser-function 'browse-url-chrome)
+(use-package browse-url
+  :ensure nil
+  :custom
+  (browse-url-browser-function 'browse-url-chrome))
 
 (use-package helm-flyspell
-  :ensure t
-  :config ())
+  :ensure t)
 
 (use-package dumb-jump
   :ensure t
@@ -652,10 +545,10 @@
   :bind (("C-c C-d" . deadgrep)
          :map deadgrep-mode-map
          ("C-c" . deadgrep-visit-result-other-window))
-  :ensure t)
+  :ensure t
+  :config
+  (add-hook 'xref-backend-functions 'dumb-jump-xref-activate))
 
-(use-package git-gutter
-  :ensure t)
 ;; Refresher:
 ;; C-c r - Root file in HELM
 ;; C-c h o - Helm occur
@@ -668,14 +561,20 @@
 ;; M-x find-name-dired
 ;; t, Q, query-replace-regexp
 
-
-(setq custom-file (concat user-emacs-directory "custom.el"))
-(load custom-file 'noerror)
+(use-package cus-edit
+  :ensure nil
+  :custom
+  (custom-file (concat user-emacs-directory "custom.el"))
+  :config
+  (load custom-file 'noerror))
 
 (use-package rego-mode
   :ensure t)
 
-(set-face-attribute 'default nil :height 120)
+(use-package faces
+  :ensure nil
+  :config
+  (set-face-attribute 'default nil :height 120))
 
 (use-package toc-org
   :ensure t)
@@ -699,33 +598,11 @@
 (use-package pandoc-mode
   :ensure t)
 
-(use-package find-file-in-project
-  :ensure t
-  :custom
-  (ffip-use-rust-fd t))
-
-;; (add-to-list 'load-path (concat (getenv "JAVA_HOME") "/bin"))
-
-(add-to-list 'auto-mode-alist '("\\.shell-session\\'" . sh-mode))
-
 (use-package gnuplot
   :ensure t)
 
 (use-package fzf
   :ensure t)
-
-(defvar bootstrap-version)
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 5))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
 
 (use-package dockerfile-mode
   :ensure t)
@@ -733,29 +610,16 @@
 (use-package org-make-toc
   :ensure t)
 
-(use-package dogears
-  :quelpa (dogears :fetcher github :repo "alphapapa/dogears.el")
-
-  :init (dogears-mode)
-  ;; These bindings are optional, of course:
-  :bind (:map global-map
-              ("M-g d" . dogears-go)
-              ("M-g M-b" . dogears-back)
-              ("M-g M-f" . dogears-forward)
-              ("M-g M-d" . dogears-list)
-              ("M-g M-D" . dogears-sidebar)))
-
 (use-package go-mode
   :ensure t)
 
+(use-package auth-source
+  :ensure nil
+  :custom
+  (auth-sources '((:source "~/.authinfo.gpg"))))
+
 (use-package forge
   :after magit
-  :ensure t
-  :config
-  (setq auth-sources '((:source "~/.authinfo.gpg")))
-  (setq gitlab.user "sibi"))
-
-(use-package prodigy
   :ensure t)
 
 (use-package protobuf-mode
@@ -773,17 +637,16 @@
 (use-package package-lint
   :ensure t)
 
-;; Use shell-like backspace C-h, rebind help to F1
-(define-key key-translation-map [?\C-h] [?\C-?])
-(global-set-key (kbd "<f1>") 'help-command)
-
 (use-package helpful
   :ensure t
-  :config
-  (progn
-    (global-set-key (kbd "C-h F") 'helpful-function)
-    (global-set-key (kbd "C-h k") 'helpful-key)
-    (global-set-key (kbd "C-h v") 'helpful-variable)))
+  :bind
+  (("<f1>" . help-command)
+   ("C-h F" . helpful-function)
+   ("C-h k" . helpful-key)
+   ("C-h v" . helpful-variable))
+  :init
+  ;; Use shell-like backspace C-h, rebind help to F1
+  (define-key key-translation-map [?\C-h] [?\C-?]))
 
 (use-package doom-modeline
   :ensure t
@@ -793,36 +656,19 @@
   :ensure t
   :custom
   (typescript-indent-level 2))
-;;; Workaround to make GPG agent work well with ssh keys till I move
-;;; managing my xmonad configuration with home manager itself
-
-;; https://github.com/nix-community/home-manager/issues/307
-;; https://nix-community.github.io/home-manager/index.html#sec-install-standalone
-;; https://github.com/nix-community/home-manager/issues/292#issuecomment-403104476
-;; We do this to setup GPG integration properly
-
-(setenv "SSH_AUTH_SOCK"
-        (string-trim (shell-command-to-string "gpgconf --list-dirs agent-ssh-socket")))
-
-
-(put 'upcase-region 'disabled nil)
-(put 'downcase-region 'disabled nil)
-
-;; https://emacs.stackexchange.com/a/13096
-(defun sibi-reload-dir-locals-for-current-buffer ()
-  "reload dir locals for the current buffer"
-  (interactive)
-  (let ((enable-local-variables :all))
-    (hack-dir-local-variables-non-file-buffer)))
 
 (use-package vterm
   :custom
   (vterm-shell "fish"))
 
-;;; https://www.reddit.com/r/emacs/comments/y92y4b/tramp_users_slowness_got_you_down_check/
-(setq vc-handled-backends '(Git))
-;; https://www.reddit.com/r/emacs/comments/4c0mi3/the_biggest_performance_improvement_to_emacs_ive/
-(remove-hook 'find-file-hooks 'vc-find-file-hook)
+(use-package bison-mode
+  :ensure t)
+
+(use-package pdf-tools
+  :init (pdf-tools-install))
+
+(use-package php-mode
+  :ensure t)
 
 ;; Best to have it at bottom
 ;; https://github.com/Kungsgeten/selected.el#installation-and-setup
@@ -839,18 +685,7 @@
               ("G" . google-this)
               ("m" . apply-macro-to-region-lines)))
 
-(use-package bison-mode
-  :ensure t)
-
-(use-package pdf-tools
-  :init (pdf-tools-install))
-
-(use-package php-mode
-  :ensure t)
-
 (load-file "~/.emacs.d/haskell.el")
-(load-file "~/.emacs.d/python.el")
-(load-file "~/.emacs.d/web.el")
 (load-file "~/.emacs.d/sibi-utils.el")
 (load-file "~/.emacs.d/org.el")
 (load-file "~/github/dotfiles/.emacs.d/devops.el")  ; Have this at the end because of envrc
