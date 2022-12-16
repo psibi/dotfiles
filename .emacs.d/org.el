@@ -58,10 +58,6 @@
     (setq org-roam-v2-ack t)
     (org-roam-db-autosync-mode)))
 
-;; (use-package ox-twbs
-;;   :ensure t)
-
-
 (use-package htmlize
   :ensure t)
 
