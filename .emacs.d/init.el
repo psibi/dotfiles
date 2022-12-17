@@ -670,6 +670,11 @@
 (use-package php-mode
   :ensure t)
 
+(use-package conf-mode
+  :ensure nil
+  :after (lsp-mode)
+  :hook (conf-toml-mode . lsp-deferred))
+
 ;; Best to have it at bottom
 ;; https://github.com/Kungsgeten/selected.el#installation-and-setup
 (use-package selected

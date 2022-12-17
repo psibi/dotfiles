@@ -132,6 +132,7 @@ with pkgs; [
   hwatch
   sibiEmacs
   haskellPackages.implicit-hie
+  taplo
 
   # Unfree
   google-chrome
