@@ -133,6 +133,7 @@ with pkgs; [
   sibiEmacs
   haskellPackages.implicit-hie
   taplo
+  nodePackages.vscode-json-languageserver
 
   # Unfree
   google-chrome

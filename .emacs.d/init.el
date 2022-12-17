@@ -134,7 +134,10 @@
   (which-key-mode))
 
 (use-package lsp-mode
-  :ensure t
+  ;; :ensure t
+  :quelpa (lsp-mode :fetcher file
+                    :path "~/github/lsp-mode"
+                    :files ("*.el" "clients/*.el"))
   :init (setq lsp-keymap-prefix "C-l")
   :after (dash)
   :commands lsp
@@ -674,6 +677,15 @@
   :ensure nil
   :after (lsp-mode)
   :hook (conf-toml-mode . lsp-deferred))
+
+(use-package json-mode
+  :ensure t
+  :hook (json-mode . lsp-deferred))
+
+(use-package lsp-json
+  :ensure lsp-mode
+  :after lsp-mode
+  :demand t)
 
 ;; Best to have it at bottom
 ;; https://github.com/Kungsgeten/selected.el#installation-and-setup
