@@ -144,9 +144,9 @@
   :hook ((lsp-mode . lsp-enable-which-key-integration)
          (lsp-configure . lsp-lens-mode))
   :custom
-  (lsp-disabled-clients '(tfls clangd rls))
   ;; (lsp-log-io t)
   (lsp-log-io nil)
+  (lsp-disabled-clients '(tfls clangd rls rnix-lsp))
   (lsp-semantic-tokens-enable t)
   (lsp-lens-auto-enable t)
   (lsp-semantic-tokens-honor-refresh-requests nil)
@@ -529,7 +529,15 @@
             (setq dumb-jump-force-searcher 'rg)))
 
 (use-package nix-mode
+  :hook (nix-mode . lsp-deferred)
   :ensure t)
+
+(use-package lsp-nix
+  :ensure lsp-mode
+  :after (lsp-mode)
+  :demand t
+  :custom
+  (lsp-nix-nil-formatter ["nixpkgs-fmt"]))
 
 (use-package git-link
   :quelpa (git-link :fetcher file
