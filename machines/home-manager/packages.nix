@@ -11,7 +11,6 @@ with pkgs; [
   rxvt_unicode
   keybase-gui
   keybase
-  amber-secret
   wget
   curl
   firefox
@@ -134,6 +133,7 @@ with pkgs; [
   haskellPackages.implicit-hie
   taplo
   nodePackages.vscode-json-languageserver
+  nil
 
   # Unfree
   google-chrome
@@ -146,6 +146,8 @@ with pkgs; [
   em
   terraform-ls
   cnx-sibi
+  amber-secret
+  nil
 
   # unstable.google-chrome
 ]
