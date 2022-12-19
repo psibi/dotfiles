@@ -154,6 +154,22 @@
   (lsp-semantic-tokens-allow-ranged-requests t)
   (lsp-semantic-tokens-warn-on-missing-face nil))
 
+(use-package lsp-ui
+  :ensure t
+  :after (lsp-mode)
+  :commands lsp-ui-mode
+  :custom
+  (lsp-ui-doc-enable t)
+  (lsp-ui-doc-header t)
+  (lsp-ui-doc-show-with-cursor t)
+  (lsp-ui-doc-include-signature t))
+
+(use-package lsp-origami
+  :ensure t
+  :after (lsp-mode)
+  :config
+  (add-hook 'lsp-after-open-hook #'lsp-origami-try-enable))
+
 (use-package lsp-terraform
   :ensure lsp-mode
   :after lsp-mode
@@ -181,16 +197,6 @@
   :after (lsp-mode)
   :mode (("\\.yml\\'" . yaml-mode))
   :hook ((yaml-mode . lsp-deferred)))
-
-(use-package lsp-ui
-  :ensure t
-  :after (lsp-mode)
-  :commands lsp-ui-mode
-  :custom
-  (lsp-ui-doc-enable t)
-  (lsp-ui-doc-header t)
-  (lsp-ui-doc-show-with-cursor t)
-  (lsp-ui-doc-include-signature t))
 
 (use-package treemacs-all-the-icons
   :ensure t)
@@ -686,9 +692,16 @@
   :after (lsp-mode)
   :hook (conf-toml-mode . lsp-deferred))
 
+(defun sibi-custom-json-hook ()
+  "Custom hook to save spaces in json file."
+  (make-local-variable 'tab-width)
+  (make-local-variable 'js-indent-level)
+  (setq tab-width 2)
+  (setq js-indent-level 2))
+
 (use-package json-mode
   :ensure t
-  :hook (json-mode . lsp-deferred))
+  :hook ((json-mode lsp-deferred) . sibi-custom-json-hook))
 
 (use-package lsp-json
   :ensure lsp-mode
