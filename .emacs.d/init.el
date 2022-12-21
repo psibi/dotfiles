@@ -216,10 +216,10 @@
   :ensure t)
 
 (use-package rustic
-  ;; :quelpa (rustic :fetcher file
-  ;;                 :path "~/github/rustic")
+  :quelpa (rustic :fetcher file
+                  :path "~/github/rustic")
   :after (lsp-mode)
-  :ensure t
+  ;; :ensure t
   :bind (:map rustic-mode-map
               ("M-j" . lsp-ui-imenu)
               ("M-?" . lsp-find-references)
@@ -352,9 +352,7 @@
   :ensure t
   :diminish helm-mode "h"
   :init
-  (progn
-    (require 'helm-config)
-    (helm-mode 1))
+  (helm-mode 1)
   :bind
   (("C-c h" . helm-command-prefix)
    ("M-x" . helm-M-x)
@@ -528,11 +526,11 @@
 
 (use-package dumb-jump
   :ensure t
-  :bind (("M-g o" . dumb-jump-go-other-window)
-         ("M-g b" . dumb-jump-back))
-  :config (progn
-            (setq dumb-jump-selector 'helm)
-            (setq dumb-jump-force-searcher 'rg)))
+  :config
+  (add-hook 'xref-backend-functions 'dumb-jump-xref-activate)
+  :custom
+  (dumb-jump-prefer-searcher 'rg)
+  (xref-show-definitions-function #'xref-show-definitions-completing-read))
 
 (use-package nix-mode
   :hook (nix-mode . lsp-deferred)
@@ -546,10 +544,7 @@
   (lsp-nix-nil-formatter ["nixpkgs-fmt"]))
 
 (use-package git-link
-  :quelpa (git-link :fetcher file
-                    :path "~/github/git-link/git-link.el")
-
-  ;; :ensure t
+  :ensure t
   :custom
   (git-link-use-commit t))
 
@@ -562,9 +557,7 @@
   :bind (("C-c C-d" . deadgrep)
          :map deadgrep-mode-map
          ("C-c" . deadgrep-visit-result-other-window))
-  :ensure t
-  :config
-  (add-hook 'xref-backend-functions 'dumb-jump-xref-activate))
+  :ensure t)
 
 ;; Refresher:
 ;; C-c r - Root file in HELM
@@ -647,9 +640,6 @@
   :config
   (customize-set-variable 'langtool-bin "languagetool-commandline")
   (customize-set-variable 'langtool-default-language "en-US"))
-
-(use-package nixpkgs-fmt
-  :ensure t)
 
 (use-package package-lint
   :ensure t)
