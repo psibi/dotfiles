@@ -148,6 +148,7 @@ with pkgs; [
   cnx-sibi
   amber-secret
   nil
+  marksman
 
   # unstable.google-chrome
 ]
