@@ -122,6 +122,8 @@
 
 (use-package markdown-mode
   :ensure t
+  :after (lsp-mode)
+  :hook ((markdown-mode . lsp-deferred))
   :bind (:map markdown-mode-map
               ;; ("C-c p" . markdown-previous-visible-heading)
               ("C-c n" . markdown-next-visible-heading))
@@ -170,6 +172,11 @@
   :config
   (add-hook 'lsp-after-open-hook #'lsp-origami-try-enable))
 
+(use-package lsp-markdown
+  :ensure lsp-mode
+  :after lsp-mode
+  :demand t)
+
 (use-package lsp-terraform
   :ensure lsp-mode
   :after lsp-mode
@@ -195,7 +202,6 @@
 (use-package yaml-mode
   :ensure t
   :after (lsp-mode)
-  :mode (("\\.yml\\'" . yaml-mode))
   :hook ((yaml-mode . lsp-deferred)))
 
 (use-package treemacs-all-the-icons
@@ -558,18 +564,6 @@
          :map deadgrep-mode-map
          ("C-c" . deadgrep-visit-result-other-window))
   :ensure t)
-
-;; Refresher:
-;; C-c r - Root file in HELM
-;; C-c h o - Helm occur
-;; C-c h i - helm-imenu
-;; C-c h b - Resume previous helm session
-;; C- Spc : Marks
-;; C-c C-i  : insert mark content
-
-;; Recusively find & replace in text files
-;; M-x find-name-dired
-;; t, Q, query-replace-regexp
 
 (use-package cus-edit
   :ensure nil
