@@ -597,7 +597,8 @@
   :init
   (add-hook 'after-init-hook 'global-company-mode)
   :custom
-  (company-minimum-prefix-length 0))
+  (company-minimum-prefix-length 0)
+  (company-idle-delay 0.5))
 
 (use-package company-box
   :after company
