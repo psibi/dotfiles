@@ -2,9 +2,10 @@
   :ensure t
   :bind
   (:map just-mode-map
-        ("C-c C-j" . justl))
-  (:map justl-compile-mode-map
-        ("C-c C-j" . justl)))
+	("C-c C-j" . justl)
+	("C-c C-r" . justl-exec-default-recipe)
+	:map justl-compile-mode-map
+	("C-c C-j" . justl)))
 
 (use-package kubel
   :ensure t
