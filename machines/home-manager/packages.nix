@@ -59,7 +59,6 @@ with pkgs; [
   broot
   du-dust
   azure-cli
-  ormolu
   hlint
   aws-iam-authenticator
   kustomize
@@ -91,7 +90,6 @@ with pkgs; [
   difftastic
   docker-compose
   shellcheck
-  nodePackages.yaml-language-server
   man-pages
   man-pages-posix
   gimp
@@ -130,10 +128,15 @@ with pkgs; [
   awscli2
   hwatch
   sibiEmacs
-  haskellPackages.implicit-hie
   taplo
-  nodePackages.vscode-json-languageserver
   nil
+  ormolu
+  emacs-all-the-icons-fonts
+
+  nodePackages.yaml-language-server
+  nodePackages.vscode-json-languageserver
+  nodePackages.dockerfile-language-server-nodejs
+  haskellPackages.implicit-hie
 
   # Unfree
   google-chrome
@@ -149,6 +152,4 @@ with pkgs; [
   amber-secret
   nil
   marksman
-
-  # unstable.google-chrome
 ]
