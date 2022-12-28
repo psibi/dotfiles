@@ -1,7 +1,3 @@
-(use-package ormolu
-  :ensure t
-  :init)
-
 (use-package haskell-mode
   :ensure t
   :after (lsp-mode)
@@ -24,7 +20,7 @@
   :after (haskell-mode)
   :custom
   (lsp-haskell-process-path-hie "haskell-language-server-wrapper")
-  (lsp-haskell-plugin-tactics-global-on nil)
+  (lsp-haskell-plugin-tactics-global-on t)
   (lsp-haskell-plugin-import-lens-code-lens-on t)
   (lsp-haskell-plugin-class-global-on t)
   (lsp-haskell-plugin-eval-global-on t)
