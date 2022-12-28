@@ -71,20 +71,18 @@
   (package-archives '(("gnu"   . "http://elpa.gnu.org/packages/")
                       ("melpa" . "https://melpa.org/packages/"))))
 
-(use-package comp
-  :ensure nil
-  :custom
-  ;; https://github.com/jrblevin/markdown-mode/issues/578#issuecomment-1126380098
-  (native-comp-deferred-compilation-deny-list '("markdown-mode\\.el$")))
-
 (use-package quelpa-use-package
   :ensure t)
 
 (use-package dash
   :ensure t)
 
+(use-package all-the-icons
+  :ensure nil)
+
 (use-package doom-themes
   :ensure t
+  :after (all-the-icons)
   :custom
   (doom-themes-enable-bold t)
   (doom-themes-enable-italic t)
@@ -92,8 +90,14 @@
   (load-theme 'doom-one t)
   (doom-themes-org-config))
 
+(use-package doom-modeline
+  :ensure t
+  :after (all-the-icons)
+  :hook (after-init . doom-modeline-mode))
+
 (use-package treemacs
   :ensure t
+  :after (all-the-icons)
   :bind
   (:map global-map
         ("C-x t o" . treemacs-select-window)))
@@ -114,11 +118,6 @@
   (flycheck-idle-change-delay 0.5)
   (flycheck-sh-shellcheck-executable "shellcheck")
   (flycheck-check-syntax-automatically '(save idle-change mode-enabled)))
-
-(use-package markdown-toc
-  :ensure t
-  :custom
-  (markdown-toc-indentation-space 2))
 
 (use-package markdown-mode
   :ensure t
@@ -472,11 +471,6 @@
   :config
   (flycheck-pos-tip-mode))
 
-;; Make sure to call (all-the-icons-install-fonts) once
-;; (all-the-icons-install-fonts)
-(use-package all-the-icons
-  :ensure t)
-
 (use-package expand-region
   :ensure t)
 
@@ -592,7 +586,7 @@
   (add-hook 'after-init-hook 'global-company-mode)
   :custom
   (company-minimum-prefix-length 0)
-  (company-idle-delay 0.5))
+  (company-idle-delay 0.2))
 
 (use-package company-box
   :after company
@@ -610,7 +604,14 @@
   :ensure t)
 
 (use-package dockerfile-mode
-  :ensure t)
+  :ensure t
+  :after (lsp-dockerfile)
+  :hook (dockerfile-mode . lsp-deferred))
+
+(use-package lsp-dockerfile
+  :ensure lsp-mode
+  :after (lsp-mode)
+  :demand t)
 
 (use-package org-make-toc
   :ensure t)
@@ -650,14 +651,11 @@
   ;; Use shell-like backspace C-h, rebind help to F1
   (define-key key-translation-map [?\C-h] [?\C-?]))
 
-(use-package doom-modeline
-  :ensure t
-  :config (doom-modeline-mode 1))
-
 (use-package typescript-mode
   :ensure t
   :custom
   (typescript-indent-level 2))
+
 
 (use-package vterm
   :custom
@@ -686,11 +684,13 @@
 
 (use-package json-mode
   :ensure t
-  :hook ((json-mode lsp-deferred) . sibi-custom-json-hook))
+  :after lsp-mode
+  :hook ((json-mode . lsp-deferred)
+	 (json-mode . sibi-custom-json-hook)))
 
 (use-package lsp-json
   :ensure lsp-mode
-  :after lsp-mode
+  :after json-mode
   :demand t)
 
 ;; Best to have it at bottom
