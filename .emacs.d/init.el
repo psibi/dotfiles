@@ -447,11 +447,8 @@
   :config
   (guide-key-mode 1))
 
-(use-package window-numbering
-  :ensure t
-  :init
-  (progn
-    (window-numbering-mode t)))
+(use-package ace-window
+  :ensure t)
 
 (use-package ace-jump-mode
   :ensure t
