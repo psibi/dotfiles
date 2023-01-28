@@ -6,16 +6,17 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
-  nixpkgs.config.packageOverrides = pkgs: rec {
-    cloudflare-warp = pkgs.callPackage ../packages/cloudflare-warp/default.nix {};
+  nixpkgs.config.packageOverrides = pkgs: {
+    cloudflare-warp = pkgs.callPackage ../packages/cloudflare-warp/default.nix { };
   };
 
   # Yubikey
-  services.udev.packages = [ pkgs.yubikey-personalization];
+  services.udev.packages = [ pkgs.yubikey-personalization ];
   services.pcscd.enable = true;
 
   # For sudo/login with Yubikey
@@ -35,10 +36,11 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelModules = [
-                         # Virtual Camera
-                         "v4l2loopback"
-                         # Virtual Microphone, built-in
-                         "snd-aloop"];
+    # Virtual Camera
+    "v4l2loopback"
+    # Virtual Microphone, built-in
+    "snd-aloop"
+  ];
   boot.extraModulePackages = [
     config.boot.kernelPackages.v4l2loopback
   ];
@@ -81,13 +83,9 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
-     font = "Lat2-Terminus16";
-     keyMap = "us";
+    font = "Lat2-Terminus16";
+    keyMap = "us";
   };
-
-  # services.xserver.desktopManager = {
-  #  xfce.enable = true;
-  # };
 
   services.earlyoom.enable = true;
 
@@ -105,37 +103,29 @@
     extraPackages = self: [ self.typed-process self.utf8-string ];
   };
 
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-
   # Enable sound.
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sibi = {
-     isNormalUser = true;
-     extraGroups = [ "wheel" "audio" "sound" "video" "docker" "networkmanager" ]; # Enable ‘sudo’ for the user.
-   };
+    isNormalUser = true;
+    extraGroups = [ "wheel" "audio" "sound" "video" "docker" "networkmanager" ];
+  };
 
   virtualisation.docker.enable = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     yubico-pam
     yubikey-manager
   ];
 
   fonts.fonts = with pkgs; [
-     ubuntu_font_family
-     font-awesome
-     symbola
-     alegreya
-     nerdfonts
+    ubuntu_font_family
+    font-awesome
+    symbola
+    alegreya
+    nerdfonts
   ];
 
   environment.homeBinInPath = true;
@@ -158,6 +148,10 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+  # For disk automount
+  security.polkit.enable = true;
+  services.udisks2.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
