@@ -103,6 +103,8 @@ with pkgs; [
   cargo-outdated
   cargo-expand
   cargo-generate
+  cargo-cache
+  cargo-udeps
   keepassxc
   stack
   argo-rollouts
@@ -132,6 +134,11 @@ with pkgs; [
   nil
   ormolu
   emacs-all-the-icons-fonts
+  kube-capacity
+  pdftk
+  xfce.thunar
+  xfce.thunar-volman
+  gparted
 
   nodePackages.yaml-language-server
   nodePackages.vscode-json-languageserver

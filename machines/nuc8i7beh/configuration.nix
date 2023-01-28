@@ -152,6 +152,7 @@
   # For disk automount
   security.polkit.enable = true;
   services.udisks2.enable = true;
+  services.devmon.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
