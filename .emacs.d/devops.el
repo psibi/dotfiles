@@ -8,9 +8,13 @@
 	("C-c C-j" . justl)))
 
 (use-package kubel
-  :ensure t
+  ;; :ensure t
+    :quelpa (kubel :fetcher file
+                   :path "~/github/kubel/kubel.el"
+                    )
   :custom
-  (kubel-use-namespace-list 'on))
+  (kubel-use-namespace-list 'on)
+  (kubel-env-variables (list "KUBECONFIG" "AWS_ACCESS_KEY_ID" "AWS_SECRET_ACCESS_KEY")))
 
 (use-package docker
   :ensure t
