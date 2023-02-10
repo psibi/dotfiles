@@ -105,6 +105,7 @@ with pkgs; [
   cargo-generate
   cargo-cache
   cargo-udeps
+  cargo-llvm-cov
   keepassxc
   stack
   argo-rollouts
@@ -139,6 +140,7 @@ with pkgs; [
   xfce.thunar
   xfce.thunar-volman
   gparted
+  parallel
 
   nodePackages.yaml-language-server
   nodePackages.vscode-json-languageserver
