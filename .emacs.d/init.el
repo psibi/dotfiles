@@ -189,7 +189,7 @@
   :after lsp-mode
   :demand t
   :custom
-  (lsp-rust-analyzer-server-command '("rustup run stable rust-analyzer"))
+  (lsp-rust-analyzer-server-command '("rustup" "run" "stable" "rust-analyzer"))
   (lsp-rust-analyzer-server-display-inlay-hints t)
   (lsp-rust-analyzer-experimental-proc-attr-macros t)
   (lsp-rust-analyzer-proc-macro-enable t))
@@ -239,7 +239,7 @@
   :config
   (setq rustic-format-on-save nil)
   :custom
-  (rustic-analyzer-command '("rust-analyzer"))
+  (rustic-analyzer-command '("rustup" "run" "stable" "rust-analyzer"))
   (rustic-default-clippy-arguments nil)
   (rustic-babel-auto-wrap-main nil)
   (rustic-cargo-default-install-arguments '("--path" "." "--locked" "--offline" "--profile" "dev")))

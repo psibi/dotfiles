@@ -151,9 +151,6 @@ with pkgs; [
   google-chrome
   vscode
 
-  # Unstable
-  unstable.rust-analyzer
-
   # From Overlays
   em
   terraform-ls
