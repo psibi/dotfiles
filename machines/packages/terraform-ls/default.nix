@@ -2,17 +2,15 @@
 
 buildGoModule rec {
   pname = "terraform-ls";
-  version = "0.28.1";
+  version = "0.30.2";
 
   src = fetchFromGitHub {
     owner = "hashicorp";
     repo = pname;
     rev = "v${version}";
-    sha256 = "sha256-6K4aOp5mjX+qhG/OS/Gs1kAOpDGUPdgRNx4zp3i/c2A=";
+    sha256 = "sha256-d2+9+Kj+CV7MSSFbSrWBfmUc2L0XmpZk84rOsSc8CLA=";
   };
-  vendorSha256 = "sha256-YouAdTo7huco35er84MRfI1gmq11VbFwRGSovs1XDYo=";
-
-  ldflags = [ "-s" "-w" "-X main.version=v${version}" "-X main.prerelease=" ];
+  vendorSha256 = "sha256-j6yUmC9rqkrCziB9SfSwn0QMMOgNcbe3dWp8SMDBVYA=";
 
   # There's a mixture of tests that use networking and several that fail on aarch64
   doCheck = false;
@@ -21,7 +19,7 @@ buildGoModule rec {
   installCheckPhase = ''
     runHook preInstallCheck
     $out/bin/terraform-ls --help
-    $out/bin/terraform-ls version | grep "v${version}"
+    $out/bin/terraform-ls --version | grep "${version}"
     runHook postInstallCheck
   '';
 
@@ -30,6 +28,6 @@ buildGoModule rec {
     homepage = "https://github.com/hashicorp/terraform-ls";
     changelog = "https://github.com/hashicorp/terraform-ls/blob/v${version}/CHANGELOG.md";
     license = licenses.mpl20;
-    maintainers = with maintainers; [ mbaillie jk ];
+    maintainers = with maintainers; [ mbaillie jk psibi ];
   };
 }
