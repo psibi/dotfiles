@@ -138,6 +138,12 @@
         identitiesOnly = true;
         identityFile = "~/.ssh/id_rsa";
       };
+      "github+levana" = {
+        host = "github+levana";
+        hostname = "github.com";
+        identitiesOnly = true;
+        identityFile = "~/.ssh/levana_id_rsa";
+      };
       "gitlab" = {
         host = "gitlab.com";
         hostname = "gitlab.com";

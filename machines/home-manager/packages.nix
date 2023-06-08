@@ -113,7 +113,6 @@ with pkgs; [
   paprefs
   sqlx-cli
   grpcurl
-  adoptopenjdk-bin
   plantuml
   zola
   jl
@@ -141,6 +140,14 @@ with pkgs; [
   xfce.thunar-volman
   gparted
   parallel
+  jdk
+  jdt-language-server
+  maven
+  flutter
+  cmake
+  ninja
+  pkg-config
+  usbutils
 
   nodePackages.yaml-language-server
   nodePackages.vscode-json-languageserver
@@ -158,4 +165,8 @@ with pkgs; [
   amber-secret
   nil
   marksman
+  infer
+
+  # Unstable
+  unstable.ledger-live-desktop
 ]
