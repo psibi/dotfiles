@@ -131,4 +131,28 @@
     package = pkgs.sibiEmacs;
   };
 
+
+  programs.ssh = {
+    enable = true;
+    matchBlocks = {
+      "github" = {
+        host = "github.com";
+        hostname = "github.com";
+        identitiesOnly = true;
+        identityFile = "~/.ssh/id_rsa";
+      };
+      "github+levana" = {
+        host = "github+levana";
+        hostname = "github.com";
+        identitiesOnly = true;
+        identityFile = "~/.ssh/levana_key";
+      };
+      "gitlab" = {
+        host = "gitlab.com";
+        hostname = "gitlab.com";
+        identitiesOnly = true;
+        identityFile = "~/.ssh/id_rsa";
+      };
+    };
+  };
 }

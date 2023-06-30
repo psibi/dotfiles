@@ -165,8 +165,7 @@ with pkgs; [
   amber-secret
   nil
   marksman
-  infer
 
   # Unstable
-  unstable.ledger-live-desktop
+  # unstable.ledger-live-desktop
 ]
