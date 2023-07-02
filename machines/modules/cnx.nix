@@ -17,7 +17,7 @@ in {
       };
       Service = {
         Type = "simple";
-        ExecStart = "${pkgs.cnx-sibi}/bin/cnx-sibi";
+        ExecStart = "/home/sibi/.cargo/bin/cnx-sibi";
         Environment = "CNX_MACHINE=${cfg.machineName}";
         Restart = "on-failure";
       };
