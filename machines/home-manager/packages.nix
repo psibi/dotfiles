@@ -149,9 +149,13 @@ with pkgs; [
   pkg-config
   usbutils
 
+
   nodePackages.yaml-language-server
   nodePackages.vscode-json-languageserver
   nodePackages.dockerfile-language-server-nodejs
+  nodejs
+  nodePackages.typescript
+  nodePackages.typescript-language-server
   haskellPackages.implicit-hie
 
   # Unfree
@@ -165,7 +169,6 @@ with pkgs; [
   amber-secret
   nil
   marksman
-  infer
 
   # Unstable
   unstable.ledger-live-desktop

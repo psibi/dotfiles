@@ -16,7 +16,7 @@
   };
 
   # Yubikey
-  services.udev.packages = [ pkgs.yubikey-personalization ];
+  services.udev.packages = [ pkgs.yubikey-personalization pkgs.ledger-udev-rules ];
   services.pcscd.enable = true;
 
   # For sudo/login with Yubikey
@@ -110,7 +110,16 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sibi = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "audio" "sound" "video" "docker" "networkmanager" ];
+    extraGroups = [
+      "wheel"
+      "audio"
+      "sound"
+      "video"
+      "docker"
+      "networkmanager"
+      "libvirtd"
+      "plugdev"
+    ];
   };
 
   virtualisation.docker.enable = true;
@@ -118,6 +127,7 @@
   environment.systemPackages = with pkgs; [
     yubico-pam
     yubikey-manager
+    virt-manager
   ];
 
   fonts.fonts = with pkgs; [
@@ -155,6 +165,9 @@
   services.devmon.enable = true;
 
   services.fwupd.enable = true;
+
+  virtualisation.libvirtd.enable = true;
+
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

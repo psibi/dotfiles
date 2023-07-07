@@ -182,7 +182,9 @@
   :demand t
   :custom
   (lsp-terraform-ls-enable-show-reference t)
-  (lsp-terraform-ls-prefer-treemacs-all-the-icons-theme t))
+  (lsp-terraform-ls-prefer-treemacs-all-the-icons-theme t)
+  (lsp-terraform-ls-validate-on-save t)
+  (lsp-terraform-ls-prefill-required-fields t))
 
 (use-package lsp-rust
   :ensure lsp-mode
@@ -655,6 +657,11 @@
   :custom
   (typescript-indent-level 2))
 
+;;; Required for typescript
+(use-package lsp-javascript
+  :ensure lsp-mode
+  :after lsp-mode
+  :demand t)
 
 (use-package vterm
   :custom
@@ -706,6 +713,26 @@
               ("g" . google-this-noconfirm)
               ("G" . google-this)
               ("m" . apply-macro-to-region-lines)))
+
+(use-package csharp-mode
+  :ensure t)
+
+(use-package lsp-java
+  ;; :ensure t
+  :quelpa (lsp-java :fetcher file
+                    :path "~/github/lsp-java"
+                    :files ("*.el"))
+  :after lsp-mode
+  :custom
+  (lsp-java-server-config-dir "/home/sibi/config_linux")
+  (lsp-java-server-install-dir (expand-file-name "share/java" (file-name-directory (directory-file-name (file-name-directory (file-name-directory (file-truename (executable-find "jdt-language-server"))))))))
+  :hook (java-mode . lsp-deferred))
+
+(use-package dart-mode
+  :ensure t)
+
+(use-package flycheck-vale
+  :ensure t)
 
 (load-file "~/.emacs.d/haskell.el")
 (load-file "~/.emacs.d/sibi-utils.el")

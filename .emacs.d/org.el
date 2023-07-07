@@ -89,6 +89,10 @@
 (use-package ob-http
   :ensure t)
 
+(use-package ob-typescript
+  :ensure t)
+
+
 ;; https://orgmode.org/worg/org-contrib/babel/languages/index.html#configure
 (org-babel-do-load-languages
  'org-babel-load-languages
