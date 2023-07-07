@@ -1,14 +1,14 @@
 { stdenv, lib, rustPlatform, fetchFromGitHub, pkgs }:
 
-rustPlatform.buildRustPackage rec {
+rustPlatform.buildRustPackage {
   pname = "cnx-sibi";
   version = "0.1";
 
   src = fetchFromGitHub {
     owner = "psibi";
     repo = "dotfiles";
-    rev = "aa1c394dfd7f4b51da5f9d4f2c8970a2f17d922c";
-    sha256 = "sha256-HK7FwOJ3hZhCpayDVVUe70XiwWTMfodMYWhjlDoBrr4=";
+    rev = "47db9a880244412114a52581b611cab4a9dfa642";
+    sha256 = "sha256-wdzZKaiLrleNxuQ7RfqwxE0SXEIcvWtLdCGncCK2/jI=";
   };
 
   sourceRoot = "source/cnx";
@@ -24,6 +24,7 @@ rustPlatform.buildRustPackage rec {
     clang
     xorg.libxcb
     xorg.libxcb.dev
+    wirelesstools
   ];
 
   buildInputs = with pkgs; [
@@ -33,7 +34,7 @@ rustPlatform.buildRustPackage rec {
     cairo
     gobject-introspection
     openssl
-    alsaLib
+    alsa-lib
     glib
     xorg.xcbutilwm
   ];
@@ -54,7 +55,7 @@ rustPlatform.buildRustPackage rec {
 
   LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
 
-  cargoSha256 = "sha256:09afj0nxam950rljyjllxy319702l402ss130wibhmlcrafl01f1";
+  cargoSha256 = "sha256-hXNdiPcmzVEeT6DKxwlnBnygy0PFCbmaooeXvvNbXAE=";
 
   meta = with lib; {
     description = "CNX status bar";

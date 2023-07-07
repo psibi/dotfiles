@@ -119,7 +119,7 @@ with pkgs; [
   krew
   kubectl
   yubikey-manager
-  yubioath-desktop
+  yubioath-flutter
   yubico-pam
   flex
   bison
@@ -148,6 +148,10 @@ with pkgs; [
   ninja
   pkg-config
   usbutils
+  eww
+  marksman
+  amber-secret
+  nil
 
 
   nodePackages.yaml-language-server
@@ -165,11 +169,8 @@ with pkgs; [
   # From Overlays
   em
   terraform-ls
-  cnx-sibi
-  amber-secret
-  nil
-  marksman
+  # cnx-sibi
 
   # Unstable
-  unstable.ledger-live-desktop
+  # unstable.ledger-live-desktop
 ]

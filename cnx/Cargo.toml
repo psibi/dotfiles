@@ -8,7 +8,7 @@ edition = "2021"
 [dependencies]
 anyhow = "1.0.51"
 byte-unit = "4.0.13"
-cnx = "0.3.0"
-cnx-contrib = { version = "0.1.0", features = ["wireless"]}
+cnx = { version = "0.3.0", git = "https://github.com/mjkillough/cnx.git"}
+cnx-contrib = { version = "0.1.0", features = ["wireless"], git = "https://github.com/mjkillough/cnx.git"}
 iwlib = "0.1.0"
 weathernoaa = "0.2.0"

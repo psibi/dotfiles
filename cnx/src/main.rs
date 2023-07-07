@@ -10,18 +10,17 @@ use weathernoaa::weather::WeatherInfo;
 
 enum Machine {
     Laptop,
-    Nuc
+    Nuc,
 }
 
 impl Machine {
     pub fn wireless_name(&self) -> &str {
         match self {
             Machine::Laptop => "wlp2s0",
-            Machine::Nuc => "wlp0s20f3"
+            Machine::Nuc => "wlp0s20f3",
         }
     }
 }
-
 
 fn pango_markup_render(color: Color, start_text: String, text: String) -> String {
     format!(
@@ -56,12 +55,14 @@ fn weather_sky_condition(condition: String) -> &'static str {
 
 fn main() -> Result<()> {
     let machine = match std::env::var("CNX_MACHINE") {
-        Ok(machine_var) => if machine_var.to_lowercase() == "nuc" {
-            Machine::Nuc
-        } else {
-            Machine::Laptop
+        Ok(machine_var) => {
+            if machine_var.to_lowercase() == "nuc" {
+                Machine::Nuc
+            } else {
+                Machine::Laptop
+            }
         }
-        Err(_) => anyhow::bail!("No CNX_MACHINE environment variable present")
+        Err(_) => anyhow::bail!("No CNX_MACHINE environment variable present"),
     };
     let attr = Attributes {
         font: Font::new("Ubuntu Mono Bold 14"),
@@ -103,7 +104,7 @@ fn main() -> Result<()> {
     });
     let cpu = cpu::Cpu::new(attr.clone(), Some(render))?;
 
-    let volume = volume::Volume::new(attr.clone());
+    // let volume = volume::Volume::new(attr.clone());
 
     let default_threshold = Threshold::default();
 
@@ -131,15 +132,18 @@ fn main() -> Result<()> {
 
     let weather = weather::Weather::new(attr.clone(), "VOBL".into(), Some(weather_render));
 
+    let mut inactive_attr = pager_attr.clone();
+    inactive_attr.bg_color = None;
+
     let mut p2_attr = pager_attr.clone();
     p2_attr.bg_color = None;
-    cnx.add_widget(Pager::new(pager_attr, p2_attr));
+    cnx.add_widget(Pager::new(PagerAttributes { active_attr: pager_attr, inactive_attr: inactive_attr.clone(), non_empty_attr: inactive_attr}));
     cnx.add_widget(ActiveWindowTitle::new(attr.clone()));
     cnx.add_widget(cpu);
     cnx.add_widget(weather);
     cnx.add_widget(disk_usage);
     cnx.add_widget(wireless);
-    cnx.add_widget(volume);
+    // cnx.add_widget(volume);
 
     // cnx.add_widget(sensors);
     cnx.add_widget(battery);

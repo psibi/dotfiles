@@ -15,7 +15,7 @@
     ouch = pkgs.callPackage ../packages/ouch/default.nix { };
   };
 
-  services.udev.packages = [ pkgs.yubikey-personalization ];
+  services.udev.packages = [ pkgs.yubikey-personalization pkgs.ledger-udev-rules ];
   services.pcscd.enable = true;
 
   nixpkgs.config.allowUnfree = true;
@@ -129,6 +129,7 @@
       "sound"
       "video"
       "docker"
+      "plugdev"
     ]; # Enable ‘sudo’ for the user.
   };
 
