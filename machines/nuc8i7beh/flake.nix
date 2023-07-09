@@ -2,7 +2,7 @@
   description = "NUC System Setup";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-22.11";
+    nixpkgs.url = "nixpkgs/nixos-23.05";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
   };
 

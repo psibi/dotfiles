@@ -11,10 +11,6 @@
       ./hardware-configuration.nix
     ];
 
-  nixpkgs.config.packageOverrides = pkgs: {
-    cloudflare-warp = pkgs.callPackage ../packages/cloudflare-warp/default.nix { };
-  };
-
   # Yubikey
   services.udev.packages = [ pkgs.yubikey-personalization pkgs.ledger-udev-rules ];
   services.pcscd.enable = true;
@@ -26,8 +22,6 @@
     mode = "challenge-response";
     control = "required";
   };
-
-  services.cloudflare-warp.enable = true;
 
   nixpkgs.config.allowUnfree = true;
   hardware.enableRedistributableFirmware = true;
