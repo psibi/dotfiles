@@ -29,6 +29,7 @@
 
     file = {
       ".stack/config.yaml".source = ../../../.stack/config.yaml;
+      ".stack/global-project/stack.yaml".source = ../../../.stack/stack.yaml;
       ".tfswitch.toml".source = ../../../tfswitch.toml;
       ".tgswitch.toml".source = ../../../tgswitch.toml;
       ".aws/config".source = ../../../aws-config;
@@ -162,6 +163,11 @@
     plugins = [ pkgs.obs-studio-plugins.obs-backgroundremoval ];
   };
 
+  programs.nix-index = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+
   fonts.fontconfig.enable = true;
 
   services.cnx = {
@@ -183,4 +189,6 @@
     maxCacheTtlSsh = 60480000;
     pinentryFlavor = "qt";
   };
+
+
 }
