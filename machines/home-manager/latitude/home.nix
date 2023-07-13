@@ -77,6 +77,12 @@
     enableGitCredentialHelper = true;
   };
 
+  programs.atuin = {
+    enable = true;
+    flags = ["--disable-up-arrow"];
+    enableFishIntegration = true;
+  };
+
   programs.zoxide = {
     enable = true;
     enableFishIntegration = true;
