@@ -19,5 +19,17 @@ build-hm:
     home-manager switch --flake .#arya
 
 # Flake metadata
-metadata:
+flake-info:
     nix flake metadata
+
+# Update flake
+update-flake:
+	nix flake update
+
+# Update nixpkgs-unstable
+update-unstable:
+	nix flake lock --update-input nixpkgs-unstable
+
+# Update specific input
+update-flake-input input:
+	nix flake lock --update-input {{input}}
