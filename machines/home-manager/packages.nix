@@ -108,6 +108,7 @@ with pkgs; [
   cargo-llvm-cov
   keepassxc
   stack
+  ghc
   argo-rollouts
   haskell-language-server
   paprefs
@@ -115,6 +116,9 @@ with pkgs; [
   grpcurl
   plantuml
   zola
+  zlib
+  zlib.dev
+  postgresql
   jl
   krew
   kubectl
