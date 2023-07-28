@@ -3,6 +3,7 @@ with pkgs; [
   git
   terraform-docs
   ouch
+  unzip
   dogdns
   tgswitch
   file
@@ -118,6 +119,8 @@ with pkgs; [
   zola
   zlib
   zlib.dev
+  # zlib.out
+  # zlib.static
   postgresql
   jl
   krew
