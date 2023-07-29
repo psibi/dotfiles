@@ -1,0 +1,7 @@
+# List all recipies
+default:
+	just --list --unsorted
+
+# Pin nixpkgs registry
+pin-registry:
+	nix registry pin --registry ./nix-registry.json nixpkgs
