@@ -159,7 +159,7 @@ with pkgs; [
   marksman
   amber-secret
   nil
-
+  appimage-run
 
   nodePackages.yaml-language-server
   nodePackages.vscode-json-languageserver

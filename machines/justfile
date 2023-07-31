@@ -2,6 +2,10 @@
 default:
 	just --list --unsorted
 
+# List registry
+ls-registry:
+	nix registry list
+
 # Pin nixpkgs registry
 pin-registry:
 	nix registry pin --registry ./nix-registry.json nixpkgs
