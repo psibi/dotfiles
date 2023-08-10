@@ -153,7 +153,8 @@
   (lsp-semantic-tokens-honor-refresh-requests nil)
   (lsp-semantic-tokens-allow-delta-requests t)
   (lsp-semantic-tokens-allow-ranged-requests t)
-  (lsp-semantic-tokens-warn-on-missing-face nil))
+  (lsp-semantic-tokens-warn-on-missing-face nil)
+  (lsp-inlay-hint-enable t))
 
 (use-package lsp-ui
   :ensure t
@@ -194,7 +195,11 @@
   (lsp-rust-analyzer-server-command '("rustup" "run" "stable" "rust-analyzer"))
   (lsp-rust-analyzer-server-display-inlay-hints t)
   (lsp-rust-analyzer-experimental-proc-attr-macros t)
-  (lsp-rust-analyzer-proc-macro-enable t))
+  (lsp-rust-analyzer-proc-macro-enable t)
+  (lsp-rust-analyzer-binding-mode-hints t)
+  (lsp-rust-analyzer-display-closure-return-type-hints t)
+  (lsp-rust-analyzer-display-parameter-hints t)
+  (lsp-rust-analyzer-closure-capture-hints t))
 
 (use-package ccls
   :ensure t
@@ -224,10 +229,10 @@
   :ensure t)
 
 (use-package rustic
-  :quelpa (rustic :fetcher file
-                  :path "~/github/rustic")
+  ;; :quelpa (rustic :fetcher file
+  ;;                 :path "~/github/rustic")
   :after (lsp-mode)
-  ;; :ensure t
+  :ensure t
   :bind (:map rustic-mode-map
               ("M-j" . lsp-ui-imenu)
               ("M-?" . lsp-find-references)
