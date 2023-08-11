@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, nixpkgs, ... }:
 
 {
   imports =
@@ -51,6 +51,7 @@
   nix.settings = {
     trusted-users = [ "root" "sibi" ];
     experimental-features = [ "nix-command" "flakes" ];
+    registry.nixpkgs.flake = nixpkgs;
   };
 
   networking.hostName = "arya"; # Define your hostname.

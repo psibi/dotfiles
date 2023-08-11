@@ -18,6 +18,8 @@
         ../system-modules/cloudflare-warp.nix
       ];
 
+      specialArgs = { inherit nixpkgs; };
+
     };
   };
 }
