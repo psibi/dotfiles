@@ -23,6 +23,7 @@
         modules = [ ./home.nix ];
         extraSpecialArgs = {
           unstable-pkgs = unstable.pkgs;
+          nixpkgs = nixpkgs;
         };
       };
     };
