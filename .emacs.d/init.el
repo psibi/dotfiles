@@ -625,6 +625,11 @@
 (use-package go-mode
   :ensure t)
 
+(use-package lsp-go
+  :ensure lsp-mode
+  :after lsp-mode
+  :demand t)
+
 (use-package auth-source
   :ensure nil
   :custom

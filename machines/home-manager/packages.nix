@@ -160,7 +160,7 @@ with pkgs; [
   amber-secret
   nil
   appimage-run
-  cmctl
+  gopls
 
   nodePackages.yaml-language-server
   nodePackages.vscode-json-languageserver
