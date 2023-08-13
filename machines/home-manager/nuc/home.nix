@@ -1,4 +1,4 @@
-{ pkgs, unstable-pkgs, ... }: {
+{ nixpkgs, pkgs, unstable-pkgs, ... }: {
   # Custom systemd services
   imports = [ ../../modules/cnx.nix ];
 
@@ -10,6 +10,8 @@
       documentation.dev.enable = true;
     };
   };
+
+  nix.registry.nixpkgs.flake = nixpkgs;
 
   home = {
     username = "sibi";

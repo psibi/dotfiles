@@ -30,6 +30,7 @@
         ];
         extraSpecialArgs = {
           unstable-pkgs = unstable.pkgs;
+          nixpkgs = nixpkgs;
         };
       };
     };
