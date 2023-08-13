@@ -51,8 +51,9 @@
   nix.settings = {
     trusted-users = [ "root" "sibi" ];
     experimental-features = [ "nix-command" "flakes" ];
-    registry.nixpkgs.flake = nixpkgs;
   };
+
+  nix.registry.nixpkgs.flake = nixpkgs;
 
   networking.hostName = "arya"; # Define your hostname.
   # networking.wireless.enable = true;

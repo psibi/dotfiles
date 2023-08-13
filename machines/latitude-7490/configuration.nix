@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, nixpkgs, pkgs, ... }:
 
 {
   imports = [
@@ -48,6 +48,8 @@
     experimental-features = [ "nix-command" "flakes" ];
     trusted-users = [ "root" "sibi" ];
   };
+
+  nix.registry.nixpkgs.flake = nixpkgs;
 
   networking.hostName = "elric"; # Define your hostname.
   networking.networkmanager.enable = true;

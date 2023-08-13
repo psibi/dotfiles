@@ -13,3 +13,7 @@ flake-info:
 # Update nixos
 update-nixos:
 	nix flake update
+
+# List registry information
+registry:
+	nix registry list

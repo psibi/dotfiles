@@ -17,6 +17,8 @@
         nixos-hardware.nixosModules.dell-latitude-7490
       ];
 
+      extraSpecialArgs = { nixpkgs = nixpkgs; };
+
     };
   };
 }
