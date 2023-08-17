@@ -664,6 +664,7 @@
 
 (use-package typescript-mode
   :ensure t
+  :hook ((typescript-mode . lsp-deferred))
   :custom
   (typescript-indent-level 2))
 

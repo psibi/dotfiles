@@ -101,7 +101,8 @@
    (http . t)
    (octave . t)
    (haskell . t)
-   (gnuplot . t)))
+   (gnuplot . t)
+   (js . t)))
 
 ;; https://emacs.stackexchange.com/questions/23946/how-can-i-stop-the-confirmation-to-evaluate-source-code-when-exporting-to-html
 (setq org-confirm-babel-evaluate nil)
