@@ -8,14 +8,6 @@
 
 (require 'use-package)
 
-(package-initialize)
-(unless package-archive-contents
-  (package-refresh-contents))
-(setq sibi-packages '(use-package))
-(dolist (package sibi-packages)
-  (unless (package-installed-p package)
-   (package-install package)))
-
 ;;; https://emacs-lsp.github.io/lsp-mode/page/performance/
 (setq gc-cons-threshold 100000000)
 (setq read-process-output-max (* 1024 1024)) ;; 1mb
@@ -229,10 +221,15 @@
   :ensure t)
 
 (use-package rustic
-  ;; :quelpa (rustic :fetcher file
-  ;;                 :path "~/github/rustic")
-  :after (lsp-mode)
-  :ensure t
+  :quelpa (rustic :fetcher file
+                  :path "~/github/rustic")
+  :after (lsp-mode smartparens)
+  :init
+  (progn
+    (setq rustic-treesitter-derive t)
+    (add-hook 'rustic-mode-hook #'lsp-deferred)
+    (add-hook 'rustic-mode-hook #'turn-on-smartparens-mode))
+  ;; :ensure t
   :bind (:map rustic-mode-map
               ("M-j" . lsp-ui-imenu)
               ("M-?" . lsp-find-references)
@@ -242,7 +239,6 @@
               ("C-c C-c l" . flycheck-list-errors)
               ("C-c o" . lsp-rust-analyzer-open-external-docs)
               ("C-c C-c s" . lsp-rust-analyzer-status))
-  :hook ((rustic-mode . lsp-deferred))
   :config
   (setq rustic-format-on-save nil)
   :custom
@@ -267,8 +263,7 @@
   (add-hook 'emacs-lisp-mode-hook 'paredit-mode))
 
 (use-package smartparens
-  :ensure t
-  :hook ((rustic-mode . turn-on-smartparens-strict-mode)))
+  :ensure t)
 
 (use-package google-this
   :ensure t)

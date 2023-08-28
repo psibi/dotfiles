@@ -4,4 +4,5 @@ unstable.emacs29.pkgs.withPackages (epkgs:
     vterm
     pdf-tools
     all-the-icons
+    unstable.emacsPackages.treesit-grammars.with-all-grammars
   ]))
