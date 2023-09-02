@@ -147,9 +147,10 @@ with pkgs; [
   xfce.thunar-volman
   gparted
   parallel
-  jdk
+  jdk17
   jdt-language-server
   maven
+  gradle
   flutter
   cmake
   ninja
@@ -161,6 +162,7 @@ with pkgs; [
   nil
   appimage-run
   gopls
+  scc
 
   nodePackages.yaml-language-server
   nodePackages.vscode-json-languageserver
