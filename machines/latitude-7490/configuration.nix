@@ -132,10 +132,12 @@
       "video"
       "docker"
       "plugdev"
+      "libvirtd"
     ]; # Enable ‘sudo’ for the user.
   };
 
   virtualisation.docker.enable = true;
+  virtualisation.libvirtd.enable = true;
 
   environment.shellAliases = import ./alias.nix;
   programs.fish.shellAliases = import ./alias.nix;
@@ -150,7 +152,8 @@
       zoxide
       emacs
       rofi
-      #   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+      virt-manager
+      virtiofsd
     ];
 
   fonts.fonts = with pkgs; [
