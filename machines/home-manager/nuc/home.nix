@@ -3,7 +3,7 @@
   imports = [ ../../modules/cnx.nix ];
 
   nixpkgs = {
-    overlays = [ (import ../overlay.nix { unstable = unstable-pkgs; } ) ];
+    overlays = [ (import ../overlay.nix { unstable = unstable-pkgs; }) ];
     config = {
       allowUnfreePredicate = (_: true);
       allowUnfree = true;
@@ -153,6 +153,21 @@
         identitiesOnly = true;
         identityFile = "~/.ssh/id_rsa";
       };
+    };
+  };
+
+  # https://discourse.nixos.org/t/set-default-application-for-mime-type-with-home-manager/17190/4
+  # ls ~/.nix-profile/share/applications/
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "application/pdf" = [ "google-chrome.desktop" ];
+      "text/html" = [ "google-chrome.desktop" ];
+      "x-scheme-handler/http" = [ "google-chrome.desktop" ];
+      "x-scheme-handler/https" = [ "google-chrome.desktop" ];
+      "x-scheme-handler/about" = [ "google-chrome.desktop" ];
+      "x-scheme-handler/unknown" = [ "google-chrome.desktop" ];
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = [ "writer.desktop" ];
     };
   };
 
