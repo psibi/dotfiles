@@ -25,7 +25,7 @@ with pkgs; [
   xscreensaver
   fish
   bat
-  exa
+  lsd
   fd
   procs
   nixfmt
@@ -147,7 +147,7 @@ with pkgs; [
   xfce.thunar-volman
   gparted
   parallel
-  jdk17
+  jdk
   jdt-language-server
   maven
   gradle
@@ -173,14 +173,10 @@ with pkgs; [
   haskellPackages.implicit-hie
 
   # Unfree
-  google-chrome
+  unstable.google-chrome
   vscode
 
   # From Overlays
   em
   terraform-ls
-  # cnx-sibi
-
-  # Unstable
-  # unstable.ledger-live-desktop
 ]
