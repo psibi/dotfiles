@@ -163,6 +163,7 @@ with pkgs; [
   appimage-run
   gopls
   scc
+  jetbrains.idea-community
 
   nodePackages.yaml-language-server
   nodePackages.vscode-json-languageserver
