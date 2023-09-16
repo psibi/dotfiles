@@ -15,6 +15,17 @@
 (setq user-mail-address "sibi@psibi.in")
 (setq user-full-name "Sibi Prabakaran")
 
+(setq byte-compile-warnings '(not obsolete))
+(setq warning-suppress-log-types '((comp) (bytecomp)))
+(setq native-comp-async-report-warnings-errors 'silent)
+
+;; Save history of minibuffer
+(savehist-mode)
+
+;; Make right-click do something sensible
+(when (display-graphic-p)
+  (context-menu-mode))
+
 ;; Unbind C-z
 (when window-system
   (global-unset-key [(control z)]))
