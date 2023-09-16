@@ -3,7 +3,7 @@
   imports = [ ../../modules/cnx.nix ];
 
   nixpkgs = {
-    overlays = [ (import ../overlay.nix { unstable = unstable-pkgs; }) ];
+    overlays = [ (import ../overlay.nix) ];
     config = {
       allowUnfreePredicate = (_: true);
       allowUnfree = true;
