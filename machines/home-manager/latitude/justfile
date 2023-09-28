@@ -13,3 +13,7 @@ build-trace:
 # Build via home manager
 build-hm:
     home-manager switch --flake .#elric
+
+# Update nixpkgs-unstable
+update-unstable:
+	nix flake lock --update-input nixpkgs-unstable
