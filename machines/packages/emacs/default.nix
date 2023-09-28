@@ -1,8 +1,9 @@
-{ unstable, pkgs }:
-unstable.emacs29.pkgs.withPackages (epkgs:
+{ pkgs }:
+pkgs.emacs29.pkgs.withPackages (epkgs:
   (with epkgs.melpaPackages; [
     vterm
     pdf-tools
     all-the-icons
-    unstable.emacsPackages.treesit-grammars.with-all-grammars
+    pkgs.emacsPackages.treesit-grammars.with-all-grammars
+    jinx
   ]))

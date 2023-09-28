@@ -119,11 +119,13 @@
   };
 
   virtualisation.docker.enable = true;
+  virtualisation.libvirtd.enable = true;
 
   environment.systemPackages = with pkgs; [
     yubico-pam
     yubikey-manager
     virt-manager
+    virtiofsd
   ];
 
   fonts.fonts = with pkgs; [
@@ -161,9 +163,6 @@
   services.devmon.enable = true;
 
   services.fwupd.enable = true;
-
-  virtualisation.libvirtd.enable = true;
-
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

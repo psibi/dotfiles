@@ -9,6 +9,8 @@ with pkgs; [
   file
   aspell
   aspellDicts.en
+  hunspell
+  hunspellDicts.en_US-large
   rxvt_unicode
   keybase-gui
   keybase
@@ -25,7 +27,7 @@ with pkgs; [
   xscreensaver
   fish
   bat
-  exa
+  lsd
   fd
   procs
   nixfmt
@@ -147,7 +149,7 @@ with pkgs; [
   xfce.thunar-volman
   gparted
   parallel
-  jdk17
+  jdk
   jdt-language-server
   maven
   gradle
@@ -163,6 +165,7 @@ with pkgs; [
   appimage-run
   gopls
   scc
+  jetbrains.idea-community
 
   nodePackages.yaml-language-server
   nodePackages.vscode-json-languageserver
@@ -173,14 +176,10 @@ with pkgs; [
   haskellPackages.implicit-hie
 
   # Unfree
-  google-chrome
+  unstable.google-chrome
   vscode
 
   # From Overlays
   em
   terraform-ls
-  # cnx-sibi
-
-  # Unstable
-  # unstable.ledger-live-desktop
 ]

@@ -15,6 +15,17 @@
 (setq user-mail-address "sibi@psibi.in")
 (setq user-full-name "Sibi Prabakaran")
 
+(setq byte-compile-warnings '(not obsolete))
+(setq warning-suppress-log-types '((comp) (bytecomp)))
+(setq native-comp-async-report-warnings-errors 'silent)
+
+;; Save history of minibuffer
+(savehist-mode)
+
+;; Make right-click do something sensible
+(when (display-graphic-p)
+  (context-menu-mode))
+
 ;; Unbind C-z
 (when window-system
   (global-unset-key [(control z)]))
@@ -139,7 +150,7 @@
   :custom
   ;; (lsp-log-io t)
   (lsp-log-io nil)
-  (lsp-disabled-clients '(tfls clangd rls rnix-lsp))
+  (lsp-disabled-clients '(tfls clangd rls rnix-lsp semgrep-ls))
   (lsp-semantic-tokens-enable t)
   (lsp-lens-auto-enable t)
   (lsp-semantic-tokens-honor-refresh-requests nil)
@@ -221,12 +232,12 @@
   :ensure t)
 
 (use-package rustic
-  :quelpa (rustic :fetcher file
-                  :path "~/github/rustic")
+  ;; :quelpa (rustic :fetcher file
+  ;;                 :path "~/github/rustic")
+  :ensure t
   :after (lsp-mode smartparens)
   :init
   (progn
-    (setq rustic-treesitter-derive t)
     (add-hook 'rustic-mode-hook #'lsp-deferred)
     (add-hook 'rustic-mode-hook #'turn-on-smartparens-mode))
   ;; :ensure t
@@ -705,6 +716,13 @@
   :after json-mode
   :demand t)
 
+(use-package jinx
+  :ensure nil
+  :bind (:map jinx-mode-map
+	      ("C-c f g" . jinx-correct)
+              ("C-c f n" . jinx-next)
+              ("C-c f p" . jinx-previous)))
+
 ;; Best to have it at bottom
 ;; https://github.com/Kungsgeten/selected.el#installation-and-setup
 (use-package selected
@@ -723,21 +741,21 @@
 (use-package csharp-mode
   :ensure t)
 
-;; (use-package lsp-java
-;;   ;; :ensure t
-;;   :quelpa (lsp-java :fetcher file
-;;                     :path "~/github/lsp-java"
-;;                     :files ("*.el"))
-;;   :after lsp-mode
-;;   :custom
-;;   (lsp-java-server-config-dir "/home/sibi/config_linux")
-;;   (lsp-java-server-install-dir (expand-file-name "share/java" (file-name-directory (directory-file-name (file-name-directory (file-name-directory (file-truename (executable-find "jdt-language-server"))))))))
-;;   :hook (java-mode . lsp-deferred))
+(use-package lsp-java
+  :ensure t
+  :after lsp-mode
+  :custom
+  (lsp-java-server-config-dir "/home/sibi/config_linux")
+  (lsp-java-server-install-dir (expand-file-name "share/java" (file-name-directory (directory-file-name (file-name-directory (file-name-directory (file-truename (executable-find "jdt-language-server"))))))))
+  :hook (java-mode . lsp-deferred))
 
 (use-package dart-mode
   :ensure t)
 
 (use-package flycheck-vale
+  :ensure t)
+
+(use-package solidity-mode
   :ensure t)
 
 (load-file "~/.emacs.d/haskell.el")
