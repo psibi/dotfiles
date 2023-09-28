@@ -232,12 +232,12 @@
   :ensure t)
 
 (use-package rustic
-  :quelpa (rustic :fetcher file
-                  :path "~/github/rustic")
+  ;; :quelpa (rustic :fetcher file
+  ;;                 :path "~/github/rustic")
+  :ensure t
   :after (lsp-mode smartparens)
   :init
   (progn
-    (setq rustic-treesitter-derive t)
     (add-hook 'rustic-mode-hook #'lsp-deferred)
     (add-hook 'rustic-mode-hook #'turn-on-smartparens-mode))
   ;; :ensure t
@@ -715,6 +715,13 @@
   :ensure lsp-mode
   :after json-mode
   :demand t)
+
+(use-package jinx
+  :ensure nil
+  :bind (:map jinx-mode-map
+	      ("C-c f g" . jinx-correct)
+              ("C-c f n" . jinx-next)
+              ("C-c f p" . jinx-previous)))
 
 ;; Best to have it at bottom
 ;; https://github.com/Kungsgeten/selected.el#installation-and-setup

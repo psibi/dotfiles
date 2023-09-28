@@ -9,6 +9,8 @@ with pkgs; [
   file
   aspell
   aspellDicts.en
+  hunspell
+  hunspellDicts.en_US-large
   rxvt_unicode
   keybase-gui
   keybase

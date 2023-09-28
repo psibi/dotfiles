@@ -5,4 +5,5 @@ pkgs.emacs29.pkgs.withPackages (epkgs:
     pdf-tools
     all-the-icons
     pkgs.emacsPackages.treesit-grammars.with-all-grammars
+    jinx
   ]))
