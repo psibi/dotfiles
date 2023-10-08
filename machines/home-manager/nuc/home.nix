@@ -39,6 +39,15 @@
     };
   };
 
+  programs.rofi = {
+    package = pkgs.rofi-wayland;
+    enable = true;
+    location = "center";
+    pass.enable = false;
+    theme = "fancy";
+    extraConfig = { show-icons = false; };
+  };
+
   programs.git = {
     enable = true;
     userName = "Sibi Prabakaran";
