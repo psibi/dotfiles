@@ -167,6 +167,17 @@ with pkgs; [
   scc
   jetbrains.idea-community
 
+  # Sway related
+  wayland
+  xdg-utils
+  glib
+  swaylock
+  swayidle
+  grim # Screenshot
+  wl-clipboard
+  wdisplays
+  rofi-wayland
+
   nodePackages.yaml-language-server
   nodePackages.vscode-json-languageserver
   nodePackages.dockerfile-language-server-nodejs

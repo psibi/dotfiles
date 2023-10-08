@@ -1,4 +1,4 @@
-{ nixpkgs, pkgs, unstable-pkgs, ... }: {
+{ nixpkgs, pkgs, unstable-pkgs, lib, ... }: {
   # Custom systemd services
   imports = [ ../../modules/cnx.nix ];
 
@@ -37,14 +37,6 @@
       ".aws/config".source = ../../../aws-config;
       ".config/mprocs/mprocs.yaml".source = ../../../mprocs.yaml;
     };
-  };
-
-  programs.rofi = {
-    enable = true;
-    location = "center";
-    pass.enable = false;
-    theme = "fancy";
-    extraConfig = { show-icons = false; };
   };
 
   programs.git = {
@@ -171,6 +163,23 @@
     };
   };
 
+  wayland.windowManager.sway = {
+    enable = true;
+    config = {
+      modifier = "Mod4"; # Super key
+      input = {
+        "type:keyboard" = {
+          xkb_options = "caps:ctrl_modifier";
+        };
+      };
+      keybindings =
+        let modifier = "Mod4";
+        in lib.mkOptionDefault {
+          "${modifier}+p" = "exec rofi -show run";
+        };
+    };
+  };
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
@@ -188,7 +197,7 @@
   fonts.fontconfig.enable = true;
 
   services.cnx = {
-    enable = true;
+    enable = false;
     machineName = "NUC";
   };
 

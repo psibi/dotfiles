@@ -86,22 +86,31 @@
   services.earlyoom.enable = true;
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  # services.xserver =
+  #   {
+  #     enable = true;
+  #     # Configure keymap in X11
+  #     xserver.layout = "us";
+  #     xserver.xkbOptions = "caps:ctrl_modifier";
+  #     windowManager.xmonad = {
+  #       enable = true;
+  #       enableContribAndExtras = true;
+  #       config = ../../xmonad/xmonad.hs;
+  #       extraPackages = self: [ self.typed-process self.utf8-string ];
+  #     };
+  #   };
 
-  # Configure keymap in X11
-  services.xserver.layout = "us";
-  services.xserver.xkbOptions = "caps:ctrl_modifier";
+  programs.sway.enable = false;
 
-  services.xserver.windowManager.xmonad = {
-    enable = true;
-    enableContribAndExtras = true;
-    config = ../../xmonad/xmonad.hs;
-    extraPackages = self: [ self.typed-process self.utf8-string ];
-  };
 
   # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.enable = false;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    pulse.enable = true;
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sibi = {
