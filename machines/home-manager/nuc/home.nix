@@ -185,6 +185,7 @@
         let modifier = "Mod4";
         in lib.mkOptionDefault {
           "${modifier}+p" = "exec rofi -show run";
+          "${modifier}+c" = "kill";
         };
     };
   };
