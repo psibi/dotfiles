@@ -177,6 +177,8 @@ with pkgs; [
   wl-clipboard
   wdisplays
   rofi-wayland
+  xdg-desktop-portal
+  xdg-desktop-portal-wlr
 
   nodePackages.yaml-language-server
   nodePackages.vscode-json-languageserver

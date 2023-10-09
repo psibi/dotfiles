@@ -184,8 +184,16 @@
       keybindings =
         let modifier = "Mod4";
         in lib.mkOptionDefault {
+          "${modifier}+Return" = "exec alacritty";
           "${modifier}+p" = "exec rofi -show run";
           "${modifier}+c" = "kill";
+
+          "${modifier}+j" = "focus left";
+          "${modifier}+k" = "focus down";
+          "${modifier}+l" = "focus up";
+          "${modifier}+Semicolon" = "focus right";
+
+          "${modifier}+space" = "layout toggle tabbed splith splitv";
         };
     };
   };
