@@ -179,6 +179,8 @@ with pkgs; [
   rofi-wayland
   xdg-desktop-portal
   xdg-desktop-portal-wlr
+  xdg-desktop-portal-gtk
+  xdg-desktop-portal-gnome
   wlprop
   i3status-rust
 

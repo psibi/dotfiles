@@ -1,4 +1,8 @@
-{ nixpkgs, pkgs, unstable-pkgs, lib, ... }: {
+{ nixpkgs, pkgs, unstable-pkgs, lib, ... }:
+
+
+
+{
   # Custom systemd services
   imports = [ ../../modules/cnx.nix ];
 
@@ -176,6 +180,13 @@
     enable = true;
     config = {
       terminal = "alacritty";
+
+      startup = [
+        { command = "google-chrome-stable"; }
+        { command = "alacritty"; }
+        { command = "keepassxc"; }
+      ];
+
       modifier = "Mod4"; # Super key
       input = {
         "type:keyboard" = {
@@ -239,6 +250,12 @@
               interval = 30;
             }
             {
+              block = "net";
+              interval = 60;
+              device = "^wlp";
+              format = " $icon {$signal_strength $ssid} $device";
+            }
+            {
               block = "load";
               interval = 60;
               format = " $icon $1m ";
@@ -289,6 +306,7 @@
   services.emacs = {
     enable = true;
     package = pkgs.sibiEmacs;
+    startWithUserSession = "graphical";
   };
 
   services.gpg-agent = {
