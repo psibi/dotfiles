@@ -1,7 +1,4 @@
 { nixpkgs, pkgs, unstable-pkgs, lib, ... }:
-
-
-
 {
   # Custom systemd services
   imports = [ ../../modules/cnx.nix ];
@@ -199,6 +196,14 @@
           {
             command = "move scratchpad";
             criteria.app_id = "org.keepassxc.KeePassXC";
+          }
+          {
+            command = "move container to workspace number 2";
+            criteria.app_id = "google-chrome";
+          }
+          {
+            command = "move container to workspace number 1";
+            criteria.app_id = "Alacritty";
           }
         ];
       };
