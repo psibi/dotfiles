@@ -3,7 +3,6 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, nixpkgs, ... }:
-
 {
   imports =
     [
@@ -101,6 +100,29 @@
   #   };
 
   programs.sway.enable = true;
+  services.dbus.enable = true;
+
+  services.greetd = {
+    enable = true;
+    settings = rec {
+      initial_session =
+        let
+          swayConfig = pkgs.writeText "greetd-sway-config" ''
+            exec "${pkgs.greetd.gtkgreet}/bin/gtkgreet --command=sway  -l; swaymsg exit"
+            bindsym Mod4+shift+e exec swaynag \
+                -t warning \
+                -m 'What do you want to do?' \
+                -b 'Poweroff' 'systemctl poweroff' \
+                -b 'Reboot' 'systemctl reboot'
+          '';
+        in
+        {
+          command = "${pkgs.sway}/bin/sway --config ${swayConfig}";
+          user = "sibi";
+        };
+      default_session = initial_session;
+    };
+  };
 
   # Enable sound.
   sound.enable = true;
@@ -115,6 +137,7 @@
   xdg = {
     portal = {
       enable = true;
+      wlr.enable = true;
       extraPortals = with pkgs; [
         xdg-desktop-portal-wlr
         xdg-desktop-portal-gtk
@@ -182,6 +205,8 @@
   services.devmon.enable = true;
 
   services.fwupd.enable = true;
+
+
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
