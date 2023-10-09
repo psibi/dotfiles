@@ -182,6 +182,7 @@ with pkgs; [
   xdg-desktop-portal-gtk
   xdg-desktop-portal-gnome
   wlprop
+  wev
   i3status-rust
 
   nodePackages.yaml-language-server

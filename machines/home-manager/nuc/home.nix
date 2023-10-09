@@ -222,7 +222,7 @@
 
           "${modifier}+space" = "layout toggle tabbed splith splitv";
 
-          "${modifier}+Shift+k" = "scratchpad show";
+          "${modifier}+Ctrl+k" = "scratchpad show";
         };
 
       bars = [{
