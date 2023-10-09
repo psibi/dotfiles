@@ -100,8 +100,7 @@
   #     };
   #   };
 
-  programs.sway.enable = false;
-
+  programs.sway.enable = true;
 
   # Enable sound.
   sound.enable = true;
