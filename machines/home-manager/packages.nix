@@ -167,7 +167,7 @@ with pkgs; [
   scc
   jetbrains.idea-community
 
-  # Sway related
+  # Sway and Wayland related
   wayland
   xdg-utils
   glib
@@ -179,6 +179,8 @@ with pkgs; [
   rofi-wayland
   xdg-desktop-portal
   xdg-desktop-portal-wlr
+  wlprop
+  i3status-rust
 
   nodePackages.yaml-language-server
   nodePackages.vscode-json-languageserver
