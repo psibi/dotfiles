@@ -231,23 +231,23 @@
             }
             {
               block = "memory";
-              format_mem = " $icon $mem_used_percents ";
-              format_swap = " $icon $swap_used_percents ";
+              format = " $icon $mem_used_percents";
+              interval = 30;
             }
             {
               block = "cpu";
-              interval = 1;
+              interval = 30;
             }
             {
               block = "load";
-              interval = 1;
+              interval = 60;
               format = " $icon $1m ";
             }
             { block = "sound"; }
             {
               block = "time";
               interval = 60;
-              format = " $timestamp.datetime(f:'%a %d/%m %R') ";
+              format = " $timestamp.datetime(f:'%a %d/%m/%Y %I:%M %p') ";
             }
           ];
           settings = {
