@@ -109,6 +109,17 @@
     enable = true;
     alsa.enable = true;
     pulse.enable = true;
+    jack.enable = true;
+  };
+
+  xdg = {
+    portal = {
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-wlr
+        xdg-desktop-portal-gtk
+      ];
+    };
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
