@@ -181,6 +181,16 @@
           xkb_options = "caps:ctrl_modifier";
         };
       };
+
+      window = {
+        commands = [
+          {
+            command = "move scratchpad";
+            criteria.app_id = "org.keepassxc.KeePassXC";
+          }
+        ];
+      };
+
       keybindings =
         let modifier = "Mod4";
         in lib.mkOptionDefault {
@@ -194,6 +204,8 @@
           "${modifier}+Semicolon" = "focus right";
 
           "${modifier}+space" = "layout toggle tabbed splith splitv";
+
+          "${modifier}+Shift+k" = "scratchpad show";
         };
     };
   };
