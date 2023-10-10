@@ -223,6 +223,8 @@
           "${modifier}+space" = "layout toggle tabbed splith splitv";
 
           "${modifier}+Ctrl+k" = "scratchpad show";
+
+          "${modifier}+h" = "exec /home/sibi/.emacs_everywhere/bin/run";
         };
 
       bars = [{
