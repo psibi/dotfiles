@@ -184,6 +184,7 @@ with pkgs; [
   wlprop
   wev
   i3status-rust
+  wtype
 
   nodePackages.yaml-language-server
   nodePackages.vscode-json-languageserver
@@ -192,6 +193,7 @@ with pkgs; [
   nodePackages.typescript
   nodePackages.typescript-language-server
   haskellPackages.implicit-hie
+  python311Packages.python-lsp-server
 
   # Unfree
   unstable.google-chrome
