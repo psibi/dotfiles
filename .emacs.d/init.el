@@ -204,6 +204,11 @@
   (lsp-rust-analyzer-display-parameter-hints t)
   (lsp-rust-analyzer-closure-capture-hints t))
 
+(use-package lsp-pylsp
+  :ensure lsp-mode
+  :after lsp-mode
+  :demand t)
+
 (use-package ccls
   :ensure t
   :after (lsp-mode)
