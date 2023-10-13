@@ -225,6 +225,7 @@
           "${modifier}+Ctrl+k" = "scratchpad show";
 
           "${modifier}+h" = "exec /home/sibi/.emacs_everywhere/bin/run";
+          "Print" = "exec flameshot gui";
         };
 
       bars = [{
@@ -326,5 +327,14 @@
     pinentryFlavor = "qt";
   };
 
+  services.flameshot = {
+    enable = true;
+    settings = {
+      General = {
+        disabledTrayIcon = true;
+        showStartupLaunchMessage = false;
+      };
+    };
+  };
 
 }
