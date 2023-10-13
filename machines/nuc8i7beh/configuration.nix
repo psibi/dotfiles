@@ -99,8 +99,15 @@
   #     };
   #   };
 
-  programs.sway.enable = true;
+  programs.sway = {
+    enable = true;
+    wrapperFeatures.gtk = true;
+  };
   services.dbus.enable = true;
+
+  gtk = {
+    enable = true;
+  };
 
   services.greetd = {
     enable = true;
