@@ -317,6 +317,23 @@
     startWithUserSession = "graphical";
   };
 
+  services.swayidle = {
+    enable = true;
+    events = [
+    ];
+    timeouts = [
+      {
+        timeout = 1800;
+        command = "${pkgs.sway}/bin/swaymsg \"output * dpms off\"";
+        resumeCommand = "${pkgs.sway}/bin/swaymsg \"output * dpms on\"";
+      }
+      {
+        timeout = 1780;
+        command = "${pkgs.swaylock}/bin/swaylock \"--daemonize\"";
+      }
+    ];
+  };
+
   services.gpg-agent = {
     enable = true;
     enableSshSupport = true;
