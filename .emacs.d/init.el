@@ -207,7 +207,9 @@
 (use-package lsp-pylsp
   :ensure lsp-mode
   :after lsp-mode
-  :demand t)
+  :demand t
+  :hook (python-ts-mode . lsp-deferred))
+
 
 (use-package ccls
   :ensure t
