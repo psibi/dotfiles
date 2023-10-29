@@ -225,6 +225,8 @@
           "${modifier}+Ctrl+k" = "scratchpad show";
 
           "${modifier}+h" = "exec /home/sibi/.emacs_everywhere/bin/run";
+
+          "${modifier}+Shift+z" = "exec ${pkgs.swaylock}/bin/swaylock \"--daemonize\"";
           "Print" = "exec flameshot gui";
         };
 
