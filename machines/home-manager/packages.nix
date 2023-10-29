@@ -134,9 +134,7 @@ with pkgs; [
   mprocs
   velero
   etcd_3_5
-  awscli2
   hwatch
-  sibiEmacs
   taplo
   nil
   ormolu
@@ -197,13 +195,17 @@ with pkgs; [
   python311Packages.python-lsp-server
   poetry
   kooha
+  unstable.terraform-ls
+  musl.dev
 
-
-  # Unfree
+  #
   unstable.google-chrome
-  vscode
+  unstable.awscli2
+
 
   # From Overlays
   em
-  terraform-ls
+  flarectl
+  sibiEmacs
+
 ]
