@@ -1,10 +1,10 @@
-{ nixpkgs, pkgs, unstable-pkgs, ... }:
+{ nixpkgs, pkgs, unstable-pkgs, lib, ... }:
 
 {
   imports = [ ../../modules/cnx.nix ];
 
   nixpkgs = {
-    overlays = [ (import ../overlay.nix { unstable = unstable-pkgs; }) ];
+    overlays = [ (import ../overlay.nix ) ];
     config = {
       allowUnfreePredicate = (_: true);
       allowUnfree = true;
@@ -182,6 +182,7 @@
     pass.enable = false;
     theme = "fancy";
     extraConfig = { show-icons = false; };
+    package = pkgs.rofi-wayland;
   };
 
   programs.git = {
@@ -217,7 +218,7 @@
   programs.atuin = {
     enable = false;
     flags = [ "--disable-up-arrow" ];
-    enableFishIntegration = true;
+    enableFishIntegration = false;
   };
 
   programs.zoxide = {
