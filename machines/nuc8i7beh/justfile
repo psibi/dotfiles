@@ -17,3 +17,7 @@ update-nixos:
 # List registry information
 registry:
 	nix registry list
+
+# Update nixpkgs
+update-nixpkgs:
+	nix flake lock --update-input nixpkgs

@@ -162,6 +162,7 @@ with pkgs; [
   gopls
   scc
   jetbrains.idea-community
+  dateutils
 
   # Sway and Wayland related
   wayland
@@ -175,8 +176,6 @@ with pkgs; [
   rofi-wayland
   xdg-desktop-portal
   xdg-desktop-portal-wlr
-  xdg-desktop-portal-gtk
-  xdg-desktop-portal-gnome
   wlprop
   wev
   i3status-rust
@@ -184,6 +183,8 @@ with pkgs; [
   xorg.xlsclients
   gnome.adwaita-icon-theme
   xfce.xfce4-screenshooter
+  slurp
+  libcamera
 
   nodePackages.yaml-language-server
   nodePackages.vscode-json-languageserver
@@ -197,9 +198,10 @@ with pkgs; [
   kooha
   unstable.terraform-ls
   musl.dev
+  glibc.static
 
   #
-  unstable.google-chrome
+  # unstable.google-chrome
   unstable.awscli2
 
 

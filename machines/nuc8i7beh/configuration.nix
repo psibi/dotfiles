@@ -105,10 +105,6 @@
   };
   services.dbus.enable = true;
 
-  gtk = {
-    enable = true;
-  };
-
   services.greetd = {
     enable = true;
     settings = rec {
@@ -132,13 +128,14 @@
   };
 
   # Enable sound.
-  sound.enable = true;
+  sound.enable = false;
   hardware.pulseaudio.enable = false;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     pulse.enable = true;
     jack.enable = true;
+    wireplumber.enable = true;
   };
 
   xdg = {
@@ -146,8 +143,8 @@
       enable = true;
       wlr.enable = true;
       extraPortals = with pkgs; [
-        xdg-desktop-portal-wlr
         xdg-desktop-portal-gtk
+        xdg-desktop-portal-wlr
       ];
     };
   };
@@ -175,6 +172,7 @@
     yubikey-manager
     virt-manager
     virtiofsd
+    google-chrome
   ];
 
   fonts.fonts = with pkgs; [

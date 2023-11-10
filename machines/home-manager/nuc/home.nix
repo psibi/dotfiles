@@ -22,7 +22,10 @@
       time = "en_US.UTF-8";
     };
     sessionPath = [ "$HOME/.local/bin" "$HOME/.cargo/bin" ];
-    sessionVariables = { EDITOR = "${pkgs.sibiEmacs}/bin/emacsclient"; };
+    sessionVariables = {
+      EDITOR = "${pkgs.sibiEmacs}/bin/emacsclient";
+      NIXOS_OZONE_WL = "1";
+    };
     stateVersion = "21.05";
 
     packages = import ../packages.nix {
@@ -175,6 +178,8 @@
 
   wayland.windowManager.sway = {
     enable = true;
+    systemdIntegration = true;
+
     config = {
       terminal = "alacritty";
 

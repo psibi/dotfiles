@@ -33,3 +33,7 @@ update-unstable:
 # Update specific input
 update-flake-input input:
 	nix flake lock --update-input {{input}}
+
+# Update home-manager
+update-hm:
+	nix flake lock --update-input home-manager
