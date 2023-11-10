@@ -158,7 +158,7 @@ select 0
 # This binds C-t b to copy screen's copy buffer to the system clipboard.
 # Adapted from here with change in the command key (ofcourse!):
 # http://www.commandlinefu.com/commands/view/2276/getting-screens-copy-buffer-into-xs-copy-buffer-on-linux
-bind b eval writebuf 'exec /bin/sh -c "xsel -i -b < /tmp/screen-exchange"' 'exec /bin/sh -c "killall xsel"'
+bind b eval writebuf 'exec /bin/sh -c "wl-copy < /tmp/screen-exchange"' 'exec /bin/sh -c "killall wl-copy"'
 
 # Keybindings refresher
 # Split it vertical          : C-t |

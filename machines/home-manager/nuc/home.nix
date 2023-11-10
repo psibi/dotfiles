@@ -1,4 +1,5 @@
-{ nixpkgs, pkgs, unstable-pkgs, ... }: {
+{ nixpkgs, pkgs, unstable-pkgs, lib, ... }:
+{
   # Custom systemd services
   imports = [ ../../modules/cnx.nix ];
 
@@ -21,7 +22,10 @@
       time = "en_US.UTF-8";
     };
     sessionPath = [ "$HOME/.local/bin" "$HOME/.cargo/bin" ];
-    sessionVariables = { EDITOR = "${pkgs.sibiEmacs}/bin/emacsclient"; };
+    sessionVariables = {
+      EDITOR = "${pkgs.sibiEmacs}/bin/emacsclient";
+      NIXOS_OZONE_WL = "1";
+    };
     stateVersion = "21.05";
 
     packages = import ../packages.nix {
@@ -40,6 +44,7 @@
   };
 
   programs.rofi = {
+    package = pkgs.rofi-wayland;
     enable = true;
     location = "center";
     pass.enable = false;
@@ -171,6 +176,127 @@
     };
   };
 
+  wayland.windowManager.sway = {
+    enable = true;
+    systemdIntegration = true;
+
+    config = {
+      terminal = "alacritty";
+
+      startup = [
+        { command = "google-chrome-stable"; }
+        { command = "alacritty"; }
+        { command = "keepassxc"; }
+      ];
+
+      modifier = "Mod4"; # Super key
+      input = {
+        "type:keyboard" = {
+          xkb_options = "caps:ctrl_modifier";
+        };
+      };
+
+      window = {
+        commands = [
+          {
+            command = "move scratchpad";
+            criteria.app_id = "org.keepassxc.KeePassXC";
+          }
+          {
+            command = "move container to workspace number 2";
+            criteria.app_id = "google-chrome";
+          }
+          {
+            command = "move container to workspace number 1";
+            criteria.app_id = "Alacritty";
+          }
+        ];
+      };
+
+      keybindings =
+        let modifier = "Mod4";
+        in lib.mkOptionDefault {
+          "${modifier}+Return" = "exec alacritty";
+          "${modifier}+p" = "exec rofi -show run";
+          "${modifier}+c" = "kill";
+
+          "${modifier}+j" = "focus left";
+          "${modifier}+k" = "focus down";
+          "${modifier}+l" = "focus up";
+          "${modifier}+Semicolon" = "focus right";
+
+          "${modifier}+space" = "layout toggle tabbed splith splitv";
+
+          "${modifier}+Ctrl+k" = "scratchpad show";
+
+          "${modifier}+h" = "exec /home/sibi/.emacs_everywhere/bin/run";
+
+          "${modifier}+Shift+z" = "exec ${pkgs.swaylock}/bin/swaylock \"--daemonize\"";
+          "Print" = "exec flameshot gui";
+        };
+
+      bars = [{
+        statusCommand = "i3status-rs /home/sibi/.config/i3status-rust/config-bottom.toml";
+      }];
+    };
+  };
+
+  programs.i3status-rust =
+    {
+      enable = true;
+      bars = {
+        bottom = {
+          blocks = [
+            {
+              block = "disk_space";
+              path = "/";
+              info_type = "available";
+              interval = 60;
+              warning = 20.0;
+              alert = 10.0;
+            }
+            {
+              block = "memory";
+              format = " $icon $mem_used_percents";
+              interval = 30;
+            }
+            {
+              block = "cpu";
+              interval = 30;
+            }
+            {
+              block = "net";
+              interval = 60;
+              device = "^wlp";
+              format = " $icon {$signal_strength $ssid} $device";
+            }
+            {
+              block = "load";
+              interval = 60;
+              format = " $icon $1m ";
+            }
+            { block = "sound"; }
+            {
+              block = "time";
+              interval = 60;
+              format = " $timestamp.datetime(f:'%a %d/%m/%Y %I:%M %p') ";
+            }
+          ];
+          settings = {
+            theme = {
+              theme = "solarized-dark";
+              overrides = {
+                idle_bg = "#123456";
+                idle_fg = "#abcdef";
+              };
+            };
+          };
+          icons = "awesome5";
+          theme = "gruvbox-dark";
+        };
+      };
+    };
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
@@ -188,13 +314,31 @@
   fonts.fontconfig.enable = true;
 
   services.cnx = {
-    enable = true;
+    enable = false;
     machineName = "NUC";
   };
 
   services.emacs = {
     enable = true;
     package = pkgs.sibiEmacs;
+    startWithUserSession = "graphical";
+  };
+
+  services.swayidle = {
+    enable = true;
+    events = [
+    ];
+    timeouts = [
+      {
+        timeout = 1800;
+        command = "${pkgs.sway}/bin/swaymsg \"output * dpms off\"";
+        resumeCommand = "${pkgs.sway}/bin/swaymsg \"output * dpms on\"";
+      }
+      {
+        timeout = 1780;
+        command = "${pkgs.swaylock}/bin/swaylock \"--daemonize\"";
+      }
+    ];
   };
 
   services.gpg-agent = {
@@ -207,5 +351,14 @@
     pinentryFlavor = "qt";
   };
 
+  services.flameshot = {
+    enable = true;
+    settings = {
+      General = {
+        disabledTrayIcon = true;
+        showStartupLaunchMessage = false;
+      };
+    };
+  };
 
 }

@@ -3,7 +3,6 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, nixpkgs, ... }:
-
 {
   imports =
     [
@@ -86,22 +85,69 @@
   services.earlyoom.enable = true;
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  # services.xserver =
+  #   {
+  #     enable = true;
+  #     # Configure keymap in X11
+  #     xserver.layout = "us";
+  #     xserver.xkbOptions = "caps:ctrl_modifier";
+  #     windowManager.xmonad = {
+  #       enable = true;
+  #       enableContribAndExtras = true;
+  #       config = ../../xmonad/xmonad.hs;
+  #       extraPackages = self: [ self.typed-process self.utf8-string ];
+  #     };
+  #   };
 
-  # Configure keymap in X11
-  services.xserver.layout = "us";
-  services.xserver.xkbOptions = "caps:ctrl_modifier";
-
-  services.xserver.windowManager.xmonad = {
+  programs.sway = {
     enable = true;
-    enableContribAndExtras = true;
-    config = ../../xmonad/xmonad.hs;
-    extraPackages = self: [ self.typed-process self.utf8-string ];
+    wrapperFeatures.gtk = true;
+  };
+  services.dbus.enable = true;
+
+  services.greetd = {
+    enable = true;
+    settings = rec {
+      initial_session =
+        let
+          swayConfig = pkgs.writeText "greetd-sway-config" ''
+            exec "${pkgs.greetd.gtkgreet}/bin/gtkgreet --command=sway  -l; swaymsg exit"
+            bindsym Mod4+shift+e exec swaynag \
+                -t warning \
+                -m 'What do you want to do?' \
+                -b 'Poweroff' 'systemctl poweroff' \
+                -b 'Reboot' 'systemctl reboot'
+          '';
+        in
+        {
+          command = "${pkgs.sway}/bin/sway --config ${swayConfig}";
+          user = "sibi";
+        };
+      default_session = initial_session;
+    };
   };
 
   # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  sound.enable = false;
+  hardware.pulseaudio.enable = false;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    pulse.enable = true;
+    jack.enable = true;
+    wireplumber.enable = true;
+  };
+
+  xdg = {
+    portal = {
+      enable = true;
+      wlr.enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-wlr
+      ];
+    };
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.sibi = {
@@ -126,6 +172,7 @@
     yubikey-manager
     virt-manager
     virtiofsd
+    google-chrome
   ];
 
   fonts.fonts = with pkgs; [
@@ -163,6 +210,8 @@
   services.devmon.enable = true;
 
   services.fwupd.enable = true;
+
+
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

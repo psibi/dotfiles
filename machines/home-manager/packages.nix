@@ -50,7 +50,6 @@ with pkgs; [
   sage
   python3Minimal
   python39Packages.pygments
-  xfce.xfce4-screenshooter
   pandoc
   killall
   starship
@@ -96,7 +95,6 @@ with pkgs; [
   man-pages
   man-pages-posix
   gimp
-  vokoscreen
   vlc
   ffmpeg
   mdbook
@@ -136,9 +134,7 @@ with pkgs; [
   mprocs
   velero
   etcd_3_5
-  awscli2
   hwatch
-  sibiEmacs
   taplo
   nil
   ormolu
@@ -166,6 +162,29 @@ with pkgs; [
   gopls
   scc
   jetbrains.idea-community
+  dateutils
+
+  # Sway and Wayland related
+  wayland
+  xdg-utils
+  glib
+  swaylock
+  swayidle
+  grim # Screenshot
+  wl-clipboard
+  wdisplays
+  rofi-wayland
+  xdg-desktop-portal
+  xdg-desktop-portal-wlr
+  wlprop
+  wev
+  i3status-rust
+  wtype
+  xorg.xlsclients
+  gnome.adwaita-icon-theme
+  xfce.xfce4-screenshooter
+  slurp
+  libcamera
 
   nodePackages.yaml-language-server
   nodePackages.vscode-json-languageserver
@@ -174,12 +193,21 @@ with pkgs; [
   nodePackages.typescript
   nodePackages.typescript-language-server
   haskellPackages.implicit-hie
+  python311Packages.python-lsp-server
+  poetry
+  kooha
+  unstable.terraform-ls
+  musl.dev
+  glibc.static
 
-  # Unfree
-  unstable.google-chrome
-  vscode
+  #
+  # unstable.google-chrome
+  unstable.awscli2
+
 
   # From Overlays
   em
-  terraform-ls
+  flarectl
+  sibiEmacs
+
 ]
