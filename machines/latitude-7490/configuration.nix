@@ -10,11 +10,6 @@
     ./hardware-configuration.nix
   ];
 
-  nixpkgs.config.packageOverrides = pkgs: rec {
-    tfswitch = pkgs.callPackage ../packages/tfswitch/default.nix { };
-    ouch = pkgs.callPackage ../packages/ouch/default.nix { };
-  };
-
   services.udev.packages = [ pkgs.yubikey-personalization pkgs.ledger-udev-rules ];
   services.pcscd.enable = true;
 
@@ -82,28 +77,12 @@
   # Enable the X11 windowing system.
   services.earlyoom.enable = true;
   services.xserver.enable = true;
-  #services.xserver.desktopManager.xterm.enable = false;
-  # services.xserver.desktopManager = {
-  #  xfce.enable = true;
-  # };
-  # location.provider = "geoclue2";
-  # services.geoclue2.enable = true;
-  # services.redshift.enable = true;
-  # services.redshift.brightness = {
-  #   day = "0.6";
-  #   night = "0.8";
-  # };
 
-  # Configure keymap in X11
-  services.xserver.layout = "us";
-  services.xserver.xkbOptions = "caps:ctrl_modifier";
-
-  services.xserver.windowManager.xmonad = {
+  programs.sway = {
     enable = true;
-    enableContribAndExtras = true;
-    config = ../../xmonad/xmonad.hs;
-    extraPackages = self: [ self.typed-process self.utf8-string ];
+    wrapperFeatures.gtk = true;
   };
+  services.dbus.enable = true;
 
   # For laptop touchpad
   services.xserver.libinput.enable = true;
@@ -146,14 +125,9 @@
   # $ nix search wget
   environment.systemPackages = with pkgs;
     [
-      git
-      just
-      exa
-      zoxide
-      emacs
-      rofi
       virt-manager
       virtiofsd
+      google-chrome
     ];
 
   fonts.fonts = with pkgs; [
