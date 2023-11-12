@@ -76,16 +76,25 @@
 
   # Enable the X11 windowing system.
   services.earlyoom.enable = true;
-  services.xserver.enable = true;
 
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
   };
-  services.dbus.enable = true;
 
-  # For laptop touchpad
-  services.xserver.libinput.enable = true;
+  services.pipewire.enable = true;
+  xdg = {
+    portal = {
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-wlr
+        xdg-desktop-portal-gtk
+      ];
+    };
+  };
+
+
+  services.dbus.enable = true;
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -127,7 +136,6 @@
     [
       virt-manager
       virtiofsd
-      google-chrome
     ];
 
   fonts.fonts = with pkgs; [
