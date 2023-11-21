@@ -108,7 +108,15 @@
         normal = { family = "Ubuntu Mono"; };
         size = 17.0;
       };
-      shell = { program = "${pkgs.screen}/bin/screen"; };
+      shell = {
+        program = "${unstable-pkgs.zellij}/bin/zellij";
+        args = [
+          "--config"
+          "/home/sibi/github/dotfiles/zellij.kdl"
+          "--layout"
+          "/home/sibi/github/dotfiles/zellij_layout.kdl"
+        ];
+      };
     };
   };
 
@@ -309,6 +317,12 @@
   programs.nix-index = {
     enable = true;
     enableFishIntegration = true;
+  };
+
+  programs.zellij = {
+    enable = true;
+    enableFishIntegration = true;
+    package = unstable-pkgs.zellij;
   };
 
   fonts.fontconfig.enable = true;
