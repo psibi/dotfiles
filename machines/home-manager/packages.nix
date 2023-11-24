@@ -70,6 +70,7 @@ with pkgs; [
   qpdf
   libreoffice
   openssl
+  openssl.dev
   kubergrunt
   wirelesstools
   ifmetric
@@ -113,7 +114,6 @@ with pkgs; [
   argo-rollouts
   haskell-language-server
   paprefs
-  sqlx-cli
   grpcurl
   plantuml
   zola
