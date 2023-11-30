@@ -2,7 +2,7 @@
   description = "Latitude 7490 System Setup";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-23.05";
+    nixpkgs.url = "nixpkgs/nixos-23.11";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
   };
 
