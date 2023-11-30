@@ -139,13 +139,16 @@
       google-chrome
     ];
 
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     ubuntu_font_family
     font-awesome
     symbola
     alegreya
     nerdfonts
   ];
+
+  security.sudo.enable = false;
+  security.sudo-rs.enable = true;
 
   environment.homeBinInPath = true;
 
