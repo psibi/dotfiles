@@ -180,7 +180,6 @@ with pkgs; [
   # nodePackages.yaml-language-server
   # https://github.com/redhat-developer/yaml-language-server/issues/881
   sibi-yaml-language-server
-  nodePackages.yaml-language-server
   nodePackages.vscode-json-languageserver
   nodePackages.dockerfile-language-server-nodejs
   nodejs
