@@ -17,3 +17,7 @@ build-hm:
 # Update nixpkgs-unstable
 update-unstable:
 	nix flake lock --update-input nixpkgs-unstable
+
+# Update all inputs
+update-all-inputs:
+	nix flake update

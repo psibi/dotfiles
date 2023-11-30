@@ -21,10 +21,6 @@ with pkgs; [
   alacritty
   gnucash
   screen
-  xclip
-  xsel
-  xdotool
-  xscreensaver
   fish
   bat
   lsd
@@ -37,7 +33,6 @@ with pkgs; [
   gnumake
   gcc
   llvm
-  xorg.libxcb
   sqlite
   htop
   cabal2nix
@@ -85,7 +80,6 @@ with pkgs; [
   kalker
   jless
   jfmt
-  xorg.xwininfo
   nixpkgs-fmt
   kube-score
   pinentry-qt
@@ -119,11 +113,8 @@ with pkgs; [
   zola
   zlib
   zlib.dev
-  # zlib.out
-  # zlib.static
   postgresql
   jl
-  krew
   kubectl
   yubikey-manager
   yubioath-flutter
@@ -161,7 +152,7 @@ with pkgs; [
   appimage-run
   gopls
   scc
-  jetbrains.idea-community
+  # jetbrains.idea-community
   dateutils
 
   # Sway and Wayland related
@@ -182,7 +173,7 @@ with pkgs; [
   wtype
   xorg.xlsclients
   gnome.adwaita-icon-theme
-  xfce.xfce4-screenshooter
+
   slurp
   libcamera
 
@@ -199,10 +190,9 @@ with pkgs; [
   unstable.terraform-ls
   musl.dev
   glibc.static
+  awscli2
 
-  #
   # unstable.google-chrome
-  unstable.awscli2
 
 
   # From Overlays

@@ -22,8 +22,8 @@ build-hm:
 flake-info:
     nix flake metadata
 
-# Update flake
-update-flake:
+# Update all inputs
+update-all-inputs:
 	nix flake update
 
 # Update nixpkgs-unstable

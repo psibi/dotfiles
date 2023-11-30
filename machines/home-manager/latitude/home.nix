@@ -53,7 +53,7 @@
 
   wayland.windowManager.sway = {
     enable = true;
-    systemdIntegration = true;
+    systemd.enable = true;
 
     config = {
       terminal = "alacritty";
@@ -216,7 +216,7 @@
 
   programs.gh = {
     enable = true;
-    enableGitCredentialHelper = true;
+    gitCredentialHelper.enable = true;
   };
 
   programs.atuin = {
@@ -251,7 +251,15 @@
         normal = { family = "Ubuntu Mono"; };
         size = 17.0;
       };
-      shell = { program = "${pkgs.screen}/bin/screen"; };
+      shell = {
+        program = "${pkgs.zellij}/bin/zellij";
+        args = [
+          "--config"
+          "/home/sibi/github/dotfiles/zellij.kdl"
+          "--layout"
+          "/home/sibi/github/dotfiles/zellij_layout.kdl"
+        ];
+      };
     };
   };
 
