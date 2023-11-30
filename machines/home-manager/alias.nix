@@ -4,4 +4,5 @@
   ls = "lsd";
   o = "xdg-open";
   bc = "${pkgs.kalker}/bin/kalker";
+  cat = "bat";
 }
