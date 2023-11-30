@@ -288,6 +288,15 @@
     startWithUserSession = "graphical";
   };
 
+  services.flameshot = {
+    enable = true;
+    settings = {
+      General = {
+        disabledTrayIcon = true;
+        showStartupLaunchMessage = false;
+      };
+    };
+  };
 
   programs.ssh = {
     enable = true;

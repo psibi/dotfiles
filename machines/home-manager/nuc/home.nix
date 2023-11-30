@@ -79,7 +79,7 @@
 
   programs.gh = {
     enable = true;
-    enableGitCredentialHelper = true;
+    gitCredentialHelper.enable = true;
   };
 
   programs.zoxide = {
@@ -186,7 +186,7 @@
 
   wayland.windowManager.sway = {
     enable = true;
-    systemdIntegration = true;
+    systemd.enable = true;
 
     config = {
       terminal = "alacritty";
@@ -322,7 +322,6 @@
   programs.zellij = {
     enable = true;
     enableFishIntegration = true;
-    package = unstable-pkgs.zellij;
   };
 
   fonts.fontconfig.enable = true;
