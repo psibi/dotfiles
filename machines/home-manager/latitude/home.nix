@@ -131,6 +131,10 @@
               alert = 10.0;
             }
             {
+              block = "battery";
+              format = " $icon $percentage ";
+            }
+            {
               block = "memory";
               format = " $icon $mem_used_percents";
               interval = 30;

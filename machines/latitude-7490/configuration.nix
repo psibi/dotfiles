@@ -136,6 +136,7 @@
     [
       virt-manager
       virtiofsd
+      google-chrome
     ];
 
   fonts.fonts = with pkgs; [
