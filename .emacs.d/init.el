@@ -551,6 +551,11 @@
   (dumb-jump-prefer-searcher 'rg)
   (xref-show-definitions-function #'xref-show-definitions-completing-read))
 
+(use-package xref
+  :ensure nil
+  :custom
+  (xref-search-program 'ripgrep))
+
 (use-package nix-mode
   :hook (nix-mode . lsp-deferred)
   :ensure t)
