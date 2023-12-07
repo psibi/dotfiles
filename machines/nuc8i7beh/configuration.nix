@@ -74,7 +74,8 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
-    font = "Lat2-Terminus16";
+    earlySetup = true;
+    font = "lat4a-19";
     keyMap = "us";
   };
 
@@ -85,7 +86,11 @@
     wrapperFeatures.gtk = true;
   };
 
-  services.pipewire.enable = true;
+  services.pipewire = {
+    enable = true;
+    pulse.enable = true;
+  };
+
   xdg = {
     portal = {
       enable = true;
