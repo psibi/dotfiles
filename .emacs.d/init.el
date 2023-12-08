@@ -238,6 +238,12 @@
 (use-package terraform-doc
   :ensure t)
 
+(use-package lsp-bash
+  :ensure lsp-mode
+  :after lsp-mode
+  :demand t
+  :hook (bash-ts-mode . lsp-deferred))
+
 (use-package rustic
   ;; :quelpa (rustic :fetcher file
   ;;                 :path "~/github/rustic")
