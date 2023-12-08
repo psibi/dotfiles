@@ -173,6 +173,7 @@ with pkgs; [
   wtype
   xorg.xlsclients
   gnome.adwaita-icon-theme
+  alsa-utils
 
   slurp
   libcamera
@@ -182,6 +183,7 @@ with pkgs; [
   sibi-yaml-language-server
   nodePackages.vscode-json-languageserver
   nodePackages.dockerfile-language-server-nodejs
+  nodePackages.bash-language-server
   nodejs
   nodePackages.typescript
   nodePackages.typescript-language-server
