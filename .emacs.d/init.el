@@ -199,9 +199,11 @@
   (lsp-rust-analyzer-server-display-inlay-hints t)
   (lsp-rust-analyzer-experimental-proc-attr-macros t)
   (lsp-rust-analyzer-proc-macro-enable t)
-  (lsp-rust-analyzer-binding-mode-hints t)
+  (lsp-rust-analyzer-binding-mode-hints nil)
+  (lsp-rust-analyzer-display-chaining-hints t)
   (lsp-rust-analyzer-display-closure-return-type-hints t)
   (lsp-rust-analyzer-display-parameter-hints t)
+  (lsp-rust-analyzer-max-inlay-hint-length 25)
   (lsp-rust-analyzer-closure-capture-hints t))
 
 (use-package lsp-pylsp
@@ -237,6 +239,10 @@
 
 (use-package terraform-doc
   :ensure t)
+
+(use-package sh-script
+ :ensure nil
+ :mode ("\\.sh\\'" . bash-ts-mode))
 
 (use-package lsp-bash
   :ensure lsp-mode
@@ -574,9 +580,12 @@
   (lsp-nix-nil-formatter ["nixpkgs-fmt"]))
 
 (use-package git-link
-  :ensure t
+  ;; :ensure t
+  :quelpa (git-link :fetcher file
+                  :path "~/github/git-link")
   :custom
-  (git-link-use-commit t))
+  (git-link-use-commit t)
+  (git-link-consider-ssh-config t))
 
 (use-package copy-as-format
   :ensure t

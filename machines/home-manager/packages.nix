@@ -177,6 +177,7 @@ with pkgs; [
 
   slurp
   libcamera
+  sass
 
   # nodePackages.yaml-language-server
   # https://github.com/redhat-developer/yaml-language-server/issues/881
@@ -197,6 +198,7 @@ with pkgs; [
   awscli2
 
   # unstable.google-chrome
+  unstable.vscode
 
 
   # From Overlays
