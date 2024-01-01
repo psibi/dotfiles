@@ -269,6 +269,19 @@
               interval = 30;
             }
             {
+              block = "weather";
+              format = "$icon $weather $temp";
+              # Uncomment on i3status 0.32.3
+              # format_alt = " $icon_ffin Forecast (9 hour avg) {$temp_favg ({$temp_fmin}-{$temp_fmax})|Unavailable} ";
+              interval = 6000;
+              service = {
+                name = "metno";
+                coordinates = ["12.9923" "77.7161"];
+                unit = "metrics";
+                forecast_hours = 9;
+              };
+            }
+            {
               block = "cpu";
               interval = 30;
             }
