@@ -69,6 +69,9 @@
         "type:keyboard" = {
           xkb_options = "caps:ctrl_modifier";
         };
+        "type:touchpad" = {
+          tap = "enabled";
+        };
       };
 
       window = {
