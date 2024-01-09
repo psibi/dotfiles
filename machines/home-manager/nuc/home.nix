@@ -98,6 +98,11 @@
         format = "on [⛵ $context \\($namespace\\)](dimmed green) ";
         disabled = false;
       };
+      custom.aws = {
+        when = "printenv AWS_REGION";
+        command = "aws-helper info";
+        ignore_timeout = true;
+      };
     };
   };
 
