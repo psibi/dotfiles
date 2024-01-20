@@ -1,7 +1,8 @@
 { nixpkgs, pkgs, unstable-pkgs, lib, ... }:
 {
   # Custom systemd services
-  imports = [ ../../modules/cnx.nix ];
+  # todo: remove xdg-portal in next release
+  imports = [ ../../modules/cnx.nix ../../modules/xdg-portal.nix ];
 
   nixpkgs = {
     overlays = [ (import ../overlay.nix) ];
@@ -187,6 +188,12 @@
       "x-scheme-handler/unknown" = [ "google-chrome.desktop" ];
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = [ "writer.desktop" ];
     };
+  };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals =  [ pkgs.xdg-desktop-portal-wlr pkgs.xdg-desktop-portal-gtk];
+    config = { sway.default = ["wlr" "gtk"]; };
   };
 
   wayland.windowManager.sway = {
