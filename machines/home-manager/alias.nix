@@ -1,6 +1,6 @@
 { pkgs }: {
   pi = "ping 8.8.8.8";
-  clipboard = "xclip -sel clip";
+  clipboard = "wl-copy";
   ls = "lsd";
   o = "xdg-open";
   bc = "${pkgs.kalker}/bin/kalker";
