@@ -192,14 +192,13 @@ with pkgs; [
   python311Packages.python-lsp-server
   poetry
   kooha
-  unstable.terraform-ls
   musl.dev
   glibc.static
   awscli2
+  vscode
 
-  # unstable.google-chrome
-  unstable.vscode
-
+  unstable.google-chrome
+  unstable.terraform-ls
 
   # From Overlays
   em
