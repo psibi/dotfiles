@@ -18,6 +18,10 @@ build-hm:
 update-unstable:
 	nix flake lock --update-input nixpkgs-unstable
 
+# Update home-manager
+update-hm:
+	nix flake lock --update-input home-manager
+
 # Update all inputs
 update-all-inputs:
 	nix flake update

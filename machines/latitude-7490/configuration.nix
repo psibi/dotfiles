@@ -83,16 +83,6 @@
   };
 
   services.pipewire.enable = true;
-  xdg = {
-    portal = {
-      enable = true;
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-wlr
-        xdg-desktop-portal-gtk
-      ];
-    };
-  };
-
 
   services.dbus.enable = true;
 
@@ -136,7 +126,6 @@
     [
       virt-manager
       virtiofsd
-      google-chrome
     ];
 
   fonts.packages = with pkgs; [
