@@ -91,16 +91,6 @@
     pulse.enable = true;
   };
 
-  xdg = {
-    portal = {
-      enable = true;
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-wlr
-        xdg-desktop-portal-gtk
-      ];
-    };
-  };
-
   services.dbus.enable = true;
 
   # Enable sound.
@@ -130,7 +120,6 @@
     yubikey-manager
     virt-manager
     virtiofsd
-    google-chrome
   ];
 
   fonts.packages = with pkgs; [
