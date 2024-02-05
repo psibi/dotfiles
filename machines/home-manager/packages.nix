@@ -104,6 +104,7 @@ with pkgs; [
   cargo-llvm-cov
   keepassxc
   stack
+  cabal-install
   ghc
   argo-rollouts
   haskell-language-server
@@ -196,9 +197,11 @@ with pkgs; [
   glibc.static
   awscli2
   vscode
+  yarn
 
   unstable.google-chrome
   unstable.terraform-ls
+  zoom-us
 
   # From Overlays
   em
