@@ -150,7 +150,7 @@
   :custom
   ;; (lsp-log-io t)
   (lsp-log-io nil)
-  (lsp-disabled-clients '(tfls clangd rls rnix-lsp semgrep-ls))
+  (lsp-disabled-clients '(tfls clangd rls rnix-lsp semgrep-ls deno-ls))
   (lsp-semantic-tokens-enable t)
   (lsp-lens-auto-enable t)
   (lsp-semantic-tokens-honor-refresh-requests nil)
