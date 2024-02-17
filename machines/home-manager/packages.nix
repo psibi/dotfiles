@@ -208,4 +208,7 @@ with pkgs; [
   flarectl
   sibiEmacs
 
+  libusb1
+  libusb1.dev
+  libusb1.out
 ]
