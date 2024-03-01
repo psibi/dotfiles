@@ -218,10 +218,10 @@
   :after (lsp-mode)
   :hook ((c-mode c++-mode) . (lambda () (require 'ccls) (lsp))))
 
-(use-package yaml-mode
-  :ensure t
+(use-package yaml-ts-mode
+  :ensure nil
   :after (lsp-mode)
-  :hook ((yaml-mode . lsp-deferred)))
+  :hook ((yaml-ts-mode . lsp-deferred)))
 
 (use-package treemacs-all-the-icons
   :ensure t)
@@ -253,6 +253,7 @@
 (use-package rust-mode
   :quelpa (rust-mode :fetcher file
                     :path "~/github/rust-mode")
+  :defer t
   :init
   (setq rust-mode-treesitter-derive t))
 
@@ -663,7 +664,8 @@
   :ensure t)
 
 (use-package go-mode
-  :ensure t)
+  :ensure t
+  :hook (go-mode . lsp-deferred))
 
 (use-package lsp-go
   :ensure lsp-mode
@@ -791,6 +793,10 @@
 
 (use-package solidity-mode
   :ensure t)
+
+(use-package combobulate
+  :quelpa (combobulate :fetcher github
+                       :repo "mickeynp/combobulate"))
 
 (load-file "~/.emacs.d/haskell.el")
 (load-file "~/.emacs.d/sibi-utils.el")
