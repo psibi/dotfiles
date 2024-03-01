@@ -2,10 +2,6 @@
 ;; Author: Sibi <sibi@psibi.in>
 ;; File path: ~/.emacs.d/init.el
 
-
-(setq package-archives '(("gnu"   . "http://elpa.gnu.org/packages/")
-                        ("melpa" . "https://melpa.org/packages/")))
-
 (require 'use-package)
 
 ;;; https://emacs-lsp.github.io/lsp-mode/page/performance/
@@ -73,6 +69,14 @@
   (package-native-compile t)
   (package-archives '(("gnu"   . "http://elpa.gnu.org/packages/")
                       ("melpa" . "https://melpa.org/packages/"))))
+
+(use-package quelpa
+  :ensure t
+  :custom
+  (quelpa-git-clone-depth 1)
+  (quelpa-self-upgrade-p nil)
+  (quelpa-update-melpa-p nil)
+  (quelpa-checkout-melpa-p nil))
 
 (use-package quelpa-use-package
   :ensure t)
@@ -773,9 +777,6 @@
               ("g" . google-this-noconfirm)
               ("G" . google-this)
               ("m" . apply-macro-to-region-lines)))
-
-(use-package csharp-mode
-  :ensure t)
 
 (use-package lsp-java
   :ensure t
