@@ -253,8 +253,8 @@
 (use-package rust-mode
   :quelpa (rust-mode :fetcher file
                     :path "~/github/rust-mode")
-  :custom
-  (rust-mode-treesitter-derive t))
+  :init
+  (setq rust-mode-treesitter-derive t))
 
 (use-package rustic
   :quelpa (rustic :fetcher file
