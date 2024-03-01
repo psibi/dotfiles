@@ -43,7 +43,7 @@
   :ensure t
   :custom
   (org-journal-file-format "%Y-%m-%d.org")
-  (org-journal-dir "/home/sibi/github/timebox/2023/")
+  (org-journal-dir "/home/sibi/github/timebox/2024/")
   (org-journal-date-format "%A, %d %B %Y")
   (org-journal-skip-carryover-drawers (list "CLOCKING"))
   (org-journal-file-type 'daily))
