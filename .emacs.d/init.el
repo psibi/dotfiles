@@ -151,6 +151,9 @@
   :commands lsp
   :hook ((lsp-mode . lsp-enable-which-key-integration)
          (lsp-configure . lsp-lens-mode))
+  :config
+  ;; NixOS result symbolic directory
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\result\\'" t)
   :custom
   ;; (lsp-log-io t)
   (lsp-log-io nil)
@@ -266,7 +269,6 @@
                   :path "~/github/rustic")
   ;; :ensure t
   :after (rust-mode lsp-mode smartparens)
-  :mode "\\.rs\\'"
   :init
   (progn
     (add-hook 'rustic-mode-hook #'lsp-deferred)
@@ -286,6 +288,7 @@
   :custom
   (rustic-analyzer-command '("rustup" "run" "stable" "rust-analyzer"))
   (rustic-default-clippy-arguments nil)
+  (rustic-cargo-use-last-stored-arguments t)
   (rustic-babel-auto-wrap-main nil)
   (rustic-cargo-default-install-arguments '("--path" "." "--locked" "--offline" "--profile" "dev")))
 

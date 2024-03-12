@@ -26,6 +26,7 @@ with pkgs; [
   lsd
   fd
   procs
+  dysk
   nixfmt
   direnv
   rustup
@@ -211,4 +212,8 @@ with pkgs; [
   libusb1
   libusb1.dev
   libusb1.out
+
+  go_1_19
+  gopls
+  golangci-lint
 ]
