@@ -164,6 +164,7 @@
   (lsp-semantic-tokens-allow-delta-requests t)
   (lsp-semantic-tokens-allow-ranged-requests t)
   (lsp-semantic-tokens-warn-on-missing-face nil)
+  (lsp-diagnostics-provider :flycheck)
   (lsp-inlay-hint-enable t))
 
 (use-package lsp-ui
