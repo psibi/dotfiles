@@ -2,8 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, nixpkgs, pkgs, ... }:
-
+{ config, nixpkgs, pkgs, enableAnikalScanner, ... }:
 {
   imports = [
     # Include the results of the hardware scan.
@@ -111,8 +110,16 @@
       "docker"
       "plugdev"
       "libvirtd"
-    ]; # Enable ‘sudo’ for the user.
+    ] ++ (if enableAnikalScanner then [ "scanner" "lp" ] else []);
   };
+
+  hardware.sane = {
+    enable = enableAnikalScanner;
+    extraBackends = if enableAnikalScanner then [ pkgs.hplipWithPlugin ] else [];
+  };
+
+  services.avahi.enable = enableAnikalScanner;
+  services.avahi.nssmdns = enableAnikalScanner;
 
   virtualisation.docker.enable = true;
   virtualisation.libvirtd.enable = true;
@@ -164,6 +171,13 @@
   services.openssh.knownHosts = {
     nuc = { publicKey = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCfn0B8MF2jsLdndxj/x8jhdK32XTaO8kAowbwUY1slF0TCN+h3mwtFUKdZGgOvryjifzKe9eyCraBd/950cmT0QfjWN/oIW9URiZBsT09jWo2MyPUf38vjVaB4kNA152VZjR1kL40RwuXkETy9q6ZcP4VcQJbH1n5FxMOXnN8DT0pF3/DBgKEZmJ+LOUT0OenYMPlZuxZsZq3owNcODpKWpTvQljKA1fZU1ZihVewYy+OktAD+E7AVqtuPwsEKtyRFyGEn97lUmPpLavG42LhIgftNiT5cIhR54M2AmydSa3WkV64UwyZhHCUleK5B3m9DQM2Zda2a85ZnA+YJNvlRhcZ4qS1XmZPxMz50b8Dr8NXj6V+vKSFnme3XBEYuyL9midP+j/TfHMdQ5GbeDe9qZv/finC1aLKKsZH+w7EiLfsuteYz4/Qsc1NCRpcgCBcuKtzNmU2ow1vGTs5P34+7zw1PZj2J0qRImB5YIumJcixQIMovRkshTwEdj7XPST8k9S9SCYGWo8A6JI0MsPeOIK5fZde0IIEP9SBQyvukGScBeHpaMt0Lu4cqT8qif0xJtEk6spXI+AbEE1CQGxPX7l/sSvB5whDd/QGG0ApBmg9YO/KLSgFUAR2FE/DY/plSRXRHlYhxOvQhJdb+fanOD+xC/hjWiVCMm7UNBK3gDw== sibi@psibi.in"; };
   };
+
+  # For disk automount
+  security.polkit.enable = true;
+  services.udisks2.enable = true;
+  services.devmon.enable = true;
+
+  services.fwupd.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

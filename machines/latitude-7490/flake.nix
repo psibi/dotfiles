@@ -17,7 +17,10 @@
         nixos-hardware.nixosModules.dell-latitude-7490
       ];
 
-      specialArgs = { nixpkgs = nixpkgs; };
+      specialArgs = {
+        nixpkgs = nixpkgs;
+        enableAnikalScanner = false;
+      };
 
     };
   };
