@@ -33,7 +33,7 @@ with pkgs; [
   pavucontrol
   gnumake
   gcc
-  llvm
+  # llvm
   sqlite
   htop
   cabal2nix
@@ -103,8 +103,8 @@ with pkgs; [
   cargo-cache
   cargo-udeps
   cargo-llvm-cov
+  cargo-watch
   keepassxc
-  stack
   cabal-install
   ghc
   argo-rollouts
@@ -113,7 +113,7 @@ with pkgs; [
   grpcurl
   plantuml
   zola
-  zlib
+  zlib.out
   zlib.dev
   postgresql
   jl
@@ -194,14 +194,16 @@ with pkgs; [
   python311Packages.python-lsp-server
   poetry
   kooha
-  musl.dev
-  glibc.static
+  # musl.dev
+  # glibc.static
   awscli2
   vscode
   yarn
 
   unstable.google-chrome
   unstable.terraform-ls
+  unstable.stack
+  unstable.kubernetes-helm
   zoom-us
 
   # From Overlays
@@ -216,4 +218,9 @@ with pkgs; [
   go_1_19
   gopls
   golangci-lint
+
+  cilium-cli
+  hwinfo
+  pciutils
+  lshw
 ]
