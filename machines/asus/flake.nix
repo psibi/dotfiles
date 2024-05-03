@@ -7,7 +7,7 @@
 
   outputs = { self, nixpkgs}: {
 
-    nixosConfigurations.arya = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.hask = nixpkgs.lib.nixosSystem {
 
       system = "x86_64-linux";
 

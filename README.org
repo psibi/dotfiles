@@ -27,5 +27,5 @@ just
 * Old docs
 
 - [[file:FRESH.md][Fresh System configuraion]]
-- [[file:GPG.md][GPG docs]]
+- [[file:GPG.gmd][GPG docs]]
 - [[file:Mac.md][Mac notes]]
