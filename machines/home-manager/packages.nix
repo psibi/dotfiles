@@ -223,4 +223,15 @@ with pkgs; [
   hwinfo
   pciutils
   lshw
+
+  ubuntu_font_family
+  font-awesome
+  symbola
+  alegreya
+  nerdfonts
+  lm_sensors
+  linux.dev
+  virt-manager
+  virtualbox
+  quickemu
 ]
