@@ -13,10 +13,10 @@
   (haskell-hoogle-url '"https://www.stackage.org/lts/hoogle?q=%s"))
 
 (use-package lsp-haskell
-  ;; :ensure t
-  :quelpa (lsp-haskell :fetcher file
-                    :path "~/github/lsp-haskell/"
-                    :files ("*.el"))
+  :ensure t
+  ;; :quelpa (lsp-haskell :fetcher file
+  ;;                   :path "~/github/lsp-haskell/"
+  ;;                   :files ("*.el"))
   :after (haskell-mode)
   :custom
   (lsp-haskell-process-path-hie "haskell-language-server-wrapper")
