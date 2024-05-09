@@ -4,7 +4,7 @@ default:
 
 # Build flake
 build:
-    nix build '.#homeConfigurations.arya.activationPackage'
+    nix build '.#homeConfigurations.hask.activationPackage'
 
 # Activate
 activate:
@@ -12,11 +12,11 @@ activate:
 
 # Build flake (with trace)
 build-trace:
-    nix build '.#homeConfigurations.arya.activationPackage' --show-trace
+    nix build '.#homeConfigurations.hask.activationPackage' --show-trace
 
 # Build via home manager
 build-hm:
-    home-manager switch --flake .#arya
+    home-manager switch --flake .#hask
 
 # Flake metadata
 flake-info:
