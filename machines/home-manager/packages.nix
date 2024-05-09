@@ -234,4 +234,6 @@ with pkgs; [
   virt-manager
   virtualbox
   quickemu
+
+  tldr-hs
 ]
