@@ -180,12 +180,12 @@
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
-      "application/pdf" = [ "google-chrome.desktop" ];
-      "text/html" = [ "google-chrome.desktop" ];
-      "x-scheme-handler/http" = [ "google-chrome.desktop" ];
-      "x-scheme-handler/https" = [ "google-chrome.desktop" ];
-      "x-scheme-handler/about" = [ "google-chrome.desktop" ];
-      "x-scheme-handler/unknown" = [ "google-chrome.desktop" ];
+      "application/pdf" = [ "chromium.desktop" ];
+      "text/html" = [ "chromium.desktop" ];
+      "x-scheme-handler/http" = [ "chromium.desktop" ];
+      "x-scheme-handler/https" = [ "chromium.desktop" ];
+      "x-scheme-handler/about" = [ "chromium.desktop" ];
+      "x-scheme-handler/unknown" = [ "chromium.desktop" ];
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = [ "writer.desktop" ];
     };
   };
@@ -204,7 +204,7 @@
       terminal = "alacritty";
 
       startup = [
-        { command = "google-chrome-stable"; }
+        { command = "chromium"; }
         { command = "alacritty"; }
         { command = "keepassxc"; }
       ];
@@ -224,7 +224,7 @@
           }
           {
             command = "move container to workspace number 2";
-            criteria.app_id = "google-chrome";
+            criteria.app_id = "chromium-browser";
           }
           {
             command = "move container to workspace number 1";

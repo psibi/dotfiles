@@ -201,6 +201,7 @@ with pkgs; [
   yarn
 
   unstable.google-chrome
+  chromium
   unstable.terraform-ls
   unstable.stack
   unstable.kubernetes-helm
