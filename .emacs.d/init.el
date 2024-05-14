@@ -569,7 +569,7 @@
 (use-package browse-url
   :ensure nil
   :custom
-  (browse-url-browser-function 'browse-url-chrome))
+  (browse-url-browser-function 'browse-url-chromium))
 
 (use-package helm-flyspell
   :ensure t)
