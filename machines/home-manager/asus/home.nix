@@ -294,6 +294,16 @@
               };
             }
             {
+              block = "temperature";
+              interval = 15;
+              good = 50;
+              info = 60;
+              warning = 80;
+              chip = "k10temp-pci-00c3";
+              inputs = ["Tccd1" "Tccd2"];
+              format = " $icon $max";
+            }
+            {
               block = "cpu";
               interval = 30;
             }
