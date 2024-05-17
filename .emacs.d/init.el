@@ -275,7 +275,6 @@
   :after (rust-mode lsp-mode smartparens)
   :init
   (progn
-    (add-hook 'rustic-mode-hook #'lsp-deferred)
     (add-hook 'rustic-mode-hook #'turn-on-smartparens-mode))
   ;; :ensure t
   :bind (:map rustic-mode-map

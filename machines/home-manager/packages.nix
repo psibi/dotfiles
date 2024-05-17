@@ -237,4 +237,5 @@ with pkgs; [
   quickemu
 
   tldr-hs
+  whois
 ]
