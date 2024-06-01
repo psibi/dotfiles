@@ -165,6 +165,8 @@
   (lsp-semantic-tokens-allow-ranged-requests t)
   (lsp-semantic-tokens-warn-on-missing-face nil)
   (lsp-diagnostics-provider :flycheck)
+  ;; https://github.com/emacs-lsp/lsp-mode/issues/4437#issuecomment-2075100304
+  (lsp-eldoc-render-all t)
   (lsp-inlay-hint-enable t))
 
 (use-package lsp-ui
@@ -229,6 +231,7 @@
 (use-package yaml-ts-mode
   :ensure nil
   :after (lsp-mode)
+  :mode ("\\.yaml\\'" . yaml-ts-mode)
   :hook ((yaml-ts-mode . lsp-deferred)))
 
 (use-package treemacs-all-the-icons
@@ -272,7 +275,6 @@
   :after (rust-mode lsp-mode smartparens)
   :init
   (progn
-    (add-hook 'rustic-mode-hook #'lsp-deferred)
     (add-hook 'rustic-mode-hook #'turn-on-smartparens-mode))
   ;; :ensure t
   :bind (:map rustic-mode-map
@@ -566,7 +568,7 @@
 (use-package browse-url
   :ensure nil
   :custom
-  (browse-url-browser-function 'browse-url-chrome))
+  (browse-url-browser-function 'browse-url-chromium))
 
 (use-package helm-flyspell
   :ensure t)
@@ -596,9 +598,7 @@
   (lsp-nix-nil-formatter ["nixpkgs-fmt"]))
 
 (use-package git-link
-  ;; :ensure t
-  :quelpa (git-link :fetcher file
-                  :path "~/github/git-link")
+  :ensure t
   :custom
   (git-link-use-commit t)
   (git-link-consider-ssh-config t))

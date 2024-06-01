@@ -201,6 +201,7 @@ with pkgs; [
   yarn
 
   unstable.google-chrome
+  chromium
   unstable.terraform-ls
   unstable.stack
   unstable.kubernetes-helm
@@ -234,4 +235,7 @@ with pkgs; [
   virt-manager
   virtualbox
   quickemu
+
+  tldr-hs
+  whois
 ]

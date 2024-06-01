@@ -13,3 +13,4 @@ extra-include-dirs:
 - /home/sibi/.nix-profile/include
 nix:
   enable: false
+notify-if-nix-on-path: false
