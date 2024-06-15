@@ -219,7 +219,7 @@
       window = {
         commands = [
           {
-            command = "move scratchpad";
+            command = "move scratchpad; scratchpad show";
             criteria.app_id = "org.keepassxc.KeePassXC";
           }
           {
@@ -401,6 +401,7 @@
 
   services.flameshot = {
     enable = true;
+    package = pkgs.flameshot-grim;
     settings = {
       General = {
         disabledTrayIcon = true;
