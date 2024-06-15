@@ -166,7 +166,7 @@
   (lsp-semantic-tokens-warn-on-missing-face nil)
   (lsp-diagnostics-provider :flycheck)
   ;; https://github.com/emacs-lsp/lsp-mode/issues/4437#issuecomment-2075100304
-  (lsp-eldoc-render-all t)
+  (lsp-eldoc-render-all nil)
   (lsp-inlay-hint-enable t))
 
 (use-package lsp-ui
