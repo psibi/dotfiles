@@ -2,7 +2,7 @@
   description = "Asus System Setup";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-23.11";
+    nixpkgs.url = "nixpkgs/nixos-24.05";
   };
 
   outputs = { self, nixpkgs}: {
