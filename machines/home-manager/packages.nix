@@ -238,4 +238,8 @@ with pkgs; [
 
   tldr-hs
   whois
+
+  sqlx-cli
+  kondo                         # For cleaning build artifacts
+  kubeseal
 ]
