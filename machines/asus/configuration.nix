@@ -11,9 +11,12 @@
       ./hardware-configuration.nix
     ];
 
+  services.udev.packages = [ pkgs.ledger-udev-rules ];
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelModules = ["kvm-amd" "nct6775"];
 
   boot.initrd.luks.devices.crypted.device = "/dev/disk/by-uuid/83f885b8-95ba-4675-9d73-721374986d12";
   fileSystems."/home".device = "/dev/mapper/crypted";
@@ -21,7 +24,6 @@
   nixpkgs.config.allowUnfree = true;
   hardware.enableRedistributableFirmware = true;
   nix.registry.nixpkgs.flake = nixpkgs;
-
 
   networking.hostName = "hask";
 
