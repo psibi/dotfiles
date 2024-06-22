@@ -1,8 +1,7 @@
 { nixpkgs, pkgs, unstable-pkgs, lib, ... }:
 {
   # Custom systemd services
-  # todo: remove xdg-portal in next release
-  imports = [ ../../modules/cnx.nix ../../modules/xdg-portal.nix ];
+  imports = [ ];
 
   nixpkgs = {
     overlays = [ (import ../overlay.nix) ];
@@ -289,7 +288,6 @@
               service = {
                 name = "metno";
                 coordinates = ["12.9923" "77.7161"];
-                unit = "metrics";
                 forecast_hours = 9;
               };
             }
@@ -361,11 +359,6 @@
 
   fonts.fontconfig.enable = true;
 
-  services.cnx = {
-    enable = false;
-    machineName = "NUC";
-  };
-
   services.emacs = {
     enable = true;
     package = pkgs.sibiEmacs;
@@ -396,7 +389,7 @@
     defaultCacheTtlSsh = 60480000;
     maxCacheTtl = 60480000;
     maxCacheTtlSsh = 60480000;
-    pinentryFlavor = "qt";
+    pinentryPackage = pkgs.pinentry-qt;
   };
 
   services.flameshot = {
