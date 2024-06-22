@@ -27,7 +27,7 @@ with pkgs; [
   fd
   procs
   dysk
-  nixfmt
+  nixfmt-classic
   direnv
   rustup
   pavucontrol
@@ -116,7 +116,6 @@ with pkgs; [
   zlib.out
   zlib.dev
   postgresql
-  jl
   kubectl
   yubikey-manager
   yubioath-flutter
@@ -194,7 +193,7 @@ with pkgs; [
   python311Packages.python-lsp-server
   poetry
   kooha
-  # musl.dev
+  musl.dev # Causes issue to haskell stack
   # glibc.static
   awscli2
   vscode
@@ -216,7 +215,7 @@ with pkgs; [
   libusb1.dev
   libusb1.out
 
-  go_1_19
+  go
   gopls
   golangci-lint
 
@@ -242,4 +241,6 @@ with pkgs; [
   sqlx-cli
   kondo                         # For cleaning build artifacts
   kubeseal
+  google-cloud-sdk
+  minijinja
 ]
