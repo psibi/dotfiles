@@ -243,4 +243,5 @@ with pkgs; [
   kubeseal
   google-cloud-sdk
   minijinja
+  tflint
 ]
