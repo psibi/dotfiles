@@ -119,7 +119,7 @@
   };
 
   services.avahi.enable = enableAnikalScanner;
-  services.avahi.nssmdns = enableAnikalScanner;
+  services.avahi.nssmdns4 = enableAnikalScanner;
 
   virtualisation.docker.enable = true;
   virtualisation.libvirtd.enable = true;

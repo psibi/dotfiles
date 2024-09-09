@@ -1,8 +1,7 @@
 { nixpkgs, pkgs, unstable-pkgs, lib, ... }:
 
 {
-  # todo: remove xdg-portal in next release
-  imports = [ ../../modules/cnx.nix  ../../modules/xdg-portal.nix ];
+  imports = [ ];
 
   nixpkgs = {
     overlays = [ (import ../overlay.nix ) ];
@@ -84,7 +83,7 @@
       window = {
         commands = [
           {
-            command = "move scratchpad";
+            command = "move scratchpad; scratchpad show";
             criteria.app_id = "org.keepassxc.KeePassXC";
           }
           {
@@ -143,6 +142,17 @@
             {
               block = "battery";
               format = " $icon $percentage ";
+            }
+            {
+              block = "weather";
+              format = "$icon $weather $temp";
+              format_alt = " $icon_ffin Forecast (9 hour avg) {$temp_favg ({$temp_fmin}-{$temp_fmax})|Unavailable} ";
+              interval = 6000;
+              service = {
+                name = "metno";
+                coordinates = ["12.9923" "77.7161"];
+                forecast_hours = 9;
+              };
             }
             {
               block = "memory";
@@ -289,12 +299,7 @@
     defaultCacheTtlSsh = 60480000;
     maxCacheTtl = 60480000;
     maxCacheTtlSsh = 60480000;
-    pinentryFlavor = "qt";
-  };
-
-  services.cnx = {
-    enable = false;
-    machineName = "LAPTOP";
+    pinentryPackage = pkgs.pinentry-qt;
   };
 
   services.emacs = {
@@ -305,6 +310,7 @@
 
   services.flameshot = {
     enable = true;
+    package = pkgs.flameshot-grim;
     settings = {
       General = {
         disabledTrayIcon = true;
