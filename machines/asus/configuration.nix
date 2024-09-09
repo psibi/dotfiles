@@ -75,6 +75,12 @@
     home = "/home/sibi";
   };
 
+  services.ollama = {
+    enable = true;
+    writablePaths = [ "/home/sibi/Documents/ollama/"];
+    models = "models";
+  };
+
   virtualisation.docker.enable = true;
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
