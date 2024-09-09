@@ -228,11 +228,14 @@
   :after (lsp-mode)
   :hook ((c-mode c++-mode) . (lambda () (require 'ccls) (lsp))))
 
-(use-package yaml-ts-mode
-  :ensure nil
-  :after (lsp-mode)
-  :mode ("\\.yaml\\'" . yaml-ts-mode)
-  :hook ((yaml-ts-mode . lsp-deferred)))
+(add-to-list 'auto-mode-alist '("\\.ya?ml\\'" . yaml-ts-mode))
+(add-hook 'yaml-ts-mode 'lsp-deferred)
+
+;; Debug: For some reason it's not working
+;; (use-package yaml-ts-mode
+;;   :ensure nil
+;;   :after (lsp-mode)
+;;   :hook (yaml-ts-mode . lsp-deferred))
 
 (use-package treemacs-all-the-icons
   :ensure t)
@@ -293,6 +296,8 @@
   (rustic-default-clippy-arguments nil)
   (rustic-cargo-use-last-stored-arguments t)
   (rustic-babel-auto-wrap-main nil)
+  (rustic-babel-display-error-popup nil)
+  (rustic-cargo-populate-package-name t)
   (rustic-cargo-default-install-arguments '("--path" "." "--locked" "--offline" "--profile" "dev")))
 
 (use-package yasnippet
@@ -391,7 +396,14 @@
   :bind (("C-c g" . 'magit-status))
   :custom
   (magit-auto-revert-mode 1)
-  (magit-commit-arguments (quote ("--gpg-sign=BB557613"))))
+  (magit-commit-arguments (quote ("--gpg-sign=BB557613")))
+  (magit-refresh-status-buffer nil)
+  :config
+  ;; https://magit.vc/manual/magit/Performance.html
+  (progn
+    (remove-hook 'server-switch-hook 'magit-commit-hook)
+    (remove-hook 'with-editor-filter-visit-hook 'magit-commit-hook)))
+
 
 ;;Projectile related config
 (use-package projectile
@@ -509,10 +521,10 @@
   ;; For line jumping: C-u C-u C-c SPC
   (("C-c SPC" . ace-jump-mode)))
 
-(use-package nyan-mode
-  :ensure t
-  :config
-  (nyan-mode 1))
+;; (use-package nyan-mode
+;;   :ensure t
+;;   :config
+;;   (nyan-mode 1))
 
 (use-package flycheck-pos-tip
   :ensure t
@@ -782,13 +794,13 @@
               ("G" . google-this)
               ("m" . apply-macro-to-region-lines)))
 
-(use-package lsp-java
-  :ensure t
-  :after lsp-mode
-  :custom
-  (lsp-java-server-config-dir "/home/sibi/config_linux")
-  (lsp-java-server-install-dir (expand-file-name "share/java" (file-name-directory (directory-file-name (file-name-directory (file-name-directory (file-truename (executable-find "jdt-language-server"))))))))
-  :hook (java-mode . lsp-deferred))
+;; (use-package lsp-java
+;;   :ensure t
+;;   :after lsp-mode
+;;   :custom
+;;   (lsp-java-server-config-dir "/home/sibi/config_linux")
+;;   (lsp-java-server-install-dir (expand-file-name "share/java" (file-name-directory (directory-file-name (file-name-directory (file-name-directory (file-truename (executable-find "jdt-language-server"))))))))
+;;   :hook (java-mode . lsp-deferred))
 
 (use-package dart-mode
   :ensure t)
@@ -802,6 +814,9 @@
 (use-package combobulate
   :quelpa (combobulate :fetcher github
                        :repo "mickeynp/combobulate"))
+
+(use-package ellama
+  :ensure t)
 
 (load-file "~/.emacs.d/haskell.el")
 (load-file "~/.emacs.d/sibi-utils.el")
