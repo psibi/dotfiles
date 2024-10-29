@@ -129,6 +129,8 @@
 
   programs.ssh = {
     enable = true;
+    serverAliveInterval = 15;
+    serverAliveCountMax = 3;
     matchBlocks = {
       "ssh.dev.azure.com" = {
         user = "git";
