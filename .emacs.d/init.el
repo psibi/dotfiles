@@ -298,6 +298,7 @@
   (rustic-babel-auto-wrap-main nil)
   (rustic-babel-display-error-popup nil)
   (rustic-cargo-populate-package-name t)
+  (rustic-rustfmt-args "--all")
   (rustic-cargo-default-install-arguments '("--path" "." "--locked" "--offline" "--profile" "dev")))
 
 (use-package yasnippet
