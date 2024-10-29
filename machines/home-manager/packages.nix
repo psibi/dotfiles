@@ -29,7 +29,6 @@ with pkgs; [
   dysk
   nixfmt-classic
   direnv
-  rustup
   pavucontrol
   gnumake
   gcc
@@ -104,6 +103,8 @@ with pkgs; [
   cargo-udeps
   cargo-llvm-cov
   cargo-watch
+  cargo-binstall
+  cargo-leptos
   keepassxc
   cabal-install
   ghc
@@ -153,6 +154,7 @@ with pkgs; [
   appimage-run
   gopls
   scc
+  tokei
   # jetbrains.idea-community
   dateutils
 
@@ -204,6 +206,8 @@ with pkgs; [
   unstable.terraform-ls
   unstable.stack
   unstable.kubernetes-helm
+  # https://github.com/NixOS/nixpkgs/pull/314268
+  unstable.rustup
   zoom-us
 
   # From Overlays
@@ -244,4 +248,6 @@ with pkgs; [
   google-cloud-sdk
   minijinja
   tflint
+  trunk
+  leptosfmt
 ]
