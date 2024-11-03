@@ -321,6 +321,8 @@
 
   programs.ssh = {
     enable = true;
+    serverAliveInterval = 15;
+    serverAliveCountMax = 3;
     matchBlocks = {
       "github" = {
         host = "github.com";
