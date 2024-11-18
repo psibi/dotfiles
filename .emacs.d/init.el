@@ -288,7 +288,8 @@
               ("C-c C-c <tab>" . rustic-cargo-build)
               ("C-c C-c l" . flycheck-list-errors)
               ("C-c o" . lsp-rust-analyzer-open-external-docs)
-              ("C-c C-c s" . lsp-rust-analyzer-status))
+              ("C-c C-c s" . lsp-rust-analyzer-status)
+	      ("C-c C-c C-t" . rustic-cargo-run-nextest))
   :config
   (setq rustic-format-on-save nil)
   :custom
