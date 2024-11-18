@@ -105,6 +105,7 @@ with pkgs; [
   cargo-watch
   cargo-binstall
   cargo-leptos
+  cargo-nextest
   keepassxc
   cabal-install
   ghc
@@ -251,4 +252,8 @@ with pkgs; [
   tflint
   trunk
   leptosfmt
+  kubo                          # For ipfs
+  wasm-pack
+  biome
+  hugo
 ]
