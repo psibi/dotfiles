@@ -23,4 +23,5 @@
   :ensure t
   :init
   :custom
-  (justl-recipe-width 40))
+  (justl-recipe-width 40)
+  (justl-include-private-recipes nil))
