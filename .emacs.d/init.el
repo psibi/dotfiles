@@ -14,6 +14,15 @@
 (setq byte-compile-warnings '(not obsolete))
 (setq warning-suppress-log-types '((comp) (bytecomp)))
 (setq native-comp-async-report-warnings-errors 'silent)
+;;; Smooth scrolling
+(setq pixel-scroll-precision-mode t)
+(setq fast-but-imprecise-scrolling nil)
+(setq auto-window-vscroll nil)
+(setq cursor-in-non-selected-windows t)
+(setq truncate-lines t)
+
+;; Give up some bidirectional functionality for slightly faster re-display.
+(setq bidi-inhibit-bpa t)
 
 ;; Save history of minibuffer
 (savehist-mode)
@@ -60,6 +69,23 @@
   :ensure nil
   :config
   (tool-bar-mode -1))
+
+(use-package tooltip
+  :ensure nil
+  :config
+  (tooltip-mode -1))
+
+(use-package ffap
+  :ensure nil
+  :custom
+  ;; Don't ping things that look like domain names.
+  (ffap-machine-p-known 'reject))
+
+(use-package paren
+  :ensure nil
+  :custom
+  (show-paren-when-point-inside-paren t)
+  (show-paren-when-point-in-periphery t))
 
 (use-package package
   :ensure nil
@@ -142,10 +168,10 @@
   (which-key-mode))
 
 (use-package lsp-mode
-  ;; :ensure t
-  :quelpa (lsp-mode :fetcher file
-                    :path "~/github/lsp-mode"
-                    :files ("*.el" "clients/*.el"))
+  :ensure t
+  ;; :quelpa (lsp-mode :fetcher file
+  ;;                   :path "~/github/lsp-mode"
+  ;;                   :files ("*.el" "clients/*.el"))
   :init (setq lsp-keymap-prefix "C-l")
   :after (dash)
   :commands lsp
@@ -155,8 +181,8 @@
   ;; NixOS result symbolic directory
   (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\result\\'" t)
   :custom
-  ;; (lsp-log-io t)
   (lsp-log-io nil)
+  ;; (lsp-log-io nil)
   (lsp-disabled-clients '(tfls clangd rls rnix-lsp semgrep-ls deno-ls))
   (lsp-semantic-tokens-enable t)
   (lsp-lens-auto-enable t)
@@ -168,6 +194,10 @@
   ;; https://github.com/emacs-lsp/lsp-mode/issues/4437#issuecomment-2075100304
   (lsp-eldoc-render-all nil)
   (lsp-inlay-hint-enable t))
+
+;; (use-package lsp-static-ls
+;;   :ensure lsp-mode
+;;   :after lsp-mode)
 
 (use-package lsp-ui
   :ensure t
@@ -209,7 +239,7 @@
   (lsp-rust-analyzer-server-display-inlay-hints t)
   (lsp-rust-analyzer-experimental-proc-attr-macros t)
   (lsp-rust-analyzer-proc-macro-enable t)
-  (lsp-rust-analyzer-binding-mode-hints nil)
+  (lsp-rust-analyzer-binding-mode-hints t)
   (lsp-rust-analyzer-display-chaining-hints t)
   (lsp-rust-analyzer-display-closure-return-type-hints t)
   (lsp-rust-analyzer-display-parameter-hints t)
@@ -332,7 +362,9 @@
    ("C-x C-k" . kill-region)
    ("C-c C-k" . kill-region))
   :custom
-  (next-line-add-newlines nil))
+  (blink-matching-paren nil)
+  (next-line-add-newlines nil)
+  (kill-do-not-save-duplicates t))
 
 (use-package scroll-bar
   :ensure nil
@@ -655,7 +687,8 @@
   (add-hook 'after-init-hook 'global-company-mode)
   :custom
   (company-minimum-prefix-length 0)
-  (company-idle-delay 0.2))
+  ;; 0.2 makes scrolling frozen
+  (company-idle-delay 0.5))
 
 (use-package company-box
   :after company
@@ -819,6 +852,10 @@
 
 (use-package ellama
   :ensure t)
+
+(use-package hurl-mode
+  :mode ("\\.hurl\\'" . hurl-mode)
+  :quelpa (hurl-mode :fetcher github :repo "JasZhe/hurl-mode"))
 
 (load-file "~/.emacs.d/haskell.el")
 (load-file "~/.emacs.d/sibi-utils.el")
