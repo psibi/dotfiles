@@ -11,7 +11,7 @@ with pkgs; [
   aspellDicts.en
   hunspell
   hunspellDicts.en_US-large
-  rxvt_unicode
+  rxvt-unicode-unwrapped
   keybase-gui
   keybase
   wget
@@ -175,7 +175,7 @@ with pkgs; [
   i3status-rust
   wtype
   xorg.xlsclients
-  gnome.adwaita-icon-theme
+  adwaita-icon-theme
   alsa-utils
 
   slurp
@@ -186,7 +186,7 @@ with pkgs; [
   # https://github.com/redhat-developer/yaml-language-server/issues/881
   sibi-yaml-language-server
   nodePackages.vscode-json-languageserver
-  nodePackages.vscode-html-languageserver-bin
+  nodePackages.vscode-langservers-extracted
   nodePackages.dockerfile-language-server-nodejs
   nodePackages.bash-language-server
   nodejs
@@ -207,7 +207,6 @@ with pkgs; [
   terraform-ls
   stack
   kubernetes-helm
-  # https://github.com/NixOS/nixpkgs/pull/314268
   rustup
   zoom-us
 
