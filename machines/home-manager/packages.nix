@@ -93,7 +93,6 @@ with pkgs; [
   vlc
   ffmpeg
   mdbook
-  texlive.combined.scheme-small
   cargo-spellcheck
   cargo-edit
   cargo-outdated
@@ -256,4 +255,10 @@ with pkgs; [
   wasm-pack
   biome
   hugo
+  texliveMedium
+  hurl
+  postgresql
+  unstable.pnpm
+  unstable.prisma
+  dbeaver-bin
 ]
