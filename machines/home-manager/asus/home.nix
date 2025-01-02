@@ -113,14 +113,16 @@
         normal = { family = "Ubuntu Mono"; };
         size = 17.0;
       };
-      shell = {
-        program = "${unstable-pkgs.zellij}/bin/zellij";
-        args = [
-          "--config"
-          "/home/sibi/github/dotfiles/zellij.kdl"
-          "--layout"
-          "/home/sibi/github/dotfiles/zellij_layout.kdl"
-        ];
+      terminal = {
+        shell = {
+          program = "${unstable-pkgs.zellij}/bin/zellij";
+          args = [
+            "--config"
+            "/home/sibi/github/dotfiles/zellij.kdl"
+            "--layout"
+            "/home/sibi/github/dotfiles/zellij_layout.kdl"
+          ];
+        };
       };
     };
   };
@@ -193,8 +195,8 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals =  [ pkgs.xdg-desktop-portal-wlr pkgs.xdg-desktop-portal-gtk];
-    config = { sway.default = ["wlr" "gtk"]; };
+    extraPortals = [ pkgs.xdg-desktop-portal-wlr pkgs.xdg-desktop-portal-gtk ];
+    config = { sway.default = [ "wlr" "gtk" ]; };
   };
 
   wayland.windowManager.sway = {
@@ -289,7 +291,7 @@
               interval = 6000;
               service = {
                 name = "metno";
-                coordinates = ["12.9923" "77.7161"];
+                coordinates = [ "12.9923" "77.7161" ];
                 forecast_hours = 9;
               };
             }
@@ -300,7 +302,7 @@
               info = 60;
               warning = 80;
               chip = "k10temp-pci-00c3";
-              inputs = ["Tccd1" "Tccd2"];
+              inputs = [ "Tccd1" "Tccd2" ];
               format = " $icon $max";
             }
             {
