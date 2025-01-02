@@ -60,13 +60,17 @@
     enable = true;
   };
 
+  security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
     pulse.enable = true;
+    audio.enable = true;
+    wireplumber.enable = true;
   };
 
   services.dbus.enable = true;
-  hardware.pulseaudio.enable = false;
 
   users.users.sibi = {
     isNormalUser = true;
