@@ -260,4 +260,5 @@ with pkgs; [
   unstable.pnpm
   unstable.prisma
   dbeaver-bin
+  unstable.ghostty
 ]
