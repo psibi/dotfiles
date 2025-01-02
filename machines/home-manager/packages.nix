@@ -204,11 +204,11 @@ with pkgs; [
 
   unstable.google-chrome
   chromium
-  unstable.terraform-ls
-  unstable.stack
-  unstable.kubernetes-helm
+  terraform-ls
+  stack
+  kubernetes-helm
   # https://github.com/NixOS/nixpkgs/pull/314268
-  unstable.rustup
+  rustup
   zoom-us
 
   # From Overlays
