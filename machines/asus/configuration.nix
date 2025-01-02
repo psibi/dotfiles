@@ -66,7 +66,6 @@
   };
 
   services.dbus.enable = true;
-  sound.enable = false;
   hardware.pulseaudio.enable = false;
 
   users.users.sibi = {
@@ -77,7 +76,6 @@
 
   services.ollama = {
     enable = true;
-    writablePaths = [ "/home/sibi/Documents/ollama/"];
     models = "models";
   };
 
@@ -107,10 +105,6 @@
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
-
-  # Enable sound.
-  # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
