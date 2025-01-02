@@ -861,3 +861,8 @@
 (load-file "~/.emacs.d/sibi-utils.el")
 (load-file "~/.emacs.d/org.el")
 (load-file "~/github/dotfiles/.emacs.d/devops.el")  ; Have this at the end because of envrc
+(load-file "~/github/dotfiles/.emacs.d/secret.el")
+
+(use-package prisma-mode
+  :quelpa (prisma-mode :fetcher github
+		       :repo "pimeys/emacs-prisma-mode"))
