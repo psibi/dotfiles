@@ -116,7 +116,6 @@ with pkgs; [
   zola
   zlib.out
   zlib.dev
-  postgresql
   kubectl
   yubikey-manager
   yubioath-flutter
@@ -205,7 +204,6 @@ with pkgs; [
   unstable.google-chrome
   chromium
   terraform-ls
-  stack
   kubernetes-helm
   rustup
   zoom-us
@@ -256,9 +254,10 @@ with pkgs; [
   hugo
   texliveMedium
   hurl
-  postgresql
+  postgresql.dev
   unstable.pnpm
   unstable.prisma
   dbeaver-bin
   unstable.ghostty
+  unstable.stack
 ]
