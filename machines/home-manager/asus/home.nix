@@ -1,7 +1,7 @@
 { nixpkgs, pkgs, unstable-pkgs, lib, ... }:
 {
   # Custom systemd services
-  imports = [ ];
+  imports = [ ../../modules/ghostty.nix ];
 
   nixpkgs = {
     overlays = [ (import ../overlay.nix) ];
@@ -103,6 +103,24 @@
         command = "aws-helper info";
         ignore_timeout = true;
       };
+    };
+  };
+
+  programs.ghostty = {
+    enable = true;
+    enableFishIntegration = true;
+    package = unstable-pkgs.ghostty;
+    settings = {
+      font-size = "15.0";
+      command = "fish";
+      window-decoration = "false";
+      theme = "Dark Modern";
+      initial-command = "zellij --config /home/sibi/github/dotfiles/zellij.kdl --layout /home/sibi/github/dotfiles/zellij_layout.kdl";
+      shell-integration = "fish";
+      cursor-style = "block";
+      cursor-style-blink = "false";
+      window-theme = "ghostty";
+      shell-integration-features = "no-cursor";
     };
   };
 
