@@ -1,7 +1,7 @@
 { nixpkgs, pkgs, unstable-pkgs, lib, ... }:
 {
   # Custom systemd services
-  imports = [ ];
+  imports = [ ../../modules/ghostty.nix ];
 
   nixpkgs = {
     overlays = [ (import ../overlay.nix) ];
@@ -106,6 +106,24 @@
     };
   };
 
+  programs.ghostty = {
+    enable = true;
+    enableFishIntegration = true;
+    package = unstable-pkgs.ghostty;
+    settings = {
+      font-size = "15.0";
+      command = "fish";
+      window-decoration = "false";
+      theme = "Dark Modern";
+      initial-command = "zellij --config /home/sibi/github/dotfiles/zellij.kdl --layout /home/sibi/github/dotfiles/zellij_layout.kdl";
+      shell-integration = "fish";
+      cursor-style = "block";
+      cursor-style-blink = "false";
+      window-theme = "ghostty";
+      shell-integration-features = "no-cursor";
+    };
+  };
+
   programs.alacritty = {
     enable = true;
     settings = {
@@ -113,14 +131,16 @@
         normal = { family = "Ubuntu Mono"; };
         size = 17.0;
       };
-      shell = {
-        program = "${unstable-pkgs.zellij}/bin/zellij";
-        args = [
-          "--config"
-          "/home/sibi/github/dotfiles/zellij.kdl"
-          "--layout"
-          "/home/sibi/github/dotfiles/zellij_layout.kdl"
-        ];
+      terminal = {
+        shell = {
+          program = "${unstable-pkgs.zellij}/bin/zellij";
+          args = [
+            "--config"
+            "/home/sibi/github/dotfiles/zellij.kdl"
+            "--layout"
+            "/home/sibi/github/dotfiles/zellij_layout.kdl"
+          ];
+        };
       };
     };
   };
@@ -193,8 +213,8 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals =  [ pkgs.xdg-desktop-portal-wlr pkgs.xdg-desktop-portal-gtk];
-    config = { sway.default = ["wlr" "gtk"]; };
+    extraPortals = [ pkgs.xdg-desktop-portal-wlr pkgs.xdg-desktop-portal-gtk ];
+    config = { sway.default = [ "wlr" "gtk" ]; };
   };
 
   wayland.windowManager.sway = {
@@ -289,7 +309,7 @@
               interval = 6000;
               service = {
                 name = "metno";
-                coordinates = ["12.9923" "77.7161"];
+                coordinates = [ "12.9923" "77.7161" ];
                 forecast_hours = 9;
               };
             }
@@ -300,7 +320,7 @@
               info = 60;
               warning = 80;
               chip = "k10temp-pci-00c3";
-              inputs = ["Tccd1" "Tccd2"];
+              inputs = [ "Tccd1" "Tccd2" ];
               format = " $icon $max";
             }
             {

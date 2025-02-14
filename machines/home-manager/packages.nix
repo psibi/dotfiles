@@ -93,7 +93,6 @@ with pkgs; [
   vlc
   ffmpeg
   mdbook
-  texlive.combined.scheme-small
   cargo-spellcheck
   cargo-edit
   cargo-outdated
@@ -117,7 +116,6 @@ with pkgs; [
   zola
   zlib.out
   zlib.dev
-  postgresql
   kubectl
   yubikey-manager
   yubioath-flutter
@@ -206,9 +204,7 @@ with pkgs; [
   unstable.google-chrome
   chromium
   terraform-ls
-  stack
   kubernetes-helm
-  # https://github.com/NixOS/nixpkgs/pull/314268
   rustup
   zoom-us
 
@@ -256,4 +252,13 @@ with pkgs; [
   wasm-pack
   biome
   hugo
+  texliveMedium
+  hurl
+  postgresql.dev
+  unstable.pnpm
+  unstable.prisma
+  dbeaver-bin
+  unstable.ghostty
+  unstable.stack
+  haskellPackages.cabal-fmt
 ]

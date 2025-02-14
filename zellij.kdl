@@ -1,5 +1,6 @@
-keybinds {
+keybinds clear-defaults=true {
     unbind "Ctrl b"
+    unbind "Alt f"
 
     normal {
         // uncomment this and adjust key if using copy_on_select=false

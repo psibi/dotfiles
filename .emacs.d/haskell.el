@@ -5,11 +5,13 @@
               ("C-c C-c <tab>" . haskell-compile)
               ("C-c C-c C-f" . ormolu-format-buffer)
               ("C-c C-c C-i" . haskell-stack-install)
-              ("C-c C-c C-t" . haskell-stack-test))
+              ("C-c C-c C-t" . haskell-cabal-test))
   :custom
   (haskell-mode-hook '(haskell-indentation-mode lsp-deferred))
-  (haskell-compiler-type 'stack)
+  (haskell-compiler-type 'cabal)
   (haskell-process-type 'stack-ghci)
+  (lsp-rename-use-prepare nil)
+  (lsp-haskell-formatting-provider "fourmolu")
   (haskell-hoogle-url '"https://www.stackage.org/lts/hoogle?q=%s"))
 
 (use-package lsp-haskell
@@ -19,7 +21,10 @@
   ;;                   :files ("*.el"))
   :after (haskell-mode)
   :custom
+  ;; https://github.com/emacs-lsp/lsp-mode/issues/4473#issuecomment-2308978908
+  (lsp-rename-use-prepare nil)
   (lsp-haskell-process-path-hie "haskell-language-server-wrapper")
+  (lsp-haskell-formatting-provider "fourmolu")
   (lsp-haskell-plugin-tactics-global-on t)
   (lsp-haskell-plugin-import-lens-code-lens-on t)
   (lsp-haskell-plugin-class-global-on t)
@@ -32,6 +37,7 @@
   (lsp-haskell-plugin-ghcide-completions-config-auto-extend-on t)
   (lsp-haskell-plugin-hlint-diagnostics-on t)
   (lsp-haskell-plugin-hlint-code-actions-on t)
+  (lsp-haskell-plugin-rename-config-cross-module t)
   (lsp-haskell-plugin-import-lens-code-actions-on t)
   (lsp-haskell-plugin-haddock-comments-global-on t)
   (lsp-haskell-plugin-pragmas-code-actions-on t)
@@ -48,4 +54,10 @@
   "Stack test your project."
   (interactive)
   (let ((haskell-compile-stack-build-command "stack test --fast"))
+    (haskell-compile)))
+
+(defun haskell-cabal-test ()
+  "Cabal test your project."
+  (interactive)
+  (let ((haskell-compile-cabal-build-command "cabal test"))
     (haskell-compile)))
