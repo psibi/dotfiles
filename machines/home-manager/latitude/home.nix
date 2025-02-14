@@ -4,7 +4,7 @@
   imports = [ ];
 
   nixpkgs = {
-    overlays = [ (import ../overlay.nix ) ];
+    overlays = [ (import ../overlay.nix) ];
     config = {
       allowUnfreePredicate = (_: true);
       allowUnfree = true;
@@ -53,8 +53,8 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals =  [ pkgs.xdg-desktop-portal-wlr pkgs.xdg-desktop-portal-gtk];
-    config = { sway.default = ["wlr" "gtk"]; };
+    extraPortals = [ pkgs.xdg-desktop-portal-wlr pkgs.xdg-desktop-portal-gtk ];
+    config = { sway.default = [ "wlr" "gtk" ]; };
   };
 
   wayland.windowManager.sway = {
@@ -150,7 +150,7 @@
               interval = 6000;
               service = {
                 name = "metno";
-                coordinates = ["12.9923" "77.7161"];
+                coordinates = [ "12.9923" "77.7161" ];
                 forecast_hours = 9;
               };
             }
@@ -276,14 +276,16 @@
         normal = { family = "Ubuntu Mono"; };
         size = 17.0;
       };
-      shell = {
-        program = "${pkgs.zellij}/bin/zellij";
-        args = [
-          "--config"
-          "/home/sibi/github/dotfiles/zellij.kdl"
-          "--layout"
-          "/home/sibi/github/dotfiles/zellij_layout.kdl"
-        ];
+      terminal = {
+        shell = {
+          program = "${pkgs.zellij}/bin/zellij";
+          args = [
+            "--config"
+            "/home/sibi/github/dotfiles/zellij.kdl"
+            "--layout"
+            "/home/sibi/github/dotfiles/zellij_layout.kdl"
+          ];
+        };
       };
     };
   };
