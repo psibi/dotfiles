@@ -260,4 +260,5 @@ with pkgs; [
   dbeaver-bin
   unstable.ghostty
   unstable.stack
+  haskellPackages.cabal-fmt
 ]
