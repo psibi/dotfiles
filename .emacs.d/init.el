@@ -183,7 +183,7 @@
   :custom
   (lsp-log-io nil)
   ;; (lsp-log-io nil)
-  (lsp-disabled-clients '(tfls clangd rls rnix-lsp semgrep-ls deno-ls))
+  (lsp-disabled-clients '(tfls clangd rls rnix-lsp semgrep-ls deno-ls copilot-ls))
   (lsp-semantic-tokens-enable t)
   (lsp-lens-auto-enable t)
   (lsp-semantic-tokens-honor-refresh-requests nil)
@@ -323,6 +323,8 @@
   :config
   (setq rustic-format-on-save nil)
   :custom
+  (rustic-cargo-test-runner 'nextest)
+  ;; (rustic-cargo-test-runner 'cargo)
   (rustic-analyzer-command '("rustup" "run" "stable" "rust-analyzer"))
   (rustic-default-clippy-arguments nil)
   (rustic-cargo-use-last-stored-arguments t)
