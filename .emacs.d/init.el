@@ -860,4 +860,5 @@
 (load-file "~/.emacs.d/haskell.el")
 (load-file "~/.emacs.d/sibi-utils.el")
 (load-file "~/.emacs.d/org.el")
+(load-file "~/github/dotfiles/.emacs.d/secret.el")
 (load-file "~/github/dotfiles/.emacs.d/devops.el")  ; Have this at the end because of envrc
