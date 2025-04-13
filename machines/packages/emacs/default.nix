@@ -1,5 +1,5 @@
 { pkgs }:
-pkgs.emacs29-pgtk.pkgs.withPackages (epkgs:
+pkgs.emacs-pgtk.pkgs.withPackages (epkgs:
   (with epkgs.melpaPackages; [
     vterm
     pdf-tools
