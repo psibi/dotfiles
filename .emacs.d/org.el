@@ -28,7 +28,7 @@
   :ensure t
   :custom
   (org-journal-file-format "%Y-%m-%d.org")
-  (org-journal-dir "/home/sibi/github/timebox/2024/")
+  (org-journal-dir "/home/sibi/github/timebox/2025/")
   (org-journal-date-format "%A, %d %B %Y")
   (org-journal-skip-carryover-drawers (list "CLOCKING"))
   (org-journal-file-type 'daily))
@@ -37,11 +37,8 @@
   :ensure t
   :bind (("C-c C-g" . org-roam-node-find))
   :custom
-  (org-roam-directory "/home/sibi/github/misc/roam")
-  :init
-  (progn
-    (setq org-roam-v2-ack t)
-    (org-roam-db-autosync-mode)))
+  (org-roam-directory "/home/sibi/github/misc/roam"))
+;; If facing DB issues, use org-roam-db-sync
 
 (use-package htmlize
   :ensure t)
