@@ -3,6 +3,7 @@
   :custom
   (gptel-api-key #'gptel-api-key-from-auth-source)
   (gptel-model 'gemini-2.5-pro)
+  (gptel-include-reasoning nil)
   :config
   (setq gptel-backend (gptel-make-gemini "Gemini"
 			:key (plist-get (car (auth-source-search :host "localhost.gemini-paid"))
@@ -79,8 +80,13 @@ list of bullet points.
 (use-package aidermacs
   :ensure t
   :config
-  (setenv "GEMINI_API_KEY" (plist-get (car (auth-source-search :host "localhost.gemini-paid"))
-				      :secret))
+  (setenv "GEMINI_API_KEY"
+	  (let* ((source (auth-source-search :host "localhost.gemini-paid"))
+		 (secret-val (plist-get (car source) :secret))
+		 (secret (if (functionp secret-val)
+			     (funcall secret-val)
+			   secret-val)))
+	    secret))
   :custom
   (aidermacs-use-architect-mode t)
   (aidermacs-default-model "gemini/gemini-2.5-pro"))
