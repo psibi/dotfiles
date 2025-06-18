@@ -261,7 +261,7 @@ with pkgs; [
   unstable.ghostty
   unstable.stack
   haskellPackages.cabal-fmt
-  unstable.aider-chat
+  unstable.aider-chat-full
   unstable.claude-code
   # gptcommit
   # postgresql
