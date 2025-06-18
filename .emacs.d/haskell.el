@@ -50,6 +50,18 @@
   (let ((haskell-compile-stack-build-command "stack install --fast"))
     (haskell-compile)))
 
+(defun haskell-nix-build ()
+  "Nix build your project."
+  (interactive)
+  (let ((haskell-compile-cabal-build-command "ghci <<< ':serve'"))
+    (haskell-compile)))
+
+(defun haskell-nix-test ()
+  "Nix test your project."
+  (interactive)
+  (let ((haskell-compile-cabal-build-command "ghci <<< ':test'"))
+    (haskell-compile)))
+
 (defun haskell-stack-test ()
   "Stack test your project."
   (interactive)

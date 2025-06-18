@@ -732,7 +732,7 @@
 (use-package auth-source
   :ensure nil
   :custom
-  (auth-sources '((:source "~/.authinfo.gpg"))))
+  (auth-sources ("~/.authinfo" "~/.authinfo.gpg")))
 
 (use-package forge
   :after magit
@@ -859,13 +859,18 @@
   :mode ("\\.hurl\\'" . hurl-mode)
   :quelpa (hurl-mode :fetcher github :repo "JasZhe/hurl-mode"))
 
-(load-file "~/.emacs.d/haskell.el")
-(load-file "~/.emacs.d/sibi-utils.el")
-(load-file "~/.emacs.d/org.el")
-(load-file "~/github/dotfiles/.emacs.d/secret.el")
-(load-file "~/github/dotfiles/.emacs.d/devops.el")  ; Have this at the end because of envrc
-(load-file "~/github/dotfiles/.emacs.d/secret.el")
+(use-package ediff-wind
+  :ensure nil
+  :custom
+  (ediff-window-setup-function 'ediff-setup-windows-plain)
+  (ediff-split-window-function 'split-window-horizontally))
 
-(use-package prisma-mode
-  :quelpa (prisma-mode :fetcher github
-		       :repo "pimeys/emacs-prisma-mode"))
+(load-file "~/github/dotfiles/.emacs.d/haskell.el")
+(load-file "~/github/dotfiles/.emacs.d/sibi-utils.el")
+(load-file "~/github/dotfiles/.emacs.d/org.el")
+(load-file "~/github/dotfiles/.emacs.d/devops.el")  ; Have this at the end because of envrc
+(load-file "~/github/dotfiles/.emacs.d/ai.el")
+
+;;(use-package prisma-mode
+;;  :quelpa (prisma-mode :fetcher github
+;;		       :repo "pimeys/emacs-prisma-mode"))

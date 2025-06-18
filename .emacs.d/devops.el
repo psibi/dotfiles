@@ -20,12 +20,13 @@
   :ensure t)
 
 (use-package justl
-  ;; :ensure t
+  :ensure t
   :quelpa (justl :fetcher file
                  :path "~/github/justl.el/"
                  :files ("justl.el"))
   :custom
   (justl-recipe-width 40)
+  (justl-shell 'eat)
   (justl-pop-to-buffer-on-display t)
   (justl-include-private-recipes nil))
 

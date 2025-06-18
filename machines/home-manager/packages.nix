@@ -195,7 +195,7 @@ with pkgs; [
   python311Packages.python-lsp-server
   poetry
   kooha
-  musl.dev # Causes issue to haskell stack
+  # musl.dev # Causes issue to haskell stack
   # glibc.static
   awscli2
   vscode
@@ -254,11 +254,15 @@ with pkgs; [
   hugo
   texliveMedium
   hurl
-  postgresql.dev
+  # postgresql.dev
   unstable.pnpm
   unstable.prisma
   dbeaver-bin
   unstable.ghostty
   unstable.stack
   haskellPackages.cabal-fmt
+  unstable.aider-chat
+  unstable.claude-code
+  # gptcommit
+  # postgresql
 ]
