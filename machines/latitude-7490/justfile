@@ -12,4 +12,8 @@ flake-info:
 
 # Update nixos
 update-nixos:
+	nix flake update --update-input nixpkgs
+
+# Update all inputs
+update-all-inputs:
 	nix flake update
