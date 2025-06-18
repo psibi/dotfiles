@@ -22,6 +22,8 @@
   :quelpa (magit-gptcommit :fetcher github
 			   :repo "douo/magit-gptcommit")
 
+  :config
+  (magit-gptcommit-status-buffer-setup)
   :custom
   (magit-gptcommit-llm-provider
    (make-llm-gemini
@@ -61,7 +63,8 @@ THE FILE DIFFS:
 ```
 Now write Commit message in follow template: [label]:[one line of summary] :
 
-Paragraph describing the change.
+Paragraph describing the change. Make sure to wrap the paragraph such
+that it does not exceed 72 characters per line.
 
 list of bullet points.
 "
