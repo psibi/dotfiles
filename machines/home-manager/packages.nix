@@ -44,7 +44,7 @@ with pkgs; [
   nix-prefetch-github
   sage
   python3Minimal
-  python39Packages.pygments
+  python313Packages.pygments
   pandoc
   killall
   starship
@@ -230,7 +230,8 @@ with pkgs; [
   font-awesome
   symbola
   alegreya
-  nerdfonts
+  nerd-fonts.ubuntu
+  nerd-fonts.symbols-only
   lm_sensors
   linux.dev
   virt-manager

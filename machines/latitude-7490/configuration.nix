@@ -81,16 +81,14 @@
     wrapperFeatures.gtk = true;
   };
 
-  services.pipewire.enable = true;
-
   services.dbus.enable = true;
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
   # Enable sound.
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  services.pipewire.enable = true;
+  services.pulseaudio.enable = false;
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -140,7 +138,8 @@
     font-awesome
     symbola
     alegreya
-    nerdfonts
+    nerd-fonts.ubuntu-mono
+    nerd-fonts.ubuntu
   ];
 
   security.sudo.enable = false;
