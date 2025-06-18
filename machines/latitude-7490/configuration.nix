@@ -88,7 +88,7 @@
 
   # Enable sound.
   services.pipewire.enable = true;
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -138,7 +138,8 @@
     font-awesome
     symbola
     alegreya
-    nerdfonts
+    nerd-fonts.ubuntu-mono
+    nerd-fonts.ubuntu
   ];
 
   security.sudo.enable = false;
