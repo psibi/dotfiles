@@ -40,8 +40,8 @@
   (org-roam-directory "/home/sibi/github/misc/roam"))
 ;; If facing DB issues, use org-roam-db-sync
 
-(use-package htmlize
-  :ensure t)
+;; (use-package htmlize
+;;   :ensure t)
 
 ;; (straight-use-package
 ;;   '(el-patch :type git :host github :repo "psibi/ox-twbs"))
@@ -68,11 +68,11 @@
 
 ;; (add-hook 'org-export-before-parsing-hook #'my-insert-shell-prompt)
 
-(use-package ob-http
-  :ensure t)
+;; (use-package ob-http
+;;   :ensure t)
 
-(use-package ob-typescript
-  :ensure t)
+;; (use-package ob-typescript
+;;   :ensure t)
 
 
 ;; https://orgmode.org/worg/org-contrib/babel/languages/index.html#configure
@@ -80,7 +80,7 @@
  'org-babel-load-languages
  '((awk . t)
    (shell . t)
-   (http . t)
+   ;; (http . t)
    (octave . t)
    (haskell . t)
    (gnuplot . t)

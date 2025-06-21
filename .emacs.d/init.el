@@ -182,8 +182,8 @@
   (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\result\\'" t)
   :custom
   (lsp-log-io nil)
-  ;; (lsp-log-io nil)
-  (lsp-disabled-clients '(tfls clangd rls rnix-lsp semgrep-ls deno-ls copilot-ls))
+  ;; (lsp-log-io t)
+  (lsp-disabled-clients '(tfls clangd rls rnix-lsp semgrep-ls deno-ls copilot-ls taplo))
   (lsp-semantic-tokens-enable t)
   (lsp-lens-auto-enable t)
   (lsp-semantic-tokens-honor-refresh-requests nil)
@@ -235,6 +235,8 @@
   :after lsp-mode
   :demand t
   :custom
+  ;; For HLS specific change
+  ;; (lsp-rename-use-prepare t)
   (lsp-rust-analyzer-server-command '("rustup" "run" "stable" "rust-analyzer"))
   (lsp-rust-analyzer-server-display-inlay-hints t)
   (lsp-rust-analyzer-experimental-proc-attr-macros t)
@@ -319,7 +321,7 @@
               ("C-c C-c l" . flycheck-list-errors)
               ("C-c o" . lsp-rust-analyzer-open-external-docs)
               ("C-c C-c s" . lsp-rust-analyzer-status)
-	      ("C-c C-c C-t" . rustic-cargo-run-nextest))
+	      ("C-c C-c C-t" . rustic-cargo-test))
   :config
   (setq rustic-format-on-save nil)
   :custom

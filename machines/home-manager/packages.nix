@@ -262,7 +262,7 @@ with pkgs; [
   ghostty
   unstable.stack
   haskellPackages.cabal-fmt
-  # aider-chat-full
+  aider-chat-full
   unstable.claude-code
   # postgresql
   tombi                         # todo: Rely on nixpkgs instead of overlay in next version.
