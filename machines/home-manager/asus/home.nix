@@ -1,7 +1,7 @@
 { nixpkgs, pkgs, unstable-pkgs, lib, ... }:
 {
   # Custom systemd services
-  imports = [ ../../modules/ghostty.nix ];
+  imports = [  ];
 
   nixpkgs = {
     overlays = [ (import ../overlay.nix) ];
@@ -105,7 +105,7 @@
   programs.ghostty = {
     enable = true;
     enableFishIntegration = true;
-    package = unstable-pkgs.ghostty;
+    package = pkgs.ghostty;
     settings = {
       font-size = "15.0";
       command = "fish";
@@ -409,7 +409,7 @@
     defaultCacheTtlSsh = 60480000;
     maxCacheTtl = 60480000;
     maxCacheTtlSsh = 60480000;
-    pinentryPackage = pkgs.pinentry-qt;
+    pinentry.package = pkgs.pinentry-qt;
   };
 
   services.flameshot = {

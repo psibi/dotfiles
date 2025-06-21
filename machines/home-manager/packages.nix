@@ -27,7 +27,7 @@ with pkgs; [
   fd
   procs
   dysk
-  nixfmt-classic
+  nixfmt-rfc-style
   direnv
   pavucontrol
   gnumake
@@ -192,6 +192,7 @@ with pkgs; [
   nodePackages.typescript
   nodePackages.typescript-language-server
   haskellPackages.implicit-hie
+  haskellPackages.cabal-gild
   python311Packages.python-lsp-server
   poetry
   kooha
@@ -230,7 +231,6 @@ with pkgs; [
   font-awesome
   symbola
   alegreya
-  nerd-fonts.ubuntu
   nerd-fonts.symbols-only
   lm_sensors
   linux.dev
@@ -259,11 +259,11 @@ with pkgs; [
   unstable.pnpm
   unstable.prisma
   dbeaver-bin
-  unstable.ghostty
+  ghostty
   unstable.stack
   haskellPackages.cabal-fmt
-  unstable.aider-chat-full
+  # aider-chat-full
   unstable.claude-code
-  # gptcommit
   # postgresql
+  tombi                         # todo: Rely on nixpkgs instead of overlay in next version.
 ]
