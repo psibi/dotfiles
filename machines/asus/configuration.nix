@@ -25,6 +25,22 @@
   hardware.enableRedistributableFirmware = true;
   nix.registry.nixpkgs.flake = nixpkgs;
 
+  # todo: Remove this once you upgrade from 25.05 nixos version
+  # Fixes: https://github.com/NixOS/nixpkgs/issues/418212
+  nixpkgs.overlays = [
+    (final: prev: {
+      linux-firmware = prev.linux-firmware.overrideAttrs (old: {
+        version = "20250621";
+        src = prev.fetchFromGitLab {
+          owner = "kernel-firmware";
+          repo = "linux-firmware";
+          rev = "49c833a10ad96a61a218d28028aed20aeeac124c";
+          hash = "sha256-Pz/k/ol0NRIHv/AdridwoBPDLsd0rfDAj31Paq4mPpU=";
+        };
+      });
+    })
+  ];
+
   networking.hostName = "hask";
 
   # Pick only one of the below networking options.
