@@ -94,3 +94,7 @@ list of bullet points.
 (use-package claude-code
   :ensure t
   :vc (:url "https://github.com/stevemolitor/claude-code.el" :rev :newest))
+
+(use-package claudemacs
+  :ensure t
+  :vc (:url "https://github.com/cpoile/claudemacs" :rev :newest))
