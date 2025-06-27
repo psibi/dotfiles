@@ -202,8 +202,8 @@ with pkgs; [
   vscode
   yarn
 
-  unstable.google-chrome
-  chromium
+  google-chrome
+  unstable.chromium
   terraform-ls
   kubernetes-helm
   rustup
@@ -266,4 +266,6 @@ with pkgs; [
   unstable.claude-code
   # postgresql
   tombi                         # todo: Rely on nixpkgs instead of overlay in next version.
+  mold
+  gemini-cli                    # todo: Rely on nixpkgs instead of overlay in next version
 ]

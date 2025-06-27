@@ -21,7 +21,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
   cargoBuildFlags = [ "--package tombi-cli" ];
   cargoHash = "sha256-cVj0dL9vGVm3WPQ5IA2LDxDLHia5T+pLi6rTQxAqoC4=";
 
-  preBuild = ''
+  postPatch = ''
     substituteInPlace Cargo.toml \
       --replace-fail 'version = "0.0.0-dev"' 'version = "${finalAttrs.version}"'
   '';
