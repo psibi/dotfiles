@@ -89,7 +89,7 @@
 
 (use-package package
   :ensure nil
-  :config
+  :init
   (package-initialize)
   :custom
   (package-native-compile t)
@@ -127,6 +127,9 @@
   :ensure t
   :after (all-the-icons)
   :hook (after-init . doom-modeline-mode))
+
+(use-package inheritenv
+  :ensure t)
 
 (use-package treemacs
   :ensure t
@@ -168,10 +171,10 @@
   (which-key-mode))
 
 (use-package lsp-mode
-  :ensure t
-  ;; :quelpa (lsp-mode :fetcher file
-  ;;                   :path "~/github/lsp-mode"
-  ;;                   :files ("*.el" "clients/*.el"))
+  ;; :ensure t
+  :quelpa (lsp-mode :fetcher file
+                    :path "~/github/lsp-mode"
+                    :files ("*.el" "clients/*.el"))
   :init (setq lsp-keymap-prefix "C-l")
   :after (dash)
   :commands lsp
@@ -304,9 +307,9 @@
   (setq rust-mode-treesitter-derive t))
 
 (use-package rustic
-  :quelpa (rustic :fetcher file
-                  :path "~/github/rustic")
-  ;; :ensure t
+  ;; :quelpa (rustic :fetcher file
+  ;;                 :path "~/github/rustic")
+  :ensure t
   :after (rust-mode lsp-mode smartparens)
   :init
   (progn
@@ -618,7 +621,7 @@
 (use-package browse-url
   :ensure nil
   :custom
-  (browse-url-browser-function 'browse-url-chromium))
+  (browse-url-browser-function 'browse-url-chrome))
 
 (use-package helm-flyspell
   :ensure t)
@@ -866,6 +869,9 @@
   :custom
   (ediff-window-setup-function 'ediff-setup-windows-plain)
   (ediff-split-window-function 'split-window-horizontally))
+
+(use-package eat
+  :quelpa (eat :fetcher codeberg :repo "akib/emacs-eat"))
 
 (load-file "~/github/dotfiles/.emacs.d/haskell.el")
 (load-file "~/github/dotfiles/.emacs.d/sibi-utils.el")
