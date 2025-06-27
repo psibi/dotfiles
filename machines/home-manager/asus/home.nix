@@ -371,7 +371,7 @@
 
   programs.zellij = {
     enable = true;
-    enableFishIntegration = true;
+    enableFishIntegration = false;
   };
 
   fonts.fontconfig.enable = true;
