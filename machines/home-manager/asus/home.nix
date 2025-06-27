@@ -197,12 +197,12 @@
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
-      "application/pdf" = [ "chromium.desktop" ];
-      "text/html" = [ "chromium.desktop" ];
-      "x-scheme-handler/http" = [ "chromium.desktop" ];
-      "x-scheme-handler/https" = [ "chromium.desktop" ];
-      "x-scheme-handler/about" = [ "chromium.desktop" ];
-      "x-scheme-handler/unknown" = [ "chromium.desktop" ];
+      "application/pdf" = [ "google-chrome.desktop" ];
+      "text/html" = [ "google-chrome.desktop" ];
+      "x-scheme-handler/http" = [ "google-chrome.desktop" ];
+      "x-scheme-handler/https" = [ "google-chrome.desktop" ];
+      "x-scheme-handler/about" = [ "google-chrome.desktop" ];
+      "x-scheme-handler/unknown" = [ "google-chrome.desktop" ];
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = [ "writer.desktop" ];
     };
   };
@@ -300,8 +300,7 @@
             {
               block = "weather";
               format = "$icon $weather $temp";
-              # Uncomment on i3status 0.32.3
-              # format_alt = " $icon_ffin Forecast (9 hour avg) {$temp_favg ({$temp_fmin}-{$temp_fmax})|Unavailable} ";
+              format_alt = " $icon_ffin Forecast (9 hour avg) {$temp_favg ({$temp_fmin}-{$temp_fmax})|Unavailable} ";
               interval = 6000;
               service = {
                 name = "metno";
