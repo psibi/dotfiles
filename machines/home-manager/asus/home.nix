@@ -221,7 +221,7 @@
       terminal = "alacritty";
 
       startup = [
-        { command = "chromium"; }
+        { command = "google-chrome-stable"; }
         { command = "alacritty"; }
         { command = "keepassxc"; }
       ];
