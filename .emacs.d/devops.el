@@ -3,6 +3,7 @@
   :bind
   (:map just-mode-map
 	("C-c C-j" . justl)
+	("C-l = =" . just-format-buffer)
 	("C-c C-r" . justl-exec-default-recipe)
 	:map justl-compile-mode-map
 	("C-c C-j" . justl)))
@@ -16,17 +17,17 @@
   :init
   (envrc-global-mode))
 
-(use-package ox-reveal
-  :ensure t)
+;; (use-package ox-reveal
+;;   :ensure t)
 
 (use-package justl
   :ensure t
-  :quelpa (justl :fetcher file
-                 :path "~/github/justl.el/"
-                 :files ("justl.el"))
+  ;; :quelpa (justl :fetcher file
+  ;;                :path "~/github/justl.el/"
+  ;;                :files ("justl.el"))
   :custom
   (justl-recipe-width 40)
-  (justl-shell 'eat)
+  (justl-shell 'eshell)
   (justl-pop-to-buffer-on-display t)
   (justl-include-private-recipes nil))
 
