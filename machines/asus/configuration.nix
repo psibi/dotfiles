@@ -43,6 +43,11 @@
 
   networking.hostName = "hask";
 
+  # https://github.com/NixOS/nixpkgs/issues/98050#issuecomment-1471678276
+  # services.resolved.enable = true;
+  # services.resolved.extraConfig = "MulticastDNS = \"true\"";
+  # networking.firewall.allowedUDPPorts = [ 5353 ];
+
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
@@ -54,6 +59,9 @@
     trusted-users = [ "root" "sibi" ];
     experimental-features = [ "nix-command" "flakes" ];
   };
+
+  # For chrome browser
+  services.upower.enable = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -95,7 +103,7 @@
   };
 
   services.ollama = {
-    enable = true;
+    enable = false;
     models = "models";
   };
 
