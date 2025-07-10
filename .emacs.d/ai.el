@@ -4,6 +4,10 @@
   (gptel-api-key #'gptel-api-key-from-auth-source)
   (gptel-model 'gemini-2.5-pro)
   (gptel-include-reasoning nil)
+  (gptel-default-mode 'markdown-mode)
+  :bind
+  (:map global-map
+        ("C-c l" . gptel-send))
   :config
   (setq gptel-backend (gptel-make-gemini "Gemini"
 			:key (plist-get (car (auth-source-search :host "localhost.gemini-paid"))
@@ -90,10 +94,6 @@ list of bullet points.
   :custom
   (aidermacs-use-architect-mode t)
   (aidermacs-default-model "gemini/gemini-2.5-pro"))
-
-(use-package claude-code
-  :ensure t
-  :vc (:url "https://github.com/stevemolitor/claude-code.el" :rev :newest))
 
 (use-package claudemacs
   :ensure t
