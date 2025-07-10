@@ -105,6 +105,7 @@ with pkgs; [
   cargo-binstall
   cargo-leptos
   cargo-nextest
+  cargo-cross
   keepassxc
   cabal-install
   ghc
@@ -202,7 +203,7 @@ with pkgs; [
   vscode
   yarn
 
-  google-chrome
+  unstable.google-chrome
   unstable.chromium
   terraform-ls
   kubernetes-helm
@@ -264,7 +265,9 @@ with pkgs; [
   haskellPackages.cabal-fmt
   aider-chat-full
   unstable.claude-code
-  # postgresql
+  postgresql
+  solana-cli
+
   tombi                         # todo: Rely on nixpkgs instead of overlay in next version.
   mold
   gemini-cli                    # todo: Rely on nixpkgs instead of overlay in next version
