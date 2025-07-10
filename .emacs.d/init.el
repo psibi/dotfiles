@@ -621,7 +621,9 @@
 (use-package browse-url
   :ensure nil
   :custom
-  (browse-url-browser-function 'browse-url-chrome))
+  ;; Google chrome
+  ;; (browse-url-browser-function 'browse-url-chrome)
+  (browse-url-browser-function 'browse-url-firefox))
 
 (use-package helm-flyspell
   :ensure t)
@@ -759,7 +761,7 @@
   :ensure t
   :bind
   (("<f1>" . help-command)
-   ("C-h F" . helpful-function)
+   ("C-h f" . helpful-function)
    ("C-h k" . helpful-key)
    ("C-h v" . helpful-variable))
   :init
@@ -872,6 +874,9 @@
 
 (use-package eat
   :quelpa (eat :fetcher codeberg :repo "akib/emacs-eat"))
+
+(use-package casual
+  :ensure t)
 
 (load-file "~/github/dotfiles/.emacs.d/haskell.el")
 (load-file "~/github/dotfiles/.emacs.d/sibi-utils.el")
