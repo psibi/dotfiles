@@ -1,5 +1,5 @@
 (use-package gptel
-  :defer t
+  :init
   :custom
   (gptel-api-key #'gptel-api-key-from-auth-source)
   (gptel-model 'gemini-2.5-pro)
@@ -9,10 +9,23 @@
   (:map global-map
         ("C-c l" . gptel-send))
   :config
-  (setq gptel-backend (gptel-make-gemini "Gemini"
+  (progn
+    (setq gptel-backend (gptel-make-gemini "Gemini"
 			:key (plist-get (car (auth-source-search :host "localhost.gemini-paid"))
 					:secret)
-			:stream t)))
+			:stream t))
+
+    )
+  (gptel-make-preset 'english-reader
+  :description "Preset for better sentences"
+  :backend "Gemini"
+  :model 'gemini-2.5-pro
+  :system "Act as an expert English proofreader. Please review the text. Correct any spelling and grammar errors, and improve the clarity and flow. Make sure your changes are appropriate for the context.")
+  (gptel-make-preset 'code-reader
+  :description "Preset for code reader"
+  :backend "Gemini"
+  :model 'gemini-2.5-pro
+  :system "Act as an expert programmer and senior code reviewer with deep knowledge of software architecture, best practices, and performance. Your task is to provide a clear and comprehensive explanation of the code I provide."))
 
 (use-package llm
   :quelpa (llm :fetcher github

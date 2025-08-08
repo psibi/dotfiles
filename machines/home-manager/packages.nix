@@ -106,6 +106,8 @@ with pkgs; [
   cargo-leptos
   cargo-nextest
   cargo-cross
+  cargo-autoinherit
+  cargo-machete
   keepassxc
   cabal-install
   ghc
@@ -197,11 +199,12 @@ with pkgs; [
   python311Packages.python-lsp-server
   poetry
   kooha
-  # musl.dev # Causes issue to haskell stack
-  # glibc.static
+  musl.dev # Causes issue to haskell stack
+  glibc.static
   awscli2
   vscode
   yarn
+  aws-vault
 
   unstable.google-chrome
   unstable.chromium
@@ -217,7 +220,8 @@ with pkgs; [
 
   libusb1
   libusb1.dev
-  libusb1.out
+  libusb1.out # for kolme
+  systemd.dev # for kolme
 
   go
   gopls
@@ -243,14 +247,14 @@ with pkgs; [
   whois
 
   sqlx-cli
-  kondo                         # For cleaning build artifacts
+  kondo # For cleaning build artifacts
   kubeseal
   google-cloud-sdk
   minijinja
   tflint
   trunk
   leptosfmt
-  kubo                          # For ipfs
+  kubo # For ipfs
   wasm-pack
   biome
   hugo
@@ -268,7 +272,12 @@ with pkgs; [
   postgresql
   solana-cli
 
-  tombi                         # todo: Rely on nixpkgs instead of overlay in next version.
+  tombi # todo: Rely on nixpkgs instead of overlay in next version.
   mold
-  gemini-cli                    # todo: Rely on nixpkgs instead of overlay in next version
+  gemini-cli # todo: Rely on nixpkgs instead of overlay in next version
+  wireguard-tools
+  pprof
+  graphviz
+  websocat
+
 ]
