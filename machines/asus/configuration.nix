@@ -25,6 +25,18 @@
   hardware.enableRedistributableFirmware = true;
   nix.registry.nixpkgs.flake = nixpkgs;
 
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        Experimental = true;
+      };
+    };
+  };
+
+  services.blueman.enable = true;
+
   # todo: Remove this once you upgrade from 25.05 nixos version
   # Fixes: https://github.com/NixOS/nixpkgs/issues/418212
   nixpkgs.overlays = [
@@ -120,6 +132,7 @@
   environment.homeBinInPath = true;
 
   programs.dconf.enable = true;
+  programs.firejail.enable = true;
 
   security.polkit.enable = true;
   services.udisks2.enable = true;
