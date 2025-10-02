@@ -25,7 +25,8 @@
   :description "Preset for code reader"
   :backend "Gemini"
   :model 'gemini-2.5-pro
-  :system "Act as an expert programmer and senior code reviewer with deep knowledge of software architecture, best practices, and performance. Your task is to provide a clear and comprehensive explanation of the code I provide."))
+  :system "Act as an expert programmer and senior code reviewer with deep knowledge of software architecture, best practices, and performance. Your task is to provide a clear and comprehensive explanation of the code I provide.")
+  )
 
 (use-package llm
   :quelpa (llm :fetcher github

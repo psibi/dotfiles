@@ -36,6 +36,8 @@
 (use-package org-roam
   :ensure t
   :bind (("C-c C-g" . org-roam-node-find))
+  :init
+  (org-roam-db-autosync-mode)
   :custom
   (org-roam-directory "/home/sibi/github/misc/roam"))
 ;; If facing DB issues, use org-roam-db-sync

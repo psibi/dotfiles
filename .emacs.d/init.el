@@ -171,10 +171,10 @@
   (which-key-mode))
 
 (use-package lsp-mode
-  ;; :ensure t
-  :quelpa (lsp-mode :fetcher file
-                    :path "~/github/lsp-mode"
-                    :files ("*.el" "clients/*.el"))
+  :ensure t
+  ;; :quelpa (lsp-mode :fetcher file
+  ;;                   :path "~/github/lsp-mode"
+  ;;                   :files ("*.el" "clients/*.el"))
   :init (setq lsp-keymap-prefix "C-l")
   :after (dash)
   :commands lsp
@@ -183,6 +183,7 @@
   :config
   ;; NixOS result symbolic directory
   (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\result\\'" t)
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\target-ra\\'" t)
   :custom
   (lsp-log-io nil)
   ;; (lsp-log-io t)
@@ -240,7 +241,8 @@
   :custom
   ;; For HLS specific change
   ;; (lsp-rename-use-prepare t)
-  (lsp-rust-analyzer-server-command '("rustup" "run" "stable" "rust-analyzer"))
+  (lsp-rust-analyzer-server-command '("rustup" "run" "1.84.0" "rust-analyzer"))
+  (lsp-rust-analyzer-cargo-target-dir "target-ra")
   (lsp-rust-analyzer-server-display-inlay-hints t)
   (lsp-rust-analyzer-experimental-proc-attr-macros t)
   (lsp-rust-analyzer-proc-macro-enable t)
