@@ -422,4 +422,5 @@
     };
   };
 
+  services.mako.enable = true;
 }
