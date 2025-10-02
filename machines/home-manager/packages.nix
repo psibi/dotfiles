@@ -191,7 +191,7 @@ with pkgs; [
   nodePackages.vscode-langservers-extracted
   nodePackages.dockerfile-language-server-nodejs
   nodePackages.bash-language-server
-  nodejs
+  nodejs_20
   nodePackages.typescript
   nodePackages.typescript-language-server
   haskellPackages.implicit-hie
@@ -279,5 +279,11 @@ with pkgs; [
   pprof
   graphviz
   websocat
-
+  masterpdfeditor
+  # wrangler
+  worker-build
+  mysql84
+  foundry
+  jemalloc
+  steam-run
 ]
