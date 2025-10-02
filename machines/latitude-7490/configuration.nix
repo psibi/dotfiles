@@ -15,6 +15,18 @@
   nixpkgs.config.allowUnfree = true;
   hardware.enableRedistributableFirmware = true;
 
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        Experimental = true; # Show battery charge of Bluetooth devices
+      };
+    };
+  };
+
+  services.blueman.enable = true;
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -108,12 +120,12 @@
       "docker"
       "plugdev"
       "libvirtd"
-    ] ++ (if enableAnikalScanner then [ "scanner" "lp" ] else []);
+    ] ++ (if enableAnikalScanner then [ "scanner" "lp" ] else [ ]);
   };
 
   hardware.sane = {
     enable = enableAnikalScanner;
-    extraBackends = if enableAnikalScanner then [ pkgs.hplipWithPlugin ] else [];
+    extraBackends = if enableAnikalScanner then [ pkgs.hplipWithPlugin ] else [ ];
   };
 
   services.avahi.enable = enableAnikalScanner;
