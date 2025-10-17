@@ -270,7 +270,8 @@ with pkgs; [
   aider-chat-full
   unstable.claude-code
   postgresql
-  solana-cli
+  unstable.solana-cli
+  unstable.anchor
 
   tombi # todo: Rely on nixpkgs instead of overlay in next version.
   mold
