@@ -241,7 +241,7 @@
   :custom
   ;; For HLS specific change
   ;; (lsp-rename-use-prepare t)
-  (lsp-rust-analyzer-server-command '("rustup" "run" "1.84.0" "rust-analyzer"))
+  (lsp-rust-analyzer-server-command '("rustup" "run" "1.90.0" "rust-analyzer"))
   (lsp-rust-analyzer-cargo-target-dir "target-ra")
   (lsp-rust-analyzer-server-display-inlay-hints t)
   (lsp-rust-analyzer-experimental-proc-attr-macros t)
@@ -332,7 +332,6 @@
   :custom
   (rustic-cargo-test-runner 'nextest)
   ;; (rustic-cargo-test-runner 'cargo)
-  (rustic-analyzer-command '("rustup" "run" "stable" "rust-analyzer"))
   (rustic-default-clippy-arguments nil)
   (rustic-cargo-use-last-stored-arguments t)
   (rustic-babel-auto-wrap-main nil)
