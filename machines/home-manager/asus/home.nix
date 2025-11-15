@@ -107,7 +107,8 @@
     enableFishIntegration = true;
     package = pkgs.ghostty;
     settings = {
-      font-size = "15.0";
+      font-family = "Ubuntu Mono";
+      font-size = "17.0";
       command = "fish";
       window-decoration = "false";
       theme = "Dark Modern";
@@ -197,12 +198,18 @@
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
-      "application/pdf" = [ "firefox.desktop" ];
-      "text/html" = [ "firefox.desktop" ];
-      "x-scheme-handler/http" = [ "firefox.desktop" ];
-      "x-scheme-handler/https" = [ "firefox.desktop" ];
-      "x-scheme-handler/about" = [ "firefox.desktop" ];
-      "x-scheme-handler/unknown" = [ "firefox.desktop" ];
+      # "application/pdf" = [ "firefox.desktop" ];
+      # "text/html" = [ "firefox.desktop" ];
+      # "x-scheme-handler/http" = [ "firefox.desktop" ];
+      # "x-scheme-handler/https" = [ "firefox.desktop" ];
+      # "x-scheme-handler/about" = [ "firefox.desktop" ];
+      # "x-scheme-handler/unknown" = [ "firefox.desktop" ];
+      "application/pdf" = [ "chromium-browser.desktop" ];
+      "text/html" = [ "chromium-browser.desktop" ];
+      "x-scheme-handler/http" = [ "chromium-browser.desktop" ];
+      "x-scheme-handler/https" = [ "chromium-browser.desktop" ];
+      "x-scheme-handler/about" = [ "chromium-browser.desktop" ];
+      "x-scheme-handler/unknown" = [ "chromium-browser.desktop" ];
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = [ "writer.desktop" ];
     };
   };
@@ -218,11 +225,11 @@
     systemd.enable = true;
 
     config = {
-      terminal = "alacritty";
+      terminal = "ghostty";
 
       startup = [
-        { command = "firefox"; }
-        { command = "alacritty"; }
+        { command = "chromium-browser"; }
+        { command = "ghostty"; }
         { command = "keepassxc"; }
       ];
 
@@ -241,11 +248,11 @@
           }
           {
             command = "move container to workspace number 2";
-            criteria.app_id = "firefox";
+            criteria.app_id = "chromium-browser";
           }
           {
             command = "move container to workspace number 1";
-            criteria.app_id = "Alacritty";
+            criteria.app_id = "com.mitchellh.ghostty";
           }
         ];
       };
@@ -253,7 +260,7 @@
       keybindings =
         let modifier = "Mod4";
         in lib.mkOptionDefault {
-          "${modifier}+Return" = "exec alacritty";
+          "${modifier}+Return" = "exec ghostty";
           "${modifier}+p" = "exec rofi -show run";
           "${modifier}+c" = "kill";
 

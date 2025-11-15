@@ -270,7 +270,7 @@ with pkgs; [
   aider-chat-full
   unstable.claude-code
   postgresql
-  unstable.solana-cli
+  solana-cli
   unstable.anchor
 
   tombi # todo: Rely on nixpkgs instead of overlay in next version.
@@ -287,4 +287,7 @@ with pkgs; [
   foundry
   jemalloc
   steam-run
+  strip-ansi
+  sibi-goose-cli
+  # unstable.goose-cli
 ]
