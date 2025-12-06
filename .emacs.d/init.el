@@ -157,6 +157,7 @@
 
 (use-package markdown-mode
   :ensure t
+  :init
   :after (lsp-mode)
   :hook ((markdown-mode . lsp-deferred))
   :bind (:map markdown-mode-map
@@ -624,7 +625,10 @@
   :custom
   ;; Google chrome
   ;; (browse-url-browser-function 'browse-url-chrome)
-  (browse-url-browser-function 'browse-url-firefox))
+  ;; Firefox
+  ;; (browse-url-browser-function 'browse-url-firefox)
+  ;; Chromium
+  (browse-url-browser-function 'browse-url-chromium))
 
 (use-package helm-flyspell
   :ensure t)
