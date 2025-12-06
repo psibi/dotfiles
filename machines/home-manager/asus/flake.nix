@@ -1,11 +1,11 @@
 {
-  description = "NUC System Setup";
+  description = "Asus Home Manager System Setup";
 
   inputs = {
-    nixpkgs = { url = "nixpkgs/nixos-25.05"; };
+    nixpkgs = { url = "nixpkgs/nixos-25.11"; };
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-index-database = {
@@ -26,7 +26,7 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [
           ./home.nix
-          nix-index-database.hmModules.nix-index
+          nix-index-database.homeModules.nix-index
         ];
         extraSpecialArgs = {
           unstable-pkgs = unstable.pkgs;

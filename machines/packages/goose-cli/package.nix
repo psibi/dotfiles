@@ -33,10 +33,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     owner = "block";
     repo = "goose";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-0pDJp/sWFn16HlWU+OYk0K9kIbNohC8NckZywinBRH8=";
+    hash = "sha256-MEFHVuTejAn1vwTwaxM7XEBSCuFAwLwjptIhKHR6cMM=";
   };
 
-  cargoHash = "sha256-bspPOgMEnSjICJWIicrD7B+APuUvlVZFarpwzzdLwPc=";
+  cargoHash = "sha256-3SiYbiuDCvGnMPUgc58LFobcijGv2qcrbyCIrPdtcTw=";
 
   nativeBuildInputs = [
     pkg-config
