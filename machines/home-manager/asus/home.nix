@@ -40,7 +40,7 @@
   };
 
   programs.rofi = {
-    package = pkgs.rofi-wayland;
+    package = pkgs.rofi;
     enable = true;
     location = "center";
     pass.enable = false;
@@ -50,16 +50,18 @@
 
   programs.git = {
     enable = true;
-    userName = "Sibi Prabakaran";
-    userEmail = "sibi@psibi.in";
     lfs.enable = true;
+    settings = {
+      user = {
+        email = "sibi@psibi.in";
+        name = "Sibi Prabakaran";
+      };
+      init.defaultBranch = "main";
+    };
+
     signing = {
       signByDefault = true;
       key = "0xD19E3E0EBB557613";
-    };
-    extraConfig = {
-      commit.gpgsign = true;
-      init.defaultBranch = "main";
     };
     ignores = [ "*~" "#*#" ".#*" ];
   };
@@ -146,14 +148,15 @@
 
   programs.ssh = {
     enable = true;
-    serverAliveInterval = 15;
-    serverAliveCountMax = 3;
+    enableDefaultConfig = false;
     matchBlocks = {
       "ssh.dev.azure.com" = {
         user = "git";
         host = "ssh.dev.azure.com";
         hostname = "ssh.dev.azure.com";
         identitiesOnly = true;
+        serverAliveInterval = 15;
+        serverAliveCountMax = 3;
         identityFile = "~/.ssh/id_rsa";
         extraOptions = {
           PubkeyAcceptedAlgorithms = "+ssh-rsa";
@@ -165,30 +168,40 @@
         hostname = "bitbucket.org";
         identitiesOnly = true;
         identityFile = "~/.ssh/id_rsa";
+        serverAliveInterval = 15;
+        serverAliveCountMax = 3;
       };
       "bitbucket_bl3ndlabs" = {
         host = "bl3ndlabs";
         hostname = "bitbucket.org";
         identitiesOnly = true;
         identityFile = "~/.ssh/id_rsa_ed25519";
+        serverAliveInterval = 15;
+        serverAliveCountMax = 3;
       };
       "github" = {
         host = "github.com";
         hostname = "github.com";
         identitiesOnly = true;
         identityFile = "~/.ssh/id_rsa";
+        serverAliveInterval = 15;
+        serverAliveCountMax = 3;
       };
       "github+levana" = {
         host = "github+levana";
         hostname = "github.com";
         identitiesOnly = true;
         identityFile = "~/.ssh/levana_id_rsa";
+        serverAliveInterval = 15;
+        serverAliveCountMax = 3;
       };
       "gitlab" = {
         host = "gitlab.com";
         hostname = "gitlab.com";
         identitiesOnly = true;
         identityFile = "~/.ssh/id_rsa";
+        serverAliveInterval = 15;
+        serverAliveCountMax = 3;
       };
     };
   };
@@ -420,7 +433,6 @@
 
   services.flameshot = {
     enable = true;
-    package = pkgs.flameshot-grim;
     settings = {
       General = {
         disabledTrayIcon = true;
