@@ -44,17 +44,15 @@ with pkgs; [
   nix-prefetch-github
   sage
   python3Minimal
-  python313Packages.pygments
   pandoc
   killall
   starship
-  just
   tfswitch
   jq
   dnsutils
   fzf
   broot
-  du-dust
+  dust
   azure-cli
   hlint
   aws-iam-authenticator
@@ -74,7 +72,7 @@ with pkgs; [
   watchexec
   jwt-cli
   step-cli
-  httplz
+  # httplz Disable since cache is not there
   languagetool
   twitter-color-emoji
   kalker
@@ -93,6 +91,7 @@ with pkgs; [
   vlc
   ffmpeg
   mdbook
+  mdbook-toc
   cargo-spellcheck
   cargo-edit
   cargo-outdated
@@ -100,7 +99,7 @@ with pkgs; [
   cargo-generate
   cargo-cache
   cargo-udeps
-  cargo-llvm-cov
+  #cargo-llvm-cov
   cargo-watch
   cargo-binstall
   cargo-leptos
@@ -169,10 +168,11 @@ with pkgs; [
   grim # Screenshot
   wl-clipboard
   wdisplays
-  rofi-wayland
+  rofi
   xdg-desktop-portal
   xdg-desktop-portal-wlr
   wlprop
+  rofi
   wev
   i3status-rust
   wtype
@@ -185,11 +185,10 @@ with pkgs; [
   sass
 
   # nodePackages.yaml-language-server
-  # https://github.com/redhat-developer/yaml-language-server/issues/881
-  sibi-yaml-language-server
-  nodePackages.vscode-json-languageserver
-  nodePackages.vscode-langservers-extracted
-  nodePackages.dockerfile-language-server-nodejs
+  # https://github.com/redhat-developer/yaml-language-server/issues
+  # sibi-yaml-language-server
+  #nodePackages.vscode-json-languageserver
+  dockerfile-language-server
   nodePackages.bash-language-server
   nodejs_20
   nodePackages.typescript
@@ -206,8 +205,10 @@ with pkgs; [
   yarn
   aws-vault
 
-  unstable.google-chrome
-  unstable.chromium
+  google-chrome
+  chromium
+  just
+
   terraform-ls
   kubernetes-helm
   rustup
@@ -232,7 +233,7 @@ with pkgs; [
   pciutils
   lshw
 
-  ubuntu_font_family
+  ubuntu-classic
   font-awesome
   symbola
   alegreya
@@ -261,33 +262,27 @@ with pkgs; [
   texliveMedium
   hurl
   # postgresql.dev
-  unstable.pnpm
-  unstable.prisma
+  pnpm
+  prisma
   dbeaver-bin
   ghostty
-  unstable.stack
+  stack
   haskellPackages.cabal-fmt
   aider-chat-full
-  unstable.claude-code
+  claude-code
   postgresql
-  solana-cli
-  unstable.anchor
+  # solana-cli # No cache
+  # anchor No cache
 
-  tombi # todo: Rely on nixpkgs instead of overlay in next version.
+  tombi
   mold
-  gemini-cli # todo: Rely on nixpkgs instead of overlay in next version
+  gemini-cli
   wireguard-tools
   pprof
   graphviz
   websocat
   masterpdfeditor
-  # wrangler
   worker-build
-  mysql84
-  foundry
-  jemalloc
   steam-run
-  strip-ansi
-  sibi-goose-cli
-  # unstable.goose-cli
+  unstable.goose-cli
 ]
