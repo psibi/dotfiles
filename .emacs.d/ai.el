@@ -92,21 +92,3 @@ list of bullet points.
   :quelpa (gptel-quick :fetcher github
 		       :repo "karthink/gptel-quick")
   :ensure t)
-
-(use-package aidermacs
-  :ensure t
-  :config
-  (setenv "GEMINI_API_KEY"
-	  (let* ((source (auth-source-search :host "localhost.gemini-paid"))
-		 (secret-val (plist-get (car source) :secret))
-		 (secret (if (functionp secret-val)
-			     (funcall secret-val)
-			   secret-val)))
-	    secret))
-  :custom
-  (aidermacs-use-architect-mode t)
-  (aidermacs-default-model "gemini/gemini-2.5-pro"))
-
-(use-package claudemacs
-  :ensure t
-  :vc (:url "https://github.com/cpoile/claudemacs" :rev :newest))
