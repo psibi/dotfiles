@@ -150,6 +150,9 @@
     enable = true;
     enableDefaultConfig = false;
     matchBlocks = {
+      "*" = {
+        serverAliveInterval = 60;
+      };
       "ssh.dev.azure.com" = {
         user = "git";
         host = "ssh.dev.azure.com";

@@ -92,6 +92,7 @@ with pkgs; [
   ffmpeg
   mdbook
   mdbook-toc
+  mdbook-mermaid
   cargo-spellcheck
   cargo-edit
   cargo-outdated
@@ -118,7 +119,6 @@ with pkgs; [
   zola
   zlib.out
   zlib.dev
-  kubectl
   yubikey-manager
   yubioath-flutter
   yubico-pam
@@ -186,7 +186,7 @@ with pkgs; [
 
   # nodePackages.yaml-language-server
   # https://github.com/redhat-developer/yaml-language-server/issues
-  # sibi-yaml-language-server
+  sibi-yaml-language-server
   #nodePackages.vscode-json-languageserver
   dockerfile-language-server
   nodePackages.bash-language-server
@@ -285,4 +285,10 @@ with pkgs; [
   worker-build
   steam-run
   unstable.goose-cli
+  k3s
+  nftables
+  nmap
+  rustscan
+  libgourou
+  calibre
 ]
