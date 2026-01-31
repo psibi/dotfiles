@@ -8,7 +8,7 @@
               ("C-c C-c C-t" . haskell-cabal-test))
   :custom
   (haskell-mode-hook '(haskell-indentation-mode lsp-deferred))
-  (haskell-compiler-type 'cabal)
+  (haskell-compiler-type 'stack)
   (haskell-process-type 'stack-ghci)
   (lsp-rename-use-prepare nil)
   (lsp-haskell-formatting-provider "fourmolu")
