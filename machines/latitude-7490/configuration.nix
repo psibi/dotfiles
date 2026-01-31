@@ -27,6 +27,9 @@
 
   services.blueman.enable = true;
 
+  # For chrome browser
+  services.upower.enable = true;
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -90,7 +93,6 @@
 
   programs.sway = {
     enable = true;
-    wrapperFeatures.gtk = true;
   };
 
   services.dbus.enable = true;
@@ -99,8 +101,15 @@
   # services.printing.enable = true;
 
   # Enable sound.
-  services.pipewire.enable = true;
-  services.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    audio.enable = true;
+    wireplumber.enable = true;
+  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
@@ -133,6 +142,10 @@
 
   virtualisation.docker.enable = true;
   virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
+  virtualisation.virtualbox.host.enable = false;
+  virtualisation.virtualbox.guest.enable = false;
+  virtualisation.virtualbox.host.enableExtensionPack = false;
 
   environment.shellAliases = import ./alias.nix;
   programs.fish.shellAliases = import ./alias.nix;
@@ -141,18 +154,8 @@
   # $ nix search wget
   environment.systemPackages = with pkgs;
     [
-      virt-manager
       virtiofsd
     ];
-
-  fonts.packages = with pkgs; [
-    ubuntu_font_family
-    font-awesome
-    symbola
-    alegreya
-    nerd-fonts.ubuntu-mono
-    nerd-fonts.ubuntu
-  ];
 
   security.sudo.enable = false;
   security.sudo-rs.enable = true;
