@@ -198,7 +198,7 @@ with pkgs; [
   python311Packages.python-lsp-server
   poetry
   kooha
-  musl.dev # Causes issue to haskell stack
+  # musl.dev # Causes issue to haskell stack
   glibc.static
   awscli2
   vscode
@@ -261,21 +261,24 @@ with pkgs; [
   hugo
   texliveMedium
   hurl
-  # postgresql.dev
+  postgresql.dev
+  postgresql.lib
+  postgresql
   pnpm
   prisma
   dbeaver-bin
   ghostty
-  stack
+  # stack
   haskellPackages.cabal-fmt
   aider-chat-full
+  # sibi-aider
   claude-code
   postgresql
-  # solana-cli # No cache
+  unstable.solana-cli
   # anchor No cache
 
   tombi
-  mold
+  # mold # Interferes with stack
   gemini-cli
   wireguard-tools
   pprof
@@ -291,4 +294,10 @@ with pkgs; [
   rustscan
   libgourou
   calibre
+  kubectl-cnpg
+  barman
+  net-tools
+  kind
+  unstable.opencode
+  just-lsp
 ]
