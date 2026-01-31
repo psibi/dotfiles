@@ -317,6 +317,11 @@
 
   programs.gpg = { enable = true; };
 
+  programs.zellij = {
+    enable = true;
+    enableFishIntegration = false;
+  };
+
   fonts.fontconfig.enable = true;
 
   services.gpg-agent = {
