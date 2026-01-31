@@ -42,6 +42,12 @@
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
+      # "application/pdf" = [ "firefox.desktop" ];
+      # "text/html" = [ "firefox.desktop" ];
+      # "x-scheme-handler/http" = [ "firefox.desktop" ];
+      # "x-scheme-handler/https" = [ "firefox.desktop" ];
+      # "x-scheme-handler/about" = [ "firefox.desktop" ];
+      # "x-scheme-handler/unknown" = [ "firefox.desktop" ];
       "application/pdf" = [ "google-chrome.desktop" ];
       "text/html" = [ "google-chrome.desktop" ];
       "x-scheme-handler/http" = [ "google-chrome.desktop" ];
@@ -62,7 +68,7 @@
     systemd.enable = true;
 
     config = {
-      terminal = "alacritty";
+      terminal = "ghostty";
 
       startup = [
         { command = "google-chrome-stable"; }
@@ -92,7 +98,7 @@
           }
           {
             command = "move container to workspace number 1";
-            criteria.app_id = "Alacritty";
+            criteria.app_id = "com.mitchellh.ghostty";
           }
         ];
       };
@@ -100,7 +106,7 @@
       keybindings =
         let modifier = "Mod4";
         in lib.mkOptionDefault {
-          "${modifier}+Return" = "exec alacritty";
+          "${modifier}+Return" = "exec ghostty";
           "${modifier}+p" = "exec rofi -show run";
           "${modifier}+c" = "kill";
 
@@ -206,21 +212,21 @@
     pass.enable = false;
     theme = "fancy";
     extraConfig = { show-icons = false; };
-    package = pkgs.rofi-wayland;
   };
 
   programs.git = {
     enable = true;
-    userName = "Sibi Prabakaran";
-    userEmail = "sibi@psibi.in";
     lfs.enable = true;
+    settings = {
+      user = {
+        email = "sibi@psibi.in";
+        name = "Sibi Prabakaran";
+      };
+      init.defaultBranch = "main";
+    };
     signing = {
       signByDefault = true;
       key = "0xD19E3E0EBB557613";
-    };
-    extraConfig = {
-      commit.gpgsign = true;
-      init.defaultBranch = "main";
     };
     ignores = [ "*~" "#*#" ".#*" ];
   };
@@ -269,6 +275,25 @@
     };
   };
 
+  programs.ghostty = {
+    enable = true;
+    enableFishIntegration = true;
+    package = pkgs.ghostty;
+    settings = {
+      font-family = "Ubuntu Mono";
+      font-size = "17.0";
+      command = "fish";
+      window-decoration = "false";
+      theme = "Dark Modern";
+      initial-command = "zellij --config /home/sibi/github/dotfiles/zellij.kdl --layout /home/sibi/github/dotfiles/zellij_layout.kdl";
+      shell-integration = "fish";
+      cursor-style = "block";
+      cursor-style-blink = "false";
+      window-theme = "ghostty";
+      shell-integration-features = "no-cursor";
+    };
+  };
+
   programs.alacritty = {
     enable = true;
     settings = {
@@ -307,12 +332,12 @@
   services.emacs = {
     enable = true;
     package = pkgs.sibiEmacs;
+    defaultEditor = true;
     startWithUserSession = "graphical";
   };
 
   services.flameshot = {
     enable = true;
-    package = pkgs.flameshot-grim;
     settings = {
       General = {
         disabledTrayIcon = true;
@@ -321,11 +346,15 @@
     };
   };
 
+  services.mako.enable = true;
+
   programs.ssh = {
     enable = true;
-    serverAliveInterval = 15;
-    serverAliveCountMax = 3;
+    enableDefaultConfig = false;
     matchBlocks = {
+      "*" = {
+        serverAliveInterval = 60;
+      };
       "github" = {
         host = "github.com";
         hostname = "github.com";
