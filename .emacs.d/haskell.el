@@ -2,13 +2,14 @@
   :ensure t
   :after (lsp-mode)
   :bind (:map haskell-mode-map
-              ("C-c C-c <tab>" . haskell-compile)
+	      ("C-c C-c <TAB>" . haskell-stack-build)
+              ("C-c C-c <tab>" . haskell-stack-build)
               ("C-c C-c C-f" . ormolu-format-buffer)
               ("C-c C-c C-i" . haskell-stack-install)
               ("C-c C-c C-t" . haskell-cabal-test))
   :custom
   (haskell-mode-hook '(haskell-indentation-mode lsp-deferred))
-  (haskell-compiler-type 'cabal)
+  (haskell-compiler-type 'stack)
   (haskell-process-type 'stack-ghci)
   (lsp-rename-use-prepare nil)
   (lsp-haskell-formatting-provider "fourmolu")
@@ -48,6 +49,12 @@
   "Stack install your project."
   (interactive)
   (let ((haskell-compile-stack-build-command "stack install --fast"))
+    (haskell-compile)))
+
+(defun haskell-stack-build ()
+  "Stack install your project."
+  (interactive)
+  (let ((haskell-compile-stack-build-command "stack build"))
     (haskell-compile)))
 
 (defun haskell-nix-build ()
