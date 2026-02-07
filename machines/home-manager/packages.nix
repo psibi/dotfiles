@@ -298,6 +298,6 @@ with pkgs; [
   barman
   net-tools
   kind
-  unstable.opencode
+  opencode
   just-lsp
 ]

@@ -8,4 +8,5 @@ self: super: {
   # minijinja-cli = super.pkgs.callPackage ../packages/minijinja/default.nix { };
   sibi-yaml-language-server = super.pkgs.callPackage ../packages/yaml-language-server/default.nix {};
   sibi-goose-cli = super.pkgs.callPackage ../packages/goose-cli/package.nix {};
+  opencode = super.pkgs.callPackage ../packages/opencode/package.nix {};
 }
