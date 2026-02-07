@@ -70,8 +70,8 @@
 
 ;; (add-hook 'org-export-before-parsing-hook #'my-insert-shell-prompt)
 
-;; (use-package ob-http
-;;   :ensure t)
+(use-package ob-http
+  :ensure t)
 
 ;; (use-package ob-typescript
 ;;   :ensure t)
