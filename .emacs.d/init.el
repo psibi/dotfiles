@@ -242,7 +242,7 @@
   :custom
   ;; For HLS specific change
   ;; (lsp-rename-use-prepare t)
-  (lsp-rust-analyzer-server-command '("rustup" "run" "1.90.0" "rust-analyzer"))
+  (lsp-rust-analyzer-server-command '("rustup" "run" "1.91.0" "rust-analyzer"))
   (lsp-rust-analyzer-cargo-target-dir "target-ra")
   (lsp-rust-analyzer-server-display-inlay-hints t)
   (lsp-rust-analyzer-experimental-proc-attr-macros t)
@@ -310,9 +310,9 @@
   (setq rust-mode-treesitter-derive t))
 
 (use-package rustic
-  ;; :quelpa (rustic :fetcher file
-  ;;                 :path "~/github/rustic")
-  :ensure t
+  :quelpa (rustic :fetcher file
+                  :path "~/github/rustic")
+  ;; :ensure t
   :after (rust-mode lsp-mode smartparens)
   :init
   (progn
@@ -323,6 +323,7 @@
               ("M-?" . lsp-find-references)
               ([remap rustic-cargo-init] . rustic-cargo-install)
               ("C-c C-c C-i" . rustic-cargo-install)
+              ("C-c C-c n" . rustic-cargo-custom-command)
               ("C-c C-c <tab>" . rustic-cargo-build)
               ("C-c C-c l" . flycheck-list-errors)
               ("C-c o" . lsp-rust-analyzer-open-external-docs)
