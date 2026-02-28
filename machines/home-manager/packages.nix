@@ -300,4 +300,7 @@ with pkgs; [
   kind
   opencode
   just-lsp
+  biff
+  systemd-manager-tui
+  cargo-insta
 ]
