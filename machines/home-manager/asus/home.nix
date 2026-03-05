@@ -24,6 +24,13 @@
     sessionPath = [ "$HOME/.local/bin" "$HOME/.cargo/bin" ];
     stateVersion = "21.05";
 
+    sessionVariables = {
+      WLR_NO_HARDWARE_CURSORS = "1";
+      LIBVA_DRIVER_NAME = "radeonsi";
+      # VDPAU (Video Decode and Presentation API for Unix) driver for AMD GPUs.
+      VDPAU_DRIVER = "radeonsi";
+    };
+
     packages = import ../packages.nix {
       pkgs = pkgs;
       unstable = unstable-pkgs;
@@ -250,6 +257,7 @@
       ];
 
       modifier = "Mod4"; # Super key
+
       input = {
         "type:keyboard" = {
           xkb_options = "caps:ctrl_modifier";
