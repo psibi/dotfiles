@@ -198,7 +198,7 @@ with pkgs; [
   python311Packages.python-lsp-server
   poetry
   kooha
-  # musl.dev # Causes issue to haskell stack
+  musl.dev # Causes issue to haskell stack.
   glibc.static
   awscli2
   vscode
@@ -257,7 +257,8 @@ with pkgs; [
   leptosfmt
   kubo # For ipfs
   wasm-pack
-  biome
+  # biome
+  # sibi-biome
   hugo
   texliveMedium
   hurl
@@ -303,4 +304,5 @@ with pkgs; [
   biff
   systemd-manager-tui
   cargo-insta
+
 ]
