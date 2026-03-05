@@ -2,7 +2,7 @@
   :init
   :custom
   (gptel-api-key #'gptel-api-key-from-auth-source)
-  (gptel-model 'gemini-3-pro-preview)
+  (gptel-model 'gemini-pro-latest)
   (gptel-include-reasoning nil)
   (gptel-default-mode 'markdown-mode)
   :bind
@@ -16,14 +16,13 @@
   (gptel-make-preset 'english-reader
   :description "Preset for better sentences"
   :backend "Gemini"
-  :model 'gemini-3-pro-preview
+  :model 'gemini-pro-latest
   :system "Act as an expert English proofreader. Please review the text. Correct any spelling and grammar errors, and improve the clarity and flow. Make sure your changes are appropriate for the context.")
   (gptel-make-preset 'code-reader
   :description "Preset for code reader"
   :backend "Gemini"
-  :model 'gemini-3-pro-preview
+  :model 'gemini-pro-latest
   :system "Act as an expert programmer and senior code reviewer with deep knowledge of software architecture, best practices, and performance. Your task is to provide a clear and comprehensive explanation of the code I provide.")
-
 )
 
 (use-package llm
