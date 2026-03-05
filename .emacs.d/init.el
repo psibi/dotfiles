@@ -4,6 +4,8 @@
 
 (require 'use-package)
 
+(setq package-enable-at-startup nil)
+
 ;;; https://emacs-lsp.github.io/lsp-mode/page/performance/
 (setq gc-cons-threshold 100000000)
 (setq read-process-output-max (* 1024 1024)) ;; 1mb
@@ -20,6 +22,7 @@
 (setq auto-window-vscroll nil)
 (setq cursor-in-non-selected-windows t)
 (setq truncate-lines t)
+(setq-default line-spacing 0.2)
 
 ;; Give up some bidirectional functionality for slightly faster re-display.
 (setq bidi-inhibit-bpa t)
@@ -293,8 +296,8 @@
   :ensure t)
 
 (use-package sh-script
- :ensure nil
- :mode ("\\.sh\\'" . bash-ts-mode))
+  :ensure nil
+  :mode ("\\.sh\\'" . bash-ts-mode))
 
 (use-package lsp-bash
   :ensure lsp-mode
@@ -304,7 +307,7 @@
 
 (use-package rust-mode
   :quelpa (rust-mode :fetcher file
-                    :path "~/github/rust-mode")
+                     :path "~/github/rust-mode")
   :defer t
   :init
   (setq rust-mode-treesitter-derive t))
@@ -547,17 +550,6 @@
   :ensure t
   :defer t)
 
-(use-package guide-key
-  :ensure t
-  :diminish guide-key-mode
-  :custom
-  (guide-key/guide-key-sequence '("C-x 4" "C-c p"))
-  :config
-  (guide-key-mode 1))
-
-(use-package ace-window
-  :ensure t)
-
 (use-package ace-jump-mode
   :ensure t
   :bind
@@ -580,9 +572,7 @@
   :ensure t)
 
 (use-package centered-cursor-mode
-  :ensure t
-  :config
-  (global-centered-cursor-mode))
+  :ensure t)
 
 (use-package tldr
   :ensure t)
@@ -774,18 +764,6 @@
   ;; Use shell-like backspace C-h, rebind help to F1
   (define-key key-translation-map [?\C-h] [?\C-?]))
 
-(use-package typescript-mode
-  :ensure t
-  :hook ((typescript-mode . lsp-deferred))
-  :custom
-  (typescript-indent-level 2))
-
-;;; Required for typescript
-(use-package lsp-javascript
-  :ensure lsp-mode
-  :after lsp-mode
-  :demand t)
-
 (use-package vterm
   :custom
   (vterm-shell "fish"))
@@ -883,6 +861,40 @@
 
 (use-package casual
   :ensure t)
+
+(use-package apheleia
+  :ensure t
+  :config
+  (apheleia-global-mode +1)
+  ;; Map typescript-mode to utilize the 'biome' formatter
+  (push '(typescript-mode . biome) apheleia-mode-alist)
+  ;; 2. Redefine 'biome' to use the global binary (drop apheleia-npx)
+  (setf (alist-get 'biome apheleia-formatters)
+        '("biome" "format" "--stdin-file-path" filepath))
+  )
+
+(use-package typescript-mode
+  :ensure t
+  :hook ((typescript-mode . lsp-deferred))
+  :custom
+  (typescript-indent-level 2))
+
+;;; Required for typescript
+(use-package lsp-javascript
+  :ensure lsp-mode
+  :after lsp-mode
+  :demand t)
+
+
+
+;; (use-package lsp-biome
+;;   :vc (:url "https://github.com/cxa/lsp-biome" :rev :newest)
+;;   :preface
+;;   (defun my/lsp-biome-active-hook ()
+;;     (setq-local apheleia-formatter '(biome)))
+
+;;   :config
+;;   (add-hook 'lsp-biome-active-hook #'my/lsp-biome-active-hook))
 
 (load-file "~/github/dotfiles/.emacs.d/haskell.el")
 (load-file "~/github/dotfiles/.emacs.d/sibi-utils.el")
