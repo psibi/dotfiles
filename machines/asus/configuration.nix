@@ -18,13 +18,18 @@
   boot.loader.efi.canTouchEfiVariables = true;
   # https://github.com/zeule/asus-ec-sensors/issues/52#issuecomment-2143286647
   # Add this to kernerlModules for fan speed etc: "nct6775"
-  boot.kernelModules = ["kvm-amd" ];
+  boot.kernelModules = [ "kvm-amd" "amdgpu" ];
 
   boot.initrd.luks.devices.crypted.device = "/dev/disk/by-uuid/83f885b8-95ba-4675-9d73-721374986d12";
   fileSystems."/home".device = "/dev/mapper/crypted";
 
   nixpkgs.config.allowUnfree = true;
   hardware.enableRedistributableFirmware = true;
+
+  hardware.graphics = {
+    enable = true;
+  };
+
   nix.registry.nixpkgs.flake = nixpkgs;
 
   hardware.bluetooth = {
@@ -150,6 +155,8 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     virtiofsd
+    libva-utils
+    vdpauinfo
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
