@@ -152,6 +152,16 @@
           hiresscroll: { hires: true; invert: false; target: false; };
           dpi: 1000;
           # Add gesture mappings here
+
+          buttons: (
+               // ── Top button (behind scroll wheel) ── Toggles SmartShift
+               {
+                 cid: 0xc4;
+                 action: {
+                   type: "ToggleSmartshift";
+                 };
+               },
+          );
       }
       );
     '';
