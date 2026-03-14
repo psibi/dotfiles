@@ -9,9 +9,11 @@
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../modules/logid.nix
     ];
 
   services.udev.packages = [ pkgs.ledger-udev-rules ];
+  programs.nix-ld.enable = true;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -41,6 +43,12 @@
       };
     };
   };
+
+  hardware.logitech.wireless = {
+    enable = true;
+    enableGraphical = true;
+  };
+
 
   services.blueman.enable = true;
 
@@ -131,6 +139,24 @@
 
   services.fwupd.enable = true;
 
+  services.logid = {
+    enable = true;
+    # https://github.com/PixlOne/logiops/issues/520
+    configText = ''
+      devices: (
+      {
+          name: "MX Master 4";
+          // Enable smartshift to automatically switch between ratchet and free-spin.
+          smartshift: { on: true; threshold: 20; };
+          // Enable high-resolution scrolling for a smoother feel.
+          hiresscroll: { hires: true; invert: false; target: false; };
+          dpi: 1000;
+          # Add gesture mappings here
+      }
+      );
+    '';
+  };
+
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
@@ -158,6 +184,7 @@
     libva-utils
     vdpauinfo
   ];
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
