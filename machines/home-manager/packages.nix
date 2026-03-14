@@ -272,8 +272,6 @@ with pkgs; [
   ghostty
   # stack
   haskellPackages.cabal-fmt
-  aider-chat-full
-  # sibi-aider
   claude-code
   postgresql
   unstable.solana-cli
@@ -306,4 +304,6 @@ with pkgs; [
   systemd-manager-tui
   cargo-insta
   fnm
+  # aider-chat-full
+  sibi-aider
 ]
