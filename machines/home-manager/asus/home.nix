@@ -4,7 +4,9 @@
   imports = [  ];
 
   nixpkgs = {
-    overlays = [ (import ../overlay.nix) ];
+    overlays =
+      [ (import ../overlay.nix { unstable = unstable-pkgs; }
+    ) ];
     config = {
       allowUnfreePredicate = (_: true);
       allowUnfree = true;
