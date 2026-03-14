@@ -72,7 +72,8 @@ with pkgs; [
   watchexec
   jwt-cli
   step-cli
-  # httplz Disable since cache is not there
+  # httplz # Disable since cache is not there
+  miniserve # Altearnative to httplz
   languagetool
   twitter-color-emoji
   kalker
@@ -190,7 +191,7 @@ with pkgs; [
   #nodePackages.vscode-json-languageserver
   dockerfile-language-server
   nodePackages.bash-language-server
-  nodejs_20
+  # nodejs_20 # Manage through fnm
   nodePackages.typescript
   nodePackages.typescript-language-server
   haskellPackages.implicit-hie
@@ -304,5 +305,5 @@ with pkgs; [
   biff
   systemd-manager-tui
   cargo-insta
-
+  fnm
 ]
