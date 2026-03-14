@@ -1,4 +1,4 @@
-self: super: {
+{unstable}: self: super: {
   em = import ./scripts/em.nix { pkgs = super.pkgs; };
   sibiEmacs = super.pkgs.callPackage ../packages/emacs/default.nix { pkgs = super.pkgs; };
   # flarectl = super.pkgs.callPackage ../packages/flarectl/default.nix { };
@@ -9,4 +9,5 @@ self: super: {
   sibi-yaml-language-server = super.pkgs.callPackage ../packages/yaml-language-server/default.nix {};
   sibi-goose-cli = super.pkgs.callPackage ../packages/goose-cli/package.nix {};
   opencode = super.pkgs.callPackage ../packages/opencode/package.nix {};
+  sibi-aider = super.pkgs.callPackage ../packages/aider/package.nix { unstable = unstable;};
 }
