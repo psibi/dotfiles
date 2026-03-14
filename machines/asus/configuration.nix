@@ -141,6 +141,7 @@
 
   services.logid = {
     enable = true;
+    # https://github.com/pwr-Solaar/Solaar/issues/2964#issuecomment-3679630287
     # https://github.com/PixlOne/logiops/issues/520
     configText = ''
       devices: (
@@ -148,9 +149,9 @@
           name: "MX Master 4";
           // Enable smartshift to automatically switch between ratchet and free-spin.
           smartshift: { on: true; threshold: 20; };
-          // Enable high-resolution scrolling for a smoother feel.
-          hiresscroll: { hires: true; invert: false; target: false; };
-          dpi: 1000;
+          // Disable high-resolution scrolling for a smoother feel.
+          hiresscroll: { hires: false; invert: false; target: false; };
+          dpi: 800;
           # Add gesture mappings here
 
           buttons: (
@@ -161,6 +162,33 @@
                    type: "ToggleSmartshift";
                  };
                },
+
+               // ── Back button (side) ──────────────── Browser Back
+               {
+                 cid: 0x53;
+                 action: {
+                   type: "Keypress";
+                   keys: [ "KEY_LEFTMETA", "KEY_1" ];
+                 };
+               },
+
+               // ── Forward button (side) ──────────────── Browser Back
+               {
+                 cid: 0x56;
+                 action: {
+                   type: "Keypress";
+                   keys: [ "KEY_LEFTMETA", "KEY_2" ];
+                 };
+               },
+
+               // ── Thumb rest click ────────────────── Super/Windows key
+               {
+                 cid: 0x1a0;
+                 action: {
+                   type: "Keypress";
+                   keys: [ "KEY_LEFTMETA", "KEY_4" ];
+                 };
+               }
           );
       }
       );
