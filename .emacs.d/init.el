@@ -185,13 +185,18 @@
   :hook ((lsp-mode . lsp-enable-which-key-integration)
          (lsp-configure . lsp-lens-mode))
   :config
-  ;; NixOS result symbolic directory
-  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\result\\'" t)
-  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]\\target-ra\\'" t)
+  (dolist (match '("[/\\\\]\\.git\\'"
+                   "[/\\\\]node_modules\\'"
+                   "[/\\\\]\\.pnpm\\'"
+                   "[/\\\\]dist\\'"
+                   "[/\\\\]result\\'"               ; Nisos symbolic config
+                   "[/\\\\]target-ra\\'"
+                   "[/\\\\]smart-contract-target\\'"))
+    (add-to-list 'lsp-file-watch-ignored-directories match t))
   :custom
   (lsp-log-io nil)
   ;; (lsp-log-io t)
-  (lsp-disabled-clients '(tfls clangd rls rnix-lsp semgrep-ls deno-ls copilot-ls taplo))
+  (lsp-disabled-clients '(tfls clangd rls rnix-lsp semgrep-ls deno-ls copilot-ls taplo 'biome))
   (lsp-semantic-tokens-enable t)
   (lsp-lens-auto-enable t)
   (lsp-semantic-tokens-honor-refresh-requests nil)
@@ -865,7 +870,6 @@
 (use-package apheleia
   :ensure t
   :config
-  (apheleia-global-mode +1)
   ;; Map typescript-mode to utilize the 'biome' formatter
   (push '(typescript-mode . biome) apheleia-mode-alist)
   ;; 2. Redefine 'biome' to use the global binary (drop apheleia-npx)
