@@ -196,7 +196,7 @@
   :custom
   (lsp-log-io nil)
   ;; (lsp-log-io t)
-  (lsp-disabled-clients '(tfls clangd rls rnix-lsp semgrep-ls deno-ls copilot-ls taplo 'biome))
+  (lsp-disabled-clients '(tfls clangd rls rnix-lsp semgrep-ls deno-ls copilot-ls taplo biome))
   (lsp-semantic-tokens-enable t)
   (lsp-lens-auto-enable t)
   (lsp-semantic-tokens-honor-refresh-requests nil)
@@ -481,6 +481,7 @@
    ("M-y" . helm-show-kill-ring)
    ("C-x b" . helm-mini)
    ("C-x C-f" . helm-find-files)
+   ("C-o" . helm-occur)
    :map helm-map
    ("<tab>" . helm-execute-persistent-action)
    ("C-i" . helm-execute-persistent-action)
@@ -505,25 +506,6 @@
     (helm-projectile-on))
   :custom
   (projectile-completion-system 'helm))
-
-(use-package helm-swoop
-  :ensure t
-  :bind
-  (("M-i" . helm-swoop)
-   ("M-I" . helm-swoop-back-to-last-point)
-   ("C-c M-i" . helm-multi-swoop)
-   ("C-x M-i" . helm-multi-swoop-all)
-   :map isearch-mode-map
-   ("M-i" . helm-swoop-from-isearch)
-   :map helm-swoop-map
-   ("M-i" . helm-multi-swoop-all-from-helm-swoop))
-  :custom
-  (helm-multi-swoop-edit-save t)
-  (helm-swoop-split-with-multiple-windows nil)
-  (helm-swoop-split-direction 'split-window-vertically)
-  (helm-swoop-speed-or-color nil)
-  (helm-swoop-move-to-line-cycle t)
-  (helm-swoop-use-line-number-face t))
 
 (use-package doc-view
   :ensure t
@@ -861,9 +843,6 @@
   (ediff-window-setup-function 'ediff-setup-windows-plain)
   (ediff-split-window-function 'split-window-horizontally))
 
-(use-package eat
-  :quelpa (eat :fetcher codeberg :repo "akib/emacs-eat"))
-
 (use-package casual
   :ensure t)
 
@@ -879,7 +858,11 @@
 
 (use-package typescript-mode
   :ensure t
-  :hook ((typescript-mode . lsp-deferred))
+  :hook ((typescript-mode . lsp-deferred)
+	 (typescript-mode . (lambda ()
+			      (setq tab-width 2)
+			      (setq indent-tabs-mode t)
+			      (apheleia-mode))))
   :custom
   (typescript-indent-level 2))
 
@@ -889,16 +872,8 @@
   :after lsp-mode
   :demand t)
 
-
-
-;; (use-package lsp-biome
-;;   :vc (:url "https://github.com/cxa/lsp-biome" :rev :newest)
-;;   :preface
-;;   (defun my/lsp-biome-active-hook ()
-;;     (setq-local apheleia-formatter '(biome)))
-
-;;   :config
-;;   (add-hook 'lsp-biome-active-hook #'my/lsp-biome-active-hook))
+;; (use-package daml-mode
+;;   :demand t)
 
 (load-file "~/github/dotfiles/.emacs.d/haskell.el")
 (load-file "~/github/dotfiles/.emacs.d/sibi-utils.el")
