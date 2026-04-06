@@ -12,7 +12,15 @@
       ../modules/logid.nix
     ];
 
-  services.udev.packages = [ pkgs.ledger-udev-rules ];
+  services.udev = {
+    enable = true;
+    packages = [ pkgs.ledger-udev-rules ];
+    # To avoid random freezes.
+    extraRules = ''
+      ACTION=="add|change", SUBSYSTEM=="scsi_host", KERNEL=="host*", ATTR{link_power_management_policy}="max_performance"
+    '';
+  };
+
   programs.nix-ld.enable = true;
 
   # Use the systemd-boot EFI boot loader.
