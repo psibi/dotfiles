@@ -186,9 +186,9 @@ with pkgs; [
   sass
 
   # nodePackages.yaml-language-server
-  # https://github.com/redhat-developer/yaml-language-server/issues
+  # https://github.com/redhat-developer/yaml-language-server/issues/881
   sibi-yaml-language-server
-  #nodePackages.vscode-json-languageserver
+  vscode-json-languageserver
   dockerfile-language-server
   nodePackages.bash-language-server
   # nodejs_20 # Manage through fnm
