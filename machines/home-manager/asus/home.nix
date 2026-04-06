@@ -81,6 +81,7 @@
     interactiveShellInit = ''
       set fish_greeting
       ${pkgs.any-nix-shell}/bin/any-nix-shell fish | source
+      ${pkgs.fnm}/bin/fnm env --use-on-cd --shell fish | source
     '';
   };
 
