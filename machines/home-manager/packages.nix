@@ -306,4 +306,5 @@ with pkgs; [
   fnm
   # aider-chat-full
   sibi-aider
+  sibi-dpm
 ]

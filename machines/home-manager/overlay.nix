@@ -10,4 +10,5 @@
   sibi-goose-cli = super.pkgs.callPackage ../packages/goose-cli/package.nix { };
   opencode = super.pkgs.callPackage ../packages/opencode/package.nix { };
   sibi-aider = (super.pkgs.callPackage ../packages/aider/package.nix { unstable = unstable; }).withOptional { withPlaywright = true; };
+  sibi-dpm = super.pkgs.callPackage ../packages/dpm/default.nix {};
 }
