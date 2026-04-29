@@ -27,11 +27,11 @@ let
     pyproject = true;
 
     src = fetchFromGitHub {
-      owner = "Aider-AI";
+      owner = "psibi";
       repo = "aider";
-      rev = "861a1e4d154f268547a06497cc380e5a5dc8483a";
+      rev = "2b3c12d4e63af968557b041d741db93b09b81bb1";
       # tag = "v${version}";
-      hash = "sha256-joLEjrUE7covLEBfJaoxoiIZxyljfKQk5MtyrcyZbAU=";
+      hash = "sha256-0000000000000000000000000000000000000000000000000000000000000000";#lib.fakeSha256; #  "sha256-joLEjrUE7covLEBfJaoxoiIZxyljfKQk5MtyrcyZbAU=";
     };
 
     pythonRelaxDeps = true;
