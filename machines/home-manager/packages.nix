@@ -196,7 +196,7 @@ with pkgs; [
   nodePackages.typescript-language-server
   haskellPackages.implicit-hie
   haskellPackages.cabal-gild
-  python311Packages.python-lsp-server
+  # python311Packages.python-lsp-server - Trying ty now
   poetry
   kooha
   musl.dev # Causes issue to haskell stack.
@@ -307,4 +307,8 @@ with pkgs; [
   # aider-chat-full
   sibi-aider
   sibi-dpm
+  unixtools.xxd
+  metals
+  scala
+  ty
 ]

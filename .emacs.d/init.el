@@ -262,13 +262,6 @@
   (lsp-rust-analyzer-max-inlay-hint-length 25)
   (lsp-rust-analyzer-closure-capture-hints t))
 
-(use-package lsp-pylsp
-  :ensure lsp-mode
-  :after lsp-mode
-  :demand t
-  :hook (python-ts-mode . lsp-deferred))
-
-
 (use-package ccls
   :ensure t
   :after (lsp-mode)
@@ -872,14 +865,19 @@
   :after lsp-mode
   :demand t)
 
-;; (use-package daml-mode
-;;   :demand t)
+(use-package scala-mode
+  :ensure t)
+
+(use-package lsp-metals
+  :ensure t
+  :hook (scala-mode . lsp-deferred))
 
 (load-file "~/github/dotfiles/.emacs.d/haskell.el")
 (load-file "~/github/dotfiles/.emacs.d/sibi-utils.el")
 (load-file "~/github/dotfiles/.emacs.d/org.el")
 (load-file "~/github/dotfiles/.emacs.d/devops.el")  ; Have this at the end because of envrc
 (load-file "~/github/dotfiles/.emacs.d/ai.el")
+(load-file "~/github/dotfiles/.emacs.d/daml.el")
 
 ;;(use-package prisma-mode
 ;;  :quelpa (prisma-mode :fetcher github

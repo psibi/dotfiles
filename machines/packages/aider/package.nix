@@ -29,9 +29,11 @@ let
     src = fetchFromGitHub {
       owner = "psibi";
       repo = "aider";
-      rev = "2b3c12d4e63af968557b041d741db93b09b81bb1";
+      rev = "3431213484526d588aacfc32d9fe76283b15af02";
       # tag = "v${version}";
-      hash = "sha256-0000000000000000000000000000000000000000000000000000000000000000";#lib.fakeSha256; #  "sha256-joLEjrUE7covLEBfJaoxoiIZxyljfKQk5MtyrcyZbAU=";
+      # hash = lib.fakeHash;
+      hash = "sha256-BH439MV7vzKTIIVWk2kOzdLEaEhsOxR4okNvmd9QhQw=";
+      # hash = "sha256-0op5IuC3afjThxD2ihVgzY644eQKJmTHx2fadAliKGY=";
     };
 
     pythonRelaxDeps = true;
