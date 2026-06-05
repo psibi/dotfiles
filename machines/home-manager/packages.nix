@@ -311,4 +311,5 @@ with pkgs; [
   metals
   scala
   ty
+  # unstable.codex
 ]

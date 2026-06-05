@@ -1,3 +1,5 @@
+(require 'auth-source)
+
 (use-package gptel
   :init
   :custom
