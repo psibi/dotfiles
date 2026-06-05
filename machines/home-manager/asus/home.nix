@@ -42,6 +42,7 @@
       ".stack/config.yaml".source = ../../../.stack/config.yaml;
       ".stack/global-project/stack.yaml".source = ../../../.stack/stack.yaml;
       ".tfswitch.toml".source = ../../../tfswitch.toml;
+      ".config/zerostack/config.toml".source = ../../../zerostack.toml;
       ".tgswitch.toml".source = ../../../tgswitch.toml;
       ".aws/config".source = ../../../aws-config;
       ".config/mprocs/mprocs.yaml".source = ../../../mprocs.yaml;

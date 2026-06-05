@@ -1,0 +1,11 @@
+[custom_providers.flash]
+provider_type = "openai"
+model = "deepseek-v4-flash"
+base_url = "https://api.deepseek.com"
+api_key_env = "ZS_API_KEY"
+
+[custom_providers.pro]
+provider_type = "openai"
+model = "deepseek-v4-pro"
+base_url = "https://api.deepseek.com"
+api_key_env = "ZS_API_KEY"
