@@ -23,7 +23,6 @@ with pkgs; [
   lsd
   fd
   procs
-  dysk
   nixfmt-rfc-style
   direnv
   pavucontrol
@@ -58,7 +57,6 @@ with pkgs; [
   openssl
   openssl.dev
   wirelesstools
-  ifmetric
   tree-sitter
   tree-sitter-grammars.tree-sitter-rust
   watchexec
@@ -67,7 +65,6 @@ with pkgs; [
   miniserve # Altearnative to httplz
   twitter-color-emoji
   kalker
-  jless
   nixpkgs-fmt
   pinentry-qt
   difftastic
@@ -119,7 +116,6 @@ with pkgs; [
   xfce.thunar
   xfce.thunar-volman
   gparted
-  parallel
   jdk
   jdt-language-server
   maven
