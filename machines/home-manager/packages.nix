@@ -4,7 +4,6 @@ with pkgs; [
   terraform-docs
   ouch
   unzip
-  dogdns
   tgswitch
   file
   aspell
@@ -12,8 +11,6 @@ with pkgs; [
   hunspell
   hunspellDicts.en_US-large
   rxvt-unicode-unwrapped
-  keybase-gui
-  keybase
   wget
   curl
   firefox
@@ -35,7 +32,6 @@ with pkgs; [
   # llvm
   sqlite
   htop
-  cabal2nix
   lsof
   ripgrep
   docker
@@ -51,8 +47,6 @@ with pkgs; [
   jq
   dnsutils
   fzf
-  broot
-  dust
   azure-cli
   hlint
   aws-iam-authenticator
@@ -60,29 +54,22 @@ with pkgs; [
   ipcalc
   bc
   any-nix-shell
-  qpdf
   libreoffice
   openssl
   openssl.dev
-  kubergrunt
   wirelesstools
   ifmetric
   tree-sitter
   tree-sitter-grammars.tree-sitter-rust
   watchexec
   jwt-cli
-  step-cli
-  # httplz # Disable since cache is not there
+  # httplz
   miniserve # Altearnative to httplz
-  languagetool
   twitter-color-emoji
   kalker
   jless
-  jfmt
   nixpkgs-fmt
-  kube-score
   pinentry-qt
-  yq-go
   difftastic
   docker-compose
   shellcheck
@@ -112,11 +99,9 @@ with pkgs; [
   keepassxc
   cabal-install
   ghc
-  argo-rollouts
   haskell-language-server
   paprefs
   grpcurl
-  plantuml
   zola
   zlib.out
   zlib.dev
@@ -126,15 +111,10 @@ with pkgs; [
   flex
   bison
   ccls
-  mprocs
-  velero
-  etcd_3_5
   hwatch
-  taplo
   nil
   ormolu
   emacs-all-the-icons-fonts
-  kube-capacity
   pdftk
   xfce.thunar
   xfce.thunar-volman
@@ -144,22 +124,16 @@ with pkgs; [
   jdt-language-server
   maven
   gradle
-  flutter
   cmake
   ninja
   pkg-config
   usbutils
-  eww
   marksman
   amber-secret
-  nil
   appimage-run
-  gopls
   scc
   tokei
-  # jetbrains.idea-community
   dateutils
-
   # Sway and Wayland related
   wayland
   xdg-utils
@@ -180,30 +154,19 @@ with pkgs; [
   xorg.xlsclients
   adwaita-icon-theme
   alsa-utils
-
   slurp
   libcamera
   sass
-
-  # nodePackages.yaml-language-server
-  # https://github.com/redhat-developer/yaml-language-server/issues/881
-  sibi-yaml-language-server
   vscode-json-languageserver
   dockerfile-language-server
-  nodePackages.bash-language-server
   # nodejs_20 # Manage through fnm
   nodePackages.typescript
   nodePackages.typescript-language-server
-  haskellPackages.implicit-hie
-  haskellPackages.cabal-gild
-  # python311Packages.python-lsp-server - Trying ty now
-  poetry
   kooha
   musl.dev # Causes issue to haskell stack.
   glibc.static
   awscli2
   vscode
-  yarn
   aws-vault
 
   google-chrome
@@ -213,7 +176,6 @@ with pkgs; [
   terraform-ls
   kubernetes-helm
   rustup
-  zoom-us
 
   # From Overlays
   em
@@ -227,9 +189,7 @@ with pkgs; [
 
   go
   gopls
-  golangci-lint
 
-  cilium-cli
   hwinfo
   pciutils
   lshw
@@ -241,9 +201,6 @@ with pkgs; [
   nerd-fonts.symbols-only
   lm_sensors
   linux.dev
-  virt-manager
-  virtualbox
-  quickemu
 
   tldr-hs
   whois
@@ -251,43 +208,21 @@ with pkgs; [
   sqlx-cli
   kondo # For cleaning build artifacts
   kubeseal
-  google-cloud-sdk
   minijinja
   tflint
-  trunk
-  leptosfmt
-  kubo # For ipfs
-  wasm-pack
-  # biome
-  # sibi-biome
-  hugo
-  texliveMedium
   hurl
   postgresql.dev
   postgresql.lib
   postgresql
   pnpm
-  prisma
-  dbeaver-bin
   ghostty
   # stack
-  haskellPackages.cabal-fmt
   claude-code
   postgresql
-  unstable.solana-cli
-  # anchor No cache
-
   tombi
   # mold # Interferes with stack
-  gemini-cli
-  wireguard-tools
-  pprof
-  graphviz
   websocat
-  masterpdfeditor
-  worker-build
   steam-run
-  unstable.goose-cli
   k3s
   nftables
   nmap
@@ -301,11 +236,8 @@ with pkgs; [
   opencode
   just-lsp
   biff
-  systemd-manager-tui
   cargo-insta
   fnm
-  # aider-chat-full
-  sibi-aider
   sibi-dpm
   unixtools.xxd
   metals
