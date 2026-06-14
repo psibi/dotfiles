@@ -72,7 +72,7 @@
 
       startup = [
         { command = "google-chrome-stable"; }
-        { command = "alacritty"; }
+        { command = "ghostty"; }
         { command = "keepassxc"; }
       ];
 
@@ -285,7 +285,7 @@
       command = "fish";
       window-decoration = "false";
       theme = "Dark Modern";
-      initial-command = "zellij --config /home/sibi/github/dotfiles/zellij.kdl --layout /home/sibi/github/dotfiles/zellij_layout.kdl";
+      initial-command = "zellij --config /home/sibi/github/dotfiles/zellij.kdl";
       shell-integration = "fish";
       cursor-style = "block";
       cursor-style-blink = "false";
@@ -307,8 +307,6 @@
           args = [
             "--config"
             "/home/sibi/github/dotfiles/zellij.kdl"
-            "--layout"
-            "/home/sibi/github/dotfiles/zellij_layout.kdl"
           ];
         };
       };
@@ -356,27 +354,24 @@
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    matchBlocks = {
+    settings = {
       "*" = {
-        serverAliveInterval = 60;
+        ServerAliveInterval = 60;
       };
-      "github" = {
-        host = "github.com";
-        hostname = "github.com";
-        identitiesOnly = true;
-        identityFile = "~/.ssh/id_rsa";
+      "github.com" = {
+        HostName = "github.com";
+        IdentitiesOnly = true;
+        IdentityFile = "~/.ssh/id_rsa";
       };
       "github+levana" = {
-        host = "github+levana";
-        hostname = "github.com";
-        identitiesOnly = true;
-        identityFile = "~/.ssh/levana_key";
+        HostName = "github.com";
+        IdentitiesOnly = true;
+        IdentityFile = "~/.ssh/levana_key";
       };
-      "gitlab" = {
-        host = "gitlab.com";
-        hostname = "gitlab.com";
-        identitiesOnly = true;
-        identityFile = "~/.ssh/id_rsa";
+      "gitlab.com" = {
+        HostName = "gitlab.com";
+        IdentitiesOnly = true;
+        IdentityFile = "~/.ssh/id_rsa";
       };
     };
   };
