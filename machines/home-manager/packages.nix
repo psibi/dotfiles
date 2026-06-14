@@ -27,7 +27,7 @@ with pkgs; [
   fd
   procs
   dysk
-  nixfmt-rfc-style
+  nixfmt
   direnv
   pavucontrol
   gnumake
@@ -136,8 +136,8 @@ with pkgs; [
   emacs-all-the-icons-fonts
   kube-capacity
   pdftk
-  xfce.thunar
-  xfce.thunar-volman
+  thunar
+  thunar-volman
   gparted
   parallel
   jdk
@@ -177,7 +177,7 @@ with pkgs; [
   wev
   i3status-rust
   wtype
-  xorg.xlsclients
+  xlsclients
   adwaita-icon-theme
   alsa-utils
 
