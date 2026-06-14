@@ -4,7 +4,7 @@ with pkgs; [
   terraform-docs
   ouch
   unzip
-  dogdns
+  # dogdns
   tgswitch
   file
   aspell
@@ -121,7 +121,7 @@ with pkgs; [
   zlib.out
   zlib.dev
   yubikey-manager
-  yubioath-flutter
+  #yubioath-flutter
   yubico-pam
   flex
   bison
@@ -144,7 +144,7 @@ with pkgs; [
   jdt-language-server
   maven
   gradle
-  flutter
+#	  flutter
   cmake
   ninja
   pkg-config
@@ -187,13 +187,13 @@ with pkgs; [
 
   # nodePackages.yaml-language-server
   # https://github.com/redhat-developer/yaml-language-server/issues/881
-  sibi-yaml-language-server
+  # sibi-yaml-language-server
   vscode-json-languageserver
   dockerfile-language-server
-  nodePackages.bash-language-server
+  #nodePackages.bash-language-server
   # nodejs_20 # Manage through fnm
-  nodePackages.typescript
-  nodePackages.typescript-language-server
+  #nodePackages.typescript
+  #nodePackages.typescript-language-server
   haskellPackages.implicit-hie
   haskellPackages.cabal-gild
   # python311Packages.python-lsp-server - Trying ty now
@@ -203,7 +203,7 @@ with pkgs; [
   glibc.static
   awscli2
   vscode
-  yarn
+  # yarn
   aws-vault
 
   google-chrome
@@ -213,7 +213,7 @@ with pkgs; [
   terraform-ls
   kubernetes-helm
   rustup
-  zoom-us
+  #zoom-us
 
   # From Overlays
   em
@@ -251,48 +251,48 @@ with pkgs; [
   sqlx-cli
   kondo # For cleaning build artifacts
   kubeseal
-  google-cloud-sdk
+  #google-cloud-sdk
   minijinja
   tflint
   trunk
   leptosfmt
-  kubo # For ipfs
-  wasm-pack
+  #kubo # For ipfs
+  #wasm-pack
   # biome
   # sibi-biome
   hugo
-  texliveMedium
+  #texliveMedium
   hurl
   postgresql.dev
   postgresql.lib
   postgresql
   pnpm
-  prisma
-  dbeaver-bin
+  #prisma
+  #dbeaver-bin
   ghostty
   # stack
-  haskellPackages.cabal-fmt
-  claude-code
+  #haskellPackages.cabal-fmt
+  #claude-code
   postgresql
-  unstable.solana-cli
+  #unstable.solana-cli
   # anchor No cache
 
   tombi
   # mold # Interferes with stack
-  gemini-cli
-  wireguard-tools
-  pprof
+  #gemini-cli
+  #wireguard-tools
+  #pprof
   graphviz
   websocat
-  masterpdfeditor
-  worker-build
+  #masterpdfeditor
+  #worker-build
   steam-run
-  unstable.goose-cli
+  #unstable.goose-cli
   k3s
   nftables
   nmap
   rustscan
-  libgourou
+  #libgourou
   calibre
   kubectl-cnpg
   barman
@@ -305,7 +305,7 @@ with pkgs; [
   cargo-insta
   fnm
   # aider-chat-full
-  sibi-aider
+  # sibi-aider
   sibi-dpm
   unixtools.xxd
   metals

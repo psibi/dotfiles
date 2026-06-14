@@ -304,16 +304,16 @@
   :hook (bash-ts-mode . lsp-deferred))
 
 (use-package rust-mode
-  :quelpa (rust-mode :fetcher file
-                     :path "~/github/rust-mode")
+  ;; :quelpa (rust-mode :fetcher file
+  ;;                    :path "~/github/rust-mode")
   :defer t
   :init
   (setq rust-mode-treesitter-derive t))
 
 (use-package rustic
-  :quelpa (rustic :fetcher file
-                  :path "~/github/rustic")
-  ;; :ensure t
+  ;; :quelpa (rustic :fetcher file
+  ;;                 :path "~/github/rustic")
+  :ensure t
   :after (rust-mode lsp-mode smartparens)
   :init
   (progn
@@ -877,7 +877,7 @@
 (load-file "~/github/dotfiles/.emacs.d/org.el")
 (load-file "~/github/dotfiles/.emacs.d/devops.el")  ; Have this at the end because of envrc
 (load-file "~/github/dotfiles/.emacs.d/ai.el")
-(load-file "~/github/dotfiles/.emacs.d/daml.el")
+;;(load-file "~/github/dotfiles/.emacs.d/daml.el")
 
 ;;(use-package prisma-mode
 ;;  :quelpa (prisma-mode :fetcher github
