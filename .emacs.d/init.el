@@ -877,7 +877,7 @@
 (load-file "~/github/dotfiles/.emacs.d/org.el")
 (load-file "~/github/dotfiles/.emacs.d/devops.el")  ; Have this at the end because of envrc
 (load-file "~/github/dotfiles/.emacs.d/ai.el")
-(load-file "~/github/dotfiles/.emacs.d/daml.el")
+;;(load-file "~/github/dotfiles/.emacs.d/daml.el")
 
 ;;(use-package prisma-mode
 ;;  :quelpa (prisma-mode :fetcher github
