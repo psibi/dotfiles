@@ -4,7 +4,7 @@
   :init
   :custom
   (gptel-api-key #'gptel-api-key-from-auth-source)
-  (gptel-model 'deepseek-v4-flash)
+  (gptel-model 'deepseek-v4-pro)
   (gptel-include-reasoning nil)
   (gptel-default-mode 'markdown-mode)
   :bind
