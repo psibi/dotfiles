@@ -4,6 +4,7 @@ with pkgs; [
   terraform-docs
   ouch
   unzip
+  # dogdns
   tgswitch
   file
   aspell
@@ -24,6 +25,7 @@ with pkgs; [
   fd
   procs
   nixfmt-rfc-style
+  dysk
   direnv
   pavucontrol
   gnumake
@@ -103,7 +105,7 @@ with pkgs; [
   zlib.out
   zlib.dev
   yubikey-manager
-  yubioath-flutter
+  #yubioath-flutter
   yubico-pam
   flex
   bison
@@ -113,13 +115,17 @@ with pkgs; [
   ormolu
   emacs-all-the-icons-fonts
   pdftk
-  xfce.thunar
-  xfce.thunar-volman
+  thunar
+  thunar-volman
   gparted
   jdk
   jdt-language-server
   maven
   gradle
+<<<<<<< HEAD
+=======
+#	  flutter
+>>>>>>> origin/master
   cmake
   ninja
   pkg-config
@@ -147,22 +153,43 @@ with pkgs; [
   wev
   i3status-rust
   wtype
-  xorg.xlsclients
+  xlsclients
   adwaita-icon-theme
   alsa-utils
   slurp
   libcamera
   sass
+<<<<<<< HEAD
   vscode-json-languageserver
   dockerfile-language-server
   # nodejs_20 # Manage through fnm
   nodePackages.typescript
   nodePackages.typescript-language-server
+=======
+
+  # nodePackages.yaml-language-server
+  # https://github.com/redhat-developer/yaml-language-server/issues/881
+  # sibi-yaml-language-server
+  vscode-json-languageserver
+  dockerfile-language-server
+  #nodePackages.bash-language-server
+  # nodejs_20 # Manage through fnm
+  #nodePackages.typescript
+  #nodePackages.typescript-language-server
+  haskellPackages.implicit-hie
+  haskellPackages.cabal-gild
+  # python311Packages.python-lsp-server - Trying ty now
+  poetry
+>>>>>>> origin/master
   kooha
   musl.dev # Causes issue to haskell stack.
   glibc.static
   awscli2
   vscode
+<<<<<<< HEAD
+=======
+  # yarn
+>>>>>>> origin/master
   aws-vault
 
   google-chrome
@@ -172,6 +199,10 @@ with pkgs; [
   terraform-ls
   kubernetes-helm
   rustup
+<<<<<<< HEAD
+=======
+  #zoom-us
+>>>>>>> origin/master
 
   # From Overlays
   em
@@ -204,13 +235,28 @@ with pkgs; [
   sqlx-cli
   kondo # For cleaning build artifacts
   kubeseal
+<<<<<<< HEAD
   minijinja
   tflint
+=======
+  #google-cloud-sdk
+  minijinja
+  tflint
+  trunk
+  leptosfmt
+  #kubo # For ipfs
+  #wasm-pack
+  # biome
+  # sibi-biome
+  hugo
+  #texliveMedium
+>>>>>>> origin/master
   hurl
   postgresql.dev
   postgresql.lib
   postgresql
   pnpm
+<<<<<<< HEAD
   ghostty
   # stack
   claude-code
@@ -219,11 +265,34 @@ with pkgs; [
   # mold # Interferes with stack
   websocat
   steam-run
+=======
+  #prisma
+  #dbeaver-bin
+  ghostty
+  # stack
+  #haskellPackages.cabal-fmt
+  #claude-code
+  postgresql
+  #unstable.solana-cli
+  # anchor No cache
+
+  tombi
+  # mold # Interferes with stack
+  #gemini-cli
+  #wireguard-tools
+  #pprof
+  graphviz
+  websocat
+  #masterpdfeditor
+  #worker-build
+  steam-run
+  #unstable.goose-cli
+>>>>>>> origin/master
   k3s
   nftables
   nmap
   rustscan
-  libgourou
+  #libgourou
   calibre
   kubectl-cnpg
   barman
@@ -234,6 +303,11 @@ with pkgs; [
   biff
   cargo-insta
   fnm
+<<<<<<< HEAD
+=======
+  # aider-chat-full
+  # sibi-aider
+>>>>>>> origin/master
   sibi-dpm
   unixtools.xxd
   metals

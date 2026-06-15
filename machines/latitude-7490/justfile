@@ -1,10 +1,10 @@
 # List all recipies
 default:
-    just --list --unsorted
+	just --list --unsorted
 
 # Build system configuration and switch
 build-switch:
-    sudo nixos-rebuild switch
+	sudo nixos-rebuild switch
 
 # Flake information
 flake-info:

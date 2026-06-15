@@ -304,16 +304,16 @@
   :hook (bash-ts-mode . lsp-deferred))
 
 (use-package rust-mode
-  :quelpa (rust-mode :fetcher file
-                     :path "~/github/rust-mode")
+  ;; :quelpa (rust-mode :fetcher file
+  ;;                    :path "~/github/rust-mode")
   :defer t
   :init
   (setq rust-mode-treesitter-derive t))
 
 (use-package rustic
-  :quelpa (rustic :fetcher file
-                  :path "~/github/rustic")
-  ;; :ensure t
+  ;; :quelpa (rustic :fetcher file
+  ;;                 :path "~/github/rustic")
+  :ensure t
   :after (rust-mode lsp-mode smartparens)
   :init
   (progn

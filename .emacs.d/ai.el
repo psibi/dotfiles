@@ -89,8 +89,8 @@ list of bullet points.
 "
 ))
 
-(use-package gptel-quick
-  :after gptel
-  :quelpa (gptel-quick :fetcher github
-		       :repo "karthink/gptel-quick")
-  :ensure t)
+;; (use-package gptel-quick
+;;   :after gptel
+;;   :quelpa (gptel-quick :fetcher github
+;; 		       :repo "karthink/gptel-quick")
+;;   :ensure t)

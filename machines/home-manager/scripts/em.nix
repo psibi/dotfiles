@@ -4,6 +4,6 @@ let
   #!${pkgs.stdenv.shell}
 
   # Pass explicit socket name for emacs provisioned via nixpkgs
-  exec emacsclient -c --socket-name=/run/user/1001/emacs/server "$@"
+  exec emacsclient -c --socket-name="''${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/emacs/server" "$@"
   '';
 in em

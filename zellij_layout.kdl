@@ -1,20 +1,31 @@
 layout {
     default_tab_template {
         pane size=1 borderless=true {
-        plugin location="tab-bar"
+            plugin location="zellij:tab-bar"
         }
-    	pane split_direction="vertical" {
-	     pane
-	     pane stacked=true{
-	     	pane
-		pane
-		pane
-	     }
-	}
-	pane size=1 borderless=true {
-	    plugin location="status-bar"
-	}
+        children
+        pane size=1 borderless=true {
+            plugin location="zellij:status-bar"
+        }
     }
-    tab name="1"
-    tab name="2"
+    tab name="1" {
+        pane split_direction="vertical" {
+            pane
+            pane stacked=true {
+                pane
+                pane
+                pane
+            }
+        }
+    }
+    tab name="2" {
+        pane split_direction="vertical" {
+            pane
+            pane stacked=true {
+                pane
+                pane
+                pane
+            }
+        }
+    }
 }
