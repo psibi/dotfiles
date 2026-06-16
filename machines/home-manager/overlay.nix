@@ -6,9 +6,9 @@
   # spl-token-cli = super.pkgs.callPackage ../packages/spl-token-cli/default.nix {};
   # gemini-cli = super.pkgs.callPackage ../packages/gemini-cli/default.nix {};
   # minijinja-cli = super.pkgs.callPackage ../packages/minijinja/default.nix { };
-  sibi-yaml-language-server = super.pkgs.callPackage ../packages/yaml-language-server/default.nix { };
-  sibi-goose-cli = super.pkgs.callPackage ../packages/goose-cli/package.nix { };
-  opencode = super.pkgs.callPackage ../packages/opencode/package.nix { };
+  # sibi-yaml-language-server = super.pkgs.callPackage ../packages/yaml-language-server/default.nix { };
+  # sibi-goose-cli = super.pkgs.callPackage ../packages/goose-cli/package.nix { };
+  # opencode = super.pkgs.callPackage ../packages/opencode/package.nix { };
 #  sibi-aider = (super.pkgs.callPackage ../packages/aider/package.nix { unstable = unstable; }).withOptional { withPlaywright = true; };
   sibi-dpm = super.pkgs.callPackage ../packages/dpm/default.nix {};
 }
