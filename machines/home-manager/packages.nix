@@ -22,7 +22,7 @@ with pkgs; [
   lsd
   fd
   procs
-  nixfmt-rfc-style
+  nixfmt
   dysk
   direnv
   pavucontrol
@@ -150,8 +150,8 @@ with pkgs; [
   slurp
   libcamera
   sass
-  nodePackages.typescript
-  nodePackages.typescript-language-server
+  typescript
+  typescript-language-server
   vscode-json-languageserver
   dockerfile-language-server
   kooha
