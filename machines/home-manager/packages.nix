@@ -1,10 +1,9 @@
 { pkgs, unstable }:
 with pkgs; [
   git
-  terraform-docs
-  ouch
+  unstable.ouch
   unzip
-  # dogdns
+  doggo
   tgswitch
   file
   aspell
@@ -18,7 +17,6 @@ with pkgs; [
   git
   alacritty
   gnucash
-  screen
   fish
   bat
   lsd
@@ -61,13 +59,11 @@ with pkgs; [
   wirelesstools
   tree-sitter
   tree-sitter-grammars.tree-sitter-rust
-  watchexec
   jwt-cli
   # httplz
   miniserve # Altearnative to httplz
   twitter-color-emoji
   kalker
-  nixpkgs-fmt
   pinentry-qt
   difftastic
   docker-compose
@@ -107,13 +103,12 @@ with pkgs; [
   yubikey-manager
   #yubioath-flutter
   yubico-pam
-  flex
-  bison
   ccls
   hwatch
   nil
   ormolu
   emacs-all-the-icons-fonts
+  qpdf
   pdftk
   thunar
   thunar-volman
@@ -122,10 +117,6 @@ with pkgs; [
   jdt-language-server
   maven
   gradle
-<<<<<<< HEAD
-=======
-#	  flutter
->>>>>>> origin/master
   cmake
   ninja
   pkg-config
@@ -159,68 +150,34 @@ with pkgs; [
   slurp
   libcamera
   sass
-<<<<<<< HEAD
-  vscode-json-languageserver
-  dockerfile-language-server
-  # nodejs_20 # Manage through fnm
   nodePackages.typescript
   nodePackages.typescript-language-server
-=======
-
-  # nodePackages.yaml-language-server
-  # https://github.com/redhat-developer/yaml-language-server/issues/881
-  # sibi-yaml-language-server
   vscode-json-languageserver
   dockerfile-language-server
-  #nodePackages.bash-language-server
-  # nodejs_20 # Manage through fnm
-  #nodePackages.typescript
-  #nodePackages.typescript-language-server
-  haskellPackages.implicit-hie
-  haskellPackages.cabal-gild
-  # python311Packages.python-lsp-server - Trying ty now
-  poetry
->>>>>>> origin/master
   kooha
   musl.dev # Causes issue to haskell stack.
   glibc.static
   awscli2
   vscode
-<<<<<<< HEAD
-=======
-  # yarn
->>>>>>> origin/master
-  aws-vault
-
   google-chrome
   chromium
   just
-
   terraform-ls
   kubernetes-helm
   rustup
-<<<<<<< HEAD
-=======
-  #zoom-us
->>>>>>> origin/master
-
   # From Overlays
   em
   flarectl
   sibiEmacs
-
   libusb1
   libusb1.dev
   libusb1.out # for kolme
   systemd.dev # for kolme
-
   go
   gopls
-
   hwinfo
   pciutils
   lshw
-
   ubuntu-classic
   font-awesome
   symbola
@@ -228,72 +185,29 @@ with pkgs; [
   nerd-fonts.symbols-only
   lm_sensors
   linux.dev
-
   tldr-hs
   whois
-
   sqlx-cli
   kondo # For cleaning build artifacts
   kubeseal
-<<<<<<< HEAD
-  minijinja
-  tflint
-=======
-  #google-cloud-sdk
   minijinja
   tflint
   trunk
   leptosfmt
-  #kubo # For ipfs
-  #wasm-pack
-  # biome
-  # sibi-biome
-  hugo
-  #texliveMedium
->>>>>>> origin/master
   hurl
   postgresql.dev
   postgresql.lib
   postgresql
   pnpm
-<<<<<<< HEAD
   ghostty
   # stack
-  claude-code
   postgresql
   tombi
   # mold # Interferes with stack
   websocat
   steam-run
-=======
-  #prisma
-  #dbeaver-bin
-  ghostty
-  # stack
-  #haskellPackages.cabal-fmt
-  #claude-code
-  postgresql
-  #unstable.solana-cli
-  # anchor No cache
-
-  tombi
-  # mold # Interferes with stack
-  #gemini-cli
-  #wireguard-tools
-  #pprof
-  graphviz
-  websocat
-  #masterpdfeditor
-  #worker-build
-  steam-run
-  #unstable.goose-cli
->>>>>>> origin/master
-  k3s
   nftables
   nmap
-  rustscan
-  #libgourou
-  calibre
   kubectl-cnpg
   barman
   net-tools
@@ -303,15 +217,9 @@ with pkgs; [
   biff
   cargo-insta
   fnm
-<<<<<<< HEAD
-=======
-  # aider-chat-full
-  # sibi-aider
->>>>>>> origin/master
   sibi-dpm
   unixtools.xxd
   metals
   scala
   ty
-  # unstable.codex
 ]
