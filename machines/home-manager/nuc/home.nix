@@ -364,8 +364,7 @@
 
   services.swayidle = {
     enable = true;
-    events = [
-    ];
+    events = { };
     timeouts = [
       {
         timeout = 1800;
