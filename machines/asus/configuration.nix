@@ -31,7 +31,10 @@
   boot.kernelModules = [ "kvm-amd" "amdgpu" ];
 
   boot.initrd.luks.devices.crypted.device = "/dev/disk/by-uuid/83f885b8-95ba-4675-9d73-721374986d12";
-  fileSystems."/home".device = "/dev/mapper/crypted";
+  fileSystems."/home" = {
+    device = "/dev/mapper/crypted";
+    fsType = "ext4";
+  };
 
   nixpkgs.config.allowUnfree = true;
   hardware.enableRedistributableFirmware = true;

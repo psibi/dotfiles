@@ -4,9 +4,7 @@
   imports = [  ];
 
   nixpkgs = {
-    overlays =
-      [ (import ../overlay.nix { unstable = unstable-pkgs; }
-    ) ];
+    overlays = [ (import ../overlay.nix) ];
     config = {
       allowUnfreePredicate = (_: true);
       allowUnfree = true;
@@ -50,7 +48,6 @@
   };
 
   programs.rofi = {
-    package = pkgs.rofi;
     enable = true;
     location = "center";
     pass.enable = false;
@@ -125,7 +122,7 @@
       command = "fish";
       window-decoration = "false";
       theme = "Dark Modern";
-      initial-command = "zellij --config /home/sibi/github/dotfiles/zellij.kdl --layout /home/sibi/github/dotfiles/zellij_layout.kdl";
+      initial-command = "zellij --config /home/sibi/github/dotfiles/zellij.kdl";
       shell-integration = "fish";
       cursor-style = "block";
       cursor-style-blink = "false";
@@ -143,12 +140,10 @@
       };
       terminal = {
         shell = {
-          program = "${unstable-pkgs.zellij}/bin/zellij";
+          program = "${pkgs.zellij}/bin/zellij";
           args = [
             "--config"
             "/home/sibi/github/dotfiles/zellij.kdl"
-            "--layout"
-            "/home/sibi/github/dotfiles/zellij_layout.kdl"
           ];
         };
       };
@@ -160,62 +155,24 @@
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    matchBlocks = {
+    settings = {
       "*" = {
-        serverAliveInterval = 60;
+        ServerAliveInterval = 60;
       };
-      "ssh.dev.azure.com" = {
-        user = "git";
-        host = "ssh.dev.azure.com";
-        hostname = "ssh.dev.azure.com";
-        identitiesOnly = true;
-        serverAliveInterval = 15;
-        serverAliveCountMax = 3;
-        identityFile = "~/.ssh/id_rsa";
-        extraOptions = {
-          PubkeyAcceptedAlgorithms = "+ssh-rsa";
-          HostkeyAlgorithms = "+ssh-rsa";
-        };
-      };
-      "bitbucket" = {
-        host = "bitbucket.org";
-        hostname = "bitbucket.org";
-        identitiesOnly = true;
-        identityFile = "~/.ssh/id_rsa";
-        serverAliveInterval = 15;
-        serverAliveCountMax = 3;
-      };
-      "bitbucket_bl3ndlabs" = {
-        host = "bl3ndlabs";
-        hostname = "bitbucket.org";
-        identitiesOnly = true;
-        identityFile = "~/.ssh/id_rsa_ed25519";
-        serverAliveInterval = 15;
-        serverAliveCountMax = 3;
-      };
-      "github" = {
-        host = "github.com";
-        hostname = "github.com";
-        identitiesOnly = true;
-        identityFile = "~/.ssh/id_rsa";
-        serverAliveInterval = 15;
-        serverAliveCountMax = 3;
+      "github.com" = {
+        HostName = "github.com";
+        IdentitiesOnly = true;
+        IdentityFile = "~/.ssh/id_rsa";
       };
       "github+levana" = {
-        host = "github+levana";
-        hostname = "github.com";
-        identitiesOnly = true;
-        identityFile = "~/.ssh/levana_id_rsa";
-        serverAliveInterval = 15;
-        serverAliveCountMax = 3;
+        HostName = "github.com";
+        IdentitiesOnly = true;
+        IdentityFile = "~/.ssh/levana_key";
       };
-      "gitlab" = {
-        host = "gitlab.com";
-        hostname = "gitlab.com";
-        identitiesOnly = true;
-        identityFile = "~/.ssh/id_rsa";
-        serverAliveInterval = 15;
-        serverAliveCountMax = 3;
+      "gitlab.com" = {
+        HostName = "gitlab.com";
+        IdentitiesOnly = true;
+        IdentityFile = "~/.ssh/id_rsa";
       };
     };
   };
@@ -393,17 +350,6 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-
-  programs.obs-studio = {
-    enable = true;
-    package = pkgs.obs-studio;
-    plugins = [ pkgs.obs-studio-plugins.obs-backgroundremoval ];
-  };
-
-  programs.nix-index = {
-    enable = true;
-    enableFishIntegration = true;
-  };
 
   programs.zellij = {
     enable = true;
