@@ -196,7 +196,7 @@
   :custom
   (lsp-log-io nil)
   ;; (lsp-log-io t)
-  (lsp-disabled-clients '(tfls clangd rls rnix-lsp semgrep-ls deno-ls copilot-ls taplo biome))
+  (lsp-disabled-clients '(tfls clangd rls rnix-lsp semgrep-ls deno-ls copilot-ls taplo biome tailwindcss))
   (lsp-semantic-tokens-enable t)
   (lsp-lens-auto-enable t)
   (lsp-semantic-tokens-honor-refresh-requests nil)
@@ -250,7 +250,7 @@
   :custom
   ;; For HLS specific change
   ;; (lsp-rename-use-prepare t)
-  (lsp-rust-analyzer-server-command '("rustup" "run" "1.91.0" "rust-analyzer"))
+  (lsp-rust-analyzer-server-command '("rustup" "run" "1.94.1" "rust-analyzer"))
   (lsp-rust-analyzer-cargo-target-dir "target-ra")
   (lsp-rust-analyzer-server-display-inlay-hints t)
   (lsp-rust-analyzer-experimental-proc-attr-macros t)
