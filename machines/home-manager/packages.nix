@@ -38,7 +38,7 @@ with pkgs; [
   nix-prefetch-git
   nix-prefetch-github
   sage
-  python3Minimal
+  python3
   pandoc
   killall
   starship
@@ -98,7 +98,7 @@ with pkgs; [
   paprefs
   grpcurl
   zola
-  zlib.out
+  zlib
   zlib.dev
   yubikey-manager
   #yubioath-flutter
@@ -155,8 +155,8 @@ with pkgs; [
   vscode-json-languageserver
   dockerfile-language-server
   kooha
-  musl.dev # Causes issue to haskell stack.
-  glibc.static
+  # musl.dev # Causes issue to haskell stack.
+  # glibc.static
   awscli2
   vscode
   google-chrome
@@ -222,4 +222,12 @@ with pkgs; [
   metals
   scala
   ty
+  dmidecode
+  typst
+  lld
+  # sibi-solidity-language-server
+  foundry
+  rainfrog
+  # pi-coding-agent
+  nodejs
 ]
