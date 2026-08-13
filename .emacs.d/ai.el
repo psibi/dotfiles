@@ -4,7 +4,7 @@
   :init
   :custom
   (gptel-api-key #'gptel-api-key-from-auth-source)
-  (gptel-model 'deepseek-v4-pro)
+  (gptel-model 'deepseek-v4-flash)
   (gptel-include-reasoning nil)
   (gptel-default-mode 'markdown-mode)
   :bind
@@ -32,7 +32,7 @@
   :quelpa (llm :fetcher github
 	       :repo "ahyatt/llm")
   :init
-  (require 'llm-gemini)
+  (require 'llm-deepseek)
   :custom
   (llm-warn-on-nonfree nil))
 
@@ -45,11 +45,11 @@
   (magit-gptcommit-status-buffer-setup)
   :custom
   (magit-gptcommit-llm-provider
-   (make-llm-gemini
-    :key (plist-get (car (auth-source-search :host "localhost.gemini-free"))
+   (make-llm-deepseek
+    :key (plist-get (car (auth-source-search :host "localhost.deepseek-paid"))
 		    :secret)
     ;; :chat-model "gemini/gemini-2.5-pro")
-    :chat-model "gemini-3-flash-preview")
+    :chat-model "deepseek-v4-flash")
    )
   (magit-gptcommit-prompt "You are an expert programmer writing a commit message.
 You went over every file diff that was changed in it.
