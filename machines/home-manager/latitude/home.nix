@@ -35,6 +35,7 @@
       ".tgswitch.toml".source = ../../../tgswitch.toml;
       ".aws/config".source = ../../../aws-config;
       ".config/mprocs/mprocs.yaml".source = ../../../mprocs.yaml;
+      ".config/zerostack/config.toml".source = ../../../zerostack.toml;
     };
   };
 
@@ -48,12 +49,18 @@
       # "x-scheme-handler/https" = [ "firefox.desktop" ];
       # "x-scheme-handler/about" = [ "firefox.desktop" ];
       # "x-scheme-handler/unknown" = [ "firefox.desktop" ];
-      "application/pdf" = [ "google-chrome.desktop" ];
-      "text/html" = [ "google-chrome.desktop" ];
-      "x-scheme-handler/http" = [ "google-chrome.desktop" ];
-      "x-scheme-handler/https" = [ "google-chrome.desktop" ];
-      "x-scheme-handler/about" = [ "google-chrome.desktop" ];
-      "x-scheme-handler/unknown" = [ "google-chrome.desktop" ];
+      # "application/pdf" = [ "google-chrome.desktop" ];
+      # "text/html" = [ "google-chrome.desktop" ];
+      # "x-scheme-handler/http" = [ "google-chrome.desktop" ];
+      # "x-scheme-handler/https" = [ "google-chrome.desktop" ];
+      # "x-scheme-handler/about" = [ "google-chrome.desktop" ];
+      # "x-scheme-handler/unknown" = [ "google-chrome.desktop" ];
+      "application/pdf" = [ "chromium-browser.desktop" ];
+      "text/html" = [ "chromium-browser.desktop" ];
+      "x-scheme-handler/http" = [ "chromium-browser.desktop" ];
+      "x-scheme-handler/https" = [ "chromium-browser.desktop" ];
+      "x-scheme-handler/about" = [ "chromium-browser.desktop" ];
+      "x-scheme-handler/unknown" = [ "chromium-browser.desktop" ];
     };
   };
 
@@ -71,7 +78,7 @@
       terminal = "ghostty";
 
       startup = [
-        { command = "google-chrome-stable"; }
+        { command = "chromium-browser"; }
         { command = "ghostty"; }
         { command = "keepassxc"; }
       ];
@@ -94,7 +101,7 @@
           }
           {
             command = "move container to workspace number 2";
-            criteria.app_id = "google-chrome";
+            criteria.app_id = "chromium-browser";
           }
           {
             command = "move container to workspace number 1";
