@@ -21,7 +21,7 @@
       monetary = "en_IN";
       time = "en_US.UTF-8";
     };
-    sessionPath = [ "$HOME/.local/bin" "$HOME/.cargo/bin" ];
+    sessionPath = [ "$HOME/.local/bin" "$HOME/.cargo/bin" "$HOME/.local/share/pnpm"];
     stateVersion = "21.05";
 
     sessionVariables = {
@@ -29,6 +29,7 @@
       LIBVA_DRIVER_NAME = "radeonsi";
       # VDPAU (Video Decode and Presentation API for Unix) driver for AMD GPUs.
       VDPAU_DRIVER = "radeonsi";
+      PNPM_HOME = "$HOME/.local/share/pnpm";
     };
 
     packages = import ../packages.nix {

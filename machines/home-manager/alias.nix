@@ -1,5 +1,5 @@
 { pkgs }: {
-  pi = "ping 8.8.8.8";
+  # pi = "ping 8.8.8.8";
   clipboard = "wl-copy";
   ls = "lsd";
   o = "xdg-open";
