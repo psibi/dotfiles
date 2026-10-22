@@ -63,16 +63,29 @@
 
   services.blueman.enable = true;
 
-  networking.hostName = "hask";
+  networking = {
+    hostName = "hask";
+    networkmanager.enable = true; # Easiest to use and most distros use this by default.
+  };
+
+  # System-wide DNS over TLS via systemd-resolved. NetworkManager hands DNS to
+  # resolved, which uses Cloudflare over TLS on port 853 for every lookup.
+  services.resolved = {
+    enable = true;
+    settings.Resolve = {
+      DNS = [ "1.1.1.1#cloudflare-dns.com" "1.0.0.1#cloudflare-dns.com" ];
+      DNSOverTLS = "yes";
+      Domains = [ "~." ];
+      FallbackDNS = [ ];
+    };
+  };
 
   # https://github.com/NixOS/nixpkgs/issues/98050#issuecomment-1471678276
-  # services.resolved.enable = true;
   # services.resolved.extraConfig = "MulticastDNS = \"true\"";
   # networking.firewall.allowedUDPPorts = [ 5353 ];
 
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.
   time.timeZone = "Asia/Kolkata";
@@ -145,6 +158,12 @@
   programs.firejail.enable = true;
 
   security.polkit.enable = true;
+
+  security.pki.caCertificateBlacklist = [
+    "Comodo AAA Services root"
+    "emSign ECC Root CA - G3"
+  ];
+
   services.udisks2.enable = true;
   services.devmon.enable = true;
 
